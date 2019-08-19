@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AtomicRef Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/AtomicRef" class="dashAnchor"></a>
+
+    <a title="AtomicRef Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          FuturesSync Reference (0.1.0)
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/dfunckt/swift-futures">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fdfunckt%2Egithub%2Eio%2Fswift%2Dfutures%2Fdocs%2F0%2E1%2E0%2Fdocsets%2FFuturesSync%2Exml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">FuturesSync Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      AtomicRef Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Primitives.html">Primitives</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Atomic.html">Atomic</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicEnum.html">AtomicEnum</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicRef.html">AtomicRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicBool.html">AtomicBool</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt.html">AtomicInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt8.html">AtomicInt8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt16.html">AtomicInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt32.html">AtomicInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt64.html">AtomicInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt.html">AtomicUInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt8.html">AtomicUInt8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt16.html">AtomicUInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt32.html">AtomicUInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt64.html">AtomicUInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Primitives.html#/s:11FuturesSync11AtomicUSizea">AtomicUSize</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Bounded Queues.html">Bounded Queues</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AtomicQueueProtocol.html">AtomicQueueProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicSPSCQueue.html">AtomicSPSCQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicSPMCQueue.html">AtomicSPMCQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicMPSCQueue.html">AtomicMPSCQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicMPMCQueue.html">AtomicMPMCQueue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Unbounded Queues.html">Unbounded Queues</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AtomicUnboundedQueueProtocol.html">AtomicUnboundedQueueProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUnboundedMPSCQueue.html">AtomicUnboundedMPSCQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUnboundedSPSCQueue.html">AtomicUnboundedSPSCQueue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Locking.html">Locking</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/LockingProtocol.html">LockingProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PosixLock.html">PosixLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Locking.html#/UnfairLock">UnfairLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/UnfairLock.html">UnfairLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SpinLock.html">SpinLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SharedValue.html">SharedValue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Helpers.html">Helpers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Backoff.html">Backoff</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/OptionSet.html">OptionSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/RawRepresentable.html">RawRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift.html">Swift</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Bool.html">– Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int.html">– Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int8.html">– Int8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int16.html">– Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int32.html">– Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int64.html">– Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt.html">– UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt8.html">– UInt8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt16.html">– UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt32.html">– UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt64.html">– UInt64</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Protocols.html">Other Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Protocols.html#/s:11FuturesSync15_CAtomicIntegerP">_CAtomicInteger</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/_5FCAtomicValue.html">_CAtomicValue</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>AtomicRef</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">AtomicRef</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC7Pointera"></a>
+                    <a name="//apple_ref/swift/Alias/Pointer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Pointer</span> <span class="o">=</span> <span class="kt"><a href="../Primitives.html#/s:11FuturesSync11AtomicUSizea">AtomicUSize</a></span><span class="o">.</span><span class="kt">Pointer</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC8RawValuea"></a>
+                    <a name="//apple_ref/swift/Alias/RawValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC8RawValuea">RawValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">RawValue</span> <span class="o">=</span> <span class="kt"><a href="../Primitives.html#/s:11FuturesSync11AtomicUSizea">AtomicUSize</a></span><span class="o">.</span><span class="kt">RawValue</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefCyACyxGxSgcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefCyACyxGxSgcfc">init(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">T</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L39-L41">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC5valuexSgvp"></a>
+                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC5valuexSgvp">value</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">T</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L50-L53">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC7destroy5orderySo0C16StoreMemoryOrderV_tF"></a>
+                    <a name="//apple_ref/swift/Method/destroy(order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC7destroy5orderySo0C16StoreMemoryOrderV_tF">destroy(order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">destroy</span><span class="p">(</span><span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicStoreMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L56-L58">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC4load5orderxSgSo0C15LoadMemoryOrderV_tF"></a>
+                    <a name="//apple_ref/swift/Method/load(order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC4load5orderxSgSo0C15LoadMemoryOrderV_tF">load(order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L61-L63">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC5store_5orderyxSg_So0C16StoreMemoryOrderVtF"></a>
+                    <a name="//apple_ref/swift/Method/store(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC5store_5orderyxSg_So0C16StoreMemoryOrderVtF">store(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="n">_</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicStoreMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L66-L68">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC8exchange_5orderxSgAF_So0C11MemoryOrderVtF"></a>
+                    <a name="//apple_ref/swift/Method/exchange(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC8exchange_5orderxSgAF_So0C11MemoryOrderVtF">exchange(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">exchange</span><span class="p">(</span><span class="n">_</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L71-L73">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC15compareExchange__5order9loadOrderSbSpyxSgG_AGSo0c6MemoryI0VSo0c4LoadjI0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/compareExchange(_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC15compareExchange__5order9loadOrderSbSpyxSgG_AGSo0c6MemoryI0VSo0c4LoadjI0VSgtF">compareExchange(_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">?</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L77-L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC15compareExchange__5order9loadOrderxSgAG_AGSo0c6MemoryI0VSo0c4LoadjI0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/compareExchange(_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC15compareExchange__5order9loadOrderxSgAG_AGSo0c6MemoryI0VSo0c4LoadjI0VSgtF">compareExchange(_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L94-L107">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC19compareExchangeWeak__5order9loadOrderSbSpyxSgG_AGSo0c6MemoryJ0VSo0c4LoadkJ0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/compareExchangeWeak(_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC19compareExchangeWeak__5order9loadOrderSbSpyxSgG_AGSo0c6MemoryJ0VSo0c4LoadkJ0VSgtF">compareExchangeWeak(_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">compareExchangeWeak</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">?</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L111-L124">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC19compareExchangeWeak__5order9loadOrderxSgAG_AGSo0c6MemoryJ0VSo0c4LoadkJ0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/compareExchangeWeak(_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC19compareExchangeWeak__5order9loadOrderxSgAG_AGSo0c6MemoryJ0VSo0c4LoadkJ0VSgtF">compareExchangeWeak(_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">compareExchangeWeak</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L128-L141">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Type%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Type Methods" class="dashAnchor"></a>
+                <a href="#/Type%20Methods">
+                  <h3 class="section-name">Type Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC10initialize_2toySpySuG_xSgtFZ"></a>
+                    <a name="//apple_ref/swift/Method/initialize(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC10initialize_2toySpySuG_xSgtFZ">initialize(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">_</span> <span class="nv">ptr</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicRef.html#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">T</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L148-L151">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC7destroy_5orderySpySuG_So0C16StoreMemoryOrderVtFZ"></a>
+                    <a name="//apple_ref/swift/Method/destroy(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC7destroy_5orderySpySuG_So0C16StoreMemoryOrderVtFZ">destroy(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">destroy</span><span class="p">(</span><span class="n">_</span> <span class="nv">ref</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicRef.html#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a></span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicStoreMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L154-L156">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC4load_5orderxSgSpySuG_So0C15LoadMemoryOrderVtFZ"></a>
+                    <a name="//apple_ref/swift/Method/load(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC4load_5orderxSgSpySuG_So0C15LoadMemoryOrderVtFZ">load(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="n">_</span> <span class="nv">ref</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicRef.html#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a></span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L159-L165">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC5store__5orderySpySuG_xSgSo0C16StoreMemoryOrderVtFZ"></a>
+                    <a name="//apple_ref/swift/Method/store(_:_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC5store__5orderySpySuG_xSgSo0C16StoreMemoryOrderVtFZ">store(_:_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="n">_</span> <span class="nv">ref</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicRef.html#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicStoreMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L168-L176">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC8exchange__5orderxSgSpySuG_AFSo0C11MemoryOrderVtFZ"></a>
+                    <a name="//apple_ref/swift/Method/exchange(_:_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC8exchange__5orderxSgSpySuG_AFSo0C11MemoryOrderVtFZ">exchange(_:_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">exchange</span><span class="p">(</span><span class="n">_</span> <span class="nv">ref</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicRef.html#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L179-L186">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC15compareExchange___5order9loadOrderSbSpySuG_SpyxSgGAHSo0c6MemoryI0VSo0c4LoadjI0VSgtFZ"></a>
+                    <a name="//apple_ref/swift/Method/compareExchange(_:_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC15compareExchange___5order9loadOrderSbSpySuG_SpyxSgGAHSo0c6MemoryI0VSo0c4LoadjI0VSgtFZ">compareExchange(_:_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">ref</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicRef.html#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a></span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">?</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L190-L217">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC15compareExchange___5order9loadOrderxSgSpySuG_A2GSo0c6MemoryI0VSo0c4LoadjI0VSgtFZ"></a>
+                    <a name="//apple_ref/swift/Method/compareExchange(_:_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC15compareExchange___5order9loadOrderxSgSpySuG_A2GSo0c6MemoryI0VSo0c4LoadjI0VSgtFZ">compareExchange(_:_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">ref</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicRef.html#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a></span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L221-L246">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC19compareExchangeWeak___5order9loadOrderSbSpySuG_SpyxSgGAHSo0c6MemoryJ0VSo0c4LoadkJ0VSgtFZ"></a>
+                    <a name="//apple_ref/swift/Method/compareExchangeWeak(_:_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC19compareExchangeWeak___5order9loadOrderSbSpySuG_SpyxSgGAHSo0c6MemoryJ0VSo0c4LoadkJ0VSgtFZ">compareExchangeWeak(_:_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">compareExchangeWeak</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">ref</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicRef.html#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a></span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">?</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L250-L277">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync9AtomicRefC19compareExchangeWeak___5order9loadOrderxSgSpySuG_A2GSo0c6MemoryJ0VSo0c4LoadkJ0VSgtFZ"></a>
+                    <a name="//apple_ref/swift/Method/compareExchangeWeak(_:_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync9AtomicRefC19compareExchangeWeak___5order9loadOrderxSgSpySuG_A2GSo0c6MemoryJ0VSo0c4LoadkJ0VSgtFZ">compareExchangeWeak(_:_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">compareExchangeWeak</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">ref</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicRef.html#/s:11FuturesSync9AtomicRefC7Pointera">Pointer</a></span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt">T</span><span class="p">?,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicRef.swift#L281-L306">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 Akis Kesoglou. Licensed under the MIT license.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

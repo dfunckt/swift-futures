@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SinkProtocol Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/SinkProtocol" class="dashAnchor"></a>
+
+    <a title="SinkProtocol Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Futures Reference (0.1.0)
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/dfunckt/swift-futures">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fdfunckt%2Egithub%2Eio%2Fswift%2Dfutures%2Fdocs%2F0%2E1%2E0%2Fdocsets%2FFutures%2Exml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Futures Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      SinkProtocol Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Core Types.html">Core Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FutureProtocol.html">FutureProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StreamProtocol.html">StreamProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SinkProtocol.html">SinkProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ChannelProtocol.html">ChannelProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ExecutorProtocol.html">ExecutorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Task.html">Task</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Core Namespaces.html">Core Namespaces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Future.html">Future</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Stream/ReplayStrategy.html">– ReplayStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Sink.html">Sink</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Sink/Completion.html">– Completion</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel.html">Channel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Unbuffered.html">– Unbuffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Passthrough.html">– Passthrough</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Buffered.html">– Buffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/BufferedUnbounded.html">– BufferedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Shared.html">– Shared</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/SharedUnbounded.html">– SharedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Pipe.html">– Pipe</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Sender.html">– Sender</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Receiver.html">– Receiver</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Futures.html">Futures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FutureConvertible.html">FutureConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Promise.html">Promise</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Deferred.html">Deferred</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyFuture.html">AnyFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Futures.html#/s:7Futures15AnyResultFuturea">AnyResultFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ResultFuture.html">ResultFuture</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Streams.html">Streams</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StreamConvertible.html">StreamConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyStream.html">AnyStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyMulticastStream.html">AnyMulticastStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnySharedStream.html">AnySharedStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Streams.html#/s:7Futures15AnyResultStreama">AnyResultStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ResultStream.html">ResultStream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Sinks.html">Sinks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SinkConvertible.html">SinkConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnySink.html">AnySink</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Executors.html">Executors</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BlockingExecutor.html">BlockingExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/QueueExecutor.html">QueueExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RunLoopExecutor.html">RunLoopExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RunLoopExecutor/Failure.html">– Failure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreadExecutor.html">ThreadExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreadExecutor/Failure.html">– Failure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Poll.html">Poll</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/WakerProtocol.html">WakerProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnyWaker.html">AnyWaker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Cancellable.html">Cancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnyCancellable.html">AnyCancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Either.html">Either</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/EitherConvertible.html">EitherConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift.html">Swift</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Sequence.html">– Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Result.html">– Result</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Functions.html">Other Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures25assertOnMainQueueExecutoryyF">assertOnMainQueueExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures27assertOnMainRunLoopExecutoryyF">assertOnMainRunLoopExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures21assertOnQueueExecutoryyAA0dE0CF">assertOnQueueExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures23assertOnRunLoopExecutoryyAA0deF0CF">assertOnRunLoopExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures22assertOnThreadExecutoryyAA0dE0CF">assertOnThreadExecutor(_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>SinkProtocol</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SinkProtocol</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/SinkConvertible.html">SinkConvertible</a></span> <span class="k">where</span> <span class="k">Self</span> <span class="o">==</span> <span class="k">Self</span><span class="o">.</span><span class="kt">SinkType</span></code></pre>
+
+                </div>
+              </div>
+            
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolP5InputQa"></a>
+                    <a name="//apple_ref/swift/Alias/Input" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolP5InputQa">Input</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Input</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolP7FailureQa"></a>
+                    <a name="//apple_ref/swift/Alias/Failure" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolP7FailureQa">Failure</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Failure</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolP10Completiona"></a>
+                    <a name="//apple_ref/swift/Alias/Completion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolP10Completiona">Completion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">Completion</span> <span class="o">=</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="kt">Completion</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP7FailureQa">Failure</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolP6Outputa"></a>
+                    <a name="//apple_ref/swift/Alias/Output" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolP6Outputa">Output</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">Output</span> <span class="o">=</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Void</span><span class="p">,</span> <span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP10Completiona">Completion</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolP8pollSendyAA4PollOys6ResultOyytAA0B0O10CompletionOy_7FailureQzGGGAA7ContextVz_5InputQztF"></a>
+                    <a name="//apple_ref/swift/Method/pollSend(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolP8pollSendyAA4PollOys6ResultOyytAA0B0O10CompletionOy_7FailureQzGGGAA7ContextVz_5InputQztF">pollSend(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">pollSend</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="k">inout</span> <span class="kt"><a href="../Structs/Context.html">Context</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">item</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP5InputQa">Input</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Poll.html">Poll</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP6Outputa">Output</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolP9pollFlushyAA4PollOys6ResultOyytAA0B0O10CompletionOy_7FailureQzGGGAA7ContextVzF"></a>
+                    <a name="//apple_ref/swift/Method/pollFlush(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolP9pollFlushyAA4PollOys6ResultOyytAA0B0O10CompletionOy_7FailureQzGGGAA7ContextVzF">pollFlush(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">pollFlush</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="k">inout</span> <span class="kt"><a href="../Structs/Context.html">Context</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Poll.html">Poll</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP6Outputa">Output</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolP9pollCloseyAA4PollOys6ResultOyytAA0B0O10CompletionOy_7FailureQzGGGAA7ContextVzF"></a>
+                    <a name="//apple_ref/swift/Method/pollClose(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolP9pollCloseyAA4PollOys6ResultOyytAA0B0O10CompletionOy_7FailureQzGGGAA7ContextVzF">pollClose(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">pollClose</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="k">inout</span> <span class="kt"><a href="../Structs/Context.html">Context</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Poll.html">Poll</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP6Outputa">Output</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Instance%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Instance Methods" class="dashAnchor"></a>
+                <a href="#/Instance%20Methods">
+                  <h3 class="section-name">Instance Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE04makeB0xyF"></a>
+                    <a name="//apple_ref/swift/Method/makeSink()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE04makeB0xyF">makeSink()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeSink</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L152-L154">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE012makeBlockingB0AA0B0O8_PrivateO0E0Vy__AA14ThreadExecutorCxGyF"></a>
+                    <a name="//apple_ref/swift/Method/makeBlockingSink()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE012makeBlockingB0AA0B0O8_PrivateO0E0Vy__AA14ThreadExecutorCxGyF">makeBlockingSink()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeBlockingSink</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Blocking</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/ThreadExecutor.html">ThreadExecutor</a></span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L157-L159">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE012makeBlockingB02onAA0B0O8_PrivateO0E0Vy__qd__xGqd___tAA0E8ExecutorRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/makeBlockingSink(on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE012makeBlockingB02onAA0B0O8_PrivateO0E0Vy__qd__xGqd___tAA0E8ExecutorRd__lF">makeBlockingSink(on:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">makeBlockingSink</span><span class="o">&lt;</span><span class="kt">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">on</span> <span class="nv">executor</span><span class="p">:</span> <span class="kt">E</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Blocking</span><span class="o">&lt;</span><span class="kt">E</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/BlockingExecutor.html">BlockingExecutor</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L162-L164">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE010eraseToAnyB0AA0fB0Vy5InputQz7FailureQzGyF"></a>
+                    <a name="//apple_ref/swift/Method/eraseToAnySink()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE010eraseToAnyB0AA0fB0Vy5InputQz7FailureQzGyF">eraseToAnySink()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">eraseToAnySink</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnySink.html">AnySink</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP5InputQa">Input</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP7FailureQa">Failure</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L167-L169">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Adapting%20Input"></a>
+                <a name="//apple_ref/swift/Section/Adapting Input" class="dashAnchor"></a>
+                <a href="#/Adapting%20Input">
+                  <h3 class="section-name">Adapting Input</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE3mapyAA0B0O8_PrivateO3MapVy__qd__xG5InputQzqd__clF"></a>
+                    <a name="//apple_ref/swift/Method/map(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE3mapyAA0B0O8_PrivateO3MapVy__qd__xG5InputQzqd__clF">map(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">adapt</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP5InputQa">Input</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Map</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L176-L178">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE8mapErroryAA0B0O8_PrivateO03MapE0Vy__qd__xGqd__s0E0_pcsALRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/mapError(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE8mapErroryAA0B0O8_PrivateO03MapE0Vy__qd__xGqd__s0E0_pcsALRd__lF">mapError(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">mapError</span><span class="o">&lt;</span><span class="kt">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">adapt</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Error</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">E</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MapError</span><span class="o">&lt;</span><span class="kt">E</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L181-L183">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE7flatMapyAA0B0O8_PrivateO04FlatE0Vy__qd__qd_0_xGqd_0_qd__cAA17StreamConvertibleRd_0_0H4Type_6OutputQYd_0_5InputRtzr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/flatMap(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE7flatMapyAA0B0O8_PrivateO04FlatE0Vy__qd__qd_0_xGqd_0_qd__cAA17StreamConvertibleRd_0_0H4Type_6OutputQYd_0_5InputRtzr0_lF">flatMap(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">flatMap</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">adapt</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">FlatMap</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L186-L188">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE6bufferyAA0B0O8_PrivateO6BufferVy__xGSiF"></a>
+                    <a name="//apple_ref/swift/Method/buffer(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE6bufferyAA0B0O8_PrivateO6BufferVy__xGSiF">buffer(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">buffer</span><span class="p">(</span><span class="n">_</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Buffer</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L191-L193">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE14setFailureType2toAA0B0O8_PrivateO03SeteF0Vy__qd__xGqd__m_ts5ErrorRd__s5NeverO0E0RtzlF"></a>
+                    <a name="//apple_ref/swift/Method/setFailureType(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE14setFailureType2toAA0B0O8_PrivateO03SeteF0Vy__qd__xGqd__m_ts5ErrorRd__s5NeverO0E0RtzlF">setFailureType(to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">setFailureType</span><span class="o">&lt;</span><span class="kt">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">to</span> <span class="nv">_</span><span class="p">:</span> <span class="kt">E</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">SetFailureType</span><span class="o">&lt;</span><span class="kt">E</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L196-L198">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Handling%20Errors"></a>
+                <a name="//apple_ref/swift/Section/Handling Errors" class="dashAnchor"></a>
+                <a href="#/Handling%20Errors">
+                  <h3 class="section-name">Handling Errors</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE13assertNoError_4file4lineAA0B0O8_PrivateO06AsserteF0Vy__xGSS_s12StaticStringVSutF"></a>
+                    <a name="//apple_ref/swift/Method/assertNoError(_:file:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE13assertNoError_4file4lineAA0B0O8_PrivateO06AsserteF0Vy__xGSS_s12StaticStringVSutF">assertNoError(_:file:line:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">assertNoError</span><span class="p">(</span><span class="n">_</span> <span class="nv">prefix</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">StaticString</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">UInt</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">AssertNoError</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L205-L207">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Converting%20to%20Futures"></a>
+                <a name="//apple_ref/swift/Section/Converting to Futures" class="dashAnchor"></a>
+                <a href="#/Converting%20to%20Futures">
+                  <h3 class="section-name">Converting to Futures</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE7sendAll_5closeAA0B0O8_PrivateO04SendE0Vy__qd__xGqd___SbtAA17StreamConvertibleRd__0I4Type_6OutputQYd__5InputRtzlF"></a>
+                    <a name="//apple_ref/swift/Method/sendAll(_:close:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE7sendAll_5closeAA0B0O8_PrivateO04SendE0Vy__qd__xGqd___SbtAA17StreamConvertibleRd__0I4Type_6OutputQYd__5InputRtzlF">sendAll(_:close:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">sendAll</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">stream</span><span class="p">:</span> <span class="kt">U</span><span class="p">,</span> <span class="nv">close</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">SendAll</span><span class="o">&lt;</span><span class="kt">U</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">U</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamConvertible.html">StreamConvertible</a></span><span class="p">,</span> <span class="k">Self</span><span class="o">.</span><span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP5InputQa">Input</a></span> <span class="o">==</span> <span class="kt">U</span><span class="o">.</span><span class="kt">StreamType</span><span class="o">.</span><span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP6Outputa">Output</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L214-L216">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE4sendyAA0B0O8_PrivateO4SendVy__xG5InputQzF"></a>
+                    <a name="//apple_ref/swift/Method/send(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE4sendyAA0B0O8_PrivateO4SendVy__xG5InputQzF">send(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">send</span><span class="p">(</span><span class="n">_</span> <span class="nv">item</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SinkProtocol.html#/s:7Futures12SinkProtocolP5InputQa">Input</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Send</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L219-L221">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE5flushAA0B0O8_PrivateO5FlushVy__xGyF"></a>
+                    <a name="//apple_ref/swift/Method/flush()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE5flushAA0B0O8_PrivateO5FlushVy__xGyF">flush()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">flush</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Flush</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L224-L226">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolPAAE5closeAA0B0O8_PrivateO5CloseVy__xGyF"></a>
+                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolPAAE5closeAA0B0O8_PrivateO5CloseVy__xGyF">close()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">close</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Sink.html">Sink</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Close</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L229-L231">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 Akis Kesoglou. Licensed under the MIT license.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

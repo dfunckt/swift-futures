@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AtomicInt16 Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/AtomicInt16" class="dashAnchor"></a>
+
+    <a title="AtomicInt16 Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          FuturesSync Reference (0.1.0)
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/dfunckt/swift-futures">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fdfunckt%2Egithub%2Eio%2Fswift%2Dfutures%2Fdocs%2F0%2E1%2E0%2Fdocsets%2FFuturesSync%2Exml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">FuturesSync Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      AtomicInt16 Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Primitives.html">Primitives</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Atomic.html">Atomic</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicEnum.html">AtomicEnum</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicRef.html">AtomicRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicBool.html">AtomicBool</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt.html">AtomicInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt8.html">AtomicInt8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt16.html">AtomicInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt32.html">AtomicInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicInt64.html">AtomicInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt.html">AtomicUInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt8.html">AtomicUInt8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt16.html">AtomicUInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt32.html">AtomicUInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUInt64.html">AtomicUInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Primitives.html#/s:11FuturesSync11AtomicUSizea">AtomicUSize</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Bounded Queues.html">Bounded Queues</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AtomicQueueProtocol.html">AtomicQueueProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicSPSCQueue.html">AtomicSPSCQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicSPMCQueue.html">AtomicSPMCQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicMPSCQueue.html">AtomicMPSCQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicMPMCQueue.html">AtomicMPMCQueue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Unbounded Queues.html">Unbounded Queues</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AtomicUnboundedQueueProtocol.html">AtomicUnboundedQueueProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUnboundedMPSCQueue.html">AtomicUnboundedMPSCQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AtomicUnboundedSPSCQueue.html">AtomicUnboundedSPSCQueue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Locking.html">Locking</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/LockingProtocol.html">LockingProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PosixLock.html">PosixLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Locking.html#/UnfairLock">UnfairLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/UnfairLock.html">UnfairLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SpinLock.html">SpinLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SharedValue.html">SharedValue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Helpers.html">Helpers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Backoff.html">Backoff</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/OptionSet.html">OptionSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/RawRepresentable.html">RawRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift.html">Swift</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Bool.html">– Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int.html">– Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int8.html">– Int8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int16.html">– Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int32.html">– Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Int64.html">– Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt.html">– UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt8.html">– UInt8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt16.html">– UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt32.html">– UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/UInt64.html">– UInt64</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Protocols.html">Other Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Protocols.html#/s:11FuturesSync15_CAtomicIntegerP">_CAtomicInteger</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/_5FCAtomicValue.html">_CAtomicValue</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>AtomicInt16</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">AtomicInt16</span></code></pre>
+
+                </div>
+              </div>
+            
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C7Pointera"></a>
+                    <a name="//apple_ref/swift/Alias/Pointer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C7Pointera">Pointer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Pointer</span> <span class="o">=</span> <span class="kt">AtomicInt16Pointer</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C8RawValuea"></a>
+                    <a name="//apple_ref/swift/Alias/RawValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">RawValue</span> <span class="o">=</span> <span class="kt">CAtomicInt16</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16CyACs0D0Vcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16CyACs0D0Vcfc">init(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">initialValue</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L1986-L1989">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C4load5orders0D0VSo0C15LoadMemoryOrderV_tF"></a>
+                    <a name="//apple_ref/swift/Method/load(order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C4load5orders0D0VSo0C15LoadMemoryOrderV_tF">load(order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically loads and returns the current value of the atomic variable
+pointed to by the receiver. The operation is atomic <em>read</em> operation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for this operation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value stored in the receiver.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L1999-L2001">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C5store_5orderys0D0V_So0C16StoreMemoryOrderVtF"></a>
+                    <a name="//apple_ref/swift/Method/store(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C5store_5orderys0D0V_So0C16StoreMemoryOrderVtF">store(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically replaces the value of the atomic variable pointed to by the
+receiver with <code>desired</code>. The operation is atomic <em>write</em> operation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicStoreMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>desired</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to replace the receiver with.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for this operation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2010-L2012">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C8exchange_5orders0D0VAG_So0C11MemoryOrderVtF"></a>
+                    <a name="//apple_ref/swift/Method/exchange(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C8exchange_5orders0D0VAG_So0C11MemoryOrderVtF">exchange(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically replaces the value pointed by the receiver with <code>desired</code>
+and returns the value the receiver held previously. The operation is
+<em>read-modify-write</em> operation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">exchange</span><span class="p">(</span><span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>desired</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to replace the receiver with.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for this operation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value previously stored in the receiver.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2024-L2026">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C15compareExchange__5order9loadOrderSbSpys0D0VG_AHSo0c6MemoryI0VSo0c4LoadjI0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/compareExchange(_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C15compareExchange__5order9loadOrderSbSpys0D0VG_AHSo0c6MemoryI0VSo0c4LoadjI0VSgtF">compareExchange(_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically compares the value pointed to by the receiver with the
+value pointed to by <code>expected</code>, and if those are equal, replaces the
+former with <code>desired</code> (performs <em>read-modify-write</em> operation).
+Otherwise, loads the actual value pointed to by the receiver into
+<code>*expected</code> (performs <em>load</em> operation).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expected</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value expected to be found in the receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>desired</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to store in the receiver if it is as expected.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for the read-modify-write
+operation if the comparison succeeds.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loadOrder</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for the load
+operation if the comparison fails. Cannot specify stronger
+ordering than <code>order</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The result of the comparison: <code>true</code> if current value was
+equal to <code>*expected</code>, <code>false</code> otherwise.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2047-L2060">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C15compareExchange__5order9loadOrders0D0VAH_AHSo0c6MemoryI0VSo0c4LoadjI0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/compareExchange(_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C15compareExchange__5order9loadOrders0D0VAH_AHSo0c6MemoryI0VSo0c4LoadjI0VSgtF">compareExchange(_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically compares the value pointed to by the receiver with the
+value pointed to by <code>expected</code>, and if those are equal, replaces the
+former with <code>desired</code> (performs <em>read-modify-write</em> operation).
+Otherwise, loads the actual value pointed to by the receiver into
+<code>*expected</code> (performs <em>load</em> operation).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">compareExchange</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expected</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value expected to be found in the receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>desired</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to store in the receiver if it is as expected.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for the read-modify-write
+operation if the comparison succeeds.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loadOrder</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for the load
+operation if the comparison fails. Cannot specify stronger
+ordering than <code>order</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value actually stored in the receiver. If exchange
+succeeded, this will be equal to <code>expected</code>.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2081-L2094">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C19compareExchangeWeak__5order9loadOrderSbSpys0D0VG_AHSo0c6MemoryJ0VSo0c4LoadkJ0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/compareExchangeWeak(_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C19compareExchangeWeak__5order9loadOrderSbSpys0D0VG_AHSo0c6MemoryJ0VSo0c4LoadkJ0VSgtF">compareExchangeWeak(_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically compares the value pointed to by the receiver with the
+value pointed to by <code>expected</code>, and if those are equal, replaces the
+former with <code>desired</code> (performs <em>read-modify-write</em> operation).
+Otherwise, loads the actual value pointed to by the receiver into
+<code>*expected</code> (performs <em>load</em> operation).</p>
+
+<p>This form of compare-and-exchange is allowed to fail spuriously, that
+is, act as if <code>*current != *expected</code> even if they are equal. When a
+compare-and-exchange is in a loop, this version will yield better
+performance on some platforms. When a weak compare-and-exchange would
+require a loop and a strong one would not, the strong one is preferable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">compareExchangeWeak</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expected</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value expected to be found in the receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>desired</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to store in the receiver if it is as expected.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for the read-modify-write
+operation if the comparison succeeds.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loadOrder</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for the load
+operation if the comparison fails. Cannot specify stronger
+ordering than <code>order</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The result of the comparison: <code>true</code> if current value was
+equal to <code>*expected</code>, <code>false</code> otherwise.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2121-L2134">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C19compareExchangeWeak__5order9loadOrders0D0VAH_AHSo0c6MemoryJ0VSo0c4LoadkJ0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/compareExchangeWeak(_:_:order:loadOrder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C19compareExchangeWeak__5order9loadOrders0D0VAH_AHSo0c6MemoryJ0VSo0c4LoadkJ0VSgtF">compareExchangeWeak(_:_:order:loadOrder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically compares the value pointed to by the receiver with the
+value pointed to by <code>expected</code>, and if those are equal, replaces the
+former with <code>desired</code> (performs <em>read-modify-write</em> operation).
+Otherwise, loads the actual value pointed to by the receiver into
+<code>*expected</code> (performs <em>load</em> operation).</p>
+
+<p>This form of compare-and-exchange is allowed to fail spuriously, that
+is, act as if <code>*current != *expected</code> even if they are equal. When a
+compare-and-exchange is in a loop, this version will yield better
+performance on some platforms. When a weak compare-and-exchange would
+require a loop and a strong one would not, the strong one is preferable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">compareExchangeWeak</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">expected</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">desired</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span>
+    <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">,</span>
+    <span class="nv">loadOrder</span><span class="p">:</span> <span class="kt">AtomicLoadMemoryOrder</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>expected</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value expected to be found in the receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>desired</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to store in the receiver if it is as expected.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for the read-modify-write
+operation if the comparison succeeds.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loadOrder</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for the load
+operation if the comparison fails. Cannot specify stronger
+ordering than <code>order</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value actually stored in the receiver. If exchange
+succeeded, this will be equal to <code>expected</code>.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2161-L2174">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C8fetchAnd_5orders0D0VAG_So0C11MemoryOrderVtF"></a>
+                    <a name="//apple_ref/swift/Method/fetchAnd(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C8fetchAnd_5orders0D0VAG_So0C11MemoryOrderVtF">fetchAnd(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically replaces the value pointed by the receiver with the result
+of bitwise <code>AND</code> between the old value of the receiver and <code>value</code>,
+and returns the value the receiver held previously. The operation is
+<em>read-modify-write</em> operation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">fetchAnd</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to bitwise <code>AND</code> to the value stored in the
+receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for this operation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value previously stored in the receiver.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2189-L2191">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C7fetchOr_5orders0D0VAG_So0C11MemoryOrderVtF"></a>
+                    <a name="//apple_ref/swift/Method/fetchOr(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C7fetchOr_5orders0D0VAG_So0C11MemoryOrderVtF">fetchOr(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically replaces the value pointed by the receiver with the result
+of bitwise <code>OR</code> between the old value of the receiver and <code>value</code>, and
+returns the value the receiver held previously. The operation is
+<em>read-modify-write</em> operation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">fetchOr</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to bitwise <code>OR</code> to the value stored in the
+receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for this operation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value previously stored in the receiver.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2206-L2208">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C8fetchXor_5orders0D0VAG_So0C11MemoryOrderVtF"></a>
+                    <a name="//apple_ref/swift/Method/fetchXor(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C8fetchXor_5orders0D0VAG_So0C11MemoryOrderVtF">fetchXor(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically replaces the value pointed by the receiver with the result
+of bitwise <code>XOR</code> between the old value of the receiver and <code>value</code>,
+and returns the value the receiver held previously. The operation is
+<em>read-modify-write</em> operation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">fetchXor</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to bitwise <code>XOR</code> to the value stored in the
+receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for this operation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value previously stored in the receiver.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2223-L2225">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C8fetchAdd_5orders0D0VAG_So0C11MemoryOrderVtF"></a>
+                    <a name="//apple_ref/swift/Method/fetchAdd(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C8fetchAdd_5orders0D0VAG_So0C11MemoryOrderVtF">fetchAdd(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically replaces the value pointed by the receiver with the result
+of addition of <code>value</code> to the old value of the receiver, and returns
+the value the receiver held previously. The operation is <em>read-modify-write</em>
+operation.</p>
+
+<p>For signed integer types, arithmetic is defined to use two’s
+complement representation. There are no undefined results. For pointer
+types, the result may be an undefined address, but the operations
+otherwise have no undefined behavior.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">fetchAdd</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to add to the value stored in the receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for this operation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value previously stored in the receiver.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2244-L2246">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FuturesSync11AtomicInt16C8fetchSub_5orders0D0VAG_So0C11MemoryOrderVtF"></a>
+                    <a name="//apple_ref/swift/Method/fetchSub(_:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FuturesSync11AtomicInt16C8fetchSub_5orders0D0VAG_So0C11MemoryOrderVtF">fetchSub(_:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Atomically replaces the value pointed by the receiver with the result
+of subtraction of <code>value</code> to the old value of the receiver, and returns
+the value the receiver held previously. The operation is <em>read-modify-write</em>
+operation.</p>
+
+<p>For signed integer types, arithmetic is defined to use two’s complement
+representation. There are no undefined results. For pointer types, the
+result may be an undefined address, but the operations otherwise have
+no undefined behavior.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">fetchSub</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt">AtomicMemoryOrder</span> <span class="o">=</span> <span class="o">.</span><span class="n">seqcst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/AtomicInt16.html#/s:11FuturesSync11AtomicInt16C8RawValuea">RawValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to subtract from the value stored in the receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>order</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memory synchronization ordering for this operation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The value previously stored in the receiver.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/FuturesSync/Atomic/AtomicValue.swift#L2265-L2267">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 Akis Kesoglou. Licensed under the MIT license.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

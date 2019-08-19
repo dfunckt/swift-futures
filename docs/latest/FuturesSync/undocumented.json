@@ -1,0 +1,2987 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 25,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 26,
+      "symbol": "AtomicEnum.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 27,
+      "symbol": "AtomicEnum.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 37,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 39,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 45,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 50,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 55,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 61,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 78,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 95,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 112,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 130,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 133,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 139,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 145,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 154,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 159,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 164,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 169,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 175,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 196,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 216,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 237,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 261,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 267,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 273,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 280,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 282,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 288,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 293,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 298,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 304,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 321,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 338,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 355,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 373,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 376,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 382,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 388,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 397,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 402,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 407,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 412,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 418,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 439,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 459,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 480,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 504,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 510,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 516,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 523,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 525,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 531,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 536,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 541,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 547,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 564,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 581,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 598,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 616,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 619,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 625,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 631,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 640,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 645,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 650,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 655,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 661,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 682,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 702,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 723,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 747,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 753,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 759,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 766,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 768,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 774,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 779,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 784,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 790,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 807,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 824,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 841,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 859,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 862,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 868,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 874,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 883,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 888,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 893,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 898,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 904,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 925,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 945,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 966,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 990,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 996,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1002,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1009,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1011,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1017,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1022,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1027,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1033,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1050,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1067,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1084,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1102,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1105,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1111,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1117,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1126,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1131,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1136,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1141,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1147,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1168,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1188,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1209,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1233,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1239,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1245,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1252,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1254,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1260,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1265,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1270,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1276,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1293,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1310,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1327,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1345,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1348,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1354,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1360,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1369,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1374,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1379,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1384,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1390,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1411,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1431,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1452,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1476,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1482,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1488,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1495,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1497,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1503,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1508,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1513,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1519,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1536,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1553,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1570,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1588,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1591,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1597,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1603,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1612,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1617,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1622,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1627,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1633,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1654,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1674,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1695,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1719,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1725,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1731,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1738,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1740,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1746,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1751,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1756,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1762,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1779,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1796,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1813,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1831,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1834,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1840,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1846,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1855,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1860,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1865,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1870,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1876,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1897,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1917,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1938,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1962,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1968,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1974,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1981,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1983,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1989,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1994,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 1999,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2005,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2022,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2039,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2056,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2074,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2077,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2083,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2089,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2098,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2103,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2108,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2113,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2119,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2140,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2160,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2181,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2205,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2211,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2217,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2224,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2226,
+      "symbol": "AtomicEnum.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2232,
+      "symbol": "AtomicEnum.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2237,
+      "symbol": "AtomicEnum.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2242,
+      "symbol": "AtomicEnum.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2248,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2265,
+      "symbol": "AtomicEnum.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2282,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2299,
+      "symbol": "AtomicEnum.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2317,
+      "symbol": "AtomicEnum",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2320,
+      "symbol": "AtomicEnum.fetchAnd(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2326,
+      "symbol": "AtomicEnum.fetchOr(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2332,
+      "symbol": "AtomicEnum.fetchXor(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2341,
+      "symbol": "RawRepresentable.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2346,
+      "symbol": "RawRepresentable.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2351,
+      "symbol": "RawRepresentable.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2356,
+      "symbol": "RawRepresentable.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2362,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2383,
+      "symbol": "RawRepresentable.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2403,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2424,
+      "symbol": "RawRepresentable.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2448,
+      "symbol": "OptionSet.fetchAnd(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2454,
+      "symbol": "OptionSet.fetchOr(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicEnum.swift",
+      "line": 2460,
+      "symbol": "OptionSet.fetchXor(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 30,
+      "symbol": "AtomicUSize",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 32,
+      "symbol": "AtomicRef",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 33,
+      "symbol": "AtomicRef.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 34,
+      "symbol": "AtomicRef.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 39,
+      "symbol": "AtomicRef.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 49,
+      "symbol": "AtomicRef",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 50,
+      "symbol": "AtomicRef.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 56,
+      "symbol": "AtomicRef.destroy(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 61,
+      "symbol": "AtomicRef.load(order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 66,
+      "symbol": "AtomicRef.store(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 71,
+      "symbol": "AtomicRef.exchange(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 77,
+      "symbol": "AtomicRef.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 94,
+      "symbol": "AtomicRef.compareExchange(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 111,
+      "symbol": "AtomicRef.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 128,
+      "symbol": "AtomicRef.compareExchangeWeak(_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 146,
+      "symbol": "AtomicRef",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 148,
+      "symbol": "AtomicRef.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 154,
+      "symbol": "AtomicRef.destroy(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 159,
+      "symbol": "AtomicRef.load(_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 168,
+      "symbol": "AtomicRef.store(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 179,
+      "symbol": "AtomicRef.exchange(_:_:order:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 190,
+      "symbol": "AtomicRef.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 221,
+      "symbol": "AtomicRef.compareExchange(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 250,
+      "symbol": "AtomicRef.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicRef.swift",
+      "line": 281,
+      "symbol": "AtomicRef.compareExchangeWeak(_:_:_:order:loadOrder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 13,
+      "symbol": "Swift.Bool.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 14,
+      "symbol": "Swift.Bool.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 19,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 258,
+      "symbol": "AtomicBool",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 259,
+      "symbol": "AtomicBool.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 260,
+      "symbol": "AtomicBool.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 268,
+      "symbol": "AtomicBool",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 270,
+      "symbol": "AtomicBool.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 515,
+      "symbol": "Swift.Int.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 516,
+      "symbol": "Swift.Int.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 521,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 802,
+      "symbol": "AtomicInt",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 803,
+      "symbol": "AtomicInt.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 804,
+      "symbol": "AtomicInt.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 812,
+      "symbol": "AtomicInt",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 814,
+      "symbol": "AtomicInt.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1101,
+      "symbol": "Swift.Int8.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1102,
+      "symbol": "Swift.Int8.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1107,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1388,
+      "symbol": "AtomicInt8",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1389,
+      "symbol": "AtomicInt8.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1390,
+      "symbol": "AtomicInt8.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1398,
+      "symbol": "AtomicInt8",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1400,
+      "symbol": "AtomicInt8.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1687,
+      "symbol": "Swift.Int16.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1688,
+      "symbol": "Swift.Int16.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1693,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1974,
+      "symbol": "AtomicInt16",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1975,
+      "symbol": "AtomicInt16.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1976,
+      "symbol": "AtomicInt16.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1984,
+      "symbol": "AtomicInt16",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 1986,
+      "symbol": "AtomicInt16.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2273,
+      "symbol": "Swift.Int32.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2274,
+      "symbol": "Swift.Int32.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2279,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2560,
+      "symbol": "AtomicInt32",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2561,
+      "symbol": "AtomicInt32.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2562,
+      "symbol": "AtomicInt32.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2570,
+      "symbol": "AtomicInt32",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2572,
+      "symbol": "AtomicInt32.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2859,
+      "symbol": "Swift.Int64.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2860,
+      "symbol": "Swift.Int64.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 2865,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3146,
+      "symbol": "AtomicInt64",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3147,
+      "symbol": "AtomicInt64.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3148,
+      "symbol": "AtomicInt64.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3156,
+      "symbol": "AtomicInt64",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3158,
+      "symbol": "AtomicInt64.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3445,
+      "symbol": "Swift.UInt.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3446,
+      "symbol": "Swift.UInt.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3451,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3732,
+      "symbol": "AtomicUInt",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3733,
+      "symbol": "AtomicUInt.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3734,
+      "symbol": "AtomicUInt.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3742,
+      "symbol": "AtomicUInt",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 3744,
+      "symbol": "AtomicUInt.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4031,
+      "symbol": "Swift.UInt8.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4032,
+      "symbol": "Swift.UInt8.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4037,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4318,
+      "symbol": "AtomicUInt8",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4319,
+      "symbol": "AtomicUInt8.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4320,
+      "symbol": "AtomicUInt8.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4328,
+      "symbol": "AtomicUInt8",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4330,
+      "symbol": "AtomicUInt8.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4617,
+      "symbol": "Swift.UInt16.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4618,
+      "symbol": "Swift.UInt16.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4623,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4904,
+      "symbol": "AtomicUInt16",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4905,
+      "symbol": "AtomicUInt16.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4906,
+      "symbol": "AtomicUInt16.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4914,
+      "symbol": "AtomicUInt16",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 4916,
+      "symbol": "AtomicUInt16.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5203,
+      "symbol": "Swift.UInt32.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5204,
+      "symbol": "Swift.UInt32.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5209,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5490,
+      "symbol": "AtomicUInt32",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5491,
+      "symbol": "AtomicUInt32.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5492,
+      "symbol": "AtomicUInt32.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5500,
+      "symbol": "AtomicUInt32",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5502,
+      "symbol": "AtomicUInt32.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5789,
+      "symbol": "Swift.UInt64.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5790,
+      "symbol": "Swift.UInt64.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 5795,
+      "symbol": "Atomic.initialize(_:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 6076,
+      "symbol": "AtomicUInt64",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 6077,
+      "symbol": "AtomicUInt64.Pointer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 6078,
+      "symbol": "AtomicUInt64.RawValue",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 6086,
+      "symbol": "AtomicUInt64",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic/AtomicValue.swift",
+      "line": 6088,
+      "symbol": "AtomicUInt64.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 14,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 16,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 17,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 58,
+      "symbol": "_CAtomicValue",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 59,
+      "symbol": "_CAtomicValue.AtomicRawValue",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 60,
+      "symbol": "_CAtomicValue.AtomicPointer",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 63,
+      "symbol": "_CAtomicInteger",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 519,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 1105,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 1691,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 2277,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 2863,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 3449,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 4035,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 4621,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 5207,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Atomic.swift",
+      "line": 5793,
+      "symbol": "Atomic",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicMPMCQueue.swift",
+      "line": 21,
+      "symbol": "AtomicMPMCQueue.init(capacity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicMPMCQueue.swift",
+      "line": 29,
+      "symbol": "AtomicMPMCQueue.tryPush(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicMPMCQueue.swift",
+      "line": 54,
+      "symbol": "AtomicMPMCQueue.pop()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicMPSCQueue.swift",
+      "line": 22,
+      "symbol": "AtomicMPSCQueue.init(capacity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicMPSCQueue.swift",
+      "line": 30,
+      "symbol": "AtomicMPSCQueue.tryPush(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicMPSCQueue.swift",
+      "line": 55,
+      "symbol": "AtomicMPSCQueue.pop()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicSPMCQueue.swift",
+      "line": 22,
+      "symbol": "AtomicSPMCQueue.init(capacity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicSPMCQueue.swift",
+      "line": 30,
+      "symbol": "AtomicSPMCQueue.tryPush(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicSPMCQueue.swift",
+      "line": 54,
+      "symbol": "AtomicSPMCQueue.pop()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicSPSCQueue.swift",
+      "line": 22,
+      "symbol": "AtomicSPSCQueue.init(capacity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicSPSCQueue.swift",
+      "line": 30,
+      "symbol": "AtomicSPSCQueue.tryPush(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicSPSCQueue.swift",
+      "line": 54,
+      "symbol": "AtomicSPSCQueue.pop()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedMPSCQueue.swift",
+      "line": 15,
+      "symbol": "AtomicUnboundedMPSCQueue.Element",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedMPSCQueue.swift",
+      "line": 40,
+      "symbol": "AtomicUnboundedMPSCQueue.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedMPSCQueue.swift",
+      "line": 56,
+      "symbol": "AtomicUnboundedMPSCQueue.isEmpty",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedMPSCQueue.swift",
+      "line": 61,
+      "symbol": "AtomicUnboundedMPSCQueue.push(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedMPSCQueue.swift",
+      "line": 71,
+      "symbol": "AtomicUnboundedMPSCQueue.pop()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedSPSCQueue.swift",
+      "line": 16,
+      "symbol": "AtomicUnboundedSPSCQueue.Element",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedSPSCQueue.swift",
+      "line": 50,
+      "symbol": "AtomicUnboundedSPSCQueue.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedSPSCQueue.swift",
+      "line": 56,
+      "symbol": "AtomicUnboundedSPSCQueue.init(cacheCapacity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedSPSCQueue.swift",
+      "line": 80,
+      "symbol": "AtomicUnboundedSPSCQueue.isEmpty",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedSPSCQueue.swift",
+      "line": 85,
+      "symbol": "AtomicUnboundedSPSCQueue.push(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue/AtomicUnboundedSPSCQueue.swift",
+      "line": 92,
+      "symbol": "AtomicUnboundedSPSCQueue.pop()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue.swift",
+      "line": 8,
+      "symbol": "AtomicQueueProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue.swift",
+      "line": 9,
+      "symbol": "AtomicQueueProtocol.Element",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue.swift",
+      "line": 10,
+      "symbol": "AtomicQueueProtocol.tryPush(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue.swift",
+      "line": 11,
+      "symbol": "AtomicQueueProtocol.pop()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue.swift",
+      "line": 14,
+      "symbol": "AtomicUnboundedQueueProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue.swift",
+      "line": 15,
+      "symbol": "AtomicUnboundedQueueProtocol.Element",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue.swift",
+      "line": 16,
+      "symbol": "AtomicUnboundedQueueProtocol.push(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue.swift",
+      "line": 19,
+      "symbol": "AtomicUnboundedQueueProtocol",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/AtomicQueue.swift",
+      "line": 21,
+      "symbol": "AtomicUnboundedQueueProtocol.tryPush(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Backoff.swift",
+      "line": 53,
+      "symbol": "Backoff.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Backoff.swift",
+      "line": 56,
+      "symbol": "Backoff.reset()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking/PosixLock.swift",
+      "line": 55,
+      "symbol": "PosixLock.init(recursive:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking/SpinLock.swift",
+      "line": 10,
+      "symbol": "SpinLock",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking/SpinLock.swift",
+      "line": 14,
+      "symbol": "SpinLock.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking/UnfairLock.swift",
+      "line": 26,
+      "symbol": "UnfairLock.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 8,
+      "symbol": "LockingProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 21,
+      "symbol": "LockingProtocol",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 23,
+      "symbol": "LockingProtocol.sync(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 30,
+      "symbol": "LockingProtocol.trySync(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 39,
+      "symbol": "SharedValue",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 44,
+      "symbol": "SharedValue.init(_:lock:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 50,
+      "symbol": "SharedValue.withMutableValue(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 57,
+      "symbol": "SharedValue.load()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 62,
+      "symbol": "SharedValue.store(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 68,
+      "symbol": "SharedValue.exchange(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 77,
+      "symbol": "SharedValue.take()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 86,
+      "symbol": "SharedValue",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 89,
+      "symbol": "SharedValue.compareExchange(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 101,
+      "symbol": "SharedValue",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/FuturesSync/Locking.swift",
+      "line": 103,
+      "symbol": "SharedValue.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/travis/build/dfunckt/swift-futures"
+}

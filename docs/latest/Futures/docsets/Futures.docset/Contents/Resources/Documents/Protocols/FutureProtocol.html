@@ -1,0 +1,2401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FutureProtocol Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/FutureProtocol" class="dashAnchor"></a>
+
+    <a title="FutureProtocol Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Futures Reference (0.1.0)
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/dfunckt/swift-futures">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fdfunckt%2Egithub%2Eio%2Fswift%2Dfutures%2Fdocs%2F0%2E1%2E0%2Fdocsets%2FFutures%2Exml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Futures Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      FutureProtocol Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Core Types.html">Core Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FutureProtocol.html">FutureProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StreamProtocol.html">StreamProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SinkProtocol.html">SinkProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ChannelProtocol.html">ChannelProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ExecutorProtocol.html">ExecutorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Task.html">Task</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Core Namespaces.html">Core Namespaces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Future.html">Future</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Stream/ReplayStrategy.html">– ReplayStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Sink.html">Sink</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Sink/Completion.html">– Completion</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel.html">Channel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Unbuffered.html">– Unbuffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Passthrough.html">– Passthrough</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Buffered.html">– Buffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/BufferedUnbounded.html">– BufferedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Shared.html">– Shared</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/SharedUnbounded.html">– SharedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Pipe.html">– Pipe</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Sender.html">– Sender</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Receiver.html">– Receiver</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Futures.html">Futures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FutureConvertible.html">FutureConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Promise.html">Promise</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Deferred.html">Deferred</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyFuture.html">AnyFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Futures.html#/s:7Futures15AnyResultFuturea">AnyResultFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ResultFuture.html">ResultFuture</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Streams.html">Streams</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StreamConvertible.html">StreamConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyStream.html">AnyStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyMulticastStream.html">AnyMulticastStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnySharedStream.html">AnySharedStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Streams.html#/s:7Futures15AnyResultStreama">AnyResultStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ResultStream.html">ResultStream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Sinks.html">Sinks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SinkConvertible.html">SinkConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnySink.html">AnySink</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Executors.html">Executors</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BlockingExecutor.html">BlockingExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/QueueExecutor.html">QueueExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RunLoopExecutor.html">RunLoopExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RunLoopExecutor/Failure.html">– Failure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreadExecutor.html">ThreadExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreadExecutor/Failure.html">– Failure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Poll.html">Poll</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/WakerProtocol.html">WakerProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnyWaker.html">AnyWaker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Cancellable.html">Cancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnyCancellable.html">AnyCancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Either.html">Either</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/EitherConvertible.html">EitherConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift.html">Swift</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Sequence.html">– Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Result.html">– Result</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Functions.html">Other Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures25assertOnMainQueueExecutoryyF">assertOnMainQueueExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures27assertOnMainRunLoopExecutoryyF">assertOnMainRunLoopExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures21assertOnQueueExecutoryyAA0dE0CF">assertOnQueueExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures23assertOnRunLoopExecutoryyAA0deF0CF">assertOnRunLoopExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures22assertOnThreadExecutoryyAA0dE0CF">assertOnThreadExecutor(_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>FutureProtocol</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FutureProtocol</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureConvertible.html">FutureConvertible</a></span> <span class="k">where</span> <span class="k">Self</span> <span class="o">==</span> <span class="k">Self</span><span class="o">.</span><span class="kt">FutureType</span></code></pre>
+
+                </div>
+              </div>
+            <p>A protocol that defines a container for the result of an asynchronous
+operation, such as an HTTP request, a timeout, a disk I/O operation, etc.</p>
+
+<p>Futures can be <em>pending</em>, meaning that the result of the operation is not
+available yet, or <em>completed</em>, meaning that the result is ready. Futures
+can be combined into larger operations with <em>combinators</em>, such as <code>map(_:)</code>,
+<code>flatMap(_:)</code>, etc.</p>
+
+<p>Futures communicate a single value of type <code>Output</code>. Semantically, futures
+capture only the notion of <em>completion</em>; that is, there is no explicit
+distinction between a successful or a failed operation. Operations that
+must communicate success or failure, must do so by encoding that information
+in the output type, typically using <code>Swift.Result</code>. Futures comes with a
+number of convenience types and combinators for working with <code>Swift.Result</code>
+(see <code><a href="../Structs/ResultFuture.html">ResultFuture</a></code>).</p>
+
+<p>You typically create futures using the static convenience methods on the
+<code><a href="../Enums/Future.html">Future</a></code> namespace. You can also create custom futures by adopting this
+protocol in your types.</p>
+
+<p>Creating futures is <em>always</em> an asynchronous operation. The builtin types
+guarantee that the operation the future wraps will only be started after
+the future is submitted to an executor (see <code><a href="../Protocols/ExecutorProtocol.html">ExecutorProtocol</a></code>). Custom
+future implementations must also provide the same guarantee.</p>
+<h2 id='memory-and-concurrency-management' class='heading'>Memory and Concurrency Management</h2>
+
+<p>When a future is submitted to an executor, ownership of the future and its
+resources is transferred into the executor. You can only affect its fate
+indirectly from that point on (see <code><a href="../Classes/Task.html">Task</a></code>).</p>
+
+<p>When a future completes, it is effectively dropped and its resources are
+released on the same execution context (eg. a thread or a Dispatch queue)
+the future was started and polled in.</p>
+
+<p>This makes both memory and concurrency management predictable and extremely
+easy to reason about; a future&rsquo;s lifetime is wholly contained within the
+executor it was submitted on.</p>
+<h2 id='cancellation' class='heading'>Cancellation</h2>
+
+<p>Futures support cancellation implicitly. As discussed above, for a future
+to make progress, it must be polled by an executor. By simply not polling
+the future and instead dropping it effectively cancels the underlying
+operation. To explicitly cancel a submitted future, use <code><a href="../Classes/Task.html">Task</a></code>.</p>
+
+<p>If the operation is allocating resources that must be released manually,
+you can provide a <q>cancellation token</q> at creation which will automatically
+invoke a given closure upon deallocation, be it due to completion or
+cancellation (see <code><a href="../Structs/Deferred.html">Deferred</a></code>).</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolP6OutputQa"></a>
+                    <a name="//apple_ref/swift/Alias/Output" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolP6OutputQa">Output</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Output</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolP4pollyAA4PollOy6OutputQzGAA7ContextVzF"></a>
+                    <a name="//apple_ref/swift/Method/poll(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolP4pollyAA4PollOy6OutputQzGAA7ContextVzF">poll(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">poll</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="k">inout</span> <span class="kt"><a href="../Structs/Context.html">Context</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Poll.html">Poll</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Instance%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Instance Methods" class="dashAnchor"></a>
+                <a href="#/Instance%20Methods">
+                  <h3 class="section-name">Instance Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE04makeB0xyF"></a>
+                    <a name="//apple_ref/swift/Method/makeFuture()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE04makeB0xyF">makeFuture()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">makeFuture</span><span class="p">()</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeFuture</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L223-L225">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE10makeStreamAA0B0O8_PrivateO0E0Oy__xGyF"></a>
+                    <a name="//apple_ref/swift/Method/makeStream()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE10makeStreamAA0B0O8_PrivateO0E0Oy__xGyF">makeStream()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">makeStream</span><span class="p">()</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeStream</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt"><a href="../Enums/Stream.html">Stream</a></span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == Self.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L235-L237">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE13makeReferenceAA0B0O8_PrivateO0E0Cy__xGyF"></a>
+                    <a name="//apple_ref/swift/Method/makeReference()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE13makeReferenceAA0B0O8_PrivateO0E0Cy__xGyF">makeReference()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f1</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="nf">makeReference</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">f2</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="nf">makeReference</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="c1">// assert(f1.wait() == 4) // traps</span>
+<span class="c1">// assert(f2.wait() == 2) // traps</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeReference</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Reference</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L250-L252">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE4wait6OutputQzyF"></a>
+                    <a name="//apple_ref/swift/Method/wait()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE4wait6OutputQzyF">wait()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Synchronously polls this future on the current thread&rsquo;s executor until
+it completes.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">wait</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>Self.Output</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L262-L264">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE4wait2on6OutputQzqd___tAA16BlockingExecutorRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/wait(on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE4wait2on6OutputQzqd___tAA16BlockingExecutorRd__lF">wait(on:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Synchronously polls this future using the provided blocking executor
+until it completes.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">executor</span> <span class="o">=</span> <span class="kt">ThreadExecutor</span><span class="o">.</span><span class="n">current</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="n">executor</span><span class="p">)</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">wait</span><span class="o">&lt;</span><span class="kt">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">on</span> <span class="nv">executor</span><span class="p">:</span> <span class="kt">E</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span> <span class="k">where</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/BlockingExecutor.html">BlockingExecutor</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>Self.Output</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L275-L277">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE5abort4whenAA0B0O8_PrivateO5AbortOy__qd__xGqd___tAA0B11ConvertibleRd__yt0B4Type_6OutputRTd__lF"></a>
+                    <a name="//apple_ref/swift/Method/abort(when:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE5abort4whenAA0B0O8_PrivateO5AbortOy__qd__xGqd___tAA0B11ConvertibleRd__yt0B4Type_6OutputRTd__lF">abort(when:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">abort</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">when</span> <span class="nv">f</span><span class="p">:</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Abort</span><span class="o">&lt;</span><span class="kt">U</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">U</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureConvertible.html">FutureConvertible</a></span><span class="p">,</span> <span class="kt">U</span><span class="o">.</span><span class="kt">FutureType</span><span class="o">.</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span> <span class="o">==</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output?&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L284-L286">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE5abort4whenAA0B0O8_PrivateO5AbortOy__qd__xGqd__yc_tAA0B11ConvertibleRd__yt0B4Type_6OutputRTd__lF"></a>
+                    <a name="//apple_ref/swift/Method/abort(when:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE5abort4whenAA0B0O8_PrivateO5AbortOy__qd__xGqd__yc_tAA0B11ConvertibleRd__yt0B4Type_6OutputRTd__lF">abort(when:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">abort</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">when</span> <span class="nv">f</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Abort</span><span class="o">&lt;</span><span class="kt">U</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output?&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L290-L292">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE4poll2onAA0B0O8_PrivateO6PollOnOy__qd__xGqd___tAA08ExecutorC0Rd__lF"></a>
+                    <a name="//apple_ref/swift/Method/poll(on:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE4poll2onAA0B0O8_PrivateO6PollOnOy__qd__xGqd___tAA08ExecutorC0Rd__lF">poll(on:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ensures this future is polled on the given executor.</p>
+
+<p>The returned future retains the executor for its whole lifetime.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">poll</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="kt">QueueExecutor</span><span class="o">.</span><span class="n">global</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">assertNoError</span><span class="p">()</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">poll</span><span class="o">&lt;</span><span class="kt">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">on</span> <span class="nv">executor</span><span class="p">:</span> <span class="kt">E</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">PollOn</span><span class="o">&lt;</span><span class="kt">E</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ExecutorProtocol.html">ExecutorProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Result&lt;Self.Output, E.Failure&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L305-L307">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Vending%20Futures"></a>
+                <a name="//apple_ref/swift/Section/Vending Futures" class="dashAnchor"></a>
+                <a href="#/Vending%20Futures">
+                  <h3 class="section-name">Vending Futures</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE010eraseToAnyB0AA0fB0Vy6OutputQzGyF"></a>
+                    <a name="//apple_ref/swift/Method/eraseToAnyFuture()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE010eraseToAnyB0AA0fB0Vy6OutputQzGyF">eraseToAnyFuture()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">eraseToAnyFuture</span><span class="p">()</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">eraseToAnyFuture</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyFuture.html">AnyFuture</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>AnyFuture&lt;Self.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L320-L322">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Transforming%20Output"></a>
+                <a name="//apple_ref/swift/Section/Transforming Output" class="dashAnchor"></a>
+                <a href="#/Transforming%20Output">
+                  <h3 class="section-name">Transforming Output</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE3mapyAA0B0O8_PrivateO3MapOy__qd__xGqd__6OutputQzclF"></a>
+                    <a name="//apple_ref/swift/Method/map(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE3mapyAA0B0O8_PrivateO3MapOy__qd__xGqd__6OutputQzclF">map(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Transforms the output from this future with a provided closure.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span>
+    <span class="kt">String</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="o">+</span> <span class="s">"2"</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="s">"42"</span><span class="p">)</span>
+</code></pre>
+
+<p>For a variation of this combinator that accepts an error-throwing
+closure see <code><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolPAAE6tryMapyAA0B0O8_PrivateO03TryE0Oy__qd__xGqd__6OutputQzKclF">tryMap(_:)</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">transform</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Map</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L354-L356">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE3mapyAA0B0O8_PrivateO10MapKeyPathOy__qd__xGs0gH0Cy6OutputQzqd__GlF"></a>
+                    <a name="//apple_ref/swift/Method/map(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE3mapyAA0B0O8_PrivateO10MapKeyPathOy__qd__xGs0gH0Cy6OutputQzqd__GlF">map(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Data</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span> <span class="mi">42</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="nf">map</span><span class="p">(\</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MapKeyPath</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L369-L371">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE3mapyAA0B0O8_PrivateO11MapKeyPath2Oy__qd__qd_0_xGs0G4PathCy6OutputQzqd__G_AMyAOqd_0_Gtr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/map(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE3mapyAA0B0O8_PrivateO11MapKeyPath2Oy__qd__qd_0_xGs0G4PathCy6OutputQzqd__G_AMyAOqd_0_Gtr0_lF">map(_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Data</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">a</span><span class="p">,</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nv">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="nf">map</span><span class="p">(\</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="p">\</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">T0</span><span class="p">,</span> <span class="kt">T1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath0</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">,</span> <span class="kt">T0</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">keyPath1</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">,</span> <span class="kt">T1</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MapKeyPath2</span><span class="o">&lt;</span><span class="kt">T0</span><span class="p">,</span> <span class="kt">T1</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == (T0, T1)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L384-L386">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE3mapyAA0B0O8_PrivateO11MapKeyPath3Oy__qd__qd_0_qd_1_xGs0G4PathCy6OutputQzqd__G_AMyAOqd_0_GAMyAOqd_1_Gtr1_lF"></a>
+                    <a name="//apple_ref/swift/Method/map(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE3mapyAA0B0O8_PrivateO11MapKeyPath3Oy__qd__qd_0_qd_1_xGs0G4PathCy6OutputQzqd__G_AMyAOqd_0_GAMyAOqd_1_Gtr1_lF">map(_:_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Data</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nv">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">c</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="nf">map</span><span class="p">(\</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="p">\</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="p">\</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">T0</span><span class="p">,</span> <span class="kt">T1</span><span class="p">,</span> <span class="kt">T2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath0</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">,</span> <span class="kt">T0</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">keyPath1</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">,</span> <span class="kt">T1</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">_</span> <span class="nv">keyPath2</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">,</span> <span class="kt">T2</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MapKeyPath3</span><span class="o">&lt;</span><span class="kt">T0</span><span class="p">,</span> <span class="kt">T1</span><span class="p">,</span> <span class="kt">T2</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == (T0, T1, T2)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L399-L401">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE7flatMapyAA0B0O8_PrivateO04FlatE0Oy__qd__xGqd__6OutputQzcAA0B11ConvertibleRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/flatMap(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE7flatMapyAA0B0O8_PrivateO04FlatE0Oy__qd__xGqd__6OutputQzcAA0B11ConvertibleRd__lF">flatMap(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">flatMap</span> <span class="p">{</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="kt">String</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="o">+</span> <span class="s">"2"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="s">"42"</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">flatMap</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">transform</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">FlatMap</span><span class="o">&lt;</span><span class="kt">U</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == U.FutureType.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L412-L414">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE4then2on_AA0B0O8_PrivateO4ThenOy__qd__qd_0_xGqd___qd_0_6OutputQzctAA08ExecutorC0Rd__AA0B11ConvertibleRd_0_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/then(on:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE4then2on_AA0B0O8_PrivateO4ThenOy__qd__qd_0_xGqd___qd_0_6OutputQzctAA08ExecutorC0Rd__AA0B11ConvertibleRd_0_r0_lF">then(on:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span><span class="o">.</span><span class="nf">then</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="kt">QueueExecutor</span><span class="o">.</span><span class="n">global</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="nv">$0</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="kt">Result</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="mi">42</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">then</span><span class="o">&lt;</span><span class="kt">E</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">on</span> <span class="nv">executor</span><span class="p">:</span> <span class="kt">E</span><span class="p">,</span> <span class="n">_</span> <span class="nv">execute</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Then</span><span class="o">&lt;</span><span class="kt">E</span><span class="p">,</span> <span class="kt">U</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Result&lt;U.FutureType.Output, E.Failure&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L425-L427">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE4peekyAA0B0O8_PrivateO4PeekOy__xGy6OutputQzcF"></a>
+                    <a name="//apple_ref/swift/Method/peek(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE4peekyAA0B0O8_PrivateO4PeekOy__xGy6OutputQzcF">peek(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calls the given closure on the output of this future.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">peek</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">peek</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Peek</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L438-L440">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE10replaceNil4withAA0B0O8_PrivateO3MapOy__qd__xGqd___tqd__Sg6OutputRtzlF"></a>
+                    <a name="//apple_ref/swift/Method/replaceNil(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE10replaceNil4withAA0B0O8_PrivateO3MapOy__qd__xGqd___tqd__Sg6OutputRtzlF">replaceNil(with:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces the output from this future with a provided value, if it is
+nil.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f1</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="kt">Int</span><span class="p">?</span><span class="o">.</span><span class="nf">some</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="nf">replaceNil</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f1</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">f2</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="kt">Int</span><span class="p">?</span><span class="o">.</span><span class="k">none</span><span class="p">)</span><span class="o">.</span><span class="nf">replaceNil</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f2</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">replaceNil</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">with</span> <span class="nv">output</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Map</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span> <span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span> <span class="o">==</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L453-L455">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE13replaceOutput4withAA0B0O8_PrivateO07ReplaceE0Oy__qd__xGqd___tlF"></a>
+                    <a name="//apple_ref/swift/Method/replaceOutput(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE13replaceOutput4withAA0B0O8_PrivateO07ReplaceE0Oy__qd__xGqd___tlF">replaceOutput(with:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces the output from this future with a provided value.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="nf">replaceOutput</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">replaceOutput</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">with</span> <span class="nv">output</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">ReplaceOutput</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L464-L466">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE12ignoreOutputAA0B0O8_PrivateO06IgnoreE0Oy__xGyF"></a>
+                    <a name="//apple_ref/swift/Method/ignoreOutput()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE12ignoreOutputAA0B0O8_PrivateO06IgnoreE0Oy__xGyF">ignoreOutput()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ignores the output from this future.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">ignoreOutput</span><span class="p">()</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">())</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">ignoreOutput</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">IgnoreOutput</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Void&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L475-L477">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A20_OptionalConvertible6OutputRpzrlE5match4some4noneAA0B0O8_PrivateO05MatchD0Oy__qd__xGqd__AE_11WrappedTypeQZc_qd__yctlF"></a>
+                    <a name="//apple_ref/swift/Method/match(some:none:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A20_OptionalConvertible6OutputRpzrlE5match4some4noneAA0B0O8_PrivateO05MatchD0Oy__qd__xGqd__AE_11WrappedTypeQZc_qd__yctlF">match(some:none:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f1</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="kt">Int</span><span class="p">?</span><span class="o">.</span><span class="nf">some</span><span class="p">(</span><span class="mi">42</span><span class="p">))</span><span class="o">.</span><span class="nf">match</span><span class="p">(</span>
+    <span class="nv">some</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kd">init</span><span class="p">,</span>
+    <span class="nv">none</span><span class="p">:</span> <span class="p">{</span> <span class="s">"NaN"</span> <span class="p">}</span>
+<span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f1</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="s">"42"</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">f2</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="kt">Int</span><span class="p">?</span><span class="o">.</span><span class="k">none</span><span class="p">)</span><span class="o">.</span><span class="nf">match</span><span class="p">(</span>
+    <span class="nv">some</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kd">init</span><span class="p">,</span>
+    <span class="nv">none</span><span class="p">:</span> <span class="p">{</span> <span class="s">"NaN"</span> <span class="p">}</span>
+<span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f2</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="s">"NaN"</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">match</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="nv">some</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">WrappedType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">,</span>
+    <span class="nv">none</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">T</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MatchOptional</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L499-L504">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A17EitherConvertible6OutputRpzrlE5match4left5rightAA0B0O8_PrivateO05MatchD0Oy__qd__xGqd__AE_4LeftQZc_qd__AE_5RightQZctlF"></a>
+                    <a name="//apple_ref/swift/Method/match(left:right:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A17EitherConvertible6OutputRpzrlE5match4left5rightAA0B0O8_PrivateO05MatchD0Oy__qd__xGqd__AE_4LeftQZc_qd__AE_5RightQZctlF">match(left:right:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Either</span><span class="o">&lt;</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Float</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">42</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">.</span><span class="nf">left</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">.</span><span class="nf">right</span><span class="p">(</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">f1</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span><span class="o">.</span><span class="nf">match</span><span class="p">(</span>
+    <span class="nv">left</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kd">init</span><span class="p">,</span>
+    <span class="nv">right</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">describing</span><span class="p">:)</span>
+<span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f1</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="s">"42"</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">f2</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span><span class="o">.</span><span class="nf">match</span><span class="p">(</span>
+    <span class="nv">left</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kd">init</span><span class="p">,</span>
+    <span class="nv">right</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">describing</span><span class="p">:)</span>
+<span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f2</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="s">"5.0"</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">match</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="nv">left</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Left</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">,</span>
+    <span class="nv">right</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Right</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MatchEither</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L534-L539">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Combining%20Output%20from%20Multiple%20Futures"></a>
+                <a name="//apple_ref/swift/Section/Combining Output from Multiple Futures" class="dashAnchor"></a>
+                <a href="#/Combining%20Output%20from%20Multiple%20Futures">
+                  <h3 class="section-name">Combining Output from Multiple Futures</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE4joinyAA0B0O8_PrivateO4JoinOy__xqd__Gqd__AaBRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/join(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE4joinyAA0B0O8_PrivateO4JoinOy__xqd__Gqd__AaBRd__lF">join(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Combines the output from this future with that from another future by
+waiting until both futures complete and then completing with the output
+from each future together as a tuple.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"A"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">join</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">S</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Join</span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt">FutureProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == (Self.Output, S.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L674-L676">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE4joinyAA0B0O8_PrivateO5Join3Oy__xqd__qd_0_Gqd___qd_0_tAaBRd__AaBRd_0_r0_lF"></a>
+                    <a name="//apple_ref/swift/Method/join(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE4joinyAA0B0O8_PrivateO5Join3Oy__xqd__qd_0_Gqd___qd_0_tAaBRd__AaBRd_0_r0_lF">join(_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Combines the output from this future with that from two other futures
+by waiting until all futures complete and then completing with the
+output from each future together as a tuple.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"A"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"X"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="s">"X"</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">join</span><span class="o">&lt;</span><span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Join3</span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt">FutureProtocol</span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt">FutureProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == (Self.Output, B.Output, C.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L690-L692">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE4joinyAA0B0O8_PrivateO5Join4Oy__xqd__qd_0_qd_1_Gqd___qd_0_qd_1_tAaBRd__AaBRd_0_AaBRd_1_r1_lF"></a>
+                    <a name="//apple_ref/swift/Method/join(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE4joinyAA0B0O8_PrivateO5Join4Oy__xqd__qd_0_qd_1_Gqd___qd_0_qd_1_tAaBRd__AaBRd_0_AaBRd_1_r1_lF">join(_:_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Combines the output from this future with that from three other futures
+by waiting until all futures complete and then completing with the
+output from each future together as a tuple.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"A"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"X"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">d</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="s">"X"</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">join</span><span class="o">&lt;</span><span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">,</span> <span class="n">_</span> <span class="nv">d</span><span class="p">:</span> <span class="kt">D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Join4</span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt">FutureProtocol</span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt">FutureProtocol</span><span class="p">,</span> <span class="kt">D</span> <span class="p">:</span> <span class="kt">FutureProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == (Self.Output, B.Output, C.Output, D.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L707-L709">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE6selectyAA0B0O8_PrivateO6SelectOy__xqd__Gqd__AaBRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/select(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE6selectyAA0B0O8_PrivateO6SelectOy__xqd__Gqd__AaBRd__lF">select(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Waits until either this future or the given one complete, and completes
+with the output from that future.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"A"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="nf">select</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="o">.</span><span class="nf">left</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">select</span><span class="o">&lt;</span><span class="kt">B</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Select</span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt">FutureProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Either&lt;Self.Output, B.Output&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L721-L723">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Adapting%20Future%20Types"></a>
+                <a name="//apple_ref/swift/Section/Adapting Future Types" class="dashAnchor"></a>
+                <a href="#/Adapting%20Future%20Types">
+                  <h3 class="section-name">Adapting Future Types</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A0B11Convertible6OutputRpzrlE7flattenAA0B0O8_PrivateO7FlattenOy__xGyF"></a>
+                    <a name="//apple_ref/swift/Method/flatten()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A0B11Convertible6OutputRpzrlE7flattenAA0B0O8_PrivateO7FlattenOy__xGyF">flatten()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Flattens the output from this future by waiting for the output of the
+future produced by this future.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="kt">String</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="o">+</span> <span class="s">"2"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="nf">flatten</span><span class="p">()</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="s">"42"</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">flatten</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Flatten</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output.FutureType.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L740-L742">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20Failable%20Futures"></a>
+                <a name="//apple_ref/swift/Section/Creating Failable Futures" class="dashAnchor"></a>
+                <a href="#/Creating%20Failable%20Futures">
+                  <h3 class="section-name">Creating Failable Futures</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE6tryMapyAA0B0O8_PrivateO03TryE0Oy__qd__xGqd__6OutputQzKclF"></a>
+                    <a name="//apple_ref/swift/Method/tryMap(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE6tryMapyAA0B0O8_PrivateO03TryE0Oy__qd__xGqd__6OutputQzKclF">tryMap(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Transforms the output from this future with a provided error-throwing
+closure.</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">UltimateQuestionError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">wrongAnswer</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">validateAnswer</span><span class="p">(</span><span class="n">_</span> <span class="nv">answer</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">42</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="kt">UltimateQuestionError</span><span class="o">.</span><span class="n">wrongAnswer</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">answer</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">f1</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try!</span> <span class="n">f1</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">f2</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">f2</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">tryMap</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">catching</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">TryMap</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Result&lt;T, Error&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L786-L788">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE14setFailureType2toAA0B0O8_PrivateO03SeteF0Vy__6OutputQzqd__xGqd__m_ts5ErrorRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/setFailureType(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE14setFailureType2toAA0B0O8_PrivateO03SeteF0Vy__6OutputQzqd__xGqd__m_ts5ErrorRd__lF">setFailureType(to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Converts this future to a failable one with the specified failure
+type.</p>
+
+<p>You typically use this combinator to match the error types of two
+mismatched failable futures.</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">UltimateQuestionError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">wrongAnswer</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">setFailureType</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">UltimateQuestionError</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try!</span> <span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">setFailureType</span><span class="o">&lt;</span><span class="kt">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">to</span> <span class="nv">_</span><span class="p">:</span> <span class="kt">E</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">SetFailureType</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">,</span> <span class="kt">E</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Result&lt;Self.Output, E&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L805-L807">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Working%20with%20Failable%20Futures"></a>
+                <a name="//apple_ref/swift/Section/Working with Failable Futures" class="dashAnchor"></a>
+                <a href="#/Working%20with%20Failable%20Futures">
+                  <h3 class="section-name">Working with Failable Futures</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE5match7success7failureAA0B0O8_PrivateO05MatchD0Oy__qd__xGqd__AE_7SuccessQZc_qd__AE_7FailureQZctlF"></a>
+                    <a name="//apple_ref/swift/Method/match(success:failure:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE5match7success7failureAA0B0O8_PrivateO05MatchD0Oy__qd__xGqd__AE_7SuccessQZc_qd__AE_7FailureQZctlF">match(success:failure:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">UltimateQuestionError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">wrongAnswer</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">validateAnswer</span><span class="p">(</span><span class="n">_</span> <span class="nv">answer</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">42</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="kt">UltimateQuestionError</span><span class="o">.</span><span class="n">wrongAnswer</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">answer</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">a1</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f1</span> <span class="o">=</span> <span class="n">a1</span><span class="o">.</span><span class="nf">match</span><span class="p">(</span>
+    <span class="nv">success</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kd">init</span><span class="p">,</span>
+    <span class="nv">failure</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">describing</span><span class="p">:)</span>
+<span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f1</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="s">"wrongAnswer"</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">a2</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f2</span> <span class="o">=</span> <span class="n">a2</span><span class="o">.</span><span class="nf">match</span><span class="p">(</span>
+    <span class="nv">success</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kd">init</span><span class="p">,</span>
+    <span class="nv">failure</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">describing</span><span class="p">:)</span>
+<span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f2</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="s">"42"</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">match</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="nv">success</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Success</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">,</span>
+    <span class="nv">failure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Failure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MatchResult</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L842-L847">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE8mapValueyAA0B0O8_PrivateO03MapD0Vy__qd__AE_7FailureQZxGqd__AE_7SuccessQZclF"></a>
+                    <a name="//apple_ref/swift/Method/mapValue(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE8mapValueyAA0B0O8_PrivateO03MapD0Vy__qd__AE_7FailureQZxGqd__AE_7SuccessQZclF">mapValue(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">UltimateQuestionError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">wrongAnswer</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">validateAnswer</span><span class="p">(</span><span class="n">_</span> <span class="nv">answer</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">42</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="kt">UltimateQuestionError</span><span class="o">.</span><span class="n">wrongAnswer</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">answer</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">f1</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span><span class="o">.</span><span class="n">mapValue</span> <span class="p">{</span>
+    <span class="nv">$0</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">f1</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">f2</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span><span class="o">.</span><span class="n">mapValue</span> <span class="p">{</span>
+    <span class="nv">$0</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">f2</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="mi">43</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">mapValue</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">transform</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Success</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MapResult</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Failure</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Result&lt;T, Self.Output.Failure&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L874-L876">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE8mapErroryAA0B0O8_PrivateO03MapD0Vy__AE_7SuccessQZqd__xGqd__AE_7FailureQZcs0H0Rd__lF"></a>
+                    <a name="//apple_ref/swift/Method/mapError(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE8mapErroryAA0B0O8_PrivateO03MapD0Vy__AE_7SuccessQZqd__xGqd__AE_7FailureQZcs0H0Rd__lF">mapError(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">UltimateQuestionError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">wrongAnswer</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">validateAnswer</span><span class="p">(</span><span class="n">_</span> <span class="nv">answer</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">42</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="kt">UltimateQuestionError</span><span class="o">.</span><span class="n">wrongAnswer</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">answer</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">WrappedError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">f1</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span><span class="o">.</span><span class="n">mapError</span> <span class="p">{</span>
+    <span class="kt">WrappedError</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">f1</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">f2</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span><span class="o">.</span><span class="n">mapError</span> <span class="p">{</span>
+    <span class="kt">WrappedError</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">f2</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">mapError</span><span class="o">&lt;</span><span class="kt">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">transform</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Failure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">E</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MapResult</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Success</span><span class="p">,</span> <span class="kt">E</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Result&lt;Self.Output.Success, E&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L907-L909">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzAE_7Success7FailureQZAE_AHRTzAadE_AGRPzrlE07flattenD0AA0B0O8_PrivateO07FlattenD0Oy__xGyF"></a>
+                    <a name="//apple_ref/swift/Method/flattenResult()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzAE_7Success7FailureQZAE_AHRTzAadE_AGRPzrlE07flattenD0AA0B0O8_PrivateO07FlattenD0Oy__xGyF">flattenResult()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>.</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">UltimateQuestionError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">wrongAnswer</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">validateAnswer</span><span class="p">(</span><span class="n">_</span> <span class="nv">answer</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">42</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="kt">UltimateQuestionError</span><span class="o">.</span><span class="n">wrongAnswer</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">answer</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">a1</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">mapValue</span><span class="p">(</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;.</span><span class="n">success</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f1</span> <span class="o">=</span> <span class="n">a1</span><span class="o">.</span><span class="nf">flattenResult</span><span class="p">()</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">f1</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">a2</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">mapValue</span><span class="p">(</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;.</span><span class="n">success</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f2</span> <span class="o">=</span> <span class="n">a2</span><span class="o">.</span><span class="nf">flattenResult</span><span class="p">()</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">f2</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">flattenResult</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">FlattenResult</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Result&lt;Self.Output.Success.Success, Self.Output.Failure&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L942-L944">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzs5NeverOAE_7FailureRTzrlE03setH4Type2toAA0B0O8_PrivateO03SethJ0Vy__AE_7SuccessQZqd__xGqd__m_ts5ErrorRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/setFailureType(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzs5NeverOAE_7FailureRTzrlE03setH4Type2toAA0B0O8_PrivateO03SethJ0Vy__AE_7SuccessQZqd__xGqd__m_ts5ErrorRd__lF">setFailureType(to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Changes the failure type declared by this future.</p>
+
+<p>You typically use this combinator to match the error types of two
+mismatched result futures.</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">UltimateQuestionError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">wrongAnswer</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="nf">map</span><span class="p">(</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;.</span><span class="n">success</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="nf">setFailureType</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">UltimateQuestionError</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+
+<span class="nf">assert</span><span class="p">(</span><span class="k">try!</span> <span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">setFailureType</span><span class="o">&lt;</span><span class="kt">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">to</span> <span class="nv">_</span><span class="p">:</span> <span class="kt">E</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">SetFailureType</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Success</span><span class="p">,</span> <span class="kt">E</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">E</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Result&lt;Self.Output.Success, E&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L966-L968">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Handling%20Errors"></a>
+                <a name="//apple_ref/swift/Section/Handling Errors" class="dashAnchor"></a>
+                <a href="#/Handling%20Errors">
+                  <h3 class="section-name">Handling Errors</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE13assertNoError_4file4lineAA0B0O8_PrivateO06AsserthI0Oy__xGSS_s12StaticStringVSutF"></a>
+                    <a name="//apple_ref/swift/Method/assertNoError(_:file:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE13assertNoError_4file4lineAA0B0O8_PrivateO06AsserthI0Oy__xGSS_s12StaticStringVSutF">assertNoError(_:file:line:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Raises a fatal error when this future fails.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">assertNoError</span><span class="p">(</span><span class="n">_</span> <span class="nv">prefix</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">StaticString</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">UInt</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">AssertNoError</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output.Success&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L978-L980">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE12replaceError4withAA0B0O8_PrivateO07ReplaceH0Oy__xGAE_7SuccessQZ_tF"></a>
+                    <a name="//apple_ref/swift/Method/replaceError(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE12replaceError4withAA0B0O8_PrivateO07ReplaceH0Oy__xGAE_7SuccessQZ_tF">replaceError(with:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replaces failure with the provided element.</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">UltimateQuestionError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">wrongAnswer</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">validateAnswer</span><span class="p">(</span><span class="n">_</span> <span class="nv">answer</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">42</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="kt">UltimateQuestionError</span><span class="o">.</span><span class="n">wrongAnswer</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">answer</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="nf">replaceError</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="mi">42</span><span class="p">)</span>
+
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">replaceError</span><span class="p">(</span><span class="n">with</span> <span class="nv">output</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Success</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">ReplaceError</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output.Success&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L1002-L1004">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE10catchErroryAA0B0O8_PrivateO05CatchH0Oy__qd__xGqd__AE_7FailureQZcAA0bE0Rd__0B4Type_AEQYd__AE_7SuccessRTzlF"></a>
+                    <a name="//apple_ref/swift/Method/catchError(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE10catchErroryAA0B0O8_PrivateO05CatchH0Oy__qd__xGqd__AE_7FailureQZcAA0bE0Rd__0B4Type_AEQYd__AE_7SuccessRTzlF">catchError(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Handles errors from this future by replacing it with another future
+on failure.</p>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">UltimateQuestionError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">wrongAnswer</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">validateAnswer</span><span class="p">(</span><span class="n">_</span> <span class="nv">answer</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="n">answer</span> <span class="o">==</span> <span class="mi">42</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="kt">UltimateQuestionError</span><span class="o">.</span><span class="n">wrongAnswer</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">answer</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="nf">tryMap</span><span class="p">(</span><span class="n">validateAnswer</span><span class="p">)</span><span class="o">.</span><span class="n">catchError</span> <span class="p">{</span>
+    <span class="n">_</span> <span class="k">in</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">catchError</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="o">.</span><span class="kt">Failure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">CatchError</span><span class="o">&lt;</span><span class="kt">U</span><span class="p">,</span> <span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output.Success&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L1028-L1030">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Debugging"></a>
+                <a name="//apple_ref/swift/Section/Debugging" class="dashAnchor"></a>
+                <a href="#/Debugging">
+                  <h3 class="section-name">Debugging</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE10breakpoint5ready7pendingAA0B0O8_PrivateO10BreakpointOy__xGSb6OutputQzc_SbyctF"></a>
+                    <a name="//apple_ref/swift/Method/breakpoint(ready:pending:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE10breakpoint5ready7pendingAA0B0O8_PrivateO10BreakpointOy__xGSb6OutputQzc_SbyctF">breakpoint(ready:pending:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Raises a debugger signal when a provided closure needs to stop the
+process in the debugger.</p>
+
+<p>When any of the provided closures returns <code>true</code>, this future raises
+the <code>SIGTRAP</code> signal to stop the process in the debugger.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">breakpoint</span><span class="p">(</span>
+    <span class="nv">ready</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="kc">false</span> <span class="p">},</span>
+    <span class="nv">pending</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="p">{</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Breakpoint</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L1058-L1063">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE12handleEvents5ready7pendingAA0B0O8_PrivateO06HandleE0Oy__xGy6OutputQzc_yyctF"></a>
+                    <a name="//apple_ref/swift/Method/handleEvents(ready:pending:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE12handleEvents5ready7pendingAA0B0O8_PrivateO06HandleE0Oy__xGy6OutputQzc_yyctF">handleEvents(ready:pending:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs the specified closures when poll events occur.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">handleEvents</span><span class="p">(</span>
+    <span class="nv">ready</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/FutureProtocol.html#/s:7Futures14FutureProtocolP6OutputQa">Output</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="p">},</span>
+    <span class="nv">pending</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">HandleEvents</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L1069-L1074">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPAAE5print_2toAA0B0O8_PrivateO5PrintOy__xGSS_s16TextOutputStream_pSgtF"></a>
+                    <a name="//apple_ref/swift/Method/print(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPAAE5print_2toAA0B0O8_PrivateO5PrintOy__xGSS_s16TextOutputStream_pSgtF">print(_:to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prints log messages for all poll events.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">print</span><span class="p">(</span><span class="n">_</span> <span class="nv">prefix</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span> <span class="n">to</span> <span class="nv">stream</span><span class="p">:</span> <span class="kt">TextOutputStream</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Print</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L1080-L1082">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE17breakpointOnErrorAA0B0O8_PrivateO10BreakpointOy__xGyF"></a>
+                    <a name="//apple_ref/swift/Method/breakpointOnError()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolPA2A18_ResultConvertible6OutputRpzrlE17breakpointOnErrorAA0B0O8_PrivateO10BreakpointOy__xGyF">breakpointOnError()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Raises a debugger signal upon receiving a failure.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">breakpointOnError</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Future.html">Future</a></span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Breakpoint</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Self.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L1092-L1098">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 Akis Kesoglou. Licensed under the MIT license.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

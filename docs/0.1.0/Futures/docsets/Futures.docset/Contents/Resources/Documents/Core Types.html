@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Core Types  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Section/Core Types" class="dashAnchor"></a>
+
+    <a title="Core Types  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          Futures Reference (0.1.0)
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/dfunckt/swift-futures">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fdfunckt%2Egithub%2Eio%2Fswift%2Dfutures%2Fdocs%2F0%2E1%2E0%2Fdocsets%2FFutures%2Exml">
+            <img class="header-icon" src="img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Futures Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Core Types  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Core Types.html">Core Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FutureProtocol.html">FutureProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StreamProtocol.html">StreamProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/SinkProtocol.html">SinkProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/ChannelProtocol.html">ChannelProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/ExecutorProtocol.html">ExecutorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Task.html">Task</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Core Namespaces.html">Core Namespaces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Future.html">Future</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Stream/ReplayStrategy.html">– ReplayStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Sink.html">Sink</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Sink/Completion.html">– Completion</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel.html">Channel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/Unbuffered.html">– Unbuffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/Passthrough.html">– Passthrough</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/Buffered.html">– Buffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/BufferedUnbounded.html">– BufferedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/Shared.html">– Shared</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/SharedUnbounded.html">– SharedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/Pipe.html">– Pipe</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/Sender.html">– Sender</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Channel/Receiver.html">– Receiver</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Futures.html">Futures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FutureConvertible.html">FutureConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Promise.html">Promise</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Deferred.html">Deferred</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyFuture.html">AnyFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Futures.html#/s:7Futures15AnyResultFuturea">AnyResultFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ResultFuture.html">ResultFuture</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Streams.html">Streams</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StreamConvertible.html">StreamConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyStream.html">AnyStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnyMulticastStream.html">AnyMulticastStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnySharedStream.html">AnySharedStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Streams.html#/s:7Futures15AnyResultStreama">AnyResultStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ResultStream.html">ResultStream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Sinks.html">Sinks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/SinkConvertible.html">SinkConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/AnySink.html">AnySink</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Executors.html">Executors</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/BlockingExecutor.html">BlockingExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/QueueExecutor.html">QueueExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/RunLoopExecutor.html">RunLoopExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/RunLoopExecutor/Failure.html">– Failure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/ThreadExecutor.html">ThreadExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/ThreadExecutor/Failure.html">– Failure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Poll.html">Poll</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/WakerProtocol.html">WakerProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/AnyWaker.html">AnyWaker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Cancellable.html">Cancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/AnyCancellable.html">AnyCancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Either.html">Either</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/EitherConvertible.html">EitherConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Swift.html">Swift</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Swift/Sequence.html">– Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Swift/Result.html">– Result</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other Functions.html">Other Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other Functions.html#/s:7Futures25assertOnMainQueueExecutoryyF">assertOnMainQueueExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other Functions.html#/s:7Futures27assertOnMainRunLoopExecutoryyF">assertOnMainRunLoopExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other Functions.html#/s:7Futures21assertOnQueueExecutoryyAA0dE0CF">assertOnQueueExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other Functions.html#/s:7Futures23assertOnRunLoopExecutoryyAA0deF0CF">assertOnRunLoopExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other Functions.html#/s:7Futures22assertOnThreadExecutoryyAA0dE0CF">assertOnThreadExecutor(_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Core Types</h1>
+            
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14FutureProtocolP"></a>
+                    <a name="//apple_ref/swift/Protocol/FutureProtocol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14FutureProtocolP">FutureProtocol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A protocol that defines a container for the result of an asynchronous
+operation, such as an HTTP request, a timeout, a disk I/O operation, etc.</p>
+
+<p>Futures can be <em>pending</em>, meaning that the result of the operation is not
+available yet, or <em>completed</em>, meaning that the result is ready. Futures
+can be combined into larger operations with <em>combinators</em>, such as <code>map(_:)</code>,
+<code>flatMap(_:)</code>, etc.</p>
+
+<p>Futures communicate a single value of type <code>Output</code>. Semantically, futures
+capture only the notion of <em>completion</em>; that is, there is no explicit
+distinction between a successful or a failed operation. Operations that
+must communicate success or failure, must do so by encoding that information
+in the output type, typically using <code>Swift.Result</code>. Futures comes with a
+number of convenience types and combinators for working with <code>Swift.Result</code>
+(see <code><a href="Structs/ResultFuture.html">ResultFuture</a></code>).</p>
+
+<p>You typically create futures using the static convenience methods on the
+<code><a href="Enums/Future.html">Future</a></code> namespace. You can also create custom futures by adopting this
+protocol in your types.</p>
+
+<p>Creating futures is <em>always</em> an asynchronous operation. The builtin types
+guarantee that the operation the future wraps will only be started after
+the future is submitted to an executor (see <code><a href="Protocols/ExecutorProtocol.html">ExecutorProtocol</a></code>). Custom
+future implementations must also provide the same guarantee.</p>
+<h2 id='memory-and-concurrency-management' class='heading'>Memory and Concurrency Management</h2>
+
+<p>When a future is submitted to an executor, ownership of the future and its
+resources is transferred into the executor. You can only affect its fate
+indirectly from that point on (see <code><a href="Classes/Task.html">Task</a></code>).</p>
+
+<p>When a future completes, it is effectively dropped and its resources are
+released on the same execution context (eg. a thread or a Dispatch queue)
+the future was started and polled in.</p>
+
+<p>This makes both memory and concurrency management predictable and extremely
+easy to reason about; a future&rsquo;s lifetime is wholly contained within the
+executor it was submitted on.</p>
+<h2 id='cancellation' class='heading'>Cancellation</h2>
+
+<p>Futures support cancellation implicitly. As discussed above, for a future
+to make progress, it must be polled by an executor. By simply not polling
+the future and instead dropping it effectively cancels the underlying
+operation. To explicitly cancel a submitted future, use <code><a href="Classes/Task.html">Task</a></code>.</p>
+
+<p>If the operation is allocating resources that must be released manually,
+you can provide a <q>cancellation token</q> at creation which will automatically
+invoke a given closure upon deallocation, be it due to completion or
+cancellation (see <code><a href="Structs/Deferred.html">Deferred</a></code>).</p>
+
+                        <a href="Protocols/FutureProtocol.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FutureProtocol</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FutureConvertible.html">FutureConvertible</a></span> <span class="k">where</span> <span class="k">Self</span> <span class="o">==</span> <span class="k">Self</span><span class="o">.</span><span class="kt">FutureType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L62-L65">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures14StreamProtocolP"></a>
+                    <a name="//apple_ref/swift/Protocol/StreamProtocol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures14StreamProtocolP">StreamProtocol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A protocol that defines an abstraction for a series of asynchronously
+produced discrete values over time, such as byte buffers read from a
+socket or a file, incoming requests to a server, or sampled mouse input
+events.</p>
+
+<p>Streams <em>yield</em> elements. Similar to Swift&rsquo;s <code>IteratorProtocol</code>, streams
+signify completion by yielding <code>nil</code>. Streams can be combined into larger
+operations with <em>combinators</em>, such as <code>map()</code>, <code>flatMap()</code>, etc.</p>
+
+<p>The type of element yielded by a stream is specified by its <code>Output</code> type.
+Streams that must communicate success or failure, must do so by encoding
+that information in the output type, typically using <code>Swift.Result</code>.
+Futures comes with a number of convenience types and combinators for
+working with <code>Swift.Result</code> (see <code>FuturesResult</code> module).</p>
+
+<p>You typically create streams using the convenience methods on <code><a href="Enums/Stream.html">Stream</a></code>.
+You can also create custom streams by adopting this protocol in your
+types. Creating streams is <em>always</em> an asynchronous operation. It is
+guaranteed that the producer of elements the stream wraps will only be
+asked for elements after the stream is submitted to an executor and it
+will always be on that executor&rsquo;s context (see <code><a href="Protocols/ExecutorProtocol.html">ExecutorProtocol</a></code>). In
+other words, streams do nothing unless submitted to an executor.</p>
+
+<p>For a stream to be submitted to an executor and yield elements, it must
+be converted to a future that represents the stream&rsquo;s completion. As a
+convenience, this is done automatically if the stream output is <code>Void</code>.</p>
+
+<p>The semantics for cancellation, and memory and concurrency management
+are the same as for futures (see <code><a href="Protocols/FutureProtocol.html">FutureProtocol</a></code>).</p>
+
+                        <a href="Protocols/StreamProtocol.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">StreamProtocol</span> <span class="p">:</span> <span class="kt"><a href="Protocols/StreamConvertible.html">StreamConvertible</a></span> <span class="k">where</span> <span class="k">Self</span> <span class="o">==</span> <span class="k">Self</span><span class="o">.</span><span class="kt">StreamType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L39-L42">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures12SinkProtocolP"></a>
+                    <a name="//apple_ref/swift/Protocol/SinkProtocol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures12SinkProtocolP">SinkProtocol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Protocols/SinkProtocol.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SinkProtocol</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SinkConvertible.html">SinkConvertible</a></span> <span class="k">where</span> <span class="k">Self</span> <span class="o">==</span> <span class="k">Self</span><span class="o">.</span><span class="kt">SinkType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Sink.swift#L8-L18">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures15ChannelProtocolP"></a>
+                    <a name="//apple_ref/swift/Protocol/ChannelProtocol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures15ChannelProtocolP">ChannelProtocol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A protocol that defines primitives for unidirectional communication
+between a <em>sender</em> and a <em>receiver</em> task. The sending side of a channel is
+convertible to a sink and the receiving to a stream.</p>
+
+<p>Channels are categorized into different <em>flavors</em> based on whether they
+support a single or multiple senders and whether they apply backpressure
+when their internal buffer reaches a configurable limit.</p>
+
+<p>Channels can be explicitly closed by either the sending or receiving side.
+Dropping either side causes the channel to close automatically. Senders
+are prevented from sending new items into a closed channel. Any items
+buffered by the channel, however, can still be taken out by the receiver.</p>
+
+<p>Senders can request to be notified when the channel is flushed. Flushing
+is not an exclusive operation; other senders are not prevented from
+sending an item, or even closing the channel. Therefore flushing is useful
+primarily with single-sender channels. Flushing multi-sender channels is
+less reliable because of the indeterminism inherent in that configuration
+&ndash; a sender may request a flush and by the time it returns to check that
+flushing completed another sender running on another thread might have
+sent a new item. You have to externally coordinate the senders in this case.</p>
+
+                        <a href="Protocols/ChannelProtocol.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ChannelProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Channel.swift#L31-L38">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures16ExecutorProtocolP"></a>
+                    <a name="//apple_ref/swift/Protocol/ExecutorProtocol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures16ExecutorProtocolP">ExecutorProtocol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A protocol that defines objects that execute futures.</p>
+
+<p>Executors provide the context in which futures execute. This context may
+be the current or a background thread, a Dispatch queue, a run loop, etc.
+Executors typically enqueue submitted futures in a <q>ready to run</q> queue
+and immediately return to the caller. This queue is later on consumed by
+the executor in its execution context, driving futures to completion by
+polling them. The polling algorithm is roughly:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">context</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="nf">makeContext</span><span class="p">()</span>
+<span class="k">while</span> <span class="k">var</span> <span class="nv">future</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">readyToRunQueue</span><span class="o">.</span><span class="nf">pop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">future</span><span class="o">.</span><span class="nf">poll</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">isReady</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">drop</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">pendingFutures</span><span class="o">.</span><span class="nf">push</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Futures that are ready to run are polled by the executor. If the future
+returns that it completed (see <code><a href="Enums/Poll.html">Poll</a></code>), it is let go by the executor,
+which causes the future and associated resources to be released. Otherwise,
+it is added into a <q>pending futures</q> registry. Before returning, the
+future registers the context&rsquo;s waker (see <code><a href="Structs/Context.html">Context</a></code> and <code><a href="Protocols/WakerProtocol.html">WakerProtocol</a></code>)
+to receive a notification when the external event the future is waiting on
+fires. As a result of the notification, the future is added back into the
+<q>ready to run</q> queue and the process repeats until the future signifies
+completion.</p>
+
+<p>Futures are submitted for execution via the <code>trySubmit(_:)</code> method of an
+executor. Executors guarantee that submitted futures will be executed
+asynchronously. In other words, <code>trySubmit(_:)</code> merely schedules the
+future to be executed at some point in the future and returns to the caller
+immediately. This is an important invariant that custom implementations
+must also maintain, since it removes all concerns about reentrancy.</p>
+
+<p>Executors may deny to receive the future, in which case <code>trySubmit(_:)</code>
+returns an appropriate error of type <code>Failure</code>. This can be the case when
+the executor is shutting down or is at capacity and needs to provide
+backpressure. Executors that never fail, declare their <code>Failure</code> type as
+<code>Never</code>.</p>
+
+<p>This protocol makes no guarantees on the safety of concurrent calls to
+<code>trySubmit(_:)</code>. Each executor implementation is free to declare support
+for concurrent submissions, documenting the fact accordingly. This ambiguity
+is not a problem in practice since you typically use concrete executor types
+so you always know the specifics. The built-in <code><a href="Classes/QueueExecutor.html">QueueExecutor</a></code> is an
+executor that supports concurrent submissions.</p>
+
+                        <a href="Protocols/ExecutorProtocol.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ExecutorProtocol</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Executor.swift#L57-L77">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures4TaskC"></a>
+                    <a name="//apple_ref/swift/Class/Task" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures4TaskC">Task</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A handle to a unit of work that is executing in an executor.</p>
+
+<p>In Futures, task is both a high-level concept and a type. As a concept, it
+is the outermost future that is submitted into an executor for execution.
+As a type, it is a handle to the conceptual task, which can be used to
+extract the result of the computation or cancel it altogether.</p>
+
+<p>Tasks are futures themselves and can be seamlessly combined with other tasks
+or futures.</p>
+
+<p><code>Task</code> guarantees that:</p>
+
+<ul>
+<li>the wrapped future is cancelled if the task is dropped.</li>
+<li>the wrapped future is destroyed on the executor&rsquo;s context it was
+submitted on.</li>
+<li>the executor is kept alive for as long as the task itself is kept alive.</li>
+</ul>
+
+<p>To create a task, use the <code><a href="Protocols/ExecutorProtocol.html#/s:7Futures16ExecutorProtocolPAAE8trySpawnys6ResultOyAA4TaskCy6OutputQyd__G7FailureQzGqd__AA06FutureC0Rd__lF">ExecutorProtocol.trySpawn(...)</a></code> method.</p>
+
+<p>To cancel the task, invoke <code>cancel()</code> on it.</p>
+
+                        <a href="Classes/Task.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Task</span><span class="o">&lt;</span><span class="kt">Output</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FutureProtocol.html">FutureProtocol</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/Cancellable.html">Cancellable</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Task.swift#L30-L98">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 Akis Kesoglou. Licensed under the MIT license.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

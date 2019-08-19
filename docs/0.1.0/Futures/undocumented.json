@@ -1,0 +1,1622 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Cancellable.swift",
+      "line": 21,
+      "symbol": "Cancellable.store(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Cancellable.swift",
+      "line": 30,
+      "symbol": "Cancellable.store(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Cancellable.swift",
+      "line": 89,
+      "symbol": "AnyCancellable.empty",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 32,
+      "symbol": "ChannelProtocol.Buffer",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 33,
+      "symbol": "ChannelProtocol.Park",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 35,
+      "symbol": "ChannelProtocol.Item",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 36,
+      "symbol": "ChannelProtocol.Sender",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 37,
+      "symbol": "ChannelProtocol.Receiver",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 54,
+      "symbol": "Channel.Unbuffered.Buffer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 55,
+      "symbol": "Channel.Unbuffered.Park",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 74,
+      "symbol": "Channel.Passthrough.Buffer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 75,
+      "symbol": "Channel.Passthrough.Park",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 94,
+      "symbol": "Channel.Buffered.Buffer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 95,
+      "symbol": "Channel.Buffered.Park",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 114,
+      "symbol": "Channel.BufferedUnbounded.Buffer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 115,
+      "symbol": "Channel.BufferedUnbounded.Park",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 134,
+      "symbol": "Channel.Shared.Buffer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 135,
+      "symbol": "Channel.Shared.Park",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 154,
+      "symbol": "Channel.SharedUnbounded.Buffer",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 155,
+      "symbol": "Channel.SharedUnbounded.Park",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 171,
+      "symbol": "Channel.Error",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 172,
+      "symbol": "Channel.Error.cancelled",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 189,
+      "symbol": "Channel.Pipe.tx",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 190,
+      "symbol": "Channel.Pipe.rx",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 193,
+      "symbol": "Channel.Pipe.init(tx:rx:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 199,
+      "symbol": "Channel.Pipe.split()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 204,
+      "symbol": "Channel.Pipe.makeSink()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 209,
+      "symbol": "Channel.Pipe.makeStream()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 218,
+      "symbol": "Channel.Sender",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 219,
+      "symbol": "Channel.Sender.Item",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 234,
+      "symbol": "Channel.Sender.capacity",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 274,
+      "symbol": "Channel.Sender",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 302,
+      "symbol": "Channel.Sender",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 303,
+      "symbol": "Channel.Sender.SinkType",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 304,
+      "symbol": "Channel.Sender.SinkType.Input",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 305,
+      "symbol": "Channel.Sender.SinkType.Failure",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 315,
+      "symbol": "Channel.Sender.SinkType.pollSend(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 327,
+      "symbol": "Channel.Sender.SinkType.pollFlush(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 339,
+      "symbol": "Channel.Sender.SinkType.pollClose(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 346,
+      "symbol": "Channel.Sender.makeSink()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 354,
+      "symbol": "Channel.Receiver",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 355,
+      "symbol": "Channel.Receiver.Item",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 396,
+      "symbol": "Channel.Receiver",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 397,
+      "symbol": "Channel.Receiver.StreamType",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 398,
+      "symbol": "Channel.Receiver.StreamType.Output",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 413,
+      "symbol": "Channel.Receiver.StreamType.pollNext(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Channel.swift",
+      "line": 419,
+      "symbol": "Channel.Receiver.makeStream()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 8,
+      "symbol": "EitherConvertible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 9,
+      "symbol": "EitherConvertible.Left",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 10,
+      "symbol": "EitherConvertible.Right",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 11,
+      "symbol": "EitherConvertible.makeEither()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 14,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 15,
+      "symbol": "Either.left(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 16,
+      "symbol": "Either.right(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 22,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 24,
+      "symbol": "Either.makeEither()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 29,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 31,
+      "symbol": "Either.init(result:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 41,
+      "symbol": "Either.makeResult()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 51,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 53,
+      "symbol": "Either.left",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 58,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 60,
+      "symbol": "Either.right",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 65,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 67,
+      "symbol": "Either.left",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 75,
+      "symbol": "Either.right",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 83,
+      "symbol": "Either.isLeft",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 93,
+      "symbol": "Either.isRight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 103,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 105,
+      "symbol": "Either.match(left:right:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 115,
+      "symbol": "Either.map(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 125,
+      "symbol": "Either.mapRight(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 135,
+      "symbol": "Either.flatMap(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 145,
+      "symbol": "Either.flatMapRight(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 155,
+      "symbol": "Either.split()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 165,
+      "symbol": "Either.splitRight()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 175,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 177,
+      "symbol": "Either.makeFuture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 187,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Either.swift",
+      "line": 189,
+      "symbol": "Either.poll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/QueueExecutor.swift",
+      "line": 11,
+      "symbol": "assertOnQueueExecutor(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/QueueExecutor.swift",
+      "line": 15,
+      "symbol": "assertOnMainQueueExecutor()",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/QueueExecutor.swift",
+      "line": 32,
+      "symbol": "QueueExecutor.init(label:qos:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/QueueExecutor.swift",
+      "line": 37,
+      "symbol": "QueueExecutor.init(targetQueue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/QueueExecutor.swift",
+      "line": 79,
+      "symbol": "QueueExecutor.label",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/RunLoopExecutor.swift",
+      "line": 19,
+      "symbol": "assertOnRunLoopExecutor(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/RunLoopExecutor.swift",
+      "line": 23,
+      "symbol": "assertOnMainRunLoopExecutor()",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/RunLoopExecutor.swift",
+      "line": 27,
+      "symbol": "RunLoopExecutor",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/RunLoopExecutor.swift",
+      "line": 38,
+      "symbol": "RunLoopExecutor.label",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/RunLoopExecutor.swift",
+      "line": 44,
+      "symbol": "RunLoopExecutor.init(label:runLoop:mode:capacity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/RunLoopExecutor.swift",
+      "line": 82,
+      "symbol": "RunLoopExecutor",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/RunLoopExecutor.swift",
+      "line": 85,
+      "symbol": "RunLoopExecutor.current",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/RunLoopExecutor.swift",
+      "line": 99,
+      "symbol": "RunLoopExecutor.main",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/ThreadExecutor.swift",
+      "line": 11,
+      "symbol": "assertOnThreadExecutor(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/ThreadExecutor.swift",
+      "line": 61,
+      "symbol": "ThreadExecutor.label",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/ThreadExecutor.swift",
+      "line": 68,
+      "symbol": "ThreadExecutor.init(label:capacity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/ThreadExecutor.swift",
+      "line": 86,
+      "symbol": "ThreadExecutor.makeContext()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/ThreadExecutor.swift",
+      "line": 91,
+      "symbol": "ThreadExecutor.execute(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/ThreadExecutor.swift",
+      "line": 96,
+      "symbol": "ThreadExecutor.block()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor/ThreadExecutor.swift",
+      "line": 107,
+      "symbol": "ThreadExecutor.current",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 165,
+      "symbol": "ExecutorProtocol.submit(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 170,
+      "symbol": "ExecutorProtocol.submit(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 183,
+      "symbol": "BlockingExecutor.makeContext()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 184,
+      "symbol": "BlockingExecutor.execute(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 185,
+      "symbol": "BlockingExecutor.block()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 234,
+      "symbol": "WakerProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 235,
+      "symbol": "WakerProtocol.signal()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 238,
+      "symbol": "AnyWaker",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 241,
+      "symbol": "AnyWaker.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Executor.swift",
+      "line": 245,
+      "symbol": "AnyWaker.signal()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Extensions.swift",
+      "line": 10,
+      "symbol": "Swift.Sequence.makeStream()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 63,
+      "symbol": "FutureProtocol.Output",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 64,
+      "symbol": "FutureProtocol.poll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 67,
+      "symbol": "FutureConvertible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 68,
+      "symbol": "FutureConvertible.FutureType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 69,
+      "symbol": "FutureConvertible.makeFuture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 89,
+      "symbol": "AnyFuture.PollFn",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 116,
+      "symbol": "AnyFuture.poll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 121,
+      "symbol": "Deferred",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 122,
+      "symbol": "Deferred.Operation",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 134,
+      "symbol": "Deferred.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Future.swift",
+      "line": 139,
+      "symbol": "Deferred.poll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 8,
+      "symbol": "Poll",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 9,
+      "symbol": "Poll.ready(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 10,
+      "symbol": "Poll.pending",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 16,
+      "symbol": "Poll",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 18,
+      "symbol": "Poll.ready",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 23,
+      "symbol": "Poll",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 25,
+      "symbol": "Poll.result",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 35,
+      "symbol": "Poll.isReady",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 45,
+      "symbol": "Poll.isPending",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 55,
+      "symbol": "Poll",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 57,
+      "symbol": "Poll.match(ready:pending:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 67,
+      "symbol": "Poll.map(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Poll.swift",
+      "line": 77,
+      "symbol": "Poll.flatMap(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Promise.swift",
+      "line": 32,
+      "symbol": "Promise.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Promise.swift",
+      "line": 37,
+      "symbol": "Promise.poll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Promise.swift",
+      "line": 95,
+      "symbol": "Promise.resolve(when:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Promise.swift",
+      "line": 100,
+      "symbol": "Promise.resolve(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Promise.swift",
+      "line": 124,
+      "symbol": "Promise.resolve()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 8,
+      "symbol": "AnyResultFuture",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 9,
+      "symbol": "AnyResultStream",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 13,
+      "symbol": "AnyFuture.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 26,
+      "symbol": "AnyStream.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 41,
+      "symbol": "ResultFuture",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 42,
+      "symbol": "ResultFuture.Output",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 53,
+      "symbol": "ResultFuture.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 58,
+      "symbol": "ResultFuture.init(value:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 63,
+      "symbol": "ResultFuture.init(error:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 68,
+      "symbol": "ResultFuture.poll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 79,
+      "symbol": "ResultStream",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 80,
+      "symbol": "ResultStream.Output",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 92,
+      "symbol": "ResultStream.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 97,
+      "symbol": "ResultStream.init(value:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 102,
+      "symbol": "ResultStream.init(error:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 107,
+      "symbol": "ResultStream.pollNext(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 123,
+      "symbol": "Swift.Result.makeFuture()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 130,
+      "symbol": "Swift.Result.makeStream()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 139,
+      "symbol": "Promise.fulfill(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Result.swift",
+      "line": 144,
+      "symbol": "Promise.reject(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 8,
+      "symbol": "SinkProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 9,
+      "symbol": "SinkProtocol.Input",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 10,
+      "symbol": "SinkProtocol.Failure",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 12,
+      "symbol": "SinkProtocol.Completion",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 13,
+      "symbol": "SinkProtocol.Output",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 15,
+      "symbol": "SinkProtocol.pollSend(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 16,
+      "symbol": "SinkProtocol.pollFlush(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 17,
+      "symbol": "SinkProtocol.pollClose(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 20,
+      "symbol": "SinkConvertible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 21,
+      "symbol": "SinkConvertible.SinkType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 22,
+      "symbol": "SinkConvertible.makeSink()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 33,
+      "symbol": "Sink.Completion",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 34,
+      "symbol": "Sink.Completion.closed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 35,
+      "symbol": "Sink.Completion.failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 42,
+      "symbol": "Sink.Completion",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 44,
+      "symbol": "Sink.Completion.init(result:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 54,
+      "symbol": "Sink.Completion.makeResult()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 64,
+      "symbol": "Sink.Completion",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 66,
+      "symbol": "Sink.Completion.mapError(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 88,
+      "symbol": "AnySink.Output",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 90,
+      "symbol": "AnySink.PollSendFn",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 91,
+      "symbol": "AnySink.PollFlushFn",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 92,
+      "symbol": "AnySink.PollCloseFn",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 107,
+      "symbol": "AnySink.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 121,
+      "symbol": "AnySink.pollSend(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 126,
+      "symbol": "AnySink.pollFlush(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 131,
+      "symbol": "AnySink.pollClose(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 138,
+      "symbol": "Sink.collect(itemType:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 143,
+      "symbol": "Sink.collect(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 150,
+      "symbol": "SinkProtocol",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 152,
+      "symbol": "SinkProtocol.makeSink()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 157,
+      "symbol": "SinkProtocol.makeBlockingSink()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 162,
+      "symbol": "SinkProtocol.makeBlockingSink(on:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 167,
+      "symbol": "SinkProtocol.eraseToAnySink()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 174,
+      "symbol": "SinkProtocol",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 176,
+      "symbol": "SinkProtocol.map(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 181,
+      "symbol": "SinkProtocol.mapError(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 186,
+      "symbol": "SinkProtocol.flatMap(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 191,
+      "symbol": "SinkProtocol.buffer(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 196,
+      "symbol": "SinkProtocol.setFailureType(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 203,
+      "symbol": "SinkProtocol",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 205,
+      "symbol": "SinkProtocol.assertNoError(_:file:line:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 212,
+      "symbol": "SinkProtocol",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 214,
+      "symbol": "SinkProtocol.sendAll(_:close:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 219,
+      "symbol": "SinkProtocol.send(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 224,
+      "symbol": "SinkProtocol.flush()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Sink.swift",
+      "line": 229,
+      "symbol": "SinkProtocol.close()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 40,
+      "symbol": "StreamProtocol.Output",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 41,
+      "symbol": "StreamProtocol.pollNext(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 44,
+      "symbol": "StreamConvertible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 45,
+      "symbol": "StreamConvertible.StreamType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 46,
+      "symbol": "StreamConvertible.makeStream()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 57,
+      "symbol": "Stream.ReplayStrategy",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 58,
+      "symbol": "Stream.ReplayStrategy.none",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 59,
+      "symbol": "Stream.ReplayStrategy.latest",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 60,
+      "symbol": "Stream.ReplayStrategy.last(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 61,
+      "symbol": "Stream.ReplayStrategy.all",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 77,
+      "symbol": "AnyStream.PollNextFn",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 114,
+      "symbol": "AnyStream.pollNext(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 126,
+      "symbol": "AnyMulticastStream.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 131,
+      "symbol": "AnyMulticastStream.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 136,
+      "symbol": "AnyMulticastStream.makeStream()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 149,
+      "symbol": "AnySharedStream.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Stream.swift",
+      "line": 154,
+      "symbol": "AnySharedStream.makeStream()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Task.swift",
+      "line": 88,
+      "symbol": "Task.poll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Task.swift",
+      "line": 102,
+      "symbol": "Context",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Task.swift",
+      "line": 113,
+      "symbol": "Context.waker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Task.swift",
+      "line": 118,
+      "symbol": "Context.withWaker(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Task.swift",
+      "line": 123,
+      "symbol": "Context.submit(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Task.swift",
+      "line": 128,
+      "symbol": "Context.spawn(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/dfunckt/swift-futures/Sources/Futures/Task.swift",
+      "line": 136,
+      "symbol": "Context.yield()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/travis/build/dfunckt/swift-futures"
+}

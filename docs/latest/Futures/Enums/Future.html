@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Future Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Enum/Future" class="dashAnchor"></a>
+
+    <a title="Future Enumeration Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Futures Reference (0.1.0)
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/dfunckt/swift-futures">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fdfunckt%2Egithub%2Eio%2Fswift%2Dfutures%2Fdocs%2F0%2E1%2E0%2Fdocsets%2FFutures%2Exml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Futures Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Future Enumeration Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Core Types.html">Core Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FutureProtocol.html">FutureProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StreamProtocol.html">StreamProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SinkProtocol.html">SinkProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ChannelProtocol.html">ChannelProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ExecutorProtocol.html">ExecutorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Task.html">Task</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Core Namespaces.html">Core Namespaces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Future.html">Future</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Stream/ReplayStrategy.html">– ReplayStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Sink.html">Sink</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Sink/Completion.html">– Completion</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel.html">Channel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Unbuffered.html">– Unbuffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Passthrough.html">– Passthrough</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Buffered.html">– Buffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/BufferedUnbounded.html">– BufferedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Shared.html">– Shared</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/SharedUnbounded.html">– SharedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Pipe.html">– Pipe</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Sender.html">– Sender</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Receiver.html">– Receiver</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Futures.html">Futures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FutureConvertible.html">FutureConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Promise.html">Promise</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Deferred.html">Deferred</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyFuture.html">AnyFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Futures.html#/s:7Futures15AnyResultFuturea">AnyResultFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ResultFuture.html">ResultFuture</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Streams.html">Streams</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StreamConvertible.html">StreamConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyStream.html">AnyStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyMulticastStream.html">AnyMulticastStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnySharedStream.html">AnySharedStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Streams.html#/s:7Futures15AnyResultStreama">AnyResultStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ResultStream.html">ResultStream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Sinks.html">Sinks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SinkConvertible.html">SinkConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnySink.html">AnySink</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Executors.html">Executors</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BlockingExecutor.html">BlockingExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/QueueExecutor.html">QueueExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RunLoopExecutor.html">RunLoopExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RunLoopExecutor/Failure.html">– Failure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreadExecutor.html">ThreadExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreadExecutor/Failure.html">– Failure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Poll.html">Poll</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/WakerProtocol.html">WakerProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnyWaker.html">AnyWaker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Cancellable.html">Cancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnyCancellable.html">AnyCancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Either.html">Either</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/EitherConvertible.html">EitherConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift.html">Swift</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Sequence.html">– Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Result.html">– Result</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Functions.html">Other Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures25assertOnMainQueueExecutoryyF">assertOnMainQueueExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures27assertOnMainRunLoopExecutoryyF">assertOnMainRunLoopExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures21assertOnQueueExecutoryyAA0dE0CF">assertOnQueueExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures23assertOnRunLoopExecutoryyAA0deF0CF">assertOnRunLoopExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures22assertOnThreadExecutoryyAA0dE0CF">assertOnThreadExecutor(_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Future</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Future</span></code></pre>
+
+                </div>
+              </div>
+            <p>A namespace for types and convenience methods related to futures.</p>
+
+<p>For details on futures, see <code><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></code>.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20Futures"></a>
+                <a name="//apple_ref/swift/Section/Creating Futures" class="dashAnchor"></a>
+                <a href="#/Creating%20Futures">
+                  <h3 class="section-name">Creating Futures</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO5never10outputTypeAC8_PrivateO5NeverVy__xGxm_tlFZ"></a>
+                    <a name="//apple_ref/swift/Method/never(outputType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO5never10outputTypeAC8_PrivateO5NeverVy__xGxm_tlFZ">never(outputType:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that never completes.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">never</span><span class="p">(</span><span class="nv">outputType</span><span class="p">:</span> <span class="kt">Void</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="c1">// will block forever</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">never</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">outputType</span> <span class="nv">_</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Never</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Void&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L172-L174">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO5readyAC8_PrivateO5ReadyOy__ytGyFZ"></a>
+                    <a name="//apple_ref/swift/Method/ready()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO5readyAC8_PrivateO5ReadyOy__ytGyFZ">ready()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that completes immediately.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">()</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">())</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">ready</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Ready</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Void&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L183-L185">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO5readyyAC8_PrivateO5ReadyOy__xGxlFZ"></a>
+                    <a name="//apple_ref/swift/Method/ready(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO5readyyAC8_PrivateO5ReadyOy__xGxlFZ">ready(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that completes immediately with the given value.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">ready</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">output</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Ready</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L194-L196">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO4lazyyAC8_PrivateO4LazyOy__xGxycAA0B11ConvertibleRzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/lazy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO4lazyyAC8_PrivateO4LazyOy__xGxycAA0B11ConvertibleRzlFZ">lazy(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that lazily invokes the given closure, awaits the
+returned future and completes with that future&rsquo;s value.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="kd">lazy</span> <span class="p">{</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="p">`</span><span class="nv">lazy</span><span class="p">`</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Lazy</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == U.FutureType.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L208-L210">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Combining%20Output%20from%20Multiple%20Futures"></a>
+                <a name="//apple_ref/swift/Section/Combining Output from Multiple Futures" class="dashAnchor"></a>
+                <a href="#/Combining%20Output%20from%20Multiple%20Futures">
+                  <h3 class="section-name">Combining Output from Multiple Futures</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO7joinAllyAC8_PrivateO04JoinD0Vy__7Element_0B4TypeQZGxSTRzAA0B11ConvertibleAIRpzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/joinAll(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO7joinAllyAC8_PrivateO04JoinD0Vy__7Element_0B4TypeQZGxSTRzAA0B11ConvertibleAIRpzlFZ">joinAll(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that collects the output from a sequence of futures
+that output elements of the same type and completes with an array of
+the elements when all futures complete.</p>
+
+<p>This combinator can efficiently handle arbitrary numbers of futures
+but has more overhead than the simpler <code><a href="../Enums/Future.html#/s:7Futures6FutureO4joinyAC8_PrivateO4JoinOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ">join(_:_:)</a></code> variants.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">joinAll</span><span class="p">([</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">joinAll</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">futures</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">JoinAll</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">.</span><span class="kt">Element</span><span class="o">.</span><span class="kt">FutureType</span><span class="o">&gt;</span>
+    <span class="k">where</span> <span class="kt">C</span><span class="p">:</span> <span class="kt">Sequence</span><span class="p">,</span> <span class="kt">C</span><span class="o">.</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FutureConvertible.html">FutureConvertible</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == [C.Element.FutureType.Output]&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L561-L564">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO7joinAllyAC8_PrivateO04JoinD0Vy__xGxd_tAA0B8ProtocolRzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/joinAll(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO7joinAllyAC8_PrivateO04JoinD0Vy__xGxd_tAA0B8ProtocolRzlFZ">joinAll(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">joinAll</span><span class="o">&lt;</span><span class="kt">F</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">futures</span><span class="p">:</span> <span class="kt">F</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">JoinAll</span><span class="o">&lt;</span><span class="kt">F</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">F</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == [F.Output]&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L568-L570">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO4joinyAC8_PrivateO4JoinOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/join(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO4joinyAC8_PrivateO4JoinOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ">join(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that combines the output from two futures by waiting
+until both futures complete and then completing with the output from
+each future together as a tuple.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"A"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">join</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Join</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == (A.Output, B.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L583-L585">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO4joinyAC8_PrivateO5Join3Oy__xq_q0_Gx_q_q0_tAA0B8ProtocolRzAaJR_AaJR0_r1_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/join(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO4joinyAC8_PrivateO5Join3Oy__xq_q0_Gx_q_q0_tAA0B8ProtocolRzAaJR_AaJR0_r1_lFZ">join(_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that combines the output from three futures by waiting
+until all futures complete and then completing with the output from
+each future together as a tuple.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"A"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"X"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="s">"X"</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">join</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Join3</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == (A.Output, B.Output, C.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L599-L601">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO4joinyAC8_PrivateO5Join4Oy__xq_q0_q1_Gx_q_q0_q1_tAA0B8ProtocolRzAaJR_AaJR0_AaJR1_r2_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/join(_:_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO4joinyAC8_PrivateO5Join4Oy__xq_q0_q1_Gx_q_q0_q1_tAA0B8ProtocolRzAaJR_AaJR0_AaJR1_r2_lFZ">join(_:_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that combines the output from four futures by waiting
+until all futures complete and then completing with the output from
+each future together as a tuple.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"A"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"X"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">d</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="s">"X"</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">join</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">,</span> <span class="n">_</span> <span class="nv">d</span><span class="p">:</span> <span class="kt">D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Join4</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span><span class="p">,</span> <span class="kt">D</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == (A.Output, B.Output, C.Output, D.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L616-L618">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO9selectAnyyAC8_PrivateO06SelectD0Vy__7Element_0B4TypeQZGxSTRzAA0B11ConvertibleAIRpzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/selectAny(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO9selectAnyyAC8_PrivateO06SelectD0Vy__7Element_0B4TypeQZGxSTRzAA0B11ConvertibleAIRpzlFZ">selectAny(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that waits until any of the given sequence of futures
+that output elements of the same type completes, and completes with the
+output from that future.</p>
+
+<p>This combinator can efficiently handle arbitrary numbers of futures
+but has more overhead than the simpler <code><a href="../Enums/Future.html#/s:7Futures6FutureO6selectyAC8_PrivateO6SelectOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ">select(_:_:)</a></code> variant.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">selectAny</span><span class="p">([</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">selectAny</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">futures</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">SelectAny</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">.</span><span class="kt">Element</span><span class="o">.</span><span class="kt">FutureType</span><span class="o">&gt;</span>
+    <span class="k">where</span> <span class="kt">C</span><span class="p">:</span> <span class="kt">Sequence</span><span class="p">,</span> <span class="kt">C</span><span class="o">.</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="../Protocols/FutureConvertible.html">FutureConvertible</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == C.Element.FutureType.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L636-L639">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO9selectAnyyAC8_PrivateO06SelectD0Vy__xGxd_tAA0B8ProtocolRzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/selectAny(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO9selectAnyyAC8_PrivateO06SelectD0Vy__xGxd_tAA0B8ProtocolRzlFZ">selectAny(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">selectAny</span><span class="o">&lt;</span><span class="kt">F</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">futures</span><span class="p">:</span> <span class="kt">F</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">SelectAny</span><span class="o">&lt;</span><span class="kt">F</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">F</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == F.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L643-L645">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO6selectyAC8_PrivateO6SelectOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/select(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO6selectyAC8_PrivateO6SelectOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ">select(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that waits until either of the given futures complete,
+and completes with the output from that future.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="s">"A"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="o">.</span><span class="nf">left</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">select</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Select</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/FutureProtocol.html">FutureProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Either&lt;A.Output, B.Output&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L657-L659">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20Failable%20Futures"></a>
+                <a name="//apple_ref/swift/Section/Creating Failable Futures" class="dashAnchor"></a>
+                <a href="#/Creating%20Failable%20Futures">
+                  <h3 class="section-name">Creating Failable Futures</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6FutureO7tryLazyyAC8_PrivateO03TryD0Oy__xGxyKcAA0B11ConvertibleRzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/tryLazy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6FutureO7tryLazyyAC8_PrivateO03TryD0Oy__xGxyKcAA0B11ConvertibleRzlFZ">tryLazy(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a future that lazily invokes the given error-throwing closure,
+awaits the returned future and completes with that future&rsquo;s output.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="kt">Future</span><span class="o">.</span><span class="n">tryLazy</span> <span class="p">{</span>
+    <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="k">try</span><span class="p">?</span> <span class="n">f</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span><span class="o">.</span><span class="nf">get</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">tryLazy</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">TryLazy</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some FutureProtocol&lt;Output == Result&lt;U.FutureType.Output, Error&gt;&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Future.swift#L758-L760">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 Akis Kesoglou. Licensed under the MIT license.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

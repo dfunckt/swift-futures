@@ -1,0 +1,10 @@
+.DS_Store
+/*.xcodeproj
+/.build
+/.digests
+/.swiftpm
+/build
+/Carthage
+/DerivedData
+/Packages
+/xcuserdata

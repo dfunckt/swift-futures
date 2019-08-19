@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Stream Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Enum/Stream" class="dashAnchor"></a>
+
+    <a title="Stream Enumeration Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Futures Reference (0.1.0)
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/dfunckt/swift-futures">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fdfunckt%2Egithub%2Eio%2Fswift%2Dfutures%2Fdocs%2F0%2E1%2E0%2Fdocsets%2FFutures%2Exml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Futures Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Stream Enumeration Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Core Types.html">Core Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FutureProtocol.html">FutureProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StreamProtocol.html">StreamProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SinkProtocol.html">SinkProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ChannelProtocol.html">ChannelProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ExecutorProtocol.html">ExecutorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Task.html">Task</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Core Namespaces.html">Core Namespaces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Future.html">Future</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Stream/ReplayStrategy.html">– ReplayStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Sink.html">Sink</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Sink/Completion.html">– Completion</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel.html">Channel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Unbuffered.html">– Unbuffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Passthrough.html">– Passthrough</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Buffered.html">– Buffered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/BufferedUnbounded.html">– BufferedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Shared.html">– Shared</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/SharedUnbounded.html">– SharedUnbounded</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Pipe.html">– Pipe</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Sender.html">– Sender</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Channel/Receiver.html">– Receiver</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Futures.html">Futures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FutureConvertible.html">FutureConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Promise.html">Promise</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Deferred.html">Deferred</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyFuture.html">AnyFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Futures.html#/s:7Futures15AnyResultFuturea">AnyResultFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ResultFuture.html">ResultFuture</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Streams.html">Streams</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StreamConvertible.html">StreamConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyStream.html">AnyStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyMulticastStream.html">AnyMulticastStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnySharedStream.html">AnySharedStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Streams.html#/s:7Futures15AnyResultStreama">AnyResultStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ResultStream.html">ResultStream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Sinks.html">Sinks</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SinkConvertible.html">SinkConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnySink.html">AnySink</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Executors.html">Executors</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BlockingExecutor.html">BlockingExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/QueueExecutor.html">QueueExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RunLoopExecutor.html">RunLoopExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RunLoopExecutor/Failure.html">– Failure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreadExecutor.html">ThreadExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreadExecutor/Failure.html">– Failure</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Poll.html">Poll</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/WakerProtocol.html">WakerProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnyWaker.html">AnyWaker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Cancellable.html">Cancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnyCancellable.html">AnyCancellable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Either.html">Either</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/EitherConvertible.html">EitherConvertible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift.html">Swift</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Sequence.html">– Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Swift/Result.html">– Result</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other Functions.html">Other Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures25assertOnMainQueueExecutoryyF">assertOnMainQueueExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures27assertOnMainRunLoopExecutoryyF">assertOnMainRunLoopExecutor()</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures21assertOnQueueExecutoryyAA0dE0CF">assertOnQueueExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures23assertOnRunLoopExecutoryyAA0deF0CF">assertOnRunLoopExecutor(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other Functions.html#/s:7Futures22assertOnThreadExecutoryyAA0dE0CF">assertOnThreadExecutor(_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Stream</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Stream</span></code></pre>
+
+                </div>
+              </div>
+            <p>A namespace for types and convenience methods related to streams.</p>
+
+<p>For details on streams, see <code><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></code>.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Supporting%20Types"></a>
+                <a name="//apple_ref/swift/Section/Supporting Types" class="dashAnchor"></a>
+                <a href="#/Supporting%20Types">
+                  <h3 class="section-name">Supporting Types</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO14ReplayStrategyO"></a>
+                    <a name="//apple_ref/swift/Enum/ReplayStrategy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO14ReplayStrategyO">ReplayStrategy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Enums/Stream/ReplayStrategy.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ReplayStrategy</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L57-L62">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20Streams"></a>
+                <a name="//apple_ref/swift/Section/Creating Streams" class="dashAnchor"></a>
+                <a href="#/Creating%20Streams">
+                  <h3 class="section-name">Creating Streams</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO5never10outputTypeAC8_PrivateO5NeverVy__xGxm_tlFZ"></a>
+                    <a name="//apple_ref/swift/Method/never(outputType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO5never10outputTypeAC8_PrivateO5NeverVy__xGxm_tlFZ">never(outputType:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that yields no elements and never completes.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">never</span><span class="p">(</span><span class="nv">outputType</span><span class="p">:</span> <span class="kt">Void</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="c1">// Will block forever</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">never</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">outputType</span> <span class="nv">_</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Never</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L167-L169">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO5empty10outputTypeAC8_PrivateO5EmptyVy__xGxm_tlFZ"></a>
+                    <a name="//apple_ref/swift/Method/empty(outputType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO5empty10outputTypeAC8_PrivateO5EmptyVy__xGxm_tlFZ">empty(outputType:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that yields no elements and immediately completes.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">empty</span><span class="p">(</span><span class="nv">outputType</span><span class="p">:</span> <span class="kt">Void</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">empty</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">outputType</span> <span class="nv">_</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Empty</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L178-L180">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO8optionalyAC8_PrivateO8OptionalOy__xGxSglFZ"></a>
+                    <a name="//apple_ref/swift/Method/optional(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO8optionalyAC8_PrivateO8OptionalOy__xGxSglFZ">optional(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that yields zero or one element, depending on whether
+the provided optional is <code>nil</code>, and completes.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">someInt</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">optional</span><span class="p">(</span><span class="n">someInt</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">noInt</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">optional</span><span class="p">(</span><span class="n">noInt</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="kd">optional</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">T</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Optional</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L197-L199">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO4justyAC8_PrivateO4JustOy__xGxlFZ"></a>
+                    <a name="//apple_ref/swift/Method/just(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO4justyAC8_PrivateO4JustOy__xGxlFZ">just(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that yields the provided element and completes.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">just</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">just</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Just</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L209-L211">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO6repeatyAC8_PrivateO6RepeatVy__xGxlFZ"></a>
+                    <a name="//apple_ref/swift/Method/repeat(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO6repeatyAC8_PrivateO6RepeatVy__xGxlFZ">repeat(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that repeatedly yields the provided element and never
+completes.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">repeat</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">42</span><span class="p">)</span>
+<span class="c1">// ...</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="p">`</span><span class="nv">repeat</span><span class="p">`</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">element</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Repeat</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L224-L226">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO8sequenceyAC8_PrivateO8SequenceOy__xGxSTRzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/sequence(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO8sequenceyAC8_PrivateO8SequenceOy__xGxSTRzlFZ">sequence(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream the yields the elements of the provided sequence and
+completes.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="mi">3</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">sequence</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Sequence</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt">Sequence</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == C.Element&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L239-L241">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO8generate5first_AC8_PrivateO8GenerateOy__xGx_xSgxctlFZ"></a>
+                    <a name="//apple_ref/swift/Method/generate(first:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO8generate5first_AC8_PrivateO8GenerateOy__xGx_xSgxctlFZ">generate(first:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that yields the elements of the sequence formed from
+<code>first</code> and the results of repeated lazy applications of <code>next</code>.</p>
+
+<p>The first element yielded by the stream is always <code>first</code>, and each
+successive element is the result of invoking <code>next</code> with the previous
+element. The stream ends when <code>next</code> returns <code>nil</code>. If <code>next</code> never
+returns <code>nil</code>, the stream is infinite.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">generate</span><span class="p">(</span><span class="nv">first</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$0</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="p">?</span> <span class="nv">$0</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="kc">nil</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">generate</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">first</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="n">_</span> <span class="nv">next</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Generate</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L261-L263">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO6unfold7initial_AC8_PrivateO6UnfoldOy__q_Gx_q_Sgxct10FutureType_6OutputQY_RszAA0G11ConvertibleR_r0_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/unfold(initial:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO6unfold7initial_AC8_PrivateO6UnfoldOy__q_Gx_q_Sgxct10FutureType_6OutputQY_RszAA0G11ConvertibleR_r0_lFZ">unfold(initial:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that yields the elements of the sequence formed from
+<code>initial</code> and the results of the futures returned by repeated lazy
+applications of <code>next</code>.</p>
+
+<p>The first element yielded by the stream is always <code>initial</code>, and each
+successive element is the output of the future returned by invoking
+<code>next</code> with the previous element. The stream ends when <code>next</code> returns
+<code>nil</code>. If <code>next</code> never returns <code>nil</code>, the sequence is infinite.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">unfold</span><span class="p">(</span><span class="nv">initial</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$0</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="p">?</span> <span class="kt">Future</span><span class="o">.</span><span class="nf">ready</span><span class="p">(</span><span class="nv">$0</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:</span> <span class="kc">nil</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">unfold</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">initial</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="n">_</span> <span class="nv">next</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Unfold</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">T</span> <span class="o">==</span> <span class="kt">U</span><span class="o">.</span><span class="kt">FutureType</span><span class="o">.</span><span class="kt">Output</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == T&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L284-L286">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO4lazyyAC8_PrivateO4LazyOy__xGxycAA0B11ConvertibleRzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/lazy(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO4lazyyAC8_PrivateO4LazyOy__xGxycAA0B11ConvertibleRzlFZ">lazy(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that lazily invokes the given closure and yields the
+elements from the returned stream.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="kd">lazy</span> <span class="p">{</span>
+    <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">wait</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="p">`</span><span class="nv">lazy</span><span class="p">`</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Lazy</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == U.StreamType.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L301-L303">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Combining%20Output%20from%20Multiple%20Streams"></a>
+                <a name="//apple_ref/swift/Section/Combining Output from Multiple Streams" class="dashAnchor"></a>
+                <a href="#/Combining%20Output%20from%20Multiple%20Streams">
+                  <h3 class="section-name">Combining Output from Multiple Streams</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO8mergeAllyAC8_PrivateO05MergeD0Vy__7Element_0B4TypeQZGxSTRzAA0B11ConvertibleAIRpzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/mergeAll(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO8mergeAllyAC8_PrivateO05MergeD0Vy__7Element_0B4TypeQZGxSTRzAA0B11ConvertibleAIRpzlFZ">mergeAll(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that combines elements from a sequence of streams
+that yield elements of the same type, delivering an interleaved
+sequence of elements and completing when all streams complete.</p>
+
+<p>This combinator can efficiently handle arbitrary numbers of streams
+but has more overhead than the simpler <code><a href="../Enums/Stream.html#/s:7Futures6StreamO5mergeyAC8_PrivateO5MergeOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_6OutputQy_AKRtzr0_lFZ">merge(_:_:)</a></code> variants.</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">mergeAll</span><span class="p">([</span>
+    <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="mi">3</span><span class="p">),</span>
+    <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">3</span><span class="o">..&lt;</span><span class="mi">6</span><span class="p">),</span>
+    <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">6</span><span class="o">..&lt;</span><span class="mi">9</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">mergeAll</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">streams</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MergeAll</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">.</span><span class="kt">Element</span><span class="o">.</span><span class="kt">StreamType</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt">Sequence</span><span class="p">,</span> <span class="kt">C</span><span class="o">.</span><span class="kt">Element</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamConvertible.html">StreamConvertible</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == C.Element.StreamType.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1350-L1352">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO8mergeAllyAC8_PrivateO05MergeD0Vy__xGxd_tAA0B8ProtocolRzlFZ"></a>
+                    <a name="//apple_ref/swift/Method/mergeAll(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO8mergeAllyAC8_PrivateO05MergeD0Vy__xGxd_tAA0B8ProtocolRzlFZ">mergeAll(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">mergeAll</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">streams</span><span class="p">:</span> <span class="kt">S</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">MergeAll</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == S.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1356-L1358">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO5mergeyAC8_PrivateO5MergeOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_6OutputQy_AKRtzr0_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/merge(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO5mergeyAC8_PrivateO5MergeOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_6OutputQy_AKRtzr0_lFZ">merge(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that combines elements from two streams that yield
+elements of the same type, delivering an interleaved sequence of
+elements and completing when both streams complete.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">3</span><span class="o">..&lt;</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">merge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">merge</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Merge</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">A</span><span class="o">.</span><span class="kt">Output</span> <span class="o">==</span> <span class="kt">B</span><span class="o">.</span><span class="kt">Output</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == A.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1377-L1379">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO5mergeyAC8_PrivateO6Merge3Vy__xq_q0_Gx_q_q0_tAA0B8ProtocolRzAaJR_AaJR0_6OutputQy_AKRtzAKQy0_ALRSr1_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/merge(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO5mergeyAC8_PrivateO6Merge3Vy__xq_q0_Gx_q_q0_tAA0B8ProtocolRzAaJR_AaJR0_6OutputQy_AKRtzAKQy0_ALRSr1_lFZ">merge(_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that combines elements from three streams that yield
+elements of the same type, delivering an interleaved sequence of
+elements and completing when all streams complete.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">3</span><span class="o">..&lt;</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">6</span><span class="o">..&lt;</span><span class="mi">9</span><span class="p">)</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">merge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">merge</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Merge3</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">A</span><span class="o">.</span><span class="kt">Output</span> <span class="o">==</span> <span class="kt">B</span><span class="o">.</span><span class="kt">Output</span><span class="p">,</span> <span class="kt">B</span><span class="o">.</span><span class="kt">Output</span> <span class="o">==</span> <span class="kt">C</span><span class="o">.</span><span class="kt">Output</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == A.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1402-L1404">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO5mergeyAC8_PrivateO6Merge4Vy__xq_q0_q1_Gx_q_q0_q1_tAA0B8ProtocolRzAaJR_AaJR0_AaJR1_6OutputQy_AKRtzAKQy0_ALRSAKQy1_ANRSr2_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/merge(_:_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO5mergeyAC8_PrivateO6Merge4Vy__xq_q0_q1_Gx_q_q0_q1_tAA0B8ProtocolRzAaJR_AaJR0_AaJR1_6OutputQy_AKRtzAKQy0_ALRSAKQy1_ANRSr2_lFZ">merge(_:_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that combines elements from four streams that yield
+elements of the same type, delivering an interleaved sequence of
+elements and completing when all streams complete.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">3</span><span class="o">..&lt;</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">6</span><span class="o">..&lt;</span><span class="mi">9</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">d</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">9</span><span class="o">..&lt;</span><span class="mi">12</span><span class="p">)</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">merge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">9</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">merge</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">,</span> <span class="n">_</span> <span class="nv">d</span><span class="p">:</span> <span class="kt">D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Merge4</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">D</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">A</span><span class="o">.</span><span class="kt">Output</span> <span class="o">==</span> <span class="kt">B</span><span class="o">.</span><span class="kt">Output</span><span class="p">,</span> <span class="kt">B</span><span class="o">.</span><span class="kt">Output</span> <span class="o">==</span> <span class="kt">C</span><span class="o">.</span><span class="kt">Output</span><span class="p">,</span> <span class="kt">C</span><span class="o">.</span><span class="kt">Output</span> <span class="o">==</span> <span class="kt">D</span><span class="o">.</span><span class="kt">Output</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == A.Output&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1431-L1433">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO3zipyAC8_PrivateO3ZipOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/zip(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO3zipyAC8_PrivateO3ZipOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ">zip(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that combines elements from two streams by waiting
+until both streams have yielded an element and then yielding the oldest
+unconsumed element from each stream together as a tuple, completing
+when either of the streams completes.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">])</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"B"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">zip</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Zip</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == (A.Output, B.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1449-L1451">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO3zipyAC8_PrivateO4Zip3Oy__xq_q0_Gx_q_q0_tAA0B8ProtocolRzAaJR_AaJR0_r1_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/zip(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO3zipyAC8_PrivateO4Zip3Oy__xq_q0_Gx_q_q0_tAA0B8ProtocolRzAaJR_AaJR0_r1_lFZ">zip(_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that combines elements from three streams by waiting
+until all streams have yielded an element and then yielding the oldest
+unconsumed element from each stream together as a tuple, completing
+when any of the streams completes.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"X"</span><span class="p">,</span> <span class="s">"Y"</span><span class="p">,</span> <span class="s">"Z"</span><span class="p">])</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="s">"X"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"Y"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">zip</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Zip3</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == (A.Output, B.Output, C.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1468-L1470">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO3zipyAC8_PrivateO4Zip4Oy__xq_q0_q1_Gx_q_q0_q1_tAA0B8ProtocolRzAaJR_AaJR0_AaJR1_r2_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/zip(_:_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO3zipyAC8_PrivateO4Zip4Oy__xq_q0_q1_Gx_q_q0_q1_tAA0B8ProtocolRzAaJR_AaJR0_AaJR1_r2_lFZ">zip(_:_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Combines elements from four streams by waiting until all streams have
+yielded an element and then yielding the oldest unconsumed element
+from each stream together as a tuple, completing when any stream
+completes.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"X"</span><span class="p">,</span> <span class="s">"Y"</span><span class="p">,</span> <span class="s">"Z"</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">d</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">3</span><span class="o">..&lt;</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="s">"X"</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"Y"</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">zip</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">,</span> <span class="n">_</span> <span class="nv">d</span><span class="p">:</span> <span class="kt">D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Zip4</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">D</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == (A.Output, B.Output, C.Output, D.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1488-L1490">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO4joinyAC8_PrivateO4JoinOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/join(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO4joinyAC8_PrivateO4JoinOy__xq_Gx_q_tAA0B8ProtocolRzAaJR_r0_lFZ">join(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that combines elements from two streams and delivers
+pairs of elements as tuples when either stream yields an element,
+completing when both streams complete.</p>
+
+<p>This is the combinator typically called <code>combineLatest</code> in other
+frameworks.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">])</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"B"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"C"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">join</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Join</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == (A.Output, B.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1509-L1511">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO4joinyAC8_PrivateO5Join3Oy__xq_q0_Gx_q_q0_tAA0B8ProtocolRzAaJR_AaJR0_r1_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/join(_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO4joinyAC8_PrivateO5Join3Oy__xq_q0_Gx_q_q0_tAA0B8ProtocolRzAaJR_AaJR0_r1_lFZ">join(_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that combines elements from three streams and
+delivers groups of elements as tuples when any stream yields an
+element, completing when all of the streams complete.</p>
+
+<p>This is the combinator typically called <code>combineLatest</code> in other
+frameworks.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"X"</span><span class="p">,</span> <span class="s">"Y"</span><span class="p">,</span> <span class="s">"Z"</span><span class="p">])</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="s">"X"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"Y"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"C"</span><span class="p">,</span> <span class="s">"Z"</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">join</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Join3</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == (A.Output, B.Output, C.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1531-L1533">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Futures6StreamO4joinyAC8_PrivateO5Join4Oy__xq_q0_q1_Gx_q_q0_q1_tAA0B8ProtocolRzAaJR_AaJR0_AaJR1_r2_lFZ"></a>
+                    <a name="//apple_ref/swift/Method/join(_:_:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Futures6StreamO4joinyAC8_PrivateO5Join4Oy__xq_q0_q1_Gx_q_q0_q1_tAA0B8ProtocolRzAaJR_AaJR0_AaJR1_r2_lFZ">join(_:_:_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a stream that combines elements from four streams and delivers
+groups of elements as tuples when any stream yields an element,
+completing when all of the streams complete.</p>
+
+<p>This is the combinator typically called <code>combineLatest</code> in other
+frameworks.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">([</span><span class="s">"X"</span><span class="p">,</span> <span class="s">"Y"</span><span class="p">,</span> <span class="s">"Z"</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">d</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">sequence</span><span class="p">(</span><span class="mi">3</span><span class="o">..&lt;</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">var</span> <span class="nv">s</span> <span class="o">=</span> <span class="kt">Stream</span><span class="o">.</span><span class="nf">join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="s">"X"</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"Y"</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"C"</span><span class="p">,</span> <span class="s">"Z"</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="nf">assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="nf">next</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">join</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">a</span><span class="p">:</span> <span class="kt">A</span><span class="p">,</span> <span class="n">_</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">B</span><span class="p">,</span> <span class="n">_</span> <span class="nv">c</span><span class="p">:</span> <span class="kt">C</span><span class="p">,</span> <span class="n">_</span> <span class="nv">d</span><span class="p">:</span> <span class="kt">D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span><span class="o">.</span><span class="n">_Private</span><span class="o">.</span><span class="kt">Join4</span><span class="o">&lt;</span><span class="kt">A</span><span class="p">,</span> <span class="kt">B</span><span class="p">,</span> <span class="kt">C</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">A</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">B</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span><span class="p">,</span> <span class="kt">D</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/StreamProtocol.html">StreamProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>some StreamProtocol&lt;Output == (A.Output, B.Output, C.Output, D.Output)&gt;</code></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/dfunckt/swift-futures/tree/0.1.0/Sources/Futures/Stream.swift#L1554-L1556">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 Akis Kesoglou. Licensed under the MIT license.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
