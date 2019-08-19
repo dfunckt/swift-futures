@@ -10,10 +10,10 @@ cancellation and threading, trivial.
 
 
 <p>
-<img src="https://img.shields.io/travis/dfunckt/swift-futures/master.svg">
-<img src="https://img.shields.io/github/release/dfunckt/swift-futures.svg">
-<img src="https://img.shields.io/badge/swift-%3E%3D5.1-orange.svg">
-<img src="https://img.shields.io/badge/platform-Linux%20macOS%20iOS%20tvOS%20watchOS-blue.svg">
+<img src="https://img.shields.io/travis/dfunckt/swift-futures/master">
+<img src="https://img.shields.io/github/v/release/dfunckt/swift-futures?sort=semver">
+<img src="https://img.shields.io/badge/swift-%3E%3D5.1-orange">
+<img src="https://img.shields.io/badge/platform-Linux%20macOS%20iOS%20tvOS%20watchOS-blue">
 </p>
 
 [Documentation][docs] / [A Quick Example][example] / [Requirements][reqs] / [Installation][inst]
