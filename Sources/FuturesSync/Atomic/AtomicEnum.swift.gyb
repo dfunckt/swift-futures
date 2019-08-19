@@ -1,0 +1,284 @@
+//
+//  AtomicEnum.swift
+//  Futures
+//
+//  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
+//
+
+import FuturesPrivate
+%{
+atomic_integer_types = [
+    'Int', 'Int8', 'Int16', 'Int32', 'Int64',
+    'UInt', 'UInt8', 'UInt16', 'UInt32', 'UInt64',
+]
+}%
+
+@inlinable
+@_transparent
+func _fromRawValue<R: RawRepresentable>(_ rawValue: R.RawValue) -> R {
+    // swiftlint:disable:next force_unwrapping
+    return R(rawValue: rawValue)!
+}
+
+@inlinable
+@_transparent
+func _toRawValue<R: RawRepresentable>(_ case: R) -> R.RawValue {
+    return `case`.rawValue
+}
+
+// MARK: -
+
+public final class AtomicEnum<R: RawRepresentable> where R.RawValue: _CAtomicInteger {
+    public typealias Pointer = R.RawValue.AtomicPointer
+    public typealias RawValue = R.RawValue.AtomicRawValue
+
+    @usableFromInline var _storage: R.RawValue.AtomicRawValue = 0
+
+    @inlinable
+    init() {}
+}
+% for type in atomic_integer_types:
+
+// MARK: - ${type} -
+
+extension AtomicEnum where R.RawValue == ${type} {
+    @_transparent
+    public convenience init(_ initialValue: R) {
+        self.init()
+        R.initialize(&_storage, to: initialValue)
+    }
+
+    @_transparent
+    public func load(order: AtomicLoadMemoryOrder = .seqcst) -> R {
+        return R.load(&_storage, order: order)
+    }
+
+    @_transparent
+    public func store(_ value: R, order: AtomicStoreMemoryOrder = .seqcst) {
+        return R.store(&_storage, value, order: order)
+    }
+
+    @_transparent
+    public func exchange(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
+        return R.exchange(&_storage, value, order: order)
+    }
+
+    @_transparent
+    @discardableResult
+    public func compareExchange(
+        _ expected: UnsafeMutablePointer<R>,
+        _ desired: R,
+        order: AtomicMemoryOrder = .seqcst,
+        loadOrder: AtomicLoadMemoryOrder? = nil
+    ) -> Bool {
+        return R.compareExchange(
+            &_storage,
+            expected,
+            desired,
+            order: order,
+            loadOrder: loadOrder
+        )
+    }
+
+    @_transparent
+    @discardableResult
+    public func compareExchange(
+        _ expected: R,
+        _ desired: R,
+        order: AtomicMemoryOrder = .seqcst,
+        loadOrder: AtomicLoadMemoryOrder? = nil
+    ) -> R {
+        return R.compareExchange(
+            &_storage,
+            expected,
+            desired,
+            order: order,
+            loadOrder: loadOrder
+        )
+    }
+
+    @_transparent
+    @discardableResult
+    public func compareExchangeWeak(
+        _ expected: UnsafeMutablePointer<R>,
+        _ desired: R,
+        order: AtomicMemoryOrder = .seqcst,
+        loadOrder: AtomicLoadMemoryOrder? = nil
+    ) -> Bool {
+        return R.compareExchangeWeak(
+            &_storage,
+            expected,
+            desired,
+            order: order,
+            loadOrder: loadOrder
+        )
+    }
+
+    @_transparent
+    @discardableResult
+    public func compareExchangeWeak(
+        _ expected: R,
+        _ desired: R,
+        order: AtomicMemoryOrder = .seqcst,
+        loadOrder: AtomicLoadMemoryOrder? = nil
+    ) -> R {
+        return R.compareExchangeWeak(
+            &_storage,
+            expected,
+            desired,
+            order: order,
+            loadOrder: loadOrder
+        )
+    }
+}
+
+// MARK: -
+
+extension AtomicEnum where R.RawValue == ${type}, R: OptionSet {
+    @_transparent
+    @discardableResult
+    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
+        return R.fetchAnd(&_storage, value, order: order)
+    }
+
+    @_transparent
+    @discardableResult
+    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
+        return R.fetchOr(&_storage, value, order: order)
+    }
+
+    @_transparent
+    @discardableResult
+    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
+        return R.fetchXor(&_storage, value, order: order)
+    }
+}
+
+// MARK: -
+
+extension RawRepresentable where RawValue == ${type} {
+    @_transparent
+    public static func initialize(_ ref: Atomic${type}Pointer, to initialValue: Self) {
+        Atomic.initialize(ref, to: _toRawValue(initialValue))
+    }
+
+    @_transparent
+    public static func load(_ ref: Atomic${type}Pointer, order: AtomicLoadMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(Atomic.load(ref, order: order))
+    }
+
+    @_transparent
+    public static func store(_ ref: Atomic${type}Pointer, _ desired: Self, order: AtomicStoreMemoryOrder = .seqcst) {
+        Atomic.store(ref, _toRawValue(desired), order: order)
+    }
+
+    @_transparent
+    public static func exchange(_ ref: Atomic${type}Pointer, _ desired: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(Atomic.exchange(ref, _toRawValue(desired), order: order))
+    }
+
+    @_transparent
+    @discardableResult
+    public static func compareExchange(
+        _ ref: Atomic${type}Pointer,
+        _ expected: UnsafeMutablePointer<Self>,
+        _ desired: Self,
+        order: AtomicMemoryOrder = .seqcst,
+        loadOrder: AtomicLoadMemoryOrder? = nil
+    ) -> Bool {
+        var primitive = _toRawValue(expected.pointee)
+        let result = Atomic.compareExchange(
+            ref,
+            &primitive,
+            _toRawValue(desired),
+            order: order,
+            loadOrder: loadOrder
+        )
+        expected.pointee = _fromRawValue(primitive)
+        return result
+    }
+
+    @_transparent
+    @discardableResult
+    public static func compareExchange(
+        _ ref: Atomic${type}Pointer,
+        _ expected: Self,
+        _ desired: Self,
+        order: AtomicMemoryOrder = .seqcst,
+        loadOrder: AtomicLoadMemoryOrder? = nil
+    ) -> Self {
+        var primitive = _toRawValue(expected)
+        _ = Atomic.compareExchange(
+            ref,
+            &primitive,
+            _toRawValue(desired),
+            order: order,
+            loadOrder: loadOrder
+        )
+        return _fromRawValue(primitive)
+    }
+
+    @_transparent
+    @discardableResult
+    public static func compareExchangeWeak(
+        _ ref: Atomic${type}Pointer,
+        _ expected: UnsafeMutablePointer<Self>,
+        _ desired: Self,
+        order: AtomicMemoryOrder = .seqcst,
+        loadOrder: AtomicLoadMemoryOrder? = nil
+    ) -> Bool {
+        var primitive = _toRawValue(expected.pointee)
+        let result = Atomic.compareExchangeWeak(
+            ref,
+            &primitive,
+            _toRawValue(desired),
+            order: order,
+            loadOrder: loadOrder
+        )
+        expected.pointee = _fromRawValue(primitive)
+        return result
+    }
+
+    @_transparent
+    @discardableResult
+    public static func compareExchangeWeak(
+        _ ref: Atomic${type}Pointer,
+        _ expected: Self,
+        _ desired: Self,
+        order: AtomicMemoryOrder = .seqcst,
+        loadOrder: AtomicLoadMemoryOrder? = nil
+    ) -> Self {
+        var primitive = _toRawValue(expected)
+        _ = Atomic.compareExchangeWeak(
+            ref,
+            &primitive,
+            _toRawValue(desired),
+            order: order,
+            loadOrder: loadOrder
+        )
+        return _fromRawValue(primitive)
+    }
+}
+
+// MARK: -
+
+extension OptionSet where RawValue == ${type} {
+    @_transparent
+    @discardableResult
+    public static func fetchAnd(_ ref: Atomic${type}Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(Atomic.fetchAnd(ref, _toRawValue(value), order: order))
+    }
+
+    @_transparent
+    @discardableResult
+    public static func fetchOr(_ ref: Atomic${type}Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(Atomic.fetchOr(ref, _toRawValue(value), order: order))
+    }
+
+    @_transparent
+    @discardableResult
+    public static func fetchXor(_ ref: Atomic${type}Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(Atomic.fetchXor(ref, _toRawValue(value), order: order))
+    }
+}
+% end

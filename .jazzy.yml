@@ -1,0 +1,122 @@
+author: Akis Kesoglou
+author_url: http://twitter.com/dfunckt
+copyright: '© 2019 Akis Kesoglou. Licensed under the MIT license.'
+
+clean: true
+theme: fullwidth
+use_safe_filenames: true
+hide_documentation_coverage: true
+undocumented_text: ''
+exclude:
+  - "/*/Channel/*"
+  - "/*/Future/*"
+  - "/*/Internal/*"
+  - "/*/Sink/*"
+  - "/*/Stream/*"
+  - "/*/Private.swift"
+  - "Package.swift"
+
+custom_categories:
+  - name: Core Types
+    children:
+    - FutureProtocol
+    - StreamProtocol
+    - SinkProtocol
+    - ChannelProtocol
+    - ExecutorProtocol
+    - Task
+
+  - name: Core Namespaces
+    children:
+    - Future
+    - Stream
+    - Sink
+    - Channel
+
+  - name: Futures
+    children:
+    - FutureConvertible
+    - Promise
+    - Deferred
+    - AnyFuture
+    - AnyResultFuture
+    - ResultFuture
+
+  - name: Streams
+    children:
+    - StreamConvertible
+    - AnyStream
+    - AnyMulticastStream
+    - AnySharedStream
+    - AnyResultStream
+    - ResultStream
+
+  - name: Sinks
+    children:
+    - SinkConvertible
+    - AnySink
+
+  - name: Executors
+    children:
+    - BlockingExecutor
+    - ExecutorError
+    - QueueExecutor
+    - RunLoopExecutor
+    - ThreadExecutor
+
+  - name: Supporting Types
+    children:
+    - Context
+    - Poll
+    - WakerProtocol
+    - AnyWaker
+    - Cancellable
+    - AnyCancellable
+    - Either
+    - EitherConvertible
+
+  - name: Primitives
+    children:
+    - Atomic
+    - AtomicEnum
+    - AtomicRef
+    - AtomicBool
+    - AtomicInt
+    - AtomicInt8
+    - AtomicInt16
+    - AtomicInt32
+    - AtomicInt64
+    - AtomicUInt
+    - AtomicUInt8
+    - AtomicUInt16
+    - AtomicUInt32
+    - AtomicUInt64
+    - AtomicUSize
+
+  - name: Bounded Queues
+    children:
+    - AtomicQueueProtocol
+    - AtomicSPSCQueue
+    - AtomicSPMCQueue
+    - AtomicMPSCQueue
+    - AtomicMPMCQueue
+
+  - name: Unbounded Queues
+    children:
+    - AtomicUnboundedQueueProtocol
+    - AtomicUnboundedMPSCQueue
+    - AtomicUnboundedSPSCQueue
+    - AtomicIntrusiveMPSCQueue
+    - AtomicIntrusiveMPSCQueueNode
+
+  - name: Locking
+    children:
+    - LockingProtocol
+    - PosixLock
+    - UnfairLock
+    - SpinLock
+    - SharedValue
+
+  - name: Helpers
+    children:
+    - Backoff

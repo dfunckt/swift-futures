@@ -1,0 +1,14 @@
+--swiftversion 5.1
+--allman false
+--comments ignore
+--decimalgrouping 3,4
+--exclude Package.swift
+--ifdef no-indent
+--indent 4
+--patternlet inline
+--ranges no-space
+--self remove
+--selfrequired 
+--wraparguments before-first
+--wrapcollections before-first
+--header \n {file}\n Futures\n\n Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.\n

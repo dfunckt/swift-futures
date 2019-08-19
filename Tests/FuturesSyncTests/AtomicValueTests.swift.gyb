@@ -1,0 +1,153 @@
+//
+//  AtomicValueTests.swift
+//  Futures
+//
+//  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
+//
+
+import FuturesSync
+import FuturesTestSupport
+import XCTest
+%{
+atomic_integer_types = [
+    'Int', 'Int8', 'Int16', 'Int32', 'Int64',
+    'UInt', 'UInt8', 'UInt16', 'UInt32', 'UInt64',
+]
+}%
+
+final class AtomicValueTests: XCTestCase {
+    func testConsistency() {
+        let PARTITIONS = 128
+        let ITERATIONS = 10_000
+        let total = (PARTITIONS * (PARTITIONS + 1) / 2) * ITERATIONS
+
+        let q = DispatchQueue(label: "futures.test-atomic", attributes: .concurrent)
+        let g = DispatchGroup()
+
+        let counter = AtomicInt(0)
+
+        for p in 1...PARTITIONS {
+            q.async(group: g, flags: .detached) {
+                for _ in 0..<ITERATIONS {
+                    counter.fetchAdd(p)
+                }
+            }
+        }
+
+        g.wait()
+        XCTAssertEqual(counter.load(), total)
+    }
+
+    func testBool() {
+        let i = AtomicBool(false)
+        XCTAssert(i.load() == false)
+
+        i.store(false)
+        XCTAssert(i.load() == false)
+
+        i.store(true)
+        XCTAssert(i.load() == true)
+
+        i.store(true)
+        i.fetchOr(true)
+        XCTAssert(i.load() == true)
+        i.fetchOr(false)
+        XCTAssert(i.load() == true)
+        i.store(false)
+        i.fetchOr(false)
+        XCTAssert(i.load() == false)
+        i.fetchOr(true)
+        XCTAssert(i.load() == true)
+
+        i.fetchAnd(false)
+        XCTAssert(i.load() == false)
+        i.fetchAnd(true)
+        XCTAssert(i.load() == false)
+
+        i.fetchXor(false)
+        XCTAssert(i.load() == false)
+        i.fetchXor(true)
+        XCTAssert(i.load() == true)
+
+        var old = i.exchange(false)
+        XCTAssert(old == true)
+        XCTAssert(i.exchange(true) == false)
+
+        i.store(false)
+        XCTAssert(i.compareExchange(false, true) == false)
+        XCTAssert(i.compareExchange(true, false) == true)
+        XCTAssert(i.compareExchange(&old, false) == false)
+        XCTAssert(i.compareExchange(old, true) == old)
+
+        old = i.exchange(false)
+        XCTAssert(old == true)
+        XCTAssert(i.exchange(true) == false)
+
+        i.store(false)
+        XCTAssert(i.compareExchangeWeak(false, true) == false)
+        XCTAssert(i.compareExchangeWeak(true, false) == true)
+        XCTAssert(i.compareExchangeWeak(&old, false) == false)
+        XCTAssert(i.compareExchangeWeak(old, true) == old)
+    }
+% for type in atomic_integer_types:
+
+    func test${type}() {
+        let i = Atomic${type}(0)
+        XCTAssert(i.load() == 0)
+
+        let r1 = randomInteger(ofType: ${type}.self)
+        let r2 = randomInteger(ofType: ${type}.self)
+        let r3 = randomInteger(ofType: ${type}.self)
+
+        i.store(r1)
+        XCTAssert(r1 == i.load())
+
+        var j = i.exchange(r2)
+        XCTAssertEqual(r1, j)
+        XCTAssertEqual(r2, i.load())
+
+        j = i.fetchAdd(r1)
+        XCTAssertEqual(r2, j)
+        XCTAssertEqual(r1 &+ r2, i.load())
+
+        j = i.fetchSub(r2)
+        XCTAssertEqual(r1 &+ r2, j)
+        XCTAssertEqual(r1, i.load())
+
+        i.store(r1)
+        j = i.fetchOr(r2)
+        XCTAssertEqual(r1, j)
+        XCTAssertEqual(r1 | r2, i.load())
+
+        i.store(r2)
+        j = i.fetchXor(r1)
+        XCTAssertEqual(r2, j)
+        XCTAssertEqual(r1 ^ r2, i.load())
+
+        i.store(r1)
+        j = i.fetchAnd(r2)
+        XCTAssertEqual(r1, j)
+        XCTAssertEqual(r1 & r2, i.load())
+
+        i.store(r1)
+        XCTAssertTrue(i.compareExchange(r1, r2) == r1)
+        XCTAssertEqual(r2, i.load())
+
+        j = r2
+        i.store(r1)
+        while !i.compareExchange(&j, r3) {}
+        XCTAssertEqual(r1, j)
+        XCTAssertEqual(r3, i.load())
+
+        i.store(r1)
+        XCTAssertTrue(i.compareExchangeWeak(r1, r2) == r1)
+        XCTAssertEqual(r2, i.load())
+
+        j = r2
+        i.store(r1)
+        while !i.compareExchangeWeak(&j, r3) {}
+        XCTAssertEqual(r1, j)
+        XCTAssertEqual(r3, i.load())
+    }
+% end
+}

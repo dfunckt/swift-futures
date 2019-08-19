@@ -1,0 +1,55 @@
+language: generic
+
+addons:
+  apt:
+    packages:
+      - build-essential
+      - clang
+      - curl
+      - gpg-agent
+      - libcurl4
+      - libicu-dev
+      - libpython2.7
+      - libxml2
+      - libz-dev
+      - pkg-config
+      - software-properties-common
+  homebrew:
+    packages:
+      - swiftformat
+      - swiftlint
+
+stages:
+  - pretest
+  - test
+  - name: release
+    if: branch = master AND type != pull_request
+
+jobs:
+  include:
+    - stage: pretest
+      name: Check commit
+      os: osx
+      osx_image: xcode11
+      script: make pretest
+
+    - stage: test
+      name: Ubuntu 18.04 / Swift 5.1
+      os: linux
+      dist: bionic
+      before_install: export PATH="${TRAVIS_BUILD_DIR}/usr/bin":"${PATH}"
+      install: make toolchain-bionic
+      script: make test
+
+    - stage: test
+      name: macOS 10.14 / Xcode 11.0
+      os: osx
+      osx_image: xcode11
+      script: make test
+
+    - stage: release
+      name: Documentation
+      os: osx
+      osx_image: xcode11
+      install: sudo gem install --no-document jazzy
+      script: make docs

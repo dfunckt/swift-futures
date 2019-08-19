@@ -1,0 +1,90 @@
+excluded:
+  - Tests/LinuxMain.swift
+
+disabled_rules:
+  - empty_count
+  - file_length
+  - function_body_length
+  - identifier_name
+  - line_length
+  - todo
+  - type_body_length
+
+opt_in_rules:
+  - anyobject_protocol
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - contains_over_first_not_nil
+  - convenience_type
+  - empty_string
+  - empty_xctest_method
+  - explicit_init
+  - fallthrough
+  - fatal_error_message
+  - first_where
+  - force_unwrapping
+  - identical_operands
+  - implicit_return
+  - implicitly_unwrapped_optional
+  - joined_default_parameter
+  - let_var_whitespace
+  - last_where
+  - literal_expression_end_indentation
+  - modifier_order
+  - multiline_function_chains
+  - multiline_literal_brackets
+  - multiline_parameters
+  - multiline_parameters_brackets
+  - nimble_operator
+  - number_separator
+  - object_literal
+  - operator_usage_whitespace
+  - overridden_super_call
+  - override_in_extension
+  - private_action
+  - private_outlet
+  - prohibited_interface_builder
+  - prohibited_super_call
+  - quick_discouraged_call
+  - quick_discouraged_focused_test
+  - quick_discouraged_pending_test
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - sorted_first_last
+  - sorted_imports
+  - static_operator
+  - switch_case_on_newline
+  - unavailable_function
+  - unneeded_parentheses_in_closure_argument
+  - untyped_error_in_catch
+  - unused_declaration
+  - unused_import
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
+  - xct_specific_matcher
+  - yoda_condition # sic
+
+cyclomatic_complexity:
+  ignores_case_statements: true
+
+large_tuple:
+  warning: 4
+  error: 5
+
+modifier_order:
+  preferred_modifier_order: [
+    acl, setterACL, final, override, dynamic, mutators, lazy, required, convenience, typeMethods, owned
+  ]
+
+nesting:
+  type_level: 3
+
+trailing_comma:
+  mandatory_comma: true
+
+type_name:
+  min_length: 1
+  validates_start_with_lowercase: false
+  allowed_symbols:
+    - '_'
