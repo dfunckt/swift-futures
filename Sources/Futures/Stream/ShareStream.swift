@@ -147,7 +147,7 @@ extension Stream._Private.Share {
                 // Our task is currently polling and we received a signal
                 // eagerly. Nothing else to do -- our task will see this
                 // and repoll.
-                _task = nil
+                break
             case .idle, .broadcasting:
                 // We may have been stashed away and spuriously woken.
                 // Ignore the notification.
