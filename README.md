@@ -91,8 +91,26 @@ Read on, there's more in store:
 
 ## A Quick Example
 
-Here's a small program to print [*42*][ultimate-question], contrived enough to
-showcase several types and concepts prevalent in Futures. *Share and Enjoy.*
+Here's a small program that computes the [Answer to the Ultimate Question of
+Life, the Universe, and Everything][ultimate-question]:
+
+```swift
+import Futures
+
+let integers = Stream.sequence(0...)
+let primes = integers.filter(isPrime)
+
+let answer = primes.buffer(4)
+  .map { $0[0] * $0[1] * $0[3] }
+  .first(where: isPronic)
+
+print(answer.wait()) // prints 42
+```
+
+Here's the same program contrived enough to showcase several types and concepts
+prevalent in Futures -- segregating tasks into different execution contexts,
+inter-task communication with channels, extracting the result from a remote
+task, and more. Find out more in the [documentation][docs]. *Share and Enjoy.*
 
 ```swift
 import Futures
@@ -138,7 +156,7 @@ let answer = deepThought.cpu0.spawn(
 // exit. We need the answer first however, so we block the
 // current thread waiting for the result of the computation
 // which we just print to standard output.
-print(answer.wait())
+print(answer.wait()) // prints 42
 ```
 
 You'll need the following functions if you want to run the program yourself
@@ -245,9 +263,7 @@ let package = Package(
 - **[Designing futures for Rust][futures-design]**: A post about the design
   principles behind Rust's futures and, by extension, Futures itself.
 - **[bignerdranch/Deferred][deferred]**: A focused, fast and simple futures
-  library for Swift, was the inspiration for some APIs in Futures. To the
-  author's opinion, this is the best library to use if you don't feel like
-  investing in Futures.
+  library for Swift, was the inspiration for some APIs in Futures.
 
 [futures-rs]: https://github.com/rust-lang-nursery/futures-rs
 [futures-design]: http://aturon.github.io/tech/2016/09/07/futures-design/

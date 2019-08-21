@@ -5,26 +5,34 @@
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
 //
 
-// swiftlint:disable duplicate_imports
-
 import Futures
-import enum Futures.Stream
 import XCTest
 
+func isPrime(_ n: Int) -> Bool {
+    return n == 2 || n > 2 && (2...(n - 1)).allSatisfy {
+        !n.isMultiple(of: $0)
+    }
+}
+
+func isPronic(_ n: Int) -> Bool {
+    let f = floor(Double(n).squareRoot())
+    let c = ceil(Double(n).squareRoot())
+    return n == Int(f) * Int(c)
+}
+
 final class ReadmeTests: XCTestCase {
-    func test42() {
-        func isPrime(_ n: Int) -> Bool {
-            return n == 2 || n > 2 && (2...(n - 1)).allSatisfy {
-                !n.isMultiple(of: $0)
-            }
-        }
+    func test42Stream() {
+        let integers = Stream.sequence(0...)
+        let primes = integers.filter(isPrime)
 
-        func isPronic(_ n: Int) -> Bool {
-            let f = floor(Double(n).squareRoot())
-            let c = ceil(Double(n).squareRoot())
-            return n == Int(f) * Int(c)
-        }
+        let answer = primes.buffer(4)
+            .map { $0[0] * $0[1] * $0[3] }
+            .first(where: isPronic)
 
+        XCTAssertEqual(answer.wait(), 42)
+    }
+
+    func test42Channel() {
         let deepThought = (
             cpu0: QueueExecutor(label: "CPU 0"),
             cpu1: QueueExecutor(label: "CPU 1"),

@@ -116,7 +116,8 @@ extension ReadmeTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__ReadmeTests = [
-        ("test42", test42),
+        ("test42Channel", test42Channel),
+        ("test42Stream", test42Stream),
     ]
 }
 
