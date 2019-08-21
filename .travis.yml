@@ -15,7 +15,7 @@ stages:
   - pretest
   - test
   - name: release
-    if: type != pull_request AND branch = master AND tag IS present
+    if: type != pull_request AND tag IS present
 
 jobs:
   include:
