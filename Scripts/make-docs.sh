@@ -8,11 +8,13 @@ set -e
 
 MODULES=(Futures FuturesSync)
 
-REPO_URL=https://github.com/dfunckt/swift-futures
+REPO_SLUG=dfunckt/swift-futures
+REPO_URL=https://github.com/${REPO_SLUG}
 BASE_URL=https://dfunckt.github.io/swift-futures
 OUTPUT_DIR="docs/"
 
-VERSION=$(git describe --abbrev=0 --tags || git rev-parse --abbrev-ref HEAD)
+VERSION=$(git describe --exact-match --abbrev=0 --tags || git rev-parse --abbrev-ref HEAD)
+echo "Building docs for version '${VERSION}'"
 
 JAZZY_ARGS=(
   --config .jazzy.yml
@@ -53,7 +55,8 @@ publish() {
   local branch_name=$(git rev-parse --abbrev-ref HEAD)
   local git_author=$(git --no-pager show -s --format='%an <%ae>' HEAD)
 
-  git fetch origin +gh-pages:gh-pages
+  git remote add deploy git@github.com:${REPO_SLUG}.git
+  git fetch deploy +gh-pages:gh-pages
   git checkout gh-pages
 
   rm -rf "${OUTPUT_DIR}latest"
@@ -61,7 +64,7 @@ publish() {
 
   git add --all "${OUTPUT_DIR}"
 
-  local latest_url="${OUTPUT_DIR}latest/Futures/index.html"
+  local latest_url="${OUTPUT_DIR}${VERSION}/Futures/index.html"
   echo '<html><head><meta http-equiv="refresh" content="0; url='"${latest_url}"'" /></head></html>' >index.html
   git add index.html
 
@@ -71,7 +74,7 @@ publish() {
   local changes=$(git diff-index --name-only HEAD)
   if test -n "$changes"; then
     git commit --author="${git_author}" -m "Publish API reference for ${VERSION}"
-    git push origin gh-pages
+    git push deploy gh-pages
   else
     echo "no changes detected"
   fi
@@ -87,6 +90,6 @@ for module in "${MODULES[@]}"; do
   make_module_docs "$module" "$readme"
 done
 
-if test -n "$CI"; then
+if test $CI = true; then
   publish
 fi

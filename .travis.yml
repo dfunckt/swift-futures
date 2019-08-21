@@ -18,12 +18,13 @@ addons:
     packages:
       - swiftformat
       - swiftlint
+  ssh_known_hosts: github.com
 
 stages:
   - pretest
   - test
   - name: release
-    if: branch = master AND type != pull_request
+    if: type != pull_request AND branch = master AND tag IS present
 
 jobs:
   include:
@@ -51,5 +52,10 @@ jobs:
       name: Documentation
       os: osx
       osx_image: xcode11
+      before_install:
+        - openssl aes-256-cbc -K $encrypted_2ed176c0e455_key -iv $encrypted_2ed176c0e455_iv -in ./Scripts/travis-deploy.enc -out /tmp/deploy_key -d
+        - eval "$(ssh-agent -s)"
+        - chmod 600 /tmp/deploy_key
+        - ssh-add /tmp/deploy_key
       install: sudo gem install --no-document jazzy
       script: make docs
