@@ -3,17 +3,8 @@ language: generic
 addons:
   apt:
     packages:
-      - build-essential
       - clang
-      - curl
-      - gpg-agent
-      - libcurl4
       - libicu-dev
-      - libpython2.7
-      - libxml2
-      - libz-dev
-      - pkg-config
-      - software-properties-common
   homebrew:
     packages:
       - swiftformat
@@ -34,19 +25,46 @@ jobs:
       osx_image: xcode11
       script: make pretest
 
-    - stage: test
+    - &linux
+      stage: test
       name: Ubuntu 18.04 / Swift 5.1
       os: linux
       dist: bionic
+      env:
+        - LINUX_TOOLCHAIN_URL=https://swift.org/builds/swift-5.1-branch/ubuntu1804/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a-ubuntu18.04.tar.gz
       before_install: export PATH="${TRAVIS_BUILD_DIR}/usr/bin":"${PATH}"
-      install: make toolchain-bionic
+      install: make LINUX_TOOLCHAIN_URL=$LINUX_TOOLCHAIN_URL toolchain
       script: make test
 
-    - stage: test
+    - <<: *linux
+      name: Ubuntu 18.04 / Swift 5.0
+      env:
+        - LINUX_TOOLCHAIN_URL=https://swift.org/builds/swift-5.0.2-release/ubuntu1804/swift-5.0.2-RELEASE/swift-5.0.2-RELEASE-ubuntu18.04.tar.gz
+      script: make test-nosanitize
+
+    - <<: *linux
+      name: Ubuntu 16.04 / Swift 5.1
+      dist: xenial
+      env:
+        - LINUX_TOOLCHAIN_URL=https://swift.org/builds/swift-5.1-branch/ubuntu1604/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a-ubuntu16.04.tar.gz
+
+    - <<: *linux
+      name: Ubuntu 16.04 / Swift 5.0
+      dist: xenial
+      env:
+        - LINUX_TOOLCHAIN_URL=https://swift.org/builds/swift-5.0.2-release/ubuntu1604/swift-5.0.2-RELEASE/swift-5.0.2-RELEASE-ubuntu16.04.tar.gz
+      script: make test-nosanitize
+
+    - &macos
+      stage: test
       name: macOS 10.14 / Xcode 11.0
       os: osx
       osx_image: xcode11
       script: make test
+
+    - <<: *macos
+      name: macOS 10.14 / Xcode 10.3
+      osx_image: xcode10.3
 
     - stage: release
       name: Documentation

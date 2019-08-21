@@ -12,7 +12,7 @@ cancellation and threading, trivial.
 <p>
 <img src="https://img.shields.io/travis/dfunckt/swift-futures/master">
 <img src="https://img.shields.io/github/v/release/dfunckt/swift-futures?sort=semver">
-<img src="https://img.shields.io/badge/swift-%3E%3D5.1-orange">
+<img src="https://img.shields.io/badge/swift-%3E%3D5.0-orange">
 <img src="https://img.shields.io/badge/platform-Linux%20macOS%20iOS%20tvOS%20watchOS-blue">
 </p>
 
@@ -185,7 +185,7 @@ func isPronic(_ n: Int) -> Bool {
 
 ### Requirements
 
-Futures requires *Swift 5.1* (or newer) and can be deployed to any of the
+Futures requires *Swift 5.0* (or newer) and can be deployed to any of the
 following platforms:
 
 - macOS 10.12+
@@ -218,7 +218,7 @@ exports two separate modules:
 Here is an example `Package.swift`:
 
 ```swift
-// swift-tools-version:5.1
+// swift-tools-version:5.0
 import PackageDescription
 
 let package = Package(

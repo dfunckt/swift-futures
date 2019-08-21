@@ -424,14 +424,14 @@ final class FutureTests: XCTestCase {
         do {
             let a = makeFuture(5)
                 .tryMap(validateAnswer)
-                .mapValue(Result<Int, Error>.success)
+                .mapValue { Result<Int, Error>.success($0) }
             let f = a.flattenResult()
             XCTAssertFailure(f.wait(), UltimateQuestionError.wrongAnswer)
         }
         do {
             let a = makeFuture(42)
                 .tryMap(validateAnswer)
-                .mapValue(Result<Int, Error>.success)
+                .mapValue { Result<Int, Error>.success($0) }
             let f = a.flattenResult()
             XCTAssertSuccess(f.wait(), 42)
         }

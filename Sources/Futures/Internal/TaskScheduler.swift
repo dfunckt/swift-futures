@@ -184,17 +184,17 @@ private final class _ReadyQueue<F: FutureProtocol> {
         }
 
         var future: F? {
-            get { withUnsafeMutablePointerToHeader { $0.pointee.future } }
+            get { return withUnsafeMutablePointerToHeader { $0.pointee.future } }
             set { withUnsafeMutablePointerToHeader { $0.pointee.future = newValue } }
         }
 
         var prevActive: Node? {
-            get { withUnsafeMutablePointerToHeader { $0.pointee.prevActive } }
+            get { return withUnsafeMutablePointerToHeader { $0.pointee.prevActive } }
             set { withUnsafeMutablePointerToHeader { $0.pointee.prevActive = newValue } }
         }
 
         var nextActive: Node? {
-            get { withUnsafeMutablePointerToHeader { $0.pointee.nextActive } }
+            get { return withUnsafeMutablePointerToHeader { $0.pointee.nextActive } }
             set { withUnsafeMutablePointerToHeader { $0.pointee.nextActive = newValue } }
         }
 

@@ -53,14 +53,13 @@ extension Channel {
     public enum Unbuffered<Item>: ChannelProtocol {
         public typealias Buffer = _Private.SlotBounded<Item>
         public typealias Park = _Private.SPSCPark
-        @usableFromInline typealias _Impl = _Private.Impl<Self>
     }
 
     /// Creates a bounded, single-slot, single-sender (AKA "rendez-vous")
     /// channel. Unbuffered channels are safe to use from any executor.
     @inlinable
     public static func makeUnbuffered<T>(itemType _: T.Type = T.self) -> Pipe<Unbuffered<T>> {
-        let impl = Unbuffered<T>._Impl(buffer: .init(), park: .init())
+        let impl = _Private.Impl<Unbuffered<T>>(buffer: .init(), park: .init())
         return .init(tx: .init(impl), rx: .init(impl))
     }
 }
@@ -73,14 +72,13 @@ extension Channel {
     public enum Passthrough<Item>: UnboundedChannelProtocol {
         public typealias Buffer = _Private.SlotUnbounded<Item>
         public typealias Park = _Private.SPSCPark
-        @usableFromInline typealias _Impl = _Private.Impl<Self>
     }
 
     /// Creates an unbounded, single-slot, single-sender (AKA "passthrough")
     /// channel. Passthrough channels must only be used from a single executor.
     @inlinable
     public static func makePassthrough<T>(itemType _: T.Type = T.self) -> Pipe<Passthrough<T>> {
-        let impl = Passthrough<T>._Impl(buffer: .init(), park: .init())
+        let impl = _Private.Impl<Passthrough<T>>(buffer: .init(), park: .init())
         return .init(tx: .init(impl), rx: .init(impl))
     }
 }
@@ -93,14 +91,13 @@ extension Channel {
     public enum Buffered<Item>: ChannelProtocol {
         public typealias Buffer = _Private.SPSCBufferBounded<Item>
         public typealias Park = _Private.SPSCPark
-        @usableFromInline typealias _Impl = _Private.Impl<Self>
     }
 
     /// Creates a bounded, buffered, single-sender channel with the specified
     /// capacity. Buffered channels are safe to use from any executor.
     @inlinable
     public static func makeBuffered<T>(itemType _: T.Type = T.self, capacity: Int) -> Pipe<Buffered<T>> {
-        let impl = Buffered<T>._Impl(buffer: .init(capacity: capacity), park: .init())
+        let impl = _Private.Impl<Buffered<T>>(buffer: .init(capacity: capacity), park: .init())
         return .init(tx: .init(impl), rx: .init(impl))
     }
 }
@@ -113,14 +110,13 @@ extension Channel {
     public enum BufferedUnbounded<Item>: UnboundedChannelProtocol {
         public typealias Buffer = _Private.SPSCBufferUnbounded<Item>
         public typealias Park = _Private.SPSCPark
-        @usableFromInline typealias _Impl = _Private.Impl<Self>
     }
 
     /// Creates an unbounded, buffered, single-sender channel. Buffered channels
     /// are safe to use from any executor.
     @inlinable
     public static func makeBuffered<T>(itemType _: T.Type = T.self) -> Pipe<BufferedUnbounded<T>> {
-        let impl = BufferedUnbounded<T>._Impl(buffer: .init(), park: .init())
+        let impl = _Private.Impl<BufferedUnbounded<T>>(buffer: .init(), park: .init())
         return .init(tx: .init(impl), rx: .init(impl))
     }
 }
@@ -133,14 +129,13 @@ extension Channel {
     public enum Shared<Item>: ChannelProtocol {
         public typealias Buffer = _Private.MPSCBufferBounded<Item>
         public typealias Park = _Private.MPSCPark
-        @usableFromInline typealias _Impl = _Private.Impl<Self>
     }
 
     /// Creates a bounded, buffered, multiple-sender channel with the specified
     /// capacity. Shared channels are safe to use from any executor.
     @inlinable
     public static func makeShared<T>(itemType _: T.Type = T.self, capacity: Int) -> Pipe<Shared<T>> {
-        let impl = Shared<T>._Impl(buffer: .init(capacity: capacity), park: .init())
+        let impl = _Private.Impl<Shared<T>>(buffer: .init(capacity: capacity), park: .init())
         return .init(tx: .init(impl), rx: .init(impl))
     }
 }
@@ -153,14 +148,13 @@ extension Channel {
     public enum SharedUnbounded<Item>: UnboundedChannelProtocol {
         public typealias Buffer = _Private.MPSCBufferUnbounded<Item>
         public typealias Park = _Private.MPSCPark
-        @usableFromInline typealias _Impl = _Private.Impl<Self>
     }
 
     /// Creates an unbounded, buffered, multiple-sender channel. Shared channels
     /// are safe to use from any executor.
     @inlinable
     public static func makeShared<T>(itemType _: T.Type = T.self) -> Pipe<SharedUnbounded<T>> {
-        let impl = SharedUnbounded<T>._Impl(buffer: .init(), park: .init())
+        let impl = _Private.Impl<SharedUnbounded<T>>(buffer: .init(), park: .init())
         return .init(tx: .init(impl), rx: .init(impl))
     }
 }

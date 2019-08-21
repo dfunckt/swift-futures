@@ -5,9 +5,9 @@ SHELL = /bin/sh
 MODULES = Futures FuturesSync
 FOLDERS = Sources Tests
 
-LINUX_DEV_TOOLCHAIN_URL = https://swift.org/builds/swift-5.1-branch/ubuntu1804/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a-ubuntu18.04.tar.gz
-LINUX_DEV_IMAGE_NAME = swift-futures
-LINUX_DEV_IMAGE_TAG = 5.1-dev
+LINUX_TOOLCHAIN_URL = https://swift.org/builds/swift-5.1-branch/ubuntu1804/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a-ubuntu18.04.tar.gz
+LINUX_IMAGE_NAME = swift-futures
+LINUX_IMAGE_TAG = 5.1-dev
 
 SWIFT := $(shell command -v swift 2>/dev/null)
 SWIFTFORMAT := $(shell command -v swiftformat 2>/dev/null)
@@ -25,6 +25,9 @@ build-release:
 test:
 	$(SWIFT) test --configuration debug --sanitize thread
 
+test-nosanitize:
+	$(SWIFT) test --configuration debug
+
 test-release:
 	$(SWIFT) test --configuration release
 
@@ -37,7 +40,7 @@ clean:
 precommit: gyb tests format lint
 pretest: gyb tests format pristine lint
 
-.PHONY: build test build-release test-release repl clean precommit pretest
+.PHONY: build build-release test test-nosanitize test-release repl clean precommit pretest
 
 
 xcodeproj:
@@ -81,10 +84,10 @@ endif
 .PHONY: docs
 
 
-toolchain-bionic:
-	Scripts/install-toolchain.sh "$(LINUX_DEV_TOOLCHAIN_URL)"
+toolchain:
+	Scripts/install-toolchain.sh "$(LINUX_TOOLCHAIN_URL)"
 
-.PHONY: toolchain-bionic
+.PHONY: toolchain
 
 
 _docker:
@@ -93,15 +96,15 @@ ifndef DOCKER
 endif
 
 linuximage: _docker
-	$(DOCKER) build --tag '$(LINUX_DEV_IMAGE_NAME):$(LINUX_DEV_IMAGE_TAG)' --build-arg TOOLCHAIN_URL="$(LINUX_DEV_TOOLCHAIN_URL)" .
+	$(DOCKER) build --tag '$(LINUX_IMAGE_NAME):$(LINUX_IMAGE_TAG)' --build-arg TOOLCHAIN_URL="$(LINUX_TOOLCHAIN_URL)" .
 
 linuxtest: _docker
 	cwd=$$(pwd); \
-	$(DOCKER) run -it --rm --privileged --volume "$${cwd}:/src" '$(LINUX_DEV_IMAGE_NAME):$(LINUX_DEV_IMAGE_TAG)' test --configuration debug --sanitize thread
+	$(DOCKER) run -it --rm --privileged --volume "$${cwd}:/src" '$(LINUX_IMAGE_NAME):$(LINUX_IMAGE_TAG)' test --configuration debug --sanitize thread
 
 linuxrepl: _docker
 	cwd=$$(pwd); \
-	$(DOCKER) run -it --rm --privileged --volume "$${cwd}:/src" '$(LINUX_DEV_IMAGE_NAME):$(LINUX_DEV_IMAGE_TAG)' run --repl --configuration debug
+	$(DOCKER) run -it --rm --privileged --volume "$${cwd}:/src" '$(LINUX_IMAGE_NAME):$(LINUX_IMAGE_TAG)' run --repl --configuration debug
 
 .PHONY: _docker linuximage linuxtest linuxrepl
 

@@ -13,7 +13,7 @@ extension AnyFuture {
     public init<T>(_ pollFn: @escaping (inout Context) throws -> Poll<T>) where Output == Result<T, Error> {
         self.init { context in
             do {
-                return try pollFn(&context).map(Result.success)
+                return try pollFn(&context).map { .success($0) }
             } catch {
                 return .ready(.failure(error))
             }
@@ -27,7 +27,7 @@ extension AnyStream {
         self.init { context in
             do {
                 return try pollNextFn(&context).map {
-                    $0.map(Result.success)
+                    $0.map { .success($0) }
                 }
             } catch {
                 return .ready(.failure(error))

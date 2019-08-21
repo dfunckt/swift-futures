@@ -1243,7 +1243,7 @@ final class StreamTests: XCTestCase {
     func testFlattenResult() {
         let a = makeStream(0..<3)
             .tryMap(validateAnswer)
-            .mapValue(Result<Int, Error>.success)
+            .mapValue { Result<Int, Error>.success($0) }
         var s = a.flattenResult()
         XCTAssertSuccess(s.next()!, 0)
         XCTAssertNotNil(s.next()?.error)

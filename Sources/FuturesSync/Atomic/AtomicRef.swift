@@ -48,7 +48,7 @@ public final class AtomicRef<T: AnyObject> {
 
 extension AtomicRef {
     public var value: T? {
-        @_transparent get { load() }
+        @_transparent get { return load() }
         @_transparent set { store(newValue) }
     }
 

@@ -32,48 +32,48 @@ extension Stream._Private {
                 case 1:
                     next = 2
                     switch a?.pollNext(&context) {
-                    case .ready(.some(let output)):
+                    case .some(.ready(.some(let output))):
                         return .ready(output)
-                    case .ready(.none):
+                    case .some(.ready(.none)):
                         a = nil
                         if a == nil, b == nil, c == nil {
                             next = .max
                             return .ready(nil)
                         }
                         continue
-                    case .pending, .none:
+                    case .some(.pending), .none:
                         continue
                     }
 
                 case 2:
                     next = 3
                     switch b?.pollNext(&context) {
-                    case .ready(.some(let output)):
+                    case .some(.ready(.some(let output))):
                         return .ready(output)
-                    case .ready(.none):
+                    case .some(.ready(.none)):
                         b = nil
                         if a == nil, b == nil, c == nil {
                             next = .max
                             return .ready(nil)
                         }
                         continue
-                    case .pending, .none:
+                    case .some(.pending), .none:
                         continue
                     }
 
                 case 3:
                     next = 1
                     switch c?.pollNext(&context) {
-                    case .ready(.some(let output)):
+                    case .some(.ready(.some(let output))):
                         return .ready(output)
-                    case .ready(.none):
+                    case .some(.ready(.none)):
                         c = nil
                         if a == nil, b == nil, c == nil {
                             next = .max
                             return .ready(nil)
                         }
                         continue
-                    case .pending, .none:
+                    case .some(.pending), .none:
                         continue
                     }
 
@@ -117,64 +117,64 @@ extension Stream._Private {
                 case 1:
                     next = 2
                     switch a?.pollNext(&context) {
-                    case .ready(.some(let output)):
+                    case .some(.ready(.some(let output))):
                         return .ready(output)
-                    case .ready(.none):
+                    case .some(.ready(.none)):
                         a = nil
                         if a == nil, b == nil, c == nil, d == nil {
                             next = .max
                             return .ready(nil)
                         }
                         continue
-                    case .pending, .none:
+                    case .some(.pending), .none:
                         continue
                     }
 
                 case 2:
                     next = 3
                     switch b?.pollNext(&context) {
-                    case .ready(.some(let output)):
+                    case .some(.ready(.some(let output))):
                         return .ready(output)
-                    case .ready(.none):
+                    case .some(.ready(.none)):
                         b = nil
                         if a == nil, b == nil, c == nil, d == nil {
                             next = .max
                             return .ready(nil)
                         }
                         continue
-                    case .pending, .none:
+                    case .some(.pending), .none:
                         continue
                     }
 
                 case 3:
                     next = 4
                     switch c?.pollNext(&context) {
-                    case .ready(.some(let output)):
+                    case .some(.ready(.some(let output))):
                         return .ready(output)
-                    case .ready(.none):
+                    case .some(.ready(.none)):
                         c = nil
                         if a == nil, b == nil, c == nil, d == nil {
                             next = .max
                             return .ready(nil)
                         }
                         continue
-                    case .pending, .none:
+                    case .some(.pending), .none:
                         continue
                     }
 
                 case 4:
                     next = 1
                     switch d?.pollNext(&context) {
-                    case .ready(.some(let output)):
+                    case .some(.ready(.some(let output))):
                         return .ready(output)
-                    case .ready(.none):
+                    case .some(.ready(.none)):
                         d = nil
                         if a == nil, b == nil, c == nil, d == nil {
                             next = .max
                             return .ready(nil)
                         }
                         continue
-                    case .pending, .none:
+                    case .some(.pending), .none:
                         continue
                     }
 
