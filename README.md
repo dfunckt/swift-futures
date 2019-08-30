@@ -192,7 +192,7 @@ following platforms:
 - iOS 10+
 - tvOS 10+
 - watchOS 3+
-- Ubuntu 18.04+
+- Ubuntu 16.04+
 
 ### Installation
 
