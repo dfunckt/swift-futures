@@ -50,7 +50,7 @@ final class _TaskRunner {
         if !_incoming.isEmpty {
             // Schedule futures that have been submitted externally
             // via an executor since the last tick
-            _futures.schedule(_incoming.consume().makeSequence())
+            _futures.schedule(_incoming.consume())
         }
 
         _futures.register(context.waker)
@@ -61,7 +61,7 @@ final class _TaskRunner {
             if !_incoming.isEmpty {
                 // New futures have been submitted by the future;
                 // schedule them and re-poll.
-                _futures.schedule(_incoming.consume().makeSequence())
+                _futures.schedule(_incoming.consume())
                 continue
             }
 

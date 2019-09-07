@@ -131,7 +131,7 @@ struct _CircularBuffer<Element> {
 
 extension _CircularBuffer {
     @usableFromInline
-    struct ConsumingIterator: IteratorProtocol {
+    struct ConsumingIterator: IteratorProtocol, Sequence {
         @usableFromInline var _queue: _CircularBuffer
 
         @inlinable
@@ -142,11 +142,6 @@ extension _CircularBuffer {
         @inlinable
         mutating func next() -> Element? {
             return _queue.pop()
-        }
-
-        @inlinable
-        func makeSequence() -> IteratorSequence<ConsumingIterator> {
-            return IteratorSequence(self)
         }
     }
 

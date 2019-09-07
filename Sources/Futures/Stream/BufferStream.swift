@@ -33,7 +33,7 @@ extension Stream._Private {
                         if buffer.tryPush(output) {
                             continue
                         }
-                        let elements = Array(buffer.consume().makeSequence())
+                        let elements = Array(buffer.consume())
                         let enqueued = buffer.tryPush(output)
                         assert(enqueued)
                         _state = .pending(base, buffer)
@@ -41,7 +41,7 @@ extension Stream._Private {
 
                     case .ready(.none):
                         _state = .complete
-                        return .ready(Array(buffer.consume().makeSequence()))
+                        return .ready(Array(buffer.consume()))
 
                     case .pending:
                         _state = .pending(base, buffer)

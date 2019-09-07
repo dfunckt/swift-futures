@@ -98,7 +98,7 @@ struct _AdaptiveQueue<Element> {
 
 extension _AdaptiveQueue {
     @usableFromInline
-    struct _ConsumingIterator: IteratorProtocol {
+    struct _ConsumingIterator: IteratorProtocol, Sequence {
         @usableFromInline var _queue: _AdaptiveQueue
 
         @inlinable
@@ -109,11 +109,6 @@ extension _AdaptiveQueue {
         @inlinable
         mutating func next() -> Element? {
             return _queue.pop()
-        }
-
-        @inlinable
-        func makeSequence() -> IteratorSequence<_ConsumingIterator> {
-            return IteratorSequence(self)
         }
     }
 
