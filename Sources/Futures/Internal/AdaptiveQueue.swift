@@ -91,7 +91,7 @@ struct _AdaptiveQueue<Element> {
     @inlinable
     mutating func move() -> _AdaptiveQueue {
         let copy = self
-        self = .init()
+        self = .init(reclaimFactor: _reclaimFactor)
         return copy
     }
 }
@@ -113,15 +113,15 @@ extension _AdaptiveQueue {
     }
 
     @inlinable
-    init(_buffer: Buffer, _ head: Int, _ reclaimFactor: Int) {
-        self._buffer = _buffer
+    init(_ buffer: Buffer, _ head: Int, _ reclaimFactor: Int) {
+        _buffer = buffer
         _head = head
         _reclaimFactor = reclaimFactor
     }
 
     @inlinable
     mutating func consume() -> _ConsumingIterator {
-        let queue = _AdaptiveQueue(_buffer: _buffer, _head, _reclaimFactor)
+        let queue = _AdaptiveQueue(_buffer, _head, _reclaimFactor)
         _buffer = .init()
         _head = 0
         return .init(queue: queue)
