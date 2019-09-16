@@ -671,7 +671,7 @@ extension FutureProtocol {
     ///
     /// - Returns: `some FutureProtocol<Output == (Self.Output, S.Output)>`
     @inlinable
-    public func join<S>(_ other: S) -> Future._Private.Join<Self, S> {
+    public func join<F>(_ other: F) -> Future._Private.Join<Self, F> {
         return .init(self, other)
     }
 
@@ -758,6 +758,11 @@ extension Future {
     public static func tryLazy<U>(_ body: @escaping () throws -> U) -> Future._Private.TryLazy<U> {
         return .init(body)
     }
+
+    // complete when either completes with an error
+    // TODO: tryJoin<A, B(_ a: A, _ b: B)
+    // TODO: tryJoin<A, B, C>(_ a: A, _ b: B, _ c: C)
+    // TODO: tryJoin<A, B, C, D>(_ a: A, _ b: B, _ c: C, _ d: D)
 }
 
 extension FutureProtocol {
@@ -786,6 +791,11 @@ extension FutureProtocol {
     public func tryMap<T>(_ catching: @escaping (Output) throws -> T) -> Future._Private.TryMap<T, Self> {
         return .init(base: self, catching: catching)
     }
+
+    // complete when either completes with an error
+    // TODO: tryJoin<T>(_ other: T)
+    // TODO: tryJoin<B, C>(_ b: B, _ c: C)
+    // TODO: tryJoin<B, C, D>(_ b: B, _ c: C, _ d: D)
 
     /// Converts this future to a failable one with the specified failure
     /// type.
