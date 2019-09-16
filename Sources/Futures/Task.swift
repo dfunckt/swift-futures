@@ -134,6 +134,9 @@ public struct Context {
 
     @inlinable
     public func yield<T>() -> Poll<T> {
+        // yielding a task is a form of spinning,
+        // so give other threads a chance as well.
+        Atomic.preemptionYield(0)
         _waker.signal()
         return .pending
     }
