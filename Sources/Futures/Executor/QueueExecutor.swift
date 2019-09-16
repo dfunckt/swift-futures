@@ -27,7 +27,6 @@ public final class QueueExecutor: ExecutorProtocol, Cancellable {
     private let _runner: _TaskRunner
     private let _waker: _QueueWaker
     private let _incoming = AtomicUnboundedMPSCQueue<AnyFuture<Void>>()
-    private var _complete = false
 
     public convenience init(label: String, qos: DispatchQoS = .default) {
         let label = "futures.queue-executor(\(label))"
@@ -198,6 +197,7 @@ private final class _QueueWaker: WakerProtocol {
     func wait() {
         let sema = DispatchSemaphore(value: 0)
         _waiters.push(sema)
+        _source.add(data: 1)
         sema.wait()
     }
 
