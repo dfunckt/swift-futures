@@ -9,7 +9,6 @@ import FuturesSync
 
 final class _TaskScheduler<F: FutureProtocol> {
     private typealias ReadyQueue = _ReadyQueue<F>
-    private typealias AtomicNode = ReadyQueue.AtomicNode
     private typealias Node = ReadyQueue.Node
 
     private let _queue: ReadyQueue
@@ -86,7 +85,7 @@ final class _TaskScheduler<F: FutureProtocol> {
 
             // Swap enqueued flag so that signalling the node during poll
             // properly adds it back to the ready-to-run queue.
-            let wasEnqueued = Atomic.exchange(&node.enqueued, false)
+            let wasEnqueued = node.enqueued(false)
             assert(wasEnqueued)
 
             var context = context.withWaker(node)
@@ -132,7 +131,7 @@ final class _TaskScheduler<F: FutureProtocol> {
     private func _release(_ node: Node, reusable: Bool = true) {
         assert(node.nextActive == nil)
         assert(node.prevActive == nil)
-        Atomic.store(&node.enqueued, true, order: .relaxed)
+        node.enqueued(true)
         node.future = nil
         if reusable {
             _nodeCache.push(node)
@@ -146,39 +145,75 @@ final class _TaskScheduler<F: FutureProtocol> {
 private final class _ReadyQueue<F: FutureProtocol> {
     typealias AtomicNode = AtomicRef<Node>
 
-    final class Node: WakerProtocol {
-        private weak var _queue: _ReadyQueue?
-        var enqueued: AtomicBool.RawValue = true
-        var next: AtomicNode.RawValue = 0
-
+    struct NodeHeader {
+        var future: F?
         var prevActive: Node?
         var nextActive: Node?
+        var enqueued: AtomicBool.RawValue = true
+        weak var queue: _ReadyQueue?
+    }
 
-        var future: F?
+    final class Node: ManagedBuffer<NodeHeader, AtomicUSize.RawValue>, WakerProtocol {
+        struct NextNodeAccessor {
+            let node: Node
 
-        init() {
-            Atomic.initialize(&enqueued, to: true)
-            AtomicNode.initialize(&next, to: nil)
-        }
+            func load(order: AtomicLoadMemoryOrder = .seqcst) -> Node? {
+                return node.withUnsafeMutablePointerToElements {
+                    AtomicNode.load($0, order: order)
+                }
+            }
 
-        convenience init(_ queue: _ReadyQueue, _ future: F) {
-            self.init()
-            _queue = queue
-            self.future = future
+            func store(_ newNode: Node?, order: AtomicStoreMemoryOrder = .seqcst) {
+                node.withUnsafeMutablePointerToElements {
+                    AtomicNode.store($0, newNode, order: order)
+                }
+            }
         }
 
         deinit {
-            assert(future == nil)
-            AtomicNode.destroy(&next)
+            withUnsafeMutablePointers {
+                assert($0.pointee.future == nil)
+                AtomicNode.destroy($1)
+                $1.deinitialize(count: 1)
+                $0.deinitialize(count: 1)
+            }
+        }
+
+        var next: NextNodeAccessor {
+            return .init(node: self)
+        }
+
+        var future: F? {
+            get { return withUnsafeMutablePointerToHeader { $0.pointee.future } }
+            set { withUnsafeMutablePointerToHeader { $0.pointee.future = newValue } }
+        }
+
+        var prevActive: Node? {
+            get { return withUnsafeMutablePointerToHeader { $0.pointee.prevActive } }
+            set { withUnsafeMutablePointerToHeader { $0.pointee.prevActive = newValue } }
+        }
+
+        var nextActive: Node? {
+            get { return withUnsafeMutablePointerToHeader { $0.pointee.nextActive } }
+            set { withUnsafeMutablePointerToHeader { $0.pointee.nextActive = newValue } }
+        }
+
+        @discardableResult
+        func enqueued(_ flag: AtomicBool.RawValue) -> AtomicBool.RawValue {
+            return withUnsafeMutablePointerToHeader {
+                Atomic.exchange(&$0.pointee.enqueued, flag)
+            }
         }
 
         func signal() {
-            guard let queue = _queue else {
-                return
-            }
-            if !Atomic.exchange(&enqueued, true) {
-                queue.enqueue(self)
-                queue._waker.signal()
+            withUnsafeMutablePointerToHeader {
+                guard let queue = $0.pointee.queue else {
+                    return
+                }
+                if !Atomic.exchange(&$0.pointee.enqueued, true) {
+                    queue.enqueue(self)
+                    queue._waker.signal()
+                }
             }
         }
     }
@@ -189,11 +224,17 @@ private final class _ReadyQueue<F: FutureProtocol> {
     private let _stub: Node // consumer
 
     init(waker: _AtomicWaker) {
-        let stub = Node()
+        let node = Node.create(minimumCapacity: 1) { _ in .init() }
+        node.withUnsafeMutablePointers {
+            Atomic.initialize(&$0.pointee.enqueued, to: true)
+            AtomicNode.initialize($1, to: nil)
+        }
+        let stub = unsafeDowncast(node, to: Node.self)
+
         AtomicNode.initialize(&_head, to: stub)
+        _waker = waker
         _tail = stub
         _stub = stub
-        _waker = waker
     }
 
     deinit {
@@ -208,19 +249,28 @@ private final class _ReadyQueue<F: FutureProtocol> {
     }
 
     func makeNode(_ future: F) -> Node {
-        return .init(self, future)
+        let node = Node.create(minimumCapacity: 1) { _ in
+            .init()
+        }
+        node.withUnsafeMutablePointers {
+            $0.pointee.queue = self
+            $0.pointee.future = future
+            Atomic.initialize(&$0.pointee.enqueued, to: true)
+            AtomicNode.initialize($1, to: nil)
+        }
+        return unsafeDowncast(node, to: Node.self)
     }
 
     func enqueue(_ head: Node, _ tail: Node) {
-        AtomicNode.store(&head.next, nil, order: .relaxed)
+        head.next.store(nil, order: .relaxed)
         guard let prev = AtomicNode.exchange(&_head, head, order: .acqrel) else {
             fatalError("unreachable")
         }
-        AtomicNode.store(&prev.next, tail, order: .release)
+        prev.next.store(tail, order: .release)
     }
 
     func enqueue(_ node: Node) {
-        AtomicNode.store(&node.next, nil, order: .relaxed)
+        node.next.store(nil, order: .relaxed)
         guard let prev = AtomicNode.exchange(&_head, node, order: .acqrel) else {
             fatalError("unreachable")
         }
@@ -230,14 +280,14 @@ private final class _ReadyQueue<F: FutureProtocol> {
         // the line below executes, it'll reach `prev` and see that it's no
         // longer working on the same list as the producer (because
         // `prev` !== `_head`) and it will return `inconsistent`.
-        AtomicNode.store(&prev.next, node, order: .release)
+        prev.next.store(node, order: .release)
     }
 
     func dequeue() -> Node? {
         var backoff = Backoff()
         while true {
             var tail = _tail
-            var next = AtomicNode.load(&tail.next, order: .acquire)
+            var next = tail.next.load(order: .acquire)
 
             if tail === _stub {
                 guard let node = next else {
@@ -245,7 +295,7 @@ private final class _ReadyQueue<F: FutureProtocol> {
                 }
                 _tail = node
                 tail = node
-                next = AtomicNode.load(&tail.next, order: .acquire)
+                next = tail.next.load(order: .acquire)
             }
 
             if let node = next {
@@ -257,7 +307,7 @@ private final class _ReadyQueue<F: FutureProtocol> {
             if tail === AtomicNode.load(&_head, order: .acquire) {
                 enqueue(_stub)
 
-                if let node = AtomicNode.load(&tail.next, order: .acquire) {
+                if let node = tail.next.load(order: .acquire) {
                     _tail = node
                     return tail
                 }
