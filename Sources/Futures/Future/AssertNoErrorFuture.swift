@@ -16,9 +16,9 @@ extension Future._Private {
         public init(base: Base, prefix: String, file: StaticString, line: UInt) {
             let message: String
             if prefix.isEmpty {
-                message = "Unexpected result at \(file):\(line)"
+                message = "Unexpected error at \(file):\(line)"
             } else {
-                message = "\(prefix) Unexpected result at \(file):\(line)"
+                message = "\(prefix) Unexpected error at \(file):\(line)"
             }
             self = .pending(base, message)
         }
@@ -33,8 +33,8 @@ extension Future._Private {
                     case .success(let output):
                         self = .done
                         return .ready(output)
-                    case .failure:
-                        fatalError(message)
+                    case .failure(let error):
+                        fatalError("\(message): \(error)")
                     }
 
                 case .pending:
