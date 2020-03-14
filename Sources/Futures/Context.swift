@@ -8,12 +8,10 @@
 import FuturesSync
 
 public struct Context {
-    @usableFromInline let _runner: _TaskRunner
     @usableFromInline let _waker: WakerProtocol
 
     @inlinable
-    init(runner: _TaskRunner, waker: WakerProtocol) {
-        _runner = runner
+    internal init(waker: WakerProtocol) {
         _waker = waker
     }
 
@@ -23,25 +21,16 @@ public struct Context {
     }
 
     @inlinable
-    public func withWaker(_ newWaker: WakerProtocol) -> Context {
-        return .init(runner: _runner, waker: newWaker)
-    }
-
-    @inlinable
-    public func submit<F: FutureProtocol>(_ future: F) where F.Output == Void {
-        _runner.schedule(future)
-    }
-
-    @inlinable
-    public func spawn<F: FutureProtocol>(_ future: F) -> Task<F.Output> {
-        return Task.create(future: future, runner: _runner)
+    public func usingWaker(_ waker: WakerProtocol) -> Context {
+        return .init(waker: waker)
     }
 
     @inlinable
     public func yield<T>() -> Poll<T> {
-        _waker.signal()
-        // yielding a task is a form of spinning,
-        // so give other threads a chance as well.
+        // signal the waker so that we're scheduled back
+        // as soon as possible
+        waker.signal()
+        // give other threads a chance as well
         Atomic.preemptionYield(0)
         return .pending
     }

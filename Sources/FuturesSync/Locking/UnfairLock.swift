@@ -7,7 +7,7 @@
 
 #if !canImport(os)
 /// :nodoc:
-public typealias UnfairLock = SpinLock
+public typealias UnfairLock = PosixLock
 #else
 
 import os

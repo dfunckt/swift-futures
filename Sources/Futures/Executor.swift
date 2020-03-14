@@ -50,19 +50,13 @@ import FuturesSync
 ///
 /// This protocol makes no guarantees on the safety of concurrent calls to
 /// `trySubmit(_:)`. Each executor implementation is free to declare support
-/// for concurrent submissions, documenting the fact accordingly. This ambiguity
-/// is not a problem in practice since you typically use concrete executor types
-/// so you always know the specifics. The built-in `QueueExecutor` is an
-/// executor that supports concurrent submissions.
-public protocol ExecutorProtocol: AnyObject {
+/// for concurrent submissions, documenting the fact accordingly. This is not
+/// a problem in practice since you typically use concrete executor types
+/// so you always know the specifics. All built-in executors support
+/// concurrent submissions.
+public protocol ExecutorProtocol {
     /// The type of error the executor may fail with when submitting futures.
     associatedtype Failure: Error
-
-    /// The maximum number of futures the executor can track concurrently.
-    ///
-    /// If the executor is unbounded, this property returns `Int.max`; see
-    /// `isUnbounded`.
-    var capacity: Int { get }
 
     /// Submits a future to be executed by this executor.
     ///
@@ -72,52 +66,43 @@ public protocol ExecutorProtocol: AnyObject {
     /// capacity and needs to provide backpressure. The latter case is expected
     /// to be a transient state which the executor will recover from and
     /// submission may be retried.
-    func trySubmit<F>(_ future: F) -> Result<Void, Failure>
+    nonmutating func trySubmit<F>(_ future: F) -> Result<Void, Failure>
         where F: FutureProtocol, F.Output == Void
 }
 
-extension ExecutorProtocol {
-    /// Returns a boolean denoting whether the executor can accept an
-    /// unlimited number of futures.
-    @inlinable
-    public var isUnbounded: Bool {
-        return capacity == Int.max
-    }
+// MARK: - Executing Futures -
 
+extension ExecutorProtocol {
     /// Submits a future to be executed by this executor.
+    ///
+    /// The executor may deny to receive the future, in which case this method
+    /// will throw an error of type `Failure`. Typical cases where submission
+    /// may fail is when the executor is shutting down or is at capacity and
+    /// needs to provide backpressure. The latter case is expected to be a
+    /// transient state which the executor will recover from and submission
+    /// may be retried.
+    ///
+    /// This method is convenience for:
+    ///
+    ///     try executor.trySubmit(future).get()
+    ///
     @inlinable
     public func submit<F: FutureProtocol>(_ future: F) throws where F.Output == Void {
         try trySubmit(future).get()
     }
-
-    // MARK: -
-
-    /// Submits a stream to be executed by this executor.
-    ///
-    /// The executor may deny to receive the stream, in which case the
-    /// returned result will contain an appropriate error. Typical cases where
-    /// submission may fail is when the executor is shutting down or is at
-    /// capacity and needs to provide backpressure. The latter case is
-    /// expected to be a transient state which the executor will recover from
-    /// and submission may be retried.
-    @inlinable
-    public func trySubmit<S: StreamProtocol>(_ stream: S) -> Result<Void, Failure> where S.Output == Void {
-        return trySubmit(stream.ignoreOutput())
-    }
-
-    /// Submits a stream to be executed by this executor.
-    @inlinable
-    public func submit<S: StreamProtocol>(_ stream: S) throws where S.Output == Void {
-        try trySubmit(stream).get()
-    }
-
-    // MARK: -
 
     /// Submits a future into the executor and returns a handle that can be
     /// used to extract its result or cancel its execution.
     ///
     /// The handle is a cancellable future itself and can be safely sent and
     /// waited on any thread or submitted into another executor; see `Task`.
+    ///
+    /// The executor may deny to receive the future, in which case the
+    /// returned result will contain an appropriate error. Typical cases where
+    /// submission may fail is when the executor is shutting down or is at
+    /// capacity and needs to provide backpressure. The latter case is expected
+    /// to be a transient state which the executor will recover from and
+    /// submission may be retried.
     @inlinable
     public func trySpawn<F: FutureProtocol>(_ future: F) -> Result<Task<F.Output>, Failure> {
         return Task.create(future: future, executor: self)
@@ -128,6 +113,18 @@ extension ExecutorProtocol {
     ///
     /// The handle is a cancellable future itself and can be safely sent and
     /// waited on any thread or submitted into another executor; see `Task`.
+    ///
+    /// The executor may deny to receive the future, in which case this method
+    /// will throw an error of type `Failure`. Typical cases where submission
+    /// may fail is when the executor is shutting down or is at capacity and
+    /// needs to provide backpressure. The latter case is expected to be a
+    /// transient state which the executor will recover from and submission
+    /// may be retried.
+    ///
+    /// This method is convenience for:
+    ///
+    ///     try executor.trySpawn(future).get()
+    ///
     @inlinable
     public func spawn<F: FutureProtocol>(_ future: F) throws -> Task<F.Output> {
         return try trySpawn(future).get()
@@ -135,91 +132,118 @@ extension ExecutorProtocol {
 }
 
 extension ExecutorProtocol where Failure == Never {
+    /// Submits a future to be executed by this executor.
     @inlinable
     public func submit<F: FutureProtocol>(_ future: F) where F.Output == Void {
         try! trySubmit(future).get() // swiftlint:disable:this force_try
     }
 
+    /// Submits a future into the executor and returns a handle that can be
+    /// used to extract its result or cancel its execution.
+    ///
+    /// The handle is a cancellable future itself and can be safely sent and
+    /// waited on any thread or submitted into another executor; see `Task`.
     @inlinable
-    public func submit<F: FutureProtocol>(_ future: F) where F.Output == Result<Void, Never> {
-        try! trySubmit(future.ignoreOutput()).get() // swiftlint:disable:this force_try
+    public func spawn<F: FutureProtocol>(_ future: F) -> Task<F.Output> {
+        try! trySpawn(future).get() // swiftlint:disable:this force_try
+    }
+}
+
+// MARK: - Executing Streams -
+
+extension ExecutorProtocol {
+    /// Submits a stream to be executed by this executor.
+    ///
+    /// The executor may deny to receive the stream, in which case the
+    /// returned result will contain an appropriate error. Typical cases where
+    /// submission may fail is when the executor is shutting down or is at
+    /// capacity and needs to provide backpressure. The latter case is
+    /// expected to be a transient state which the executor will recover from
+    /// and submission may be retried.
+    ///
+    /// This method is convenience for:
+    ///
+    ///     executor.trySubmit(stream.ignoreOutput())
+    ///
+    @inlinable
+    public func trySubmit<S: StreamProtocol>(_ stream: S) -> Result<Void, Failure> where S.Output == Void {
+        return trySubmit(stream.ignoreOutput())
     }
 
+    /// Submits a stream to be executed by this executor.
+    ///
+    /// The executor may deny to receive the stream, in which case this method
+    /// will throw an error of type `Failure`. Typical cases where submission
+    /// may fail is when the executor is shutting down or is at capacity and
+    /// needs to provide backpressure. The latter case is expected to be a
+    /// transient state which the executor will recover from and submission
+    /// may be retried.
+    ///
+    /// This method is convenience for:
+    ///
+    ///     try executor.trySubmit(stream.ignoreOutput()).get()
+    ///
+    @inlinable
+    public func submit<S: StreamProtocol>(_ stream: S) throws where S.Output == Void {
+        try trySubmit(stream.ignoreOutput()).get()
+    }
+
+    /// Submits a stream into the executor and returns a handle that can be
+    /// used to extract its result or cancel its execution.
+    ///
+    /// The handle is a cancellable future itself and can be safely sent and
+    /// waited on any thread or submitted into another executor; see `Task`.
+    ///
+    /// The executor may deny to receive the stream, in which case the
+    /// returned result will contain an appropriate error. Typical cases where
+    /// submission may fail is when the executor is shutting down or is at
+    /// capacity and needs to provide backpressure. The latter case is
+    /// expected to be a transient state which the executor will recover from
+    /// and submission may be retried.
+    ///
+    /// This method is convenience for:
+    ///
+    ///     executor.trySpawn(stream.ignoreOutput())
+    ///
+    @inlinable
+    public func trySpawn<S: StreamProtocol>(_ stream: S) -> Result<Task<Void>, Failure> where S.Output == Void {
+        return trySpawn(stream.ignoreOutput())
+    }
+
+    /// Submits a stream into the executor and returns a handle that can be
+    /// used to extract its result or cancel its execution.
+    ///
+    /// The handle is a cancellable future itself and can be safely sent and
+    /// waited on any thread or submitted into another executor; see `Task`.
+    ///
+    /// The executor may deny to receive the stream, in which case this method
+    /// will throw an error of type `Failure`. Typical cases where submission
+    /// may fail is when the executor is shutting down or is at capacity and
+    /// needs to provide backpressure. The latter case is expected to be a
+    /// transient state which the executor will recover from and submission
+    /// may be retried.
+    ///
+    /// This method is convenience for:
+    ///
+    ///     try executor.trySpawn(stream.ignoreOutput()).get()
+    ///
+    @inlinable
+    public func spawn<S: StreamProtocol>(_ stream: S) throws -> Task<Void> where S.Output == Void {
+        return try! trySpawn(stream.ignoreOutput()).get() // swiftlint:disable:this force_try
+    }
+}
+
+extension ExecutorProtocol where Failure == Never {
+    /// Submits a stream to be executed by this executor.
     @inlinable
     public func submit<S: StreamProtocol>(_ stream: S) where S.Output == Void {
         try! trySubmit(stream.ignoreOutput()).get() // swiftlint:disable:this force_try
     }
 
-    @inlinable
-    public func submit<S: StreamProtocol>(_ stream: S) where S.Output == Result<Void, Never> {
-        try! trySubmit(stream.ignoreOutput()).get() // swiftlint:disable:this force_try
-    }
-}
-
-extension ExecutorProtocol where Failure == Never {
-    @inlinable
-    public func spawn<F: FutureProtocol>(_ future: F) -> Task<F.Output> {
-        try! trySpawn(future).get() // swiftlint:disable:this force_try
-    }
-
+    /// Submits a stream into the executor and returns a handle that can be
+    /// used to extract its result or cancel its execution.
     @inlinable
     public func spawn<S: StreamProtocol>(_ stream: S) -> Task<Void> where S.Output == Void {
-        try! trySpawn(stream.ignoreOutput()).get() // swiftlint:disable:this force_try
-    }
-}
-
-// MARK: -
-
-/// A protocol that defines an object that can synchronously drive futures
-/// to completion and can be waited on until it's empty.
-///
-/// Blocking executors must explicitly be asked to run, using the `run()`
-/// method, to actually perform work.
-public protocol BlockingExecutor: ExecutorProtocol {
-    func makeContext() -> Context
-    func execute(in context: inout Context) -> Bool
-    func block()
-}
-
-extension BlockingExecutor {
-    /// Runs the executor until all possible progress is made and returns a
-    /// boolean denoting whether all submitted futures executed to completion.
-    ///
-    /// If this method returns `false`, indicating that the executor has still
-    /// pending futures, you must call this method again some time in the
-    /// future to ensure the futures tracked by the executor are driven to
-    /// completion.
-    @inlinable
-    @discardableResult
-    public func run() -> Bool {
-        var context = makeContext()
-        return execute(in: &context)
-    }
-
-    /// Runs the executor until the given future completes.
-    @inlinable
-    public func run<F: FutureProtocol>(until future: inout F) -> F.Output {
-        var context = makeContext()
-        while true {
-            if case .ready(let result) = future.poll(&context) {
-                return result
-            }
-            _ = execute(in: &context)
-            block()
-        }
-    }
-
-    /// Runs the executor until all submitted futures complete, blocking the
-    /// current thread waiting for futures to become ready if no further
-    /// progress can be made.
-    ///
-    /// Executor implementations must guarantee that when this method returns,
-    /// the executor has run all submitted futures to completion and is empty.
-    @inlinable
-    public func wait() {
-        var context = makeContext()
-        while !execute(in: &context) {
-            block()
-        }
+        return try! trySpawn(stream.ignoreOutput()).get() // swiftlint:disable:this force_try
     }
 }

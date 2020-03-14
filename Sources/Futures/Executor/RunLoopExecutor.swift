@@ -19,7 +19,7 @@ public let COMMON_MODES = kCFRunLoopCommonModes!
 #endif
 
 public func assertOnRunLoopExecutor(_ executor: RunLoopExecutor) {
-    assert(CFRunLoopGetCurrent() === executor._waker._runLoop)
+    assert(CFRunLoopGetCurrent() === executor._scheduler.waker._runLoop)
 }
 
 public func assertOnMainRunLoopExecutor() {
@@ -35,53 +35,49 @@ public final class RunLoopExecutor: ExecutorProtocol {
         ///
         /// This is a transient error; subsequent submissions may succeed.
         case atCapacity
+
+        case shutdown
     }
 
     public let label: String
-    public let capacity: Int
 
-    private let _runner: _TaskRunner
-    fileprivate let _waker: _Waker
+    @usableFromInline let _scheduler: SharedScheduler<Void, _RunLoopWaker>
+    @usableFromInline let _capacity: Int
 
+    @inlinable
     public init(
         label: String? = nil,
         runLoop: CFRunLoop,
         mode: CFRunLoopMode = COMMON_MODES,
         capacity: Int = .max
     ) {
-        let label = "futures.runloop-executor(\(label ?? pointerAddressForDisplay(runLoop)))"
-        self.label = label
-        self.capacity = capacity
-        _runner = .init(label: label)
-        _waker = .init(runLoop, mode)
-        _waker.setSignalHandler { [weak self] in self?._run() }
-        _waker.activate()
+        self.label = "futures.runloop-executor(\(label ?? pointerAddressForDisplay(runLoop)))"
+        _capacity = capacity
+        _scheduler = .init(waker: .init(runLoop, mode))
+        _scheduler.waker.setSignalHandler { [weak self] in
+            _ = self?._scheduler.run()
+        }
+        _scheduler.waker.activate()
     }
 
     deinit {
-        _waker.cancel()
+        _scheduler.waker.cancel()
     }
 
-    @usableFromInline
-    @discardableResult
-    func _run() -> Bool {
-        var context = Context(runner: _runner, waker: _waker)
-        return _runner.run(&context)
-    }
-
+    @inlinable
     public func trySubmit<F: FutureProtocol>(_ future: F) -> Result<Void, Failure> where F.Output == Void {
-        if _runner.count == capacity {
+        if _scheduler.count == _capacity {
             return .failure(.atCapacity)
         }
-        _runner.schedule(future)
-        _waker.signal()
+        _scheduler.submit(future)
+        _scheduler.waker.signal()
         return .success(())
     }
 }
 
 // MARK: Default executors
 
-private let _currentRunLoopExecutor = ThreadLocal<RunLoopExecutor> {
+@usableFromInline let _currentRunLoopExecutor = ThreadLocal<RunLoopExecutor> {
     // swiftlint:disable:next force_unwrapping
     let currentRunLoop = CFRunLoopGetCurrent()!
     if currentRunLoop === CFRunLoopGetMain() {
@@ -91,12 +87,9 @@ private let _currentRunLoopExecutor = ThreadLocal<RunLoopExecutor> {
 }
 
 extension RunLoopExecutor {
+    @inlinable
     public static var current: RunLoopExecutor {
         _currentRunLoopExecutor.value
-    }
-
-    public var isCurrent: Bool {
-        Self.current === self
     }
 
     public static let main = RunLoopExecutor(
@@ -108,7 +101,8 @@ extension RunLoopExecutor {
 
 // MARK: - Private -
 
-private final class _Waker: WakerProtocol {
+@usableFromInline
+final class _RunLoopWaker: WakerProtocol {
     private final class Callback {
         let handler: () -> Void
 
@@ -122,11 +116,13 @@ private final class _Waker: WakerProtocol {
     private var _source: CFRunLoopSource! // swiftlint:disable:this implicitly_unwrapped_optional
     private let _signalled = AtomicBool(false)
 
+    @usableFromInline
     init(_ runLoop: CFRunLoop, _ mode: CFRunLoopMode) {
         _runLoop = runLoop
         _mode = mode
     }
 
+    @usableFromInline
     func setSignalHandler(_ fn: @escaping () -> Void) {
         let callback = Callback { [_signalled, fn] in
             _signalled.store(false)
@@ -159,6 +155,7 @@ private final class _Waker: WakerProtocol {
         }
     }
 
+    @usableFromInline
     func activate() {
         CFRunLoopAddSource(_runLoop, _source, _mode)
     }
@@ -168,6 +165,7 @@ private final class _Waker: WakerProtocol {
         CFRunLoopSourceInvalidate(_source)
     }
 
+    @usableFromInline
     func signal() {
         if _signalled.exchange(true) {
             return

@@ -57,17 +57,6 @@ public final class Task<T> {
             .init(inner: inner, executor: executor)
         }
     }
-
-    @usableFromInline
-    internal static func create<F: FutureProtocol>(
-        future: F,
-        runner: _TaskRunner
-    ) -> Task<F.Output> where F.Output == T {
-        let inner = _Inner()
-        let remote = _RemoteFuture(inner: inner, future: future)
-        runner.schedule(remote)
-        return .init(inner: inner, executor: runner)
-    }
 }
 
 extension Task: Cancellable {
@@ -355,17 +344,6 @@ public final class Task<T>: FutureProtocol, Cancellable {
         return executor.trySubmit(remote).map {
             .init(inner: inner, executor: executor)
         }
-    }
-
-    @usableFromInline
-    internal static func create<F: FutureProtocol>(
-        future: F,
-        runner: _TaskRunner
-    ) -> Task<F.Output> where F.Output == T {
-        let inner = _Inner()
-        let remote = _RemoteFuture(inner: inner, future: future)
-        runner.schedule(remote)
-        return .init(inner: inner, executor: runner)
     }
 
     public func cancel() {

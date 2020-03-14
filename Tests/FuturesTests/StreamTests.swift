@@ -299,9 +299,10 @@ final class StreamTests: XCTestCase {
         let stream1 = multicast.makeStream().map { counter1 += $0 }
         let stream2 = multicast.makeStream().map { counter2 += $0 }
 
-        try ThreadExecutor.current.submit(stream1)
-        try ThreadExecutor.current.submit(stream2)
-        ThreadExecutor.current.wait()
+        let executor = ThreadExecutor()
+        try executor.submit(stream1)
+        try executor.submit(stream2)
+        executor.wait()
 
         let expected = (0..<iterations).reduce(into: 0, +=)
         XCTAssertEqual(counter0, expected)
@@ -322,12 +323,13 @@ final class StreamTests: XCTestCase {
         let stream1 = shared.makeStream().map { counter1 += $0 }
         let stream2 = shared.makeStream().map { counter2 += $0 }
 
-        let task1 = QueueExecutor(label: "queue 1").spawn(stream1)
-        let task2 = QueueExecutor(label: "queue 2").spawn(stream2)
+        let task1 = try QueueExecutor(label: "queue 1").spawn(stream1)
+        let task2 = try QueueExecutor(label: "queue 2").spawn(stream2)
 
-        try ThreadExecutor.current.submit(task1.assertNoError())
-        try ThreadExecutor.current.submit(task2.assertNoError())
-        ThreadExecutor.current.wait()
+        let executor = ThreadExecutor()
+        try executor.submit(task1.assertNoError())
+        try executor.submit(task2.assertNoError())
+        executor.wait()
 
         let expected = (0..<iterations).reduce(into: 0, +=)
         XCTAssertEqual(counter0, expected)

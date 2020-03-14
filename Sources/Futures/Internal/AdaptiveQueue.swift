@@ -48,6 +48,12 @@ internal struct AdaptiveQueue<Element> {
     }
 
     @inlinable
+    internal mutating func clear() {
+        _buffer = .init()
+        _head = 0
+    }
+
+    @inlinable
     internal mutating func move() -> AdaptiveQueue {
         let queue = self
         _buffer = .init()

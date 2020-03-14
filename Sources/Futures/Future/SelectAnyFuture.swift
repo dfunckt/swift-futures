@@ -6,34 +6,32 @@
 //
 
 extension Future._Private {
-    public struct SelectAny<Base: FutureProtocol> {
-        private var _futures: _TaskScheduler<Base>
+    public struct SelectAny<Base: FutureProtocol>: FutureProtocol {
+        public typealias Output = Base.Output
 
+        @usableFromInline var _futures: LocalScheduler<Output, AtomicWaker>
+
+        @inlinable
         public init(_ bases: Base...) {
             self.init(bases)
         }
 
+        @inlinable
         public init<C: Sequence>(_ bases: C) where C.Element == Base {
-            _futures = .init()
-            _futures.schedule(bases)
-            precondition(!_futures.isEmpty)
+            _futures = .init(waker: .init())
+            let count = _futures.submit(bases)
+            precondition(count > 0)
         }
-    }
-}
 
-extension Future._Private.SelectAny: FutureProtocol {
-    public typealias Output = Base.Output
+        @inlinable
+        public mutating func poll(_ context: inout Context) -> Poll<Output> {
+            _futures.waker.register(context.waker)
 
-    public mutating func poll(_ context: inout Context) -> Poll<Output> {
-        switch _futures.pollNext(&context) {
-        case .ready(.some(let output)):
-            return .ready(output)
-        case .pending:
+            if let output = _futures.pollNext() {
+                return .ready(output)
+            }
+
             return .pending
-        case .ready(.none):
-            // there's always going to be at least one
-            // future in the scheduler until we're done.
-            fatalError("unreachable")
         }
     }
 }

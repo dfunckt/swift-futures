@@ -32,7 +32,7 @@ final class ReadmeTests: XCTestCase {
         XCTAssertEqual(answer.wait(), 42)
     }
 
-    func test42Channel() {
+    func test42Channel() throws {
         let deepThought = (
             cpu0: QueueExecutor(label: "CPU 0"),
             cpu1: QueueExecutor(label: "CPU 1"),
@@ -43,12 +43,12 @@ final class ReadmeTests: XCTestCase {
         let pipe2 = Channel.makeUnbuffered(itemType: Int.self)
 
         let integers = Stream.sequence(0...)
-        deepThought.cpu1.submit(integers.forward(to: pipe1))
+        try deepThought.cpu1.submit(integers.forward(to: pipe1).ignoreOutput())
 
         let primes = pipe1.makeStream().filter(isPrime)
-        deepThought.cpu2.submit(primes.forward(to: pipe2))
+        try deepThought.cpu2.submit(primes.forward(to: pipe2).ignoreOutput())
 
-        var answer = deepThought.cpu0.spawn(
+        var answer = try deepThought.cpu0.spawn(
             pipe2.makeStream()
                 .buffer(4)
                 .map { $0[0] * $0[1] * $0[3] }

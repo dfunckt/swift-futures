@@ -112,7 +112,7 @@ internal final class Box<T> {
 }
 
 @usableFromInline
-internal final class WeakReference<T: AnyObject> {
+internal struct WeakReference<T: AnyObject> {
     @usableFromInline internal weak var value: T?
 
     @inlinable

@@ -11,18 +11,13 @@ extension Future._Private {
 
         @inlinable
         public init(base: Base, prefix: String, file: StaticString, line: UInt) {
-            let message: String
-            if prefix.isEmpty {
-                message = "Unexpected error at \(file):\(line)"
-            } else {
-                message = "\(prefix) Unexpected error at \(file):\(line)"
-            }
+            let prefix = prefix.isEmpty ? "" : "\(prefix): "
             _base = .init(base: base) {
                 switch $0 {
                 case .success(let output):
                     return output
                 case .failure(let error):
-                    fatalError("\(message): \(error)")
+                    preconditionFailure("\(prefix)\(error)", file: file, line: line)
                 }
             }
         }

@@ -80,7 +80,7 @@ final class RunLoopExecutorExecutorTests: XCTestCase {
 
 final class ThreadExecutorTests: XCTestCase {
     func testFairness() throws {
-        let executor = ThreadExecutor.current
+        let executor = ThreadExecutor()
         try _testFairness(self, executor) {
             XCTAssert(executor.run())
         }
@@ -88,7 +88,7 @@ final class ThreadExecutorTests: XCTestCase {
 
     func testRunNested() throws {
         var count = 0
-        let executor = ThreadExecutor.current
+        let executor = ThreadExecutor()
         try executor.submit(lazy {
             try! executor.submit(lazy { // swiftlint:disable:this force_try
                 count += 1
@@ -103,7 +103,7 @@ final class ThreadExecutorTests: XCTestCase {
     func testRunMany() throws {
         let ITERATIONS = 200
         var count = 0
-        let executor = ThreadExecutor.current
+        let executor = ThreadExecutor()
         for _ in 0..<ITERATIONS {
             try executor.submit(lazy {
                 count += 1
@@ -116,7 +116,7 @@ final class ThreadExecutorTests: XCTestCase {
 
     func testRunUntil() {
         var count = 0
-        let executor = ThreadExecutor.current
+        let executor = ThreadExecutor()
         var f = delayed(by: 1) { () -> Void in
             count += 1
             return DONE

@@ -18,16 +18,19 @@ extension Future._Private {
             }
         }
 
-        private var _futures = _TaskScheduler<Inner>()
-        private var _results: [Base.Output?]
+        @usableFromInline let _futures: LocalScheduler<Inner.Output, AtomicWaker>
+        @usableFromInline var _results: [Base.Output?]
 
+        @inlinable
         public init(_ bases: Base...) {
             self.init(bases)
         }
 
+        @inlinable
         public init<C: Sequence>(_ bases: C) where C.Element == Base {
-            _futures.schedule(bases.lazy.enumerated().map(Inner.init))
-            _results = .init(repeating: nil, count: _futures.count)
+            _futures = .init(waker: .init())
+            let count = _futures.submit(bases.lazy.enumerated().map(Inner.init))
+            _results = .init(repeating: nil, count: count)
         }
     }
 }
@@ -57,23 +60,23 @@ extension Future._Private.JoinAll.Inner: FutureProtocol {
 extension Future._Private.JoinAll: FutureProtocol {
     public typealias Output = [Base.Output]
 
+    @inlinable
     public mutating func poll(_ context: inout Context) -> Poll<Output> {
-        while true {
-            switch _futures.pollNext(&context) {
-            case .ready(.some(let (index, result))):
-                _results[index] = result
-                continue
+        _futures.waker.register(context.waker)
 
-            case .ready(.none):
-                var results = [Base.Output]()
-                results.reserveCapacity(_results.count)
-                results.append(contentsOf: _results.lazy.compactMap { $0 })
-                _results = []
-                return .ready(results)
-
-            case .pending:
-                return .pending
-            }
+        while let (index, output) = _futures.pollNext() {
+            _results[index] = output
         }
+
+        if _futures.isEmpty {
+            var results = [Base.Output]()
+            results.reserveCapacity(_results.count)
+            results.append(contentsOf: _results.lazy.compactMap { $0 })
+            _results = []
+            _futures.destroy()
+            return .ready(results)
+        }
+
+        return .pending
     }
 }

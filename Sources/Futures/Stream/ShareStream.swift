@@ -269,7 +269,7 @@ extension Stream._Private.Share {
         }
 
         _waker._task = task
-        var context = context.withWaker(_waker)
+        var context = context.usingWaker(_waker)
 
         while true {
             switch _base.pollNext(&context) {

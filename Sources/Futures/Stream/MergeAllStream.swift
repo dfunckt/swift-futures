@@ -7,15 +7,18 @@
 
 extension Stream._Private {
     public struct MergeAll<Base: StreamProtocol> {
-        private typealias F = Future<Base>
-        private let _futures = _TaskScheduler<F>()
+        @usableFromInline typealias F = Future<Base>
+        @usableFromInline let _futures: LocalScheduler<F.Output, AtomicWaker>
 
+        @inlinable
         public init(_ bases: Base...) {
-            _futures.schedule(bases.lazy.map(F.init))
+            self.init(bases)
         }
 
+        @inlinable
         public init<C: Swift.Sequence>(_ bases: C) where C.Element == Base {
-            _futures.schedule(bases.lazy.map(F.init))
+            _futures = .init(waker: .init())
+            _futures.submit(bases.lazy.map(F.init))
         }
     }
 }
@@ -23,17 +26,20 @@ extension Stream._Private {
 extension Stream._Private.MergeAll: StreamProtocol {
     public typealias Output = Base.Output
 
+    @inlinable
     public func pollNext(_ context: inout Context) -> Poll<Output?> {
+        _futures.waker.register(context.waker)
+
         while true {
-            switch _futures.pollNext(&context) {
-            case .ready(.some((.some(let output), let stream))):
-                _futures.schedule(.init(base: stream))
+            switch _futures.pollNext() {
+            case .some((.some(let output), let stream)):
+                _futures.submit(F(base: stream))
                 return .ready(output)
-            case .ready(.some((.none, _))):
+            case .some((.none, _)):
                 continue
-            case .ready(.none):
+            case .none where _futures.isEmpty:
                 return .ready(nil)
-            case .pending:
+            case .none:
                 return .pending
             }
         }

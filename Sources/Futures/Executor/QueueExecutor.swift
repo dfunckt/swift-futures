@@ -9,7 +9,7 @@ import Dispatch
 import FuturesSync
 
 public func assertOnQueueExecutor(_ executor: QueueExecutor) {
-    dispatchPrecondition(condition: .onQueue(executor._queue))
+    dispatchPrecondition(condition: .onQueue(executor.queue))
 }
 
 public func assertOnMainQueueExecutor() {
@@ -23,10 +23,11 @@ public func assertOnMainQueueExecutor() {
 /// Dropping the last reference to the executor, causes it to be deallocated.
 /// Any pending tasks tracked by the executor at the time are destroyed as well.
 public final class QueueExecutor: ExecutorProtocol, Cancellable {
-    fileprivate let _queue: DispatchQueue
-    private let _runner: _TaskRunner
-    @usableFromInline let _waker: _QueueWaker
-    @usableFromInline let _incoming = AtomicUnboundedMPSCQueue<AnyFuture<Void>>()
+    public enum Failure: Error {
+        case shutdown
+    }
+
+    @usableFromInline let _scheduler: SharedScheduler<Void, _QueueWaker>
 
     @inlinable
     public convenience init(label: String, qos: DispatchQoS = .default) {
@@ -43,33 +44,9 @@ public final class QueueExecutor: ExecutorProtocol, Cancellable {
 
     @usableFromInline
     init(queue: DispatchQueue) {
-        _queue = queue
-        _runner = .init(label: queue.label)
-        _waker = .init(queue)
-        _waker.setSignalHandler { [weak self] in
-            guard let self = self else {
-                return true
-            }
-            return self._run()
-        }
-    }
-
-    func _run() -> Bool {
-        var context = Context(runner: _runner, waker: _waker)
-        while true {
-            // schedule up to an arbitrary limit so that we don't end up
-            // only scheduling futures and making no progress.
-            var i = 0
-            while let future = _incoming.pop(), i < 2_048 {
-                _runner.schedule(future)
-                i += 1
-            }
-
-            let completed = _runner.run(&context)
-
-            if _incoming.isEmpty {
-                return completed
-            }
+        _scheduler = .init(waker: .init(queue))
+        _scheduler.waker.setSignalHandler { [weak self] in
+            self?._scheduler.run() ?? true
         }
     }
 
@@ -77,21 +54,22 @@ public final class QueueExecutor: ExecutorProtocol, Cancellable {
         cancel()
     }
 
-    public var label: String {
-        return _queue.label
+    @inlinable
+    internal var queue: DispatchQueue {
+        _scheduler.waker.queue
     }
 
-    public var capacity: Int {
-        return Int.max
+    public var label: String {
+        return _scheduler.waker.queue.label
     }
 
     /// Schedules the given future to be executed by this executor.
     ///
     /// This method can be called from any thread.
     @inlinable
-    public func trySubmit<F: FutureProtocol>(_ future: F) -> Result<Void, Never> where F.Output == Void {
-        _incoming.push(.init(future))
-        _waker.signal()
+    public func trySubmit<F: FutureProtocol>(_ future: F) -> Result<Void, Failure> where F.Output == Void {
+        _scheduler.submit(future)
+        _scheduler.waker.signal()
         return .success(())
     }
 
@@ -107,7 +85,7 @@ public final class QueueExecutor: ExecutorProtocol, Cancellable {
     ///
     /// This method can be called from any thread.
     public func suspend() {
-        _waker.suspend()
+        _scheduler.waker.suspend()
     }
 
     /// Resumes execution of futures.
@@ -117,14 +95,14 @@ public final class QueueExecutor: ExecutorProtocol, Cancellable {
     ///
     /// This method can be called from any thread.
     public func resume() {
-        _waker.resume()
+        _scheduler.waker.resume()
     }
 
     /// Cancels further execution of futures.
     ///
     /// This method can be called from any thread.
     public func cancel() {
-        _waker.cancel()
+        _scheduler.waker.cancel()
     }
 
     /// Blocks the current thread until all futures tracked by this executor
@@ -133,7 +111,13 @@ public final class QueueExecutor: ExecutorProtocol, Cancellable {
     /// This method can be called from any thread.
     @inlinable
     public func wait() {
-        _waker.wait()
+        _scheduler.waker.wait()
+    }
+}
+
+extension QueueExecutor: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        "QueueExecutor(label: \(label), scheduler: \(String(reflecting: _scheduler)))"
     }
 }
 
@@ -163,12 +147,15 @@ extension QueueExecutor {
 
 @usableFromInline
 final class _QueueWaker: WakerProtocol {
+    @usableFromInline internal let queue: DispatchQueue
+
     private let _source: DispatchSourceUserDataAdd
     private let _cond = PosixConditionLock()
     private var _done = false
 
     @usableFromInline
     init(_ queue: DispatchQueue) {
+        self.queue = queue
         _source = DispatchSource.makeUserDataAddSource(queue: queue)
     }
 
