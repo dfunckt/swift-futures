@@ -354,7 +354,7 @@ private final class SPMCChannelTester<C: ChannelProtocol> where C.Item == Int {
         }
         let sum = AtomicInt(0)
 
-        testcase.expect(count: SPMC_RECEIVER_COUNT, timeout: 60) { exp in
+        testcase.expect(count: SPMC_RECEIVER_COUNT, timeout: 60, enforceOrder: false) { exp in
             let (tx, rx) = makeChannel().split()
             let multicast = rx.makeStream().share()
 

@@ -9,21 +9,23 @@ import Futures
 import XCTest
 
 extension XCTestCase {
-    public func expect(
+    public func expect<R>(
         function: StaticString = #function,
         count: Int = 1,
         description: String? = nil,
         timeout: TimeInterval = 1,
-        execute: ([XCTestExpectation]) throws -> Void
-    ) rethrows {
+        enforceOrder enforceOrderOfFulfillment: Bool = true,
+        execute: ([XCTestExpectation]) throws -> R
+    ) rethrows -> R {
         var exp = [XCTestExpectation]()
         for i in 0..<count {
             exp.append(expectation(
                 description: description ?? "\(function)#\(i)"
             ))
         }
-        try execute(exp)
-        waitForExpectations(timeout: timeout, handler: nil)
+        let result = try execute(exp)
+        wait(for: exp, timeout: timeout, enforceOrder: enforceOrderOfFulfillment)
+        return result
     }
 
     public func poll(_ fn: @escaping (inout Context) -> Poll<Void>) {
