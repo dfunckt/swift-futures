@@ -869,8 +869,8 @@ extension StreamProtocol {
     ///
     /// - Returns: `some FutureProtocol<Output == Void>`
     @inlinable
-    public func ignoreOutput() -> Stream._Private.Reduce<Void, Self> {
-        return .init(ignoringOutputFrom: self)
+    public func ignoreOutput() -> Stream._Private.IgnoreOutput<Self> {
+        return .init(base: self)
     }
 
     /// Returns a future that completes with the number of elements from this
