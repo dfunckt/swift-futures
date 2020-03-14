@@ -102,7 +102,7 @@ extension Stream._Private.Share {
     final class _Task {
         @usableFromInline var result: AtomicBool.RawValue = false
 
-        private let _waker = SharedValue(WakerProtocol?.none)
+        private let _waker = Mutex(WakerProtocol?.none)
 
         @inlinable
         init() {
@@ -122,7 +122,7 @@ extension Stream._Private.Share {
         @usableFromInline
         @discardableResult
         func notify() -> Bool {
-            if let waker = _waker.take() {
+            if let waker = _waker.move() {
                 waker.signal()
                 return true
             }

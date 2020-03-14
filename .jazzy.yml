@@ -124,7 +124,7 @@ custom_categories:
     - PosixLock
     - UnfairLock
     - SpinLock
-    - SharedValue
+    - Mutex
 
   - name: Helpers
     children:
