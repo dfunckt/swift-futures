@@ -84,7 +84,8 @@ public final class AtomicUnboundedMPSCQueue<T>: AtomicUnboundedQueueProtocol {
             }
             // the queue is in an inconsistent state. spin a little expecting
             // push will soon complete and we'll be able to pop an item out.
-            backoff.yield()
+            // FIXME: return if we exhausted our budget
+            _ = backoff.yield()
         }
     }
 }

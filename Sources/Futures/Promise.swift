@@ -113,7 +113,8 @@ extension Promise {
                 return
 
             case .polling:
-                backoff.yield()
+                // FIXME: return if we exhausted our budget
+                _ = backoff.yield()
             }
         }
     }

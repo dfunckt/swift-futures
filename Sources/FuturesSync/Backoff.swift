@@ -60,7 +60,6 @@ public struct Backoff {
     /// - Returns: `true` if backoff completed and it is no longer useful to
     ///     loop, indicating contention.
     @inlinable
-    @discardableResult
     public mutating func spin() -> Bool {
         var spins = 1 << min(_step, Backoff.MAX_SPINS)
         while spins > 0 {
@@ -79,7 +78,6 @@ public struct Backoff {
     /// - Returns: `true` if backoff completed and it is no longer useful to
     ///     loop, indicating contention.
     @inlinable
-    @discardableResult
     public mutating func yield() -> Bool {
         if _step < Backoff.MAX_SPINS {
             var spins = 1 << _step

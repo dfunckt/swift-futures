@@ -45,7 +45,8 @@ public final class AtomicSPMCQueue<Element>: AtomicQueueProtocol {
                     return false
                 }
 
-                backoff.yield()
+                // FIXME: return if we exhausted our budget
+                _ = backoff.yield()
             }
         }
     }
@@ -71,7 +72,8 @@ public final class AtomicSPMCQueue<Element>: AtomicQueueProtocol {
                     return nil
                 }
 
-                backoff.yield()
+                // FIXME: return if we exhausted our budget
+                _ = backoff.yield()
             }
         }
     }
