@@ -17,7 +17,7 @@ final class _AtomicWaker: WakerProtocol {
     private struct State: OptionSet {
         var rawValue: AtomicUInt.RawValue
 
-        static let waiting = State(rawValue: 0)
+        static let waiting: State = []
         static let registering = State(rawValue: 1)
         static let notifying = State(rawValue: 2)
         static let notified = State(rawValue: ~notifying.rawValue)
