@@ -23,13 +23,13 @@ build-release:
 	$(SWIFT) build --configuration release
 
 test:
-	$(SWIFT) test --configuration debug --sanitize thread
+	$(SWIFT) test --configuration debug --sanitize thread $(TESTFLAGS)
 
 test-nosanitize:
-	$(SWIFT) test --configuration debug
+	$(SWIFT) test --configuration debug $(TESTFLAGS)
 
 test-release:
-	$(SWIFT) test --configuration release
+	$(SWIFT) test --configuration release $(TESTFLAGS)
 
 repl:
 	$(SWIFT) run --repl --configuration debug
