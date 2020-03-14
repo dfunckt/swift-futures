@@ -223,21 +223,3 @@ extension BlockingExecutor {
         }
     }
 }
-
-// MARK: -
-
-public protocol WakerProtocol: AnyObject {
-    func signal()
-}
-
-public final class AnyWaker: WakerProtocol {
-    private let _signalFn: () -> Void
-
-    public init(_ signalHandler: @escaping () -> Void) {
-        _signalFn = signalHandler
-    }
-
-    public func signal() {
-        _signalFn()
-    }
-}

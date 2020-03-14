@@ -1,5 +1,5 @@
 //
-//  AtomicWaker.swift
+//  Waker.swift
 //  Futures
 //
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
@@ -7,13 +7,30 @@
 
 import FuturesSync
 
+public protocol WakerProtocol: AnyObject {
+    func signal()
+}
+
+public final class AnyWaker: WakerProtocol {
+    private let _signalFn: () -> Void
+
+    public init(_ signalHandler: @escaping () -> Void) {
+        _signalFn = signalHandler
+    }
+
+    public func signal() {
+        _signalFn()
+    }
+}
+
+// MARK: -
+
 // set to `false` to replace AtomicWaker with a simple
 // lock-based waker that is useful for debugging.
 #if true
 
 /// A primitive for synchronizing attempts to wake a task.
-@usableFromInline
-internal final class AtomicWaker: WakerProtocol {
+public final class AtomicWaker: WakerProtocol {
     @usableFromInline struct State: AtomicBitset {
         @usableFromInline let rawValue: AtomicUInt.RawValue
 
@@ -31,14 +48,14 @@ internal final class AtomicWaker: WakerProtocol {
     @usableFromInline var _waker: WakerProtocol?
 
     @inlinable
-    internal init() {
+    public init() {
         State.initialize(&_state, to: .idle)
     }
 
     /// Register a waker to be notified on calls to `signal()`.
     /// This method must not be called concurrently.
     @inlinable
-    internal func register(_ waker: WakerProtocol) {
+    public func register(_ waker: WakerProtocol) {
         switch State.compareExchange(&_state, .idle, .registering, order: .acquire) {
         case .idle:
             // Lock acquired, save the waker.
@@ -77,7 +94,7 @@ internal final class AtomicWaker: WakerProtocol {
     ///
     /// This method can be called concurrently.
     @inlinable
-    internal func signal() {
+    public func signal() {
         move()?.signal()
     }
 
@@ -85,7 +102,7 @@ internal final class AtomicWaker: WakerProtocol {
     ///
     /// This method can be called concurrently.
     @inlinable
-    internal func move() -> WakerProtocol? {
+    public func move() -> WakerProtocol? {
         switch State.fetchOr(&_state, .notifying, order: .acqrel) {
         case .idle:
             // Lock acquired. Take out the waker before releasing it.
@@ -109,17 +126,17 @@ private let _warnBlockingWaker: Void = {
     print("WARNING: using blocking AtomicWaker")
 }()
 
-@usableFromInline
-internal final class AtomicWaker: WakerProtocol {
+/// :nodoc:
+public final class AtomicWaker: WakerProtocol {
     @usableFromInline let _lock = UnfairLock()
     @usableFromInline var _waker: WakerProtocol?
 
-    internal init() {
+    public init() {
         _warnBlockingWaker
     }
 
     @inlinable
-    internal func register(_ waker: WakerProtocol) {
+    public func register(_ waker: WakerProtocol) {
         // states are distinct due to exclusive locking,
         // and there is never a need to signal the previous
         // waker like on the atomic version.
@@ -127,12 +144,12 @@ internal final class AtomicWaker: WakerProtocol {
     }
 
     @inlinable
-    internal func signal() {
+    public func signal() {
         move()?.signal()
     }
 
     @inlinable
-    internal func move() -> WakerProtocol? {
+    public func move() -> WakerProtocol? {
         return _lock.sync { _waker.move() }
     }
 }

@@ -70,6 +70,7 @@ custom_categories:
     - Poll
     - WakerProtocol
     - AnyWaker
+    - AtomicWaker
     - Cancellable
     - AnyCancellable
     - Either
