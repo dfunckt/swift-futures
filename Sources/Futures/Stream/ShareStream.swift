@@ -15,7 +15,7 @@ extension Stream._Private {
         @usableFromInline let _state = _AtomicState(.idle)
         @usableFromInline let _waker: _Waker
 
-        @usableFromInline var _events = _AdaptiveQueue<_Task>()
+        @usableFromInline var _events = AdaptiveQueue<_Task>()
         @usableFromInline var _tasks = [_Task]()
         @usableFromInline let _tasksLock = UnfairLock()
 

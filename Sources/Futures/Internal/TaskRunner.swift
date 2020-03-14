@@ -15,7 +15,7 @@ final class _TaskRunner {
     // Buffers futures that are submitted either externally via an executor
     // or internally by a future during polling via `Context`. On every tick,
     // the buffer is flushed into the scheduler in one go.
-    @usableFromInline var _incoming = _AdaptiveQueue<AnyFuture<Void>>()
+    @usableFromInline var _incoming = AdaptiveQueue<AnyFuture<Void>>()
 
     @inlinable
     init(label: String) {
@@ -50,7 +50,7 @@ final class _TaskRunner {
         if !_incoming.isEmpty {
             // Schedule futures that have been submitted externally
             // via an executor since the last tick
-            _futures.schedule(_incoming.consume())
+            _futures.schedule(_incoming.moveElements())
         }
 
         _futures.register(context.waker)
@@ -61,7 +61,7 @@ final class _TaskRunner {
             if !_incoming.isEmpty {
                 // New futures have been submitted by the future;
                 // schedule them and re-poll.
-                _futures.schedule(_incoming.consume())
+                _futures.schedule(_incoming.moveElements())
                 continue
             }
 

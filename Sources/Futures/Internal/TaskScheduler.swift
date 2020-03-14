@@ -13,7 +13,7 @@ final class _TaskScheduler<F: FutureProtocol> {
 
     private let _queue: ReadyQueue
     private var _head: Node?
-    private var _nodeCache = _AdaptiveQueue<Node>()
+    private var _nodeCache = AdaptiveQueue<Node>()
     @usableFromInline var _length = 0
     @usableFromInline let _waker: _AtomicWaker
 
