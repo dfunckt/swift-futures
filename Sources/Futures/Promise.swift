@@ -102,7 +102,7 @@ extension Promise {
         while true {
             switch _State.compareExchangeWeak(&_state, .idle, .resolving) {
             case .idle:
-                let waker = _waker.take()
+                let waker = _waker.move()
                 _output = value
                 let previous = _State.exchange(&_state, .resolved)
                 assert(previous == .resolving)

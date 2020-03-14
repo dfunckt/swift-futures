@@ -15,7 +15,7 @@ extension Channel._Private {
         @inlinable
         init(capacity: Int) {
             _capacity = Int(UInt32(capacity))
-            _buffer = .init(capacity: max(2, _nextPowerOf2(_capacity)))
+            _buffer = .init(capacity: max(2, nextPowerOf2(_capacity)))
         }
 
         @inlinable

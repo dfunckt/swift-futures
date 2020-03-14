@@ -47,7 +47,7 @@ public final class RunLoopExecutor: ExecutorProtocol {
         mode: CFRunLoopMode = COMMON_MODES,
         capacity: Int = .max
     ) {
-        let label = "futures.runloop-executor(\(label ?? _pointerAddressForDisplay(runLoop)))"
+        let label = "futures.runloop-executor(\(label ?? pointerAddressForDisplay(runLoop)))"
         self.label = label
         self.capacity = capacity
         _runner = .init(label: label)

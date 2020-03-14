@@ -25,7 +25,7 @@ extension Sink._Private {
 
         @inlinable
         mutating func _sendBuffer(_ context: inout Context) -> Poll<Output> {
-            if let item = _item.take() {
+            if let item = _item.move() {
                 switch _base.pollSend(&context, item) {
                 case .ready(.success):
                     break

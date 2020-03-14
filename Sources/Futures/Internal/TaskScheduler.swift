@@ -68,7 +68,7 @@ final class _TaskScheduler<F: FutureProtocol> {
                 return .pending
             }
 
-            guard var f = node.future.take() else {
+            guard var f = node.future.move() else {
                 // This case only happens when `release()` was called for
                 // this node before and couldn't be deallocated because it
                 // was already enqueued in the ready to run queue. Ensure
@@ -117,8 +117,8 @@ final class _TaskScheduler<F: FutureProtocol> {
     }
 
     private func _unlink(_ node: Node) {
-        let next = node.nextActive.take()
-        let prev = node.prevActive.take()
+        let next = node.nextActive.move()
+        let prev = node.prevActive.move()
         next?.prevActive = prev
         if let prev = prev {
             prev.nextActive = next

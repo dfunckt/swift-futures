@@ -97,7 +97,7 @@ public final class AtomicUnboundedSPSCQueue<T>: AtomicUnboundedQueueProtocol {
 
         assert(tail._value == nil)
         assert(next._value != nil)
-        let value = next._value.take()
+        let value = next._value.move()
         _tail = next
 
         if _maxCached == 0 {

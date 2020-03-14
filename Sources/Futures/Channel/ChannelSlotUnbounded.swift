@@ -14,7 +14,7 @@ extension Channel._Private {
         // `Impl` already guarantees thread-safety, so if we changed `_Ref`
         // below to a `SharedValue`, we'd automatically get the ability to
         // use this buffer in a multi-executor context.
-        @usableFromInline let _element = _Ref(Item?.none)
+        @usableFromInline let _element = Box(Item?.none)
 
         @inlinable
         init() {}
@@ -41,7 +41,7 @@ extension Channel._Private {
 
         @inlinable
         public func pop() -> Item? {
-            return _element.value.take()
+            return _element.value.move()
         }
     }
 }

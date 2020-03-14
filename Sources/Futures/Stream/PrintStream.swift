@@ -14,7 +14,7 @@ extension Stream._Private {
 
         @inlinable
         public init(base: Base, prefix: String, to stream: TextOutputStream?) {
-            self = .pending(base, prefix, stream ?? _StandardOutputStream())
+            self = .pending(base, prefix, stream ?? StandardOutputStream())
         }
 
         @inlinable

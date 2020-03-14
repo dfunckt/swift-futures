@@ -27,7 +27,7 @@ struct _CircularBuffer<Element> {
     @inlinable
     init(capacity: Int) {
         let capacity = Int(UInt32(capacity))
-        _buffer = .init(repeating: nil, count: _nextPowerOf2(capacity))
+        _buffer = .init(repeating: nil, count: nextPowerOf2(capacity))
         _capacity = capacity
         _head = 0
         _tail = 0
@@ -107,7 +107,7 @@ struct _CircularBuffer<Element> {
             _tail = 0
             return nil
         }
-        let element = _buffer[_tail & _mask].take()
+        let element = _buffer[_tail & _mask].move()
         _tail += 1
         return element
     }

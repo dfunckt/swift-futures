@@ -25,7 +25,7 @@ extension Stream._Private {
             @usableFromInline
             @discardableResult
             func notify() -> Bool {
-                if let waker = _waker.take() {
+                if let waker = _waker.move() {
                     waker.signal()
                     return true
                 }

@@ -13,8 +13,9 @@ func isPowerOf2(_ n: Int) -> Bool {
 
 extension Optional {
     @inlinable
+    @_transparent
     @discardableResult
-    mutating func take() -> Wrapped? {
+    mutating func move() -> Wrapped? {
         var value: Wrapped?
         Swift.swap(&self, &value)
         return value

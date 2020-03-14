@@ -25,7 +25,7 @@ extension Sink._Private {
 
         @inlinable
         mutating func _pollStream(_ context: inout Context) -> Poll<Output> {
-            if let item = _item.take() {
+            if let item = _item.move() {
                 // send pending item, if any
                 switch _base.pollSend(&context, item) {
                 case .ready(.success):
@@ -38,7 +38,7 @@ extension Sink._Private {
                 }
             }
 
-            if var stream = _stream.take() {
+            if var stream = _stream.move() {
                 // drain the stream
                 while true {
                     switch stream.pollNext(&context) {

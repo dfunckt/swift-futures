@@ -155,7 +155,7 @@ extension Stream._Private.Share {
             case .waiting:
                 // Our task is waiting to be signalled from the underlying
                 // stream. Change the state to IDLE and signal the task.
-                let task = _task.take()
+                let task = _task.move()
                 let previous = _state.exchange(.idle)
                 assert(previous == .waiting)
                 task!.notify() // swiftlint:disable:this force_unwrapping

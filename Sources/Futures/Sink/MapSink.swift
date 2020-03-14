@@ -23,7 +23,7 @@ extension Sink._Private {
 
         @inlinable
         mutating func _sendItem(_ context: inout Context) -> Poll<Output> {
-            guard let item = _item.take() else {
+            guard let item = _item.move() else {
                 return .ready(.success(()))
             }
             switch _base.pollSend(&context, item) {

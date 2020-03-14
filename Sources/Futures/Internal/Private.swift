@@ -13,21 +13,23 @@ import Glibc
 
 @usableFromInline
 @inline(never)
-func _invokeDebugger() {
+internal func invokeDebugger() {
     raise(SIGTRAP)
 }
 
 extension Optional {
     @inlinable
+    @_transparent
     @discardableResult
-    mutating func take() -> Wrapped? {
+    internal mutating func move() -> Wrapped? {
         var value: Wrapped?
         Swift.swap(&self, &value)
         return value
     }
 
     @inlinable
-    func match<R>(some: (Wrapped) throws -> R, none: () throws -> R) rethrows -> R {
+    @_transparent
+    internal func match<R>(some: (Wrapped) throws -> R, none: () throws -> R) rethrows -> R {
         switch self {
         case .some(let value):
             return try some(value)
@@ -39,27 +41,32 @@ extension Optional {
 
 extension Result {
     @inlinable
-    var _isSuccess: Bool {
-        switch self {
-        case .success:
-            return true
-        case .failure:
-            return false
+    internal var _isSuccess: Bool {
+        @_transparent get {
+            switch self {
+            case .success:
+                return true
+            case .failure:
+                return false
+            }
         }
     }
 
     @inlinable
-    var _isFailure: Bool {
-        switch self {
-        case .success:
-            return false
-        case .failure:
-            return true
+    internal var _isFailure: Bool {
+        @_transparent get {
+            switch self {
+            case .success:
+                return false
+            case .failure:
+                return true
+            }
         }
     }
 
     @inlinable
-    func match<R>(success: (Success) throws -> R, failure: (Failure) throws -> R) rethrows -> R {
+    @_transparent
+    internal func match<R>(success: (Success) throws -> R, failure: (Failure) throws -> R) rethrows -> R {
         switch self {
         case .success(let value):
             return try success(value)
@@ -71,7 +78,8 @@ extension Result {
 
 extension Result where Success: _ResultConvertible, Failure == Success.Failure {
     @inlinable
-    func flatten() -> Result<Success.Success, Failure> {
+    @_transparent
+    internal func flatten() -> Result<Success.Success, Failure> {
         switch self {
         case .success(let value):
             return value._makeResult().match(
@@ -85,49 +93,59 @@ extension Result where Success: _ResultConvertible, Failure == Success.Failure {
 }
 
 @usableFromInline
-struct _StandardOutputStream: TextOutputStream {
+internal struct StandardOutputStream: TextOutputStream {
     @inlinable
-    init() {}
+    internal init() {}
 
     @inlinable
-    func write(_ string: String) {
+    internal func write(_ string: String) {
         Swift.print(string, terminator: "")
     }
 }
 
 @usableFromInline
-final class _Ref<T> {
-    @usableFromInline var value: T
+internal final class Box<T> {
+    @usableFromInline internal var value: T
 
     @inlinable
-    init(_ value: T) {
+    internal init(_ value: T) {
+        self.value = value
+    }
+}
+
+@usableFromInline
+internal final class WeakReference<T: AnyObject> {
+    @usableFromInline internal weak var value: T?
+
+    @inlinable
+    internal init(_ value: T) {
         self.value = value
     }
 }
 
 @inlinable
-@inline(__always)
-func _pointerAddressForDisplay<T: AnyObject>(_ obj: T) -> String {
-    return Unmanaged.passUnretained(obj).toOpaque().debugDescription
-}
-
-@inlinable
-@inline(__always)
-func _pointerAddress<T: AnyObject>(_ obj: T) -> Int {
+@_transparent
+internal func pointerAddress<T: AnyObject>(_ obj: T) -> Int {
     return .init(bitPattern: ObjectIdentifier(obj))
 }
 
 @inlinable
-@inline(__always)
-func _isPowerOf2(_ n: Int) -> Bool {
+@_transparent
+internal func pointerAddressForDisplay<T: AnyObject>(_ obj: T) -> String {
+    return Unmanaged.passUnretained(obj).toOpaque().debugDescription
+}
+
+@inlinable
+@_transparent
+internal func isPowerOf2(_ n: Int) -> Bool {
     return UInt32(n).nonzeroBitCount == 1
 }
 
 /// Rounds the given integer up to the next power of two unless it is one
 /// already. If `n` is 0, this function returns 1.
 @inlinable
-@inline(__always)
-func _nextPowerOf2(_ n: Int) -> Int {
+@_transparent
+internal func nextPowerOf2(_ n: Int) -> Int {
     if n == 0 {
         return 1
     }

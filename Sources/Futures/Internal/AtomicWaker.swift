@@ -59,7 +59,7 @@ final class _AtomicWaker: WakerProtocol {
                 return nil
             case let actual:
                 assert(actual == [.registering, .notifying])
-                let waker = _waker.take()
+                let waker = _waker.move()
                 State.store(&_state, .waiting, order: .release)
                 return waker
             }
@@ -84,16 +84,16 @@ final class _AtomicWaker: WakerProtocol {
     /// Signals the last registered waker. This method is thread-safe.
     @usableFromInline
     func signal() {
-        take()?.signal()
+        move()?.signal()
     }
 
     /// Returns the last registered waker. This method is thread-safe.
     @usableFromInline
-    func take() -> WakerProtocol? {
+    func move() -> WakerProtocol? {
         switch State.fetchOr(&_state, .notifying, order: .acqrel) {
         case .waiting:
             // Lock acquired. Take out the waker before releasing it.
-            let waker = _waker.take()
+            let waker = _waker.move()
             State.fetchAnd(&_state, .notified, order: .release)
             return waker
 
@@ -132,12 +132,12 @@ final class _AtomicWaker: WakerProtocol {
 
     @inlinable
     func signal() {
-        take()?.signal()
+        move()?.signal()
     }
 
     @inlinable
-    func take() -> WakerProtocol? {
-        return _lock.sync { _waker.take() }
+    func move() -> WakerProtocol? {
+        return _lock.sync { _waker.move() }
     }
 }
 

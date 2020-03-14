@@ -14,7 +14,7 @@ extension Future._Private {
 
         @inlinable
         public init(base: Base, prefix: String, to stream: TextOutputStream?) {
-            self = .pending(base, prefix, stream ?? _StandardOutputStream())
+            self = .pending(base, prefix, stream ?? StandardOutputStream())
         }
 
         @inlinable
@@ -22,7 +22,7 @@ extension Future._Private {
             switch self {
             case .pending(var base, let prefix, var stream):
                 let result = base.poll(&context)
-                if result.isReady {
+                if case .ready = result {
                     self = .done
                 } else {
                     self = .pending(base, prefix, stream)

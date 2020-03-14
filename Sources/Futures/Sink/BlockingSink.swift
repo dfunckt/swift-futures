@@ -9,12 +9,12 @@ extension Sink._Private {
     public struct Blocking<E: BlockingExecutor, Base: SinkProtocol> {
         public typealias Output = Result<Void, Sink.Completion<Base.Failure>>
 
-        @usableFromInline let _base: _Ref<Base>
+        @usableFromInline let _base: Box<Base>
         @usableFromInline let _executor: E
 
         @inlinable
         public init(base: Base, executor: E) {
-            _base = _Ref(base)
+            _base = .init(base)
             _executor = executor
         }
 

@@ -76,7 +76,7 @@ public final class AtomicUnboundedMPSCQueue<T>: AtomicUnboundedQueueProtocol {
                 _tail = next
                 assert(tail._value == nil)
                 assert(next._value != nil)
-                tail._value = next._value.take()
+                tail._value = next._value.move()
                 return tail._value
             }
             if AtomicNode.load(&_head, order: .acquire) === tail {

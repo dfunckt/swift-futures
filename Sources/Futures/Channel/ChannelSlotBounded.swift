@@ -7,7 +7,7 @@
 
 extension Channel._Private {
     public struct SlotBounded<Item>: _ChannelBufferImplProtocol {
-        @usableFromInline let _element = _Ref(Item?.none)
+        @usableFromInline let _element = Box(Item?.none)
 
         @inlinable
         init() {}
@@ -34,7 +34,7 @@ extension Channel._Private {
 
         @inlinable
         public func pop() -> Item? {
-            return _element.value.take()
+            return _element.value.move()
         }
     }
 }

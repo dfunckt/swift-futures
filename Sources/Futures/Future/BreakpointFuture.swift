@@ -28,14 +28,14 @@ extension Future._Private {
                 case .ready(let output):
                     self = .done
                     if ready(output) {
-                        _invokeDebugger()
+                        invokeDebugger()
                     }
                     return .ready(output)
 
                 case .pending:
                     self = .pending(base, ready, pending)
                     if pending() {
-                        _invokeDebugger()
+                        invokeDebugger()
                     }
                     return .pending
                 }

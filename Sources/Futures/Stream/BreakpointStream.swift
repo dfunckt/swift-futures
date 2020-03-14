@@ -29,21 +29,21 @@ extension Stream._Private {
                 case .ready(.some(let output)):
                     self = .pending(base, ready, pending, complete)
                     if ready(output) {
-                        _invokeDebugger()
+                        invokeDebugger()
                     }
                     return .ready(output)
 
                 case .ready(.none):
                     self = .done
                     if complete() {
-                        _invokeDebugger()
+                        invokeDebugger()
                     }
                     return .ready(nil)
 
                 case .pending:
                     self = .pending(base, ready, pending, complete)
                     if pending() {
-                        _invokeDebugger()
+                        invokeDebugger()
                     }
                     return .pending
                 }
