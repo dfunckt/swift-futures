@@ -46,7 +46,7 @@ extension Channel._Private {
         @usableFromInline var _state: AtomicUInt.RawValue = State.OPEN_MASK
         @usableFromInline let _buffer: C.Buffer
         @usableFromInline let _senders: C.Park
-        @usableFromInline let _receiver = _AtomicWaker()
+        @usableFromInline let _receiver = AtomicWaker()
 
         @inlinable
         init(buffer: C.Buffer, park: C.Park) {

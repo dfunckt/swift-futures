@@ -7,94 +7,90 @@
 
 import FuturesSync
 
-// set to `false` to replace _AtomicWaker with a simple
-// thread-safe waker that is useful for debugging.
+// set to `false` to replace AtomicWaker with a simple
+// lock-based waker that is useful for debugging.
 #if true
 
 /// A primitive for synchronizing attempts to wake a task.
 @usableFromInline
-final class _AtomicWaker: WakerProtocol {
-    private struct State: OptionSet {
-        var rawValue: AtomicUInt.RawValue
+internal final class AtomicWaker: WakerProtocol {
+    @usableFromInline struct State: Bitset {
+        @usableFromInline let rawValue: AtomicUInt.RawValue
 
-        static let waiting: State = []
-        static let registering = State(rawValue: 1)
-        static let notifying = State(rawValue: 2)
-        static let notified = State(rawValue: ~notifying.rawValue)
+        @inlinable
+        init(rawValue: AtomicUInt.RawValue) {
+            self.rawValue = rawValue
+        }
+
+        @inlinable static var idle: State { 0 }
+        @inlinable static var registering: State { 0b01 }
+        @inlinable static var notifying: State { 0b10 }
     }
 
-    private var _state: State.RawValue = 0
-    private var _waker: WakerProtocol?
+    @usableFromInline var _state = State.idle.rawValue
+    @usableFromInline var _waker: WakerProtocol?
 
-    @usableFromInline
-    init() {
-        State.initialize(&_state, to: .waiting)
+    @inlinable
+    internal init() {
+        State.initialize(&_state, to: .idle)
     }
 
     /// Register a waker to be notified on calls to `signal()`.
-    /// Returns `true` if the waker was immediately signalled instead.
-    /// This method is not thread-safe.
-    @usableFromInline
-    func register(_ waker: WakerProtocol) {
-        if let w = _exchange(waker) {
-            w.signal()
-        }
-    }
-
-    /// Exchange the waker to be notified on calls to `signal()`.
-    /// Returns the previous waker (which could also be the one given) if it
-    /// should be immediately signalled because of a concurrent signal.
-    /// This method is not thread-safe.
-    private func _exchange(_ waker: WakerProtocol) -> WakerProtocol? {
-        switch State.compareExchange(&_state, .waiting, .registering, order: .acquire) {
-        case .waiting:
+    /// This method must not be called concurrently.
+    @inlinable
+    internal func register(_ waker: WakerProtocol) {
+        switch State.compareExchange(&_state, .idle, .registering, order: .acquire) {
+        case .idle:
             // Lock acquired, save the waker.
             _waker = waker
 
             // Release the lock. If state transitioned to NOTIFYING in the
             // meantime, someone's called signal() concurrently, so notify the
             // waker immediately.
-            switch State.compareExchange(&_state, .registering, .waiting, order: .acqrel, loadOrder: .acquire) {
+            switch State.compareExchange(&_state, .registering, .idle, order: .acqrel, loadOrder: .acquire) {
             case .registering:
-                return nil
+                return
             case let actual:
                 assert(actual == [.registering, .notifying])
-                let waker = _waker.move()
-                State.store(&_state, .waiting, order: .release)
-                return waker
+                State.store(&_state, .idle, order: .release)
+                waker.signal()
             }
 
         case .notifying:
             // Currently in the process of signalling the currently set waker.
             // Make sure to notify the new waker as well, given `self.waker`
             // may be obsolete by now.
-            return waker
+            waker.signal()
+            // This is a lot like spinning, so give other threads
+            // a chance as well
+            Atomic.preemptionYield(0)
 
         case let actual:
             // Another thread is concurrently calling register(). This denotes
             // a bug in the caller's code not synchronising access to register().
-            assert(
-                actual == .registering ||
-                    actual == [.registering, .notifying]
-            )
+            assert(actual == .registering || actual == [.registering, .notifying])
             fatalError("concurrent attempt to register waker")
         }
     }
 
-    /// Signals the last registered waker. This method is thread-safe.
-    @usableFromInline
-    func signal() {
+    /// Signals the last registered waker.
+    ///
+    /// This method can be called concurrently.
+    @inlinable
+    internal func signal() {
         move()?.signal()
     }
 
-    /// Returns the last registered waker. This method is thread-safe.
-    @usableFromInline
-    func move() -> WakerProtocol? {
+    /// Returns the last registered waker.
+    ///
+    /// This method can be called concurrently.
+    @inlinable
+    internal func move() -> WakerProtocol? {
         switch State.fetchOr(&_state, .notifying, order: .acqrel) {
-        case .waiting:
+        case .idle:
             // Lock acquired. Take out the waker before releasing it.
             let waker = _waker.move()
-            State.fetchAnd(&_state, .notified, order: .release)
+            State.fetchXor(&_state, .notifying, order: .release)
             return waker
 
         case let actual:
@@ -109,21 +105,21 @@ final class _AtomicWaker: WakerProtocol {
 }
 
 #else
+private let _warnBlockingWaker: Void = {
+    print("WARNING: using blocking AtomicWaker")
+}()
 
 @usableFromInline
-final class _AtomicWaker: WakerProtocol {
+internal final class AtomicWaker: WakerProtocol {
     @usableFromInline let _lock = UnfairLock()
     @usableFromInline var _waker: WakerProtocol?
 
-    @inlinable
-    init() {
-        #if DEBUG
-        print("WARNING: using blocking AtomicWaker")
-        #endif
+    internal init() {
+        _warnBlockingWaker
     }
 
     @inlinable
-    func register(_ waker: WakerProtocol) {
+    internal func register(_ waker: WakerProtocol) {
         // states are distinct due to exclusive locking,
         // and there is never a need to signal the previous
         // waker like on the atomic version.
@@ -131,12 +127,12 @@ final class _AtomicWaker: WakerProtocol {
     }
 
     @inlinable
-    func signal() {
+    internal func signal() {
         move()?.signal()
     }
 
     @inlinable
-    func move() -> WakerProtocol? {
+    internal func move() -> WakerProtocol? {
         return _lock.sync { _waker.move() }
     }
 }

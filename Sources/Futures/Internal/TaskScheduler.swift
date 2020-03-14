@@ -15,10 +15,10 @@ final class _TaskScheduler<F: FutureProtocol> {
     private var _head: Node?
     private var _nodeCache = AdaptiveQueue<Node>()
     @usableFromInline var _length = 0
-    @usableFromInline let _waker: _AtomicWaker
+    @usableFromInline let _waker: AtomicWaker
 
     init() {
-        let waker = _AtomicWaker()
+        let waker = AtomicWaker()
         _waker = waker
         _queue = ReadyQueue(waker: waker)
     }
@@ -218,12 +218,12 @@ private final class _ReadyQueue<F: FutureProtocol> {
         }
     }
 
-    private let _waker: _AtomicWaker
+    private let _waker: AtomicWaker
     private var _head: AtomicNode.RawValue = 0 // producers
     private var _tail: Node // consumer
     private let _stub: Node // consumer
 
-    init(waker: _AtomicWaker) {
+    init(waker: AtomicWaker) {
         let node = Node.create(minimumCapacity: 1) { _ in .init() }
         node.withUnsafeMutablePointers {
             AtomicBool.initialize(&$0.pointee.enqueued, to: true)

@@ -31,7 +31,7 @@ public final class Task<Output>: FutureProtocol, Cancellable {
     @usableFromInline
     struct _Inner {
         @usableFromInline let cancelled = AtomicBool(false)
-        @usableFromInline let waker = _AtomicWaker()
+        @usableFromInline let waker = AtomicWaker()
         @usableFromInline let promise = Promise<Output>()
     }
 

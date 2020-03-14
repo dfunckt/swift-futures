@@ -7,7 +7,7 @@
 
 extension Channel._Private {
     public struct SPSCPark: _ChannelParkImplProtocol {
-        @usableFromInline let _waker = _AtomicWaker()
+        @usableFromInline let _waker = AtomicWaker()
 
         @inlinable
         init() {}
