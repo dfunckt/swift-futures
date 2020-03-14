@@ -1,5 +1,5 @@
 //
-//  AtomicRef.swift
+//  AtomicReference.swift
 //  Futures
 //
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
@@ -27,9 +27,18 @@ func _toOpaqueRetained<T: AnyObject>(_ obj: T?) -> (bits: UInt, ptr: Unmanaged<T
     return (NIL, nil)
 }
 
+@inlinable
+@_transparent
+func _fromOpaque<T: AnyObject>(_ bits: UInt, as _: T.Type = T.self) -> Unmanaged<T>? {
+    if bits != NIL, let ptr = UnsafeRawPointer(bitPattern: bits) {
+        return Unmanaged.fromOpaque(ptr)
+    }
+    return nil
+}
+
 public typealias AtomicUSize = AtomicUInt
 
-public final class AtomicRef<T: AnyObject> {
+public final class AtomicReference<T: AnyObject> {
     public typealias Pointer = AtomicUSize.Pointer
     public typealias RawValue = AtomicUSize.RawValue
 
@@ -37,39 +46,34 @@ public final class AtomicRef<T: AnyObject> {
 
     @inlinable
     public init(_ obj: T? = nil) {
-        AtomicRef.initialize(&_storage, to: obj)
+        AtomicReference.initialize(&_storage, to: obj)
     }
 
     @inlinable
     deinit {
-        AtomicRef.store(&_storage, T?.none)
+        AtomicReference.destroy(&_storage)
     }
 }
 
-extension AtomicRef {
+extension AtomicReference {
     public var value: T? {
-        @_transparent get { return load() }
+        @_transparent get { load() }
         @_transparent set { store(newValue) }
     }
 
     @_transparent
-    public func destroy(order: AtomicStoreMemoryOrder = .seqcst) {
-        return AtomicRef.destroy(&_storage, order: order)
-    }
-
-    @_transparent
     public func load(order: AtomicLoadMemoryOrder = .seqcst) -> T? {
-        return AtomicRef.load(&_storage, order: order)
+        return AtomicReference.load(&_storage, order: order)
     }
 
     @_transparent
     public func store(_ obj: T?, order: AtomicStoreMemoryOrder = .seqcst) {
-        return AtomicRef.store(&_storage, obj, order: order)
+        return AtomicReference.store(&_storage, obj, order: order)
     }
 
     @_transparent
     public func exchange(_ obj: T?, order: AtomicMemoryOrder = .seqcst) -> T? {
-        return AtomicRef.exchange(&_storage, obj, order: order)
+        return AtomicReference.exchange(&_storage, obj, order: order)
     }
 
     @_transparent
@@ -80,7 +84,7 @@ extension AtomicRef {
         order: AtomicMemoryOrder = .seqcst,
         loadOrder: AtomicLoadMemoryOrder? = nil
     ) -> Bool {
-        return AtomicRef.compareExchange(
+        return AtomicReference.compareExchange(
             &_storage,
             expected,
             desired,
@@ -97,7 +101,7 @@ extension AtomicRef {
         order: AtomicMemoryOrder = .seqcst,
         loadOrder: AtomicLoadMemoryOrder? = nil
     ) -> T? {
-        return AtomicRef.compareExchange(
+        return AtomicReference.compareExchange(
             &_storage,
             expected,
             desired,
@@ -114,7 +118,7 @@ extension AtomicRef {
         order: AtomicMemoryOrder = .seqcst,
         loadOrder: AtomicLoadMemoryOrder? = nil
     ) -> Bool {
-        return AtomicRef.compareExchangeWeak(
+        return AtomicReference.compareExchangeWeak(
             &_storage,
             expected,
             desired,
@@ -131,7 +135,7 @@ extension AtomicRef {
         order: AtomicMemoryOrder = .seqcst,
         loadOrder: AtomicLoadMemoryOrder? = nil
     ) -> T? {
-        return AtomicRef.compareExchangeWeak(
+        return AtomicReference.compareExchangeWeak(
             &_storage,
             expected,
             desired,
@@ -141,13 +145,11 @@ extension AtomicRef {
     }
 }
 
-// MARK: - Type Methods -
-
-extension AtomicRef {
+extension AtomicReference {
     @_transparent
     public static func initialize(_ ptr: Pointer, to obj: T? = nil) {
         let (bits, _) = _toOpaqueRetained(obj)
-        Atomic.initialize(ptr, to: bits)
+        AtomicUSize.initialize(ptr, to: bits)
     }
 
     @_transparent
@@ -157,11 +159,8 @@ extension AtomicRef {
 
     @_transparent
     public static func load(_ ref: Pointer, order: AtomicLoadMemoryOrder = .seqcst) -> T? {
-        let current = Atomic.load(ref, order: order)
-        if current != NIL, let ptr = UnsafeRawPointer(bitPattern: current) {
-            return Unmanaged.fromOpaque(ptr).takeUnretainedValue()
-        }
-        return nil
+        let current = AtomicUSize.load(ref, order: order)
+        return _fromOpaque(current)?.takeUnretainedValue()
     }
 
     @_transparent
@@ -169,20 +168,15 @@ extension AtomicRef {
         // swiftlint:disable:next force_unwrapping
         let order = AtomicMemoryOrder(rawValue: order.rawValue)!
         let desired = _toOpaqueRetained(obj)
-        let current = Atomic.exchange(ref, desired.bits, order: order)
-        if current != NIL, let ptr = UnsafeRawPointer(bitPattern: current) {
-            Unmanaged<T>.fromOpaque(ptr).release()
-        }
+        let current = AtomicUSize.exchange(ref, desired.bits, order: order)
+        _fromOpaque(current, as: T.self)?.release()
     }
 
     @_transparent
     public static func exchange(_ ref: Pointer, _ obj: T?, order: AtomicMemoryOrder = .seqcst) -> T? {
         let desired = _toOpaqueRetained(obj)
-        let current = Atomic.exchange(ref, desired.bits, order: order)
-        if current != NIL, let ptr = UnsafeRawPointer(bitPattern: current) {
-            return Unmanaged.fromOpaque(ptr).takeRetainedValue()
-        }
-        return nil
+        let current = AtomicUSize.exchange(ref, desired.bits, order: order)
+        return _fromOpaque(current)?.takeRetainedValue()
     }
 
     @_transparent
@@ -196,7 +190,7 @@ extension AtomicRef {
     ) -> Bool {
         var exp = _toOpaque(expected.pointee)
         let des = _toOpaque(desired)
-        if Atomic.compareExchange(
+        if AtomicUSize.compareExchange(
             ref,
             &exp.bits,
             des.bits,
@@ -205,14 +199,11 @@ extension AtomicRef {
         ) {
             _ = des.ptr?.retain()
             exp.ptr?.release()
-            withExtendedLifetime(desired) {}
-            return true
+            return withExtendedLifetime(desired) {
+                true
+            }
         }
-        if exp.bits != NIL, let ptr = UnsafeRawPointer(bitPattern: exp.bits) {
-            expected.pointee = Unmanaged<T>.fromOpaque(ptr).takeUnretainedValue()
-        } else {
-            expected.pointee = nil
-        }
+        expected.pointee = _fromOpaque(exp.bits)?.takeUnretainedValue()
         return false
     }
 
@@ -227,7 +218,7 @@ extension AtomicRef {
     ) -> T? {
         var exp = _toOpaque(expected)
         let des = _toOpaque(desired)
-        if Atomic.compareExchange(
+        if AtomicUSize.compareExchange(
             ref,
             &exp.bits,
             des.bits,
@@ -236,13 +227,11 @@ extension AtomicRef {
         ) {
             _ = des.ptr?.retain()
             exp.ptr?.release()
-            withExtendedLifetime(desired) {}
-            return expected
+            return withExtendedLifetime(desired) {
+                expected
+            }
         }
-        if exp.bits != NIL, let ptr = UnsafeRawPointer(bitPattern: exp.bits) {
-            return Unmanaged<T>.fromOpaque(ptr).takeUnretainedValue()
-        }
-        return nil
+        return _fromOpaque(exp.bits)?.takeUnretainedValue()
     }
 
     @_transparent
@@ -256,7 +245,7 @@ extension AtomicRef {
     ) -> Bool {
         var exp = _toOpaque(expected.pointee)
         let des = _toOpaque(desired)
-        if Atomic.compareExchangeWeak(
+        if AtomicUSize.compareExchangeWeak(
             ref,
             &exp.bits,
             des.bits,
@@ -265,14 +254,11 @@ extension AtomicRef {
         ) {
             _ = des.ptr?.retain()
             exp.ptr?.release()
-            withExtendedLifetime(desired) {}
-            return true
+            return withExtendedLifetime(desired) {
+                true
+            }
         }
-        if exp.bits != NIL, let ptr = UnsafeRawPointer(bitPattern: exp.bits) {
-            expected.pointee = Unmanaged<T>.fromOpaque(ptr).takeUnretainedValue()
-        } else {
-            expected.pointee = nil
-        }
+        expected.pointee = _fromOpaque(exp.bits)?.takeUnretainedValue()
         return false
     }
 
@@ -287,7 +273,7 @@ extension AtomicRef {
     ) -> T? {
         var exp = _toOpaque(expected)
         let des = _toOpaque(desired)
-        if Atomic.compareExchangeWeak(
+        if AtomicUSize.compareExchangeWeak(
             ref,
             &exp.bits,
             des.bits,
@@ -296,12 +282,10 @@ extension AtomicRef {
         ) {
             _ = des.ptr?.retain()
             exp.ptr?.release()
-            withExtendedLifetime(desired) {}
-            return expected
+            return withExtendedLifetime(desired) {
+                expected
+            }
         }
-        if exp.bits != NIL, let ptr = UnsafeRawPointer(bitPattern: exp.bits) {
-            return Unmanaged<T>.fromOpaque(ptr).takeUnretainedValue()
-        }
-        return nil
+        return _fromOpaque(exp.bits)?.takeUnretainedValue()
     }
 }

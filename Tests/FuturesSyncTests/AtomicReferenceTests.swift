@@ -1,5 +1,5 @@
 //
-//  AtomicRefTests.swift
+//  AtomicReferenceTests.swift
 //  Futures
 //
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
@@ -17,7 +17,7 @@ final class AtomicRefTests: XCTestCase {
         ({
             let someInstance = SomeClass()
             weakSomeInstance1 = someInstance
-            let someAtomic = AtomicRef(someInstance)
+            let someAtomic = AtomicReference(someInstance)
             let loadedFromAtomic = someAtomic.load()
             weakSomeInstance2 = loadedFromAtomic
             XCTAssertNotNil(weakSomeInstance1)
@@ -38,7 +38,7 @@ final class AtomicRefTests: XCTestCase {
             let someInstance2 = SomeClass()
             weakSomeInstance1 = someInstance1
 
-            let atomic = AtomicRef(someInstance1)
+            let atomic = AtomicReference(someInstance1)
             var loadedFromAtomic = atomic.load()
             XCTAssert(someInstance1 === loadedFromAtomic)
             weakSomeInstance2 = loadedFromAtomic
@@ -70,7 +70,7 @@ final class AtomicRefTests: XCTestCase {
             let someInstance2 = SomeClass()
             weakSomeInstance1 = someInstance1
 
-            let atomic = AtomicRef(someInstance1)
+            let atomic = AtomicReference(someInstance1)
             var loadedFromAtomic = atomic.load()
             XCTAssert(someInstance1 === loadedFromAtomic)
             weakSomeInstance2 = loadedFromAtomic
@@ -104,7 +104,7 @@ final class AtomicRefTests: XCTestCase {
             var instance: Optional = SomeClass()
             weakInstance = instance
 
-            let atomic = AtomicRef(instance)
+            let atomic = AtomicReference(instance)
             q.async(group: g, flags: .detached) {
                 sem1.signal()
                 sem2.wait()
@@ -135,7 +135,7 @@ final class AtomicRefTests: XCTestCase {
             let someInstance2 = SomeClass()
             weakSomeInstance1 = someInstance1
 
-            let atomic = AtomicRef(someInstance1)
+            let atomic = AtomicReference(someInstance1)
             var loadedFromAtomic = atomic.load()
             XCTAssert(someInstance1 === loadedFromAtomic)
             weakSomeInstance2 = loadedFromAtomic

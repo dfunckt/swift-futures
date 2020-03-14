@@ -50,7 +50,7 @@ public final class AnyCancellable: Cancellable {
     /// cancellable object.
     @inlinable
     public init<C: Cancellable>(_ canceller: C) {
-        Atomic.initialize(&_cancelled, to: false)
+        AtomicBool.initialize(&_cancelled, to: false)
 
         // We could be checking for `canceller as? AnyCancellable`
         // and taking ownership of its state here, but that would
@@ -67,7 +67,7 @@ public final class AnyCancellable: Cancellable {
     /// Initializes the cancellable object with the given cancel-time closure.
     @inlinable
     public init(_ fn: @escaping () -> Void) {
-        Atomic.initialize(&_cancelled, to: false)
+        AtomicBool.initialize(&_cancelled, to: false)
         _cancelFn = fn
     }
 
@@ -78,7 +78,7 @@ public final class AnyCancellable: Cancellable {
 
     @inlinable
     public func cancel() {
-        guard !Atomic.exchange(&_cancelled, true) else {
+        guard !AtomicBool.exchange(&_cancelled, true) else {
             return
         }
         _cancelFn()

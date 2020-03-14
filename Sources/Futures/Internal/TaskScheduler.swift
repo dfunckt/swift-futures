@@ -143,7 +143,7 @@ final class _TaskScheduler<F: FutureProtocol> {
 
 // This is an implementation of "Intrusive MPSC node-based queue" from 1024cores.net.
 private final class _ReadyQueue<F: FutureProtocol> {
-    typealias AtomicNode = AtomicRef<Node>
+    typealias AtomicNode = AtomicReference<Node>
 
     struct NodeHeader {
         var future: F?
@@ -201,7 +201,7 @@ private final class _ReadyQueue<F: FutureProtocol> {
         @discardableResult
         func enqueued(_ flag: AtomicBool.RawValue) -> AtomicBool.RawValue {
             return withUnsafeMutablePointerToHeader {
-                Atomic.exchange(&$0.pointee.enqueued, flag)
+                AtomicBool.exchange(&$0.pointee.enqueued, flag)
             }
         }
 
@@ -210,7 +210,7 @@ private final class _ReadyQueue<F: FutureProtocol> {
                 guard let queue = $0.pointee.queue else {
                     return
                 }
-                if !Atomic.exchange(&$0.pointee.enqueued, true) {
+                if !AtomicBool.exchange(&$0.pointee.enqueued, true) {
                     queue.enqueue(self)
                     queue._waker.signal()
                 }
@@ -226,7 +226,7 @@ private final class _ReadyQueue<F: FutureProtocol> {
     init(waker: _AtomicWaker) {
         let node = Node.create(minimumCapacity: 1) { _ in .init() }
         node.withUnsafeMutablePointers {
-            Atomic.initialize(&$0.pointee.enqueued, to: true)
+            AtomicBool.initialize(&$0.pointee.enqueued, to: true)
             AtomicNode.initialize($1, to: nil)
         }
         let stub = unsafeDowncast(node, to: Node.self)
@@ -255,7 +255,7 @@ private final class _ReadyQueue<F: FutureProtocol> {
         node.withUnsafeMutablePointers {
             $0.pointee.queue = self
             $0.pointee.future = future
-            Atomic.initialize(&$0.pointee.enqueued, to: true)
+            AtomicBool.initialize(&$0.pointee.enqueued, to: true)
             AtomicNode.initialize($1, to: nil)
         }
         return unsafeDowncast(node, to: Node.self)

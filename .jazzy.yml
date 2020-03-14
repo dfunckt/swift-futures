@@ -79,18 +79,29 @@ custom_categories:
     children:
     - Atomic
     - AtomicEnum
-    - AtomicRef
+    - AtomicReference
     - AtomicBool
+    - AtomicBoolPointer
     - AtomicInt
+    - AtomicIntPointer
     - AtomicInt8
+    - AtomicInt8Pointer
     - AtomicInt16
+    - AtomicInt16Pointer
     - AtomicInt32
+    - AtomicInt32Pointer
     - AtomicInt64
+    - AtomicInt64Pointer
     - AtomicUInt
+    - AtomicUIntPointer
     - AtomicUInt8
+    - AtomicUInt8Pointer
     - AtomicUInt16
+    - AtomicUInt16Pointer
     - AtomicUInt32
+    - AtomicUInt32Pointer
     - AtomicUInt64
+    - AtomicUInt64Pointer
     - AtomicUSize
 
   - name: Bounded Queues
@@ -106,8 +117,6 @@ custom_categories:
     - AtomicUnboundedQueueProtocol
     - AtomicUnboundedMPSCQueue
     - AtomicUnboundedSPSCQueue
-    - AtomicIntrusiveMPSCQueue
-    - AtomicIntrusiveMPSCQueueNode
 
   - name: Locking
     children:

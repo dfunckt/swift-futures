@@ -12,24 +12,24 @@ public final class SpinLock: LockingProtocol {
 
     @inlinable
     public init() {
-        Atomic.initialize(&_flag, to: false)
+        AtomicBool.initialize(&_flag, to: false)
     }
 
     @inlinable
     public func tryAcquire() -> Bool {
-        return !Atomic.compareExchange(&_flag, false, true, order: .acquire)
+        return !AtomicBool.compareExchange(&_flag, false, true, order: .acquire)
     }
 
     @inlinable
     public func acquire() {
         var backoff = Backoff()
-        while Atomic.compareExchangeWeak(&_flag, false, true, order: .acquire) {
+        while AtomicBool.compareExchangeWeak(&_flag, false, true, order: .acquire) {
             backoff.yield()
         }
     }
 
     @inlinable
     public func release() {
-        Atomic.compareExchange(&_flag, true, false, order: .release)
+        AtomicBool.compareExchange(&_flag, true, false, order: .release)
     }
 }

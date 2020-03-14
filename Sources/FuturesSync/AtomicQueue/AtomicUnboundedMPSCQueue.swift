@@ -14,7 +14,7 @@ import FuturesPrivate
 public final class AtomicUnboundedMPSCQueue<T>: AtomicUnboundedQueueProtocol {
     public typealias Element = T
 
-    @usableFromInline typealias AtomicNode = AtomicRef<_Node>
+    @usableFromInline typealias AtomicNode = AtomicReference<_Node>
 
     @usableFromInline
     final class _Node {

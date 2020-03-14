@@ -126,12 +126,12 @@ final class _ThreadWaker: WakerProtocol {
 
     @inlinable
     init() {
-        Atomic.initialize(&_signalled, to: false)
+        AtomicBool.initialize(&_signalled, to: false)
     }
 
     @inlinable
     func signal() {
-        if Atomic.exchange(&_signalled, true, order: .release) {
+        if AtomicBool.exchange(&_signalled, true, order: .release) {
             return
         }
         _semaphore.signal()
@@ -139,7 +139,7 @@ final class _ThreadWaker: WakerProtocol {
 
     @inlinable
     func wait() {
-        if Atomic.exchange(&_signalled, false, order: .acquire) {
+        if AtomicBool.exchange(&_signalled, false, order: .acquire) {
             return
         }
         _semaphore.wait()

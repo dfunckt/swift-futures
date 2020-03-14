@@ -24,7 +24,7 @@ struct _AtomicBufferSlot<T> {
 
     @inlinable
     init(_ sequence: AtomicInt.RawValue) {
-        Atomic.initialize(&self.sequence, to: sequence)
+        AtomicInt.initialize(&self.sequence, to: sequence)
     }
 }
 

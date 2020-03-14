@@ -32,13 +32,13 @@ public final class AtomicSPSCQueue<Element>: AtomicQueueProtocol {
             var backoff = Backoff()
             while true {
                 let i = _head
-                let s = Atomic.load(&elements[i & _mask].sequence, order: .acquire)
+                let s = AtomicInt.load(&elements[i & _mask].sequence, order: .acquire)
                 let diff = s - i
 
                 if diff == 0 {
                     _head += 1
                     elements[i & _mask].value = value
-                    Atomic.store(&elements[i & _mask].sequence, i + 1, order: .release)
+                    AtomicInt.store(&elements[i & _mask].sequence, i + 1, order: .release)
                     return true
                 } else if diff < 0 {
                     // full
@@ -56,14 +56,14 @@ public final class AtomicSPSCQueue<Element>: AtomicQueueProtocol {
             var backoff = Backoff()
             while true {
                 let i = _tail
-                let s = Atomic.load(&elements[i & _mask].sequence, order: .acquire)
+                let s = AtomicInt.load(&elements[i & _mask].sequence, order: .acquire)
                 let diff = s - (i + 1)
 
                 if diff == 0 {
                     _tail += 1
                     let value = elements[i & _mask].value
                     elements[i & _mask].value = nil
-                    Atomic.store(&elements[i & _mask].sequence, i + (_mask + 1), order: .release)
+                    AtomicInt.store(&elements[i & _mask].sequence, i + (_mask + 1), order: .release)
                     return value
                 } else if diff < 0 {
                     // empty

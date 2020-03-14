@@ -28,7 +28,7 @@ extension Stream._Private {
             _base = base
             _waker = .init(_state)
             _buffer = .init(strategy: replay)
-            Atomic.initialize(&_expecting, to: 0)
+            AtomicInt.initialize(&_expecting, to: 0)
         }
 
         public final class Receiver: StreamProtocol, Cancellable {
@@ -106,7 +106,7 @@ extension Stream._Private.Share {
 
         @inlinable
         init() {
-            Atomic.initialize(&result, to: false)
+            AtomicBool.initialize(&result, to: false)
         }
 
         @usableFromInline
@@ -173,8 +173,8 @@ extension Stream._Private.Share {
             if let index = _tasks.firstIndex(where: { $0 === task }) {
                 _tasks.remove(at: index)
             }
-            if Atomic.load(&task.result) {
-                if Atomic.fetchSub(&_expecting, 1, order: .relaxed) == 1 {
+            if AtomicBool.load(&task.result) {
+                if AtomicInt.fetchSub(&_expecting, 1, order: .relaxed) == 1 {
                     let previous = _state.exchange(.idle)
                     assert(previous == .broadcasting)
                 }
@@ -208,12 +208,12 @@ extension Stream._Private.Share {
             case let count:
                 // Switch the state and notify the other receivers.
                 _element = element
-                Atomic.store(&_expecting, count - 1, order: .relaxed)
+                AtomicInt.store(&_expecting, count - 1, order: .relaxed)
                 let previous = _state.exchange(.broadcasting)
                 assert(previous == .polling || previous == .notifying)
 
                 for t in _tasks where t !== task {
-                    Atomic.store(&t.result, true)
+                    AtomicBool.store(&t.result, true)
                     t.notify()
                 }
             }
@@ -222,11 +222,11 @@ extension Stream._Private.Share {
 
     @inlinable
     func _tryReceive(_ task: _Task) -> Output?? {
-        guard Atomic.exchange(&task.result, false) else {
+        guard AtomicBool.exchange(&task.result, false) else {
             return nil
         }
         let element = _element
-        if Atomic.fetchSub(&_expecting, 1, order: .relaxed) == 1 {
+        if AtomicInt.fetchSub(&_expecting, 1, order: .relaxed) == 1 {
             // This is the last receiver to be consuming the
             // element; reset state back to IDLE.
             let previous = _state.exchange(.idle)

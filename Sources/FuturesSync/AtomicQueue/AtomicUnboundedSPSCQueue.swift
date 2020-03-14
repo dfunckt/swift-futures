@@ -15,7 +15,7 @@ import FuturesPrivate
 public final class AtomicUnboundedSPSCQueue<T>: AtomicUnboundedQueueProtocol {
     public typealias Element = T
 
-    @usableFromInline typealias AtomicNode = AtomicRef<_Node>
+    @usableFromInline typealias AtomicNode = AtomicReference<_Node>
 
     @usableFromInline
     final class _Node {
@@ -103,9 +103,9 @@ public final class AtomicUnboundedSPSCQueue<T>: AtomicUnboundedQueueProtocol {
         if _maxCached == 0 {
             AtomicNode.store(&_tailPrev, tail, order: .release)
         } else {
-            let count = Atomic.load(&_numCached, order: .relaxed)
+            let count = AtomicInt.load(&_numCached, order: .relaxed)
             if count < _maxCached, !tail._cached {
-                Atomic.store(&_numCached, count, order: .relaxed)
+                AtomicInt.store(&_numCached, count, order: .relaxed)
                 tail._cached = true
             }
             if tail._cached {

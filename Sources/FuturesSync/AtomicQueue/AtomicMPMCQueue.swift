@@ -30,14 +30,14 @@ public final class AtomicMPMCQueue<Element>: AtomicQueueProtocol {
         return _buffer.withUnsafeMutablePointerToElements { elements in
             var backoff = Backoff()
             while true {
-                let i = Atomic.load(&_head, order: .relaxed)
-                let s = Atomic.load(&elements[i & _mask].sequence, order: .acquire)
+                let i = AtomicInt.load(&_head, order: .relaxed)
+                let s = AtomicInt.load(&elements[i & _mask].sequence, order: .acquire)
                 let diff = s - i
 
                 if diff == 0 {
-                    if i == Atomic.compareExchangeWeak(&_head, i, i + 1, order: .relaxed) {
+                    if i == AtomicInt.compareExchangeWeak(&_head, i, i + 1, order: .relaxed) {
                         elements[i & _mask].value = value
-                        Atomic.store(&elements[i & _mask].sequence, i + 1, order: .release)
+                        AtomicInt.store(&elements[i & _mask].sequence, i + 1, order: .release)
                         return true
                     }
                 } else if diff < 0 {
@@ -55,15 +55,15 @@ public final class AtomicMPMCQueue<Element>: AtomicQueueProtocol {
         return _buffer.withUnsafeMutablePointerToElements { elements in
             var backoff = Backoff()
             while true {
-                let i = Atomic.load(&_tail, order: .relaxed)
-                let s = Atomic.load(&elements[i & _mask].sequence, order: .acquire)
+                let i = AtomicInt.load(&_tail, order: .relaxed)
+                let s = AtomicInt.load(&elements[i & _mask].sequence, order: .acquire)
                 let diff = s - (i + 1)
 
                 if diff == 0 {
-                    if i == Atomic.compareExchangeWeak(&_tail, i, i + 1, order: .relaxed) {
+                    if i == AtomicInt.compareExchangeWeak(&_tail, i, i + 1, order: .relaxed) {
                         let value = elements[i & _mask].value
                         elements[i & _mask].value = nil
-                        Atomic.store(&elements[i & _mask].sequence, i + (_mask + 1), order: .release)
+                        AtomicInt.store(&elements[i & _mask].sequence, i + (_mask + 1), order: .release)
                         return value
                     }
                 } else if diff < 0 {

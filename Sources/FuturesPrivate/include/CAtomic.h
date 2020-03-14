@@ -23,12 +23,6 @@
 #define _CATOMIC_INLINE static inline
 #endif
 
-#if __has_attribute(overloadable)
-#define _CATOMIC_OVERLOADABLE __attribute__((overloadable))
-#else
-#error Compiler does not support the "overloadable" attribute
-#endif
-
 #if __has_attribute(swift_name)
 #define SWIFT_NAME(_name) __attribute__((swift_name(#_name)))
 #else
@@ -201,53 +195,53 @@ _CATOMIC_INLINE void CAtomicPreemptionYield(uint64_t timeout) {
 #define _CATOMIC_VAR(name, swift_type, atomic_type, c_type) \
 typedef volatile c_type C##name; \
 typedef volatile c_type *_Nonnull name##Pointer; \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-void CAtomicInitialize(name##Pointer ptr, c_type value) { \
+_CATOMIC_INLINE \
+void C##name##Initialize(name##Pointer ptr, c_type value) { \
     atomic_init((atomic_type *)ptr, value); \
 } \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-_Bool CAtomicCompareExchangeStrong(name##Pointer ptr, c_type *_Nonnull expected, c_type desired, enum AtomicMemoryOrder succ, enum AtomicLoadMemoryOrder fail) { \
+_CATOMIC_INLINE \
+_Bool C##name##CompareExchangeStrong(name##Pointer ptr, c_type *_Nonnull expected, c_type desired, enum AtomicMemoryOrder succ, enum AtomicLoadMemoryOrder fail) { \
     assert(((enum AtomicMemoryOrder)fail) <= succ); \
     return atomic_compare_exchange_strong_explicit((atomic_type *)ptr, expected, desired, succ, fail); \
 } \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-_Bool CAtomicCompareExchangeWeak(name##Pointer ptr, c_type *_Nonnull expected, c_type desired, enum AtomicMemoryOrder succ, enum AtomicLoadMemoryOrder fail) { \
+_CATOMIC_INLINE \
+_Bool C##name##CompareExchangeWeak(name##Pointer ptr, c_type *_Nonnull expected, c_type desired, enum AtomicMemoryOrder succ, enum AtomicLoadMemoryOrder fail) { \
     assert(((enum AtomicMemoryOrder)fail) <= succ); \
     return atomic_compare_exchange_weak_explicit((atomic_type *)ptr, expected, desired, succ, fail); \
 } \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-c_type CAtomicExchange(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
+_CATOMIC_INLINE \
+c_type C##name##Exchange(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
     return atomic_exchange_explicit((atomic_type *)ptr, value, order); \
 } \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-c_type CAtomicLoad(name##Pointer ptr, enum AtomicLoadMemoryOrder order) { \
+_CATOMIC_INLINE \
+c_type C##name##Load(name##Pointer ptr, enum AtomicLoadMemoryOrder order) { \
     return atomic_load_explicit((atomic_type *)ptr, order); \
 } \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-void CAtomicStore(name##Pointer ptr, c_type value, enum AtomicStoreMemoryOrder order) { \
+_CATOMIC_INLINE \
+void C##name##Store(name##Pointer ptr, c_type value, enum AtomicStoreMemoryOrder order) { \
     atomic_store_explicit((atomic_type *)ptr, value, order); \
 } \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-c_type CAtomicFetchAnd(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
+_CATOMIC_INLINE \
+c_type C##name##FetchAnd(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
     return atomic_fetch_and_explicit((atomic_type *)ptr, value, order); \
 } \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-c_type CAtomicFetchOr(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
+_CATOMIC_INLINE \
+c_type C##name##FetchOr(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
     return atomic_fetch_or_explicit((atomic_type *)ptr, value, order); \
 } \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-c_type CAtomicFetchXor(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
+_CATOMIC_INLINE \
+c_type C##name##FetchXor(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
     return atomic_fetch_xor_explicit((atomic_type *)ptr, value, order); \
 }
 
 #define _CATOMIC_INTEGER(name, swift_type, atomic_type, c_type) \
 _CATOMIC_VAR(name, swift_type, atomic_type, c_type) \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-c_type CAtomicFetchAdd(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
+_CATOMIC_INLINE \
+c_type C##name##FetchAdd(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
     return atomic_fetch_add_explicit((atomic_type *)ptr, value, order); \
 } \
-_CATOMIC_INLINE _CATOMIC_OVERLOADABLE \
-c_type CAtomicFetchSub(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
+_CATOMIC_INLINE \
+c_type C##name##FetchSub(name##Pointer ptr, c_type value, enum AtomicMemoryOrder order) { \
     return atomic_fetch_sub_explicit((atomic_type *)ptr, value, order); \
 }
 

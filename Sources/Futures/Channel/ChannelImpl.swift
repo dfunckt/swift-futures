@@ -50,7 +50,7 @@ extension Channel._Private {
 
         @inlinable
         init(buffer: C.Buffer, park: C.Park) {
-            Atomic.initialize(&_state, to: State.OPEN_MASK)
+            AtomicUInt.initialize(&_state, to: State.OPEN_MASK)
             _buffer = buffer
             _senders = park
         }
@@ -63,7 +63,7 @@ extension Channel._Private {
         @inlinable
         func trySend(_ item: Item) -> Result<Bool, Channel.Error> {
             var backoff = Backoff()
-            var curr = Atomic.load(&_state)
+            var curr = AtomicUInt.load(&_state)
 
             while true {
                 var state = State(rawValue: curr)
@@ -80,7 +80,7 @@ extension Channel._Private {
                     _buffer.push(item)
 
                     if !_buffer.isPassthrough {
-                        if State(rawValue: Atomic.fetchAdd(&_state, 1)).count == 0 {
+                        if State(rawValue: AtomicUInt.fetchAdd(&_state, 1)).count == 0 {
                             _receiver.signal()
                         }
                         return .success(true)
@@ -88,10 +88,10 @@ extension Channel._Private {
 
                     // Passthrough-only path
                     state.count = 1
-                    if !State(rawValue: Atomic.exchange(&_state, state.rawValue)).isOpen {
+                    if !State(rawValue: AtomicUInt.exchange(&_state, state.rawValue)).isOpen {
                         state.count = 0
                         state.isOpen = false
-                        Atomic.store(&_state, state.rawValue)
+                        AtomicUInt.store(&_state, state.rawValue)
                         return .failure(.cancelled)
                     }
                     return .success(true)
@@ -102,7 +102,7 @@ extension Channel._Private {
 
                 state.count += 1
 
-                guard Atomic.compareExchange(&_state, &curr, state.rawValue) else {
+                guard AtomicUInt.compareExchange(&_state, &curr, state.rawValue) else {
                     if backoff.yield() {
                         backoff.reset()
                     }
@@ -153,7 +153,7 @@ extension Channel._Private {
             if !_buffer.supportsMultipleSenders {
                 // Fast-path for Passthrough, Unbuffered and Buffered channels.
                 // See trySend().
-                let state = State(rawValue: Atomic.load(&_state))
+                let state = State(rawValue: AtomicUInt.load(&_state))
                 if state.count == 0 {
                     if !state.isOpen {
                         return .failure(.cancelled)
@@ -164,7 +164,7 @@ extension Channel._Private {
             } else {
                 // Path for Shared channel
                 guard let _item = _buffer.pop() else {
-                    let state = State(rawValue: Atomic.load(&_state))
+                    let state = State(rawValue: AtomicUInt.load(&_state))
                     if !state.isOpen {
                         return .failure(.cancelled)
                     }
@@ -176,7 +176,7 @@ extension Channel._Private {
                 item = _item
             }
 
-            if State(rawValue: Atomic.fetchSub(&_state, 1)).count == 1 {
+            if State(rawValue: AtomicUInt.fetchSub(&_state, 1)).count == 1 {
                 _senders.notifyFlush()
             }
 
@@ -215,7 +215,7 @@ extension Channel._Private {
 
         @inlinable
         func tryFlush() -> Result<Bool, Channel.Error> {
-            let state = State(rawValue: Atomic.load(&_state))
+            let state = State(rawValue: AtomicUInt.load(&_state))
             if !state.isOpen {
                 return .failure(.cancelled)
             }
@@ -254,7 +254,7 @@ extension Channel._Private {
 
         @inlinable
         func close() {
-            let state = State(rawValue: Atomic.fetchAnd(&_state, State.COUNT_MASK))
+            let state = State(rawValue: AtomicUInt.fetchAnd(&_state, State.COUNT_MASK))
             if !state.isOpen {
                 return
             }
