@@ -127,6 +127,10 @@ custom_categories:
     - SpinLock
     - Mutex
 
+  - name: Thread
+    children:
+    - ThreadLocal
+
   - name: Helpers
     children:
     - Backoff

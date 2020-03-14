@@ -100,17 +100,19 @@ public final class ThreadExecutor: BlockingExecutor {
 
 // MARK: Default executors
 
-extension ThreadExecutor {
-    @usableFromInline static let _current = _ThreadLocal<ThreadExecutor>()
+@usableFromInline let _currentThreadExecutor = ThreadLocal {
+    ThreadExecutor()
+}
 
+extension ThreadExecutor {
     @inlinable
     public static var current: ThreadExecutor {
-        if let executor = _current.value {
-            return executor
-        }
-        let executor = ThreadExecutor()
-        _current.value = executor
-        return executor
+        _currentThreadExecutor.value
+    }
+
+    @inlinable
+    public var isCurrent: Bool {
+        Self.current === self
     }
 }
 

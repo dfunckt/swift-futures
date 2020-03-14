@@ -10,10 +10,12 @@ import FuturesSync
 
 #if canImport(Darwin)
 /// :nodoc:
-public let COMMON_MODES = CFRunLoopMode.commonModes! // swiftlint:disable:this force_unwrapping
+public let COMMON_MODES = CFRunLoopMode.commonModes!
+// swiftlint:disable:previous force_unwrapping
 #else
 /// :nodoc:
-public let COMMON_MODES = kCFRunLoopCommonModes! // swiftlint:disable:this force_unwrapping
+public let COMMON_MODES = kCFRunLoopCommonModes!
+// swiftlint:disable:previous force_unwrapping
 #endif
 
 public func assertOnRunLoopExecutor(_ executor: RunLoopExecutor) {
@@ -79,21 +81,22 @@ public final class RunLoopExecutor: ExecutorProtocol {
 
 // MARK: Default executors
 
-extension RunLoopExecutor {
-    private static let _current = _ThreadLocal<RunLoopExecutor>()
+private let _currentRunLoopExecutor = ThreadLocal<RunLoopExecutor> {
+    // swiftlint:disable:next force_unwrapping
+    let currentRunLoop = CFRunLoopGetCurrent()!
+    if currentRunLoop === CFRunLoopGetMain() {
+        return .main
+    }
+    return .init(runLoop: currentRunLoop)
+}
 
+extension RunLoopExecutor {
     public static var current: RunLoopExecutor {
-        if let executor = _current.value {
-            return executor
-        }
-        let executor: RunLoopExecutor
-        if CFRunLoopGetMain() === CFRunLoopGetCurrent() {
-            executor = .main
-        } else {
-            executor = RunLoopExecutor(runLoop: CFRunLoopGetCurrent())
-        }
-        _current.value = executor
-        return executor
+        _currentRunLoopExecutor.value
+    }
+
+    public var isCurrent: Bool {
+        Self.current === self
     }
 
     public static let main = RunLoopExecutor(
