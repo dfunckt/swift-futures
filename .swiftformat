@@ -1,15 +1,14 @@
 --swiftversion 5.0
 --allman false
---comments ignore
 --decimalgrouping 3,4
 --exclude Package.swift
 --ifdef no-indent
 --indent 4
 --patternlet inline
---ranges no-space
+--nospaceoperators
 --self remove
 --selfrequired 
 --wraparguments before-first
 --wrapcollections before-first
 --header \n {file}\n Futures\n\n Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.\n
---rules andOperator,anyObjectProtocol,blankLinesAroundMark,blankLinesAtEndOfScope,blankLinesAtStartOfScope,blankLinesBetweenScopes,braces,consecutiveBlankLines,consecutiveSpaces,duplicateImports,elseOnSameLine,emptyBraces,fileHeader,hoistPatternLet,indent,leadingDelimiters,linebreakAtEndOfFile,linebreaks,numberFormatting,ranges,redundantBackticks,redundantBreak,redundantExtensionACL,redundantFileprivate,redundantGet,redundantInit,redundantLet,redundantLetError,redundantNilInit,redundantObjc,redundantParens,redundantPattern,redundantRawValues,redundantSelf,redundantVoidReturnType,semicolons,sortedImports,spaceAroundBraces,spaceAroundBrackets,spaceAroundComments,spaceAroundGenerics,spaceAroundOperators,spaceAroundParens,spaceInsideBraces,spaceInsideBrackets,spaceInsideComments,spaceInsideGenerics,spaceInsideParens,specifiers,strongOutlets,strongifiedSelf,todos,trailingClosures,trailingCommas,trailingSpace,typeSugar,unusedArguments,void,wrapArguments,yodaConditions
+--rules andOperator,anyObjectProtocol,blankLinesAroundMark,blankLinesAtEndOfScope,blankLinesAtStartOfScope,blankLinesBetweenScopes,braces,consecutiveBlankLines,consecutiveSpaces,duplicateImports,elseOnSameLine,emptyBraces,fileHeader,hoistPatternLet,indent,leadingDelimiters,linebreakAtEndOfFile,linebreaks,numberFormatting,redundantBreak,redundantExtensionACL,redundantFileprivate,redundantGet,redundantInit,redundantLet,redundantLetError,redundantNilInit,redundantObjc,redundantParens,redundantPattern,redundantRawValues,redundantSelf,redundantVoidReturnType,semicolons,sortedImports,spaceAroundBraces,spaceAroundBrackets,spaceAroundComments,spaceAroundGenerics,spaceAroundParens,spaceInsideBraces,spaceInsideBrackets,spaceInsideComments,spaceInsideGenerics,spaceInsideParens,specifiers,strongOutlets,strongifiedSelf,todos,trailingClosures,trailingCommas,trailingSpace,typeSugar,unusedArguments,void,wrapArguments,yodaConditions

@@ -11,13 +11,16 @@ from __future__ import print_function
 import os
 import re
 import sys
+import textwrap
+import tokenize
+from bisect import bisect
+
+
 try:
     from cStringIO import StringIO
 except ImportError:
     from io import StringIO
-import textwrap
-import tokenize
-from bisect import bisect
+
 
 try:
     basestring
@@ -1137,16 +1140,6 @@ def execute_template(
 
 
 def main():
-    """
-    Lint this file.
-    >>> import sys
-    >>> gyb_path = os.path.realpath(__file__).replace('.pyc', '.py')
-    >>> sys.path.append(os.path.dirname(gyb_path))
-    >>> import python_lint
-    >>> python_lint.lint([gyb_path], verbose=False)
-    0
-    """
-
     import argparse
     import sys
 
@@ -1219,12 +1212,13 @@ def main():
         help='''Bindings to be set in the template's execution context''')
 
     parser.add_argument(
-        'file', type=argparse.FileType(),
+        'file', type=argparse.FileType('rb'),
         help='Path to GYB template file (defaults to stdin)', nargs='?',
-        default=sys.stdin)
+        default=sys.stdin)    # FIXME: stdin not binary mode on Windows
     parser.add_argument(
-        '-o', dest='target', type=argparse.FileType('w'),
-        help='Output file (defaults to stdout)', default=sys.stdout)
+        '-o', dest='target', type=argparse.FileType('wb'),
+        help='Output file (defaults to stdout)',
+        default=sys.stdout)    # FIXME: stdout not binary mode on Windows
     parser.add_argument(
         '--test', action='store_true',
         default=False, help='Run a self-test')

@@ -5,6 +5,8 @@
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
 //
 
+/// A value that encapsulates the result of polling a future. See
+/// `FutureProtocol.poll(_:)`.
 public enum Poll<T> {
     case ready(T)
     case pending

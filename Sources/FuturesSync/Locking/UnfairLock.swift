@@ -6,6 +6,7 @@
 //
 
 #if !canImport(os)
+/// :nodoc:
 public typealias UnfairLock = SpinLock
 #else
 
