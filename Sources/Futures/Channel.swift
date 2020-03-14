@@ -234,10 +234,22 @@ extension Channel {
         /// - Returns:
         ///     - `Result.success(true)` if `item` was sent successfully.
         ///     - `Result.success(false)` if the channel is at capacity.
-        ///     - `Result.failure` if the channel is closed.
+        ///     - `Result.failure(.cancelled)` if the channel is closed.
         @inlinable
         public func trySend(_ item: Item) -> Result<Bool, Channel.Error> {
-            return _channel.trySend(item)
+            while true {
+                switch _channel.trySend(item) {
+                case .success:
+                    return .success(true)
+                case .failure(.atCapacity):
+                    return .success(false)
+                case .failure(.cancelled):
+                    return .failure(.cancelled)
+                case .failure(.retry):
+                    Atomic.preemptionYield(0)
+                    continue
+                }
+            }
         }
 
         /// - Returns:
@@ -274,22 +286,19 @@ extension Channel.Sender where C: UnboundedChannelProtocol {
     @inlinable
     @discardableResult
     public func send(_ item: Item) -> Result<Void, Channel.Error> {
-        switch _channel.trySend(item) {
-        case .success(true):
-            return .success(())
-        case .success(false):
-            fatalError("unreachable")
-        case .failure(.cancelled):
-            return .failure(.cancelled)
+        while true {
+            switch _channel.trySend(item) {
+            case .success:
+                return .success(())
+            case .failure(.atCapacity):
+                fatalError("unreachable")
+            case .failure(.cancelled):
+                return .failure(.cancelled)
+            case .failure(.retry):
+                Atomic.preemptionYield(0)
+                continue
+            }
         }
-    }
-}
-
-/// :nodoc:
-extension Channel.Sender {
-    @inlinable
-    public var _isPassthrough: Bool {
-        return _channel._buffer.isPassthrough
     }
 }
 
@@ -426,21 +435,14 @@ extension Channel {
 public protocol _ChannelBufferImplProtocol {
     associatedtype Item
 
-    var supportsMultipleSenders: Bool { get }
-    var isPassthrough: Bool { get }
+    static var supportsMultipleSenders: Bool { get }
+    static var isPassthrough: Bool { get }
+    static var isBounded: Bool { get }
 
     var capacity: Int { get }
 
     func push(_ item: Item)
     func pop() -> Item?
-}
-
-/// :nodoc:
-extension _ChannelBufferImplProtocol {
-    @inlinable
-    var isBounded: Bool {
-        return capacity != Int.max
-    }
 }
 
 /// :nodoc:

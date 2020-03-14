@@ -13,44 +13,47 @@ extension Channel._Private {
         @usableFromInline typealias Item = C.Buffer.Item
 
         @usableFromInline
-        struct State {
-            @usableFromInline var isOpen: Bool
-            @usableFromInline var count: Int
+        struct State: AtomicBitset {
+            // LSB is the "open" bit.
+            @usableFromInline var rawValue: AtomicUInt.RawValue
 
             @inlinable
-            static var OPEN_MASK: UInt {
-                return UInt.max - (UInt.max >> 1)
+            @_transparent
+            init(rawValue: AtomicUInt.RawValue) {
+                self.rawValue = rawValue
             }
 
             @inlinable
-            static var COUNT_MASK: UInt {
-                return ~OPEN_MASK
+            var isClosed: Bool {
+                @_transparent get { contains(.closed) }
+                @_transparent set { rawValue ^= (newValue ? 1 : 0) }
             }
 
             @inlinable
-            init(rawValue: UInt) {
-                isOpen = (rawValue & State.OPEN_MASK) == State.OPEN_MASK
-                count = Int(bitPattern: rawValue & State.COUNT_MASK)
+            var count: RawValue {
+                @_transparent get { rawValue >> 1 }
+                @_transparent set { rawValue = newValue << 1 }
             }
 
+            @inlinable static var maxCount: State.RawValue { .max >> 1 }
+            @inlinable static var countMask: State { .init(rawValue: UInt(bitPattern: Int.max) << 1) }
+            @inlinable static var closed: State { 1 }
+
             @inlinable
-            var rawValue: UInt {
-                var value = UInt(bitPattern: count)
-                if isOpen {
-                    value |= State.OPEN_MASK
-                }
-                return value
+            @_transparent
+            static func count(_ value: RawValue) -> State {
+                .init(rawValue: value << 1)
             }
         }
 
-        @usableFromInline var _state: AtomicUInt.RawValue = State.OPEN_MASK
+        @usableFromInline var _state: State.RawValue = 0
         @usableFromInline let _buffer: C.Buffer
         @usableFromInline let _senders: C.Park
         @usableFromInline let _receiver = AtomicWaker()
 
         @inlinable
         init(buffer: C.Buffer, park: C.Park) {
-            AtomicUInt.initialize(&_state, to: State.OPEN_MASK)
+            State.initialize(&_state, to: 0)
             _buffer = buffer
             _senders = park
         }
@@ -60,41 +63,48 @@ extension Channel._Private {
             return _buffer.capacity
         }
 
+        @usableFromInline
+        enum SendError: Swift.Error {
+            case atCapacity
+            case cancelled
+            case retry
+        }
+
         @inlinable
-        func trySend(_ item: Item) -> Result<Bool, Channel.Error> {
+        func trySend(_ item: Item) -> Result<Void, SendError> {
             var backoff = Backoff()
-            var curr = AtomicUInt.load(&_state)
+            var curr = State.load(&_state)
 
             while true {
-                var state = State(rawValue: curr)
-                if !state.isOpen {
+                var state = curr
+                if state.isClosed {
                     return .failure(.cancelled)
                 }
                 if state.count >= _buffer.capacity {
-                    return .success(false)
+                    return .failure(.atCapacity)
                 }
 
-                if !_buffer.supportsMultipleSenders {
+                if !C.Buffer.supportsMultipleSenders {
                     // Fast-path for Passthrough, Unbuffered and Buffered channels.
                     // We synchronize around the item count for these channels.
                     _buffer.push(item)
 
-                    if !_buffer.isPassthrough {
-                        if State(rawValue: AtomicUInt.fetchAdd(&_state, 1)).count == 0 {
+                    if !C.Buffer.isPassthrough {
+                        if State.fetchAdd(&_state, .count(1)).count == 0 {
                             _receiver.signal()
                         }
-                        return .success(true)
+                        return .success(())
                     }
 
                     // Passthrough-only path
                     state.count = 1
-                    if !State(rawValue: AtomicUInt.exchange(&_state, state.rawValue)).isOpen {
+                    if State.exchange(&_state, state).isClosed {
                         state.count = 0
-                        state.isOpen = false
-                        AtomicUInt.store(&_state, state.rawValue)
+                        state.isClosed = true
+                        State.store(&_state, state)
                         return .failure(.cancelled)
                     }
-                    return .success(true)
+                    return .success(())
                 }
 
                 // Shared-only path
@@ -102,9 +112,9 @@ extension Channel._Private {
 
                 state.count += 1
 
-                guard AtomicUInt.compareExchange(&_state, &curr, state.rawValue) else {
-                    if backoff.yield() {
-                        backoff.reset()
+                guard State.compareExchange(&_state, &curr, state) else {
+                    if backoff.spin() {
+                        return .failure(.retry)
                     }
                     continue
                 }
@@ -115,18 +125,20 @@ extension Channel._Private {
                     _receiver.signal()
                 }
 
-                return .success(true)
+                return .success(())
             }
         }
 
         @inlinable
         func pollSend(_ context: inout Context, _ item: Item) -> Poll<Result<Void, Channel.Error>> {
             switch trySend(item) {
-            case .success(true):
+            case .success:
                 return .ready(.success(()))
-            case .success(false):
-                assert(_buffer.isBounded)
+            case .failure(.atCapacity):
+                assert(C.Buffer.isBounded)
                 return _pollSendSlow(&context, item)
+            case .failure(.retry):
+                return context.yield()
             case .failure(.cancelled):
                 return .ready(.failure(.cancelled))
             }
@@ -137,10 +149,12 @@ extension Channel._Private {
             _senders.park(context.waker)
 
             switch trySend(item) {
-            case .success(true):
+            case .success:
                 return .ready(.success(()))
-            case .success(false):
+            case .failure(.atCapacity):
                 return .pending
+            case .failure(.retry):
+                return context.yield()
             case .failure(.cancelled):
                 return .ready(.failure(.cancelled))
             }
@@ -150,12 +164,12 @@ extension Channel._Private {
         func tryRecv() -> Result<Item?, Channel.Error> {
             let item: Item
 
-            if !_buffer.supportsMultipleSenders {
+            if !C.Buffer.supportsMultipleSenders {
                 // Fast-path for Passthrough, Unbuffered and Buffered channels.
                 // See trySend().
-                let state = State(rawValue: AtomicUInt.load(&_state))
+                let state = State.load(&_state)
                 if state.count == 0 {
-                    if !state.isOpen {
+                    if state.isClosed {
                         return .failure(.cancelled)
                     }
                     return .success(nil)
@@ -164,11 +178,11 @@ extension Channel._Private {
             } else {
                 // Path for Shared channel
                 guard let _item = _buffer.pop() else {
-                    let state = State(rawValue: AtomicUInt.load(&_state))
-                    if !state.isOpen {
+                    let state = State.load(&_state)
+                    if state.isClosed {
                         return .failure(.cancelled)
                     }
-                    if _buffer.isBounded {
+                    if C.Buffer.isBounded {
                         _senders.notifyOne()
                     }
                     return .success(nil)
@@ -176,11 +190,11 @@ extension Channel._Private {
                 item = _item
             }
 
-            if State(rawValue: AtomicUInt.fetchSub(&_state, 1)).count == 1 {
+            if State.fetchSub(&_state, .count(1)).count == 1 {
                 _senders.notifyFlush()
             }
 
-            if _buffer.isBounded {
+            if C.Buffer.isBounded {
                 _senders.notifyOne()
             }
 
@@ -215,8 +229,8 @@ extension Channel._Private {
 
         @inlinable
         func tryFlush() -> Result<Bool, Channel.Error> {
-            let state = State(rawValue: AtomicUInt.load(&_state))
-            if !state.isOpen {
+            let state = State.load(&_state)
+            if state.isClosed {
                 return .failure(.cancelled)
             }
             if state.count == 0 {
@@ -254,8 +268,8 @@ extension Channel._Private {
 
         @inlinable
         func close() {
-            let state = State(rawValue: AtomicUInt.fetchAnd(&_state, State.COUNT_MASK))
-            if !state.isOpen {
+            let state = State.fetchOr(&_state, .closed)
+            if state.isClosed {
                 return
             }
             if state.count == 0 {

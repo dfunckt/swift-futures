@@ -153,7 +153,7 @@ private final class UnboundedChannelTester<C: UnboundedChannelProtocol> where C.
 
         XCTAssertSuccess(tx.trySend(1), true)
         XCTAssertSuccess(tx.trySend(2), true)
-        if !tx._isPassthrough {
+        if !C.Buffer.isPassthrough {
             XCTAssertSuccess(rx.tryRecv(), 1)
         }
         XCTAssertSuccess(rx.tryRecv(), 2)
@@ -180,7 +180,7 @@ private final class UnboundedChannelTester<C: UnboundedChannelProtocol> where C.
 
             XCTAssertReady(sink.pollSend(&cx, 1))
             XCTAssertReady(sink.pollSend(&cx, 2))
-            if !tx._isPassthrough {
+            if !C.Buffer.isPassthrough {
                 XCTAssertEqual(stream.pollNext(&cx), 1)
             }
             XCTAssertEqual(stream.pollNext(&cx), 2)
@@ -274,7 +274,7 @@ private final class SPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
 
         do {
             let (tx, rx) = makeChannel().split()
-            isPassthrough = tx._isPassthrough
+            isPassthrough = C.Buffer.isPassthrough
             executor.submit(
                 rx.makeStream().map { sum += $0 }
             )
@@ -328,7 +328,7 @@ private final class SPMCChannelTester<C: ChannelProtocol> where C.Item == Int {
 
         do {
             let (tx, rx) = makeChannel().split()
-            isPassthrough = tx._isPassthrough
+            isPassthrough = C.Buffer.isPassthrough
             let multicast = rx.makeStream().multicast()
 
             for _ in 0..<SPMC_RECEIVER_COUNT {
