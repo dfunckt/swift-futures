@@ -25,21 +25,24 @@ public func assertOnMainQueueExecutor() {
 public final class QueueExecutor: ExecutorProtocol, Cancellable {
     fileprivate let _queue: DispatchQueue
     private let _runner: _TaskRunner
-    private let _waker: _QueueWaker
-    private let _incoming = AtomicUnboundedMPSCQueue<AnyFuture<Void>>()
+    @usableFromInline let _waker: _QueueWaker
+    @usableFromInline let _incoming = AtomicUnboundedMPSCQueue<AnyFuture<Void>>()
 
+    @inlinable
     public convenience init(label: String, qos: DispatchQoS = .default) {
         let label = "futures.queue-executor(\(label))"
         self.init(queue: .init(label: label, qos: qos))
     }
 
+    @inlinable
     public convenience init(targetQueue: DispatchQueue) {
         let label = "futures.queue-executor(\(targetQueue.label))"
         let queue = DispatchQueue(label: label, target: targetQueue)
         self.init(queue: queue)
     }
 
-    private init(queue: DispatchQueue) {
+    @usableFromInline
+    init(queue: DispatchQueue) {
         _queue = queue
         _runner = .init(label: queue.label)
         _waker = .init(queue)
@@ -51,7 +54,6 @@ public final class QueueExecutor: ExecutorProtocol, Cancellable {
         }
     }
 
-    @usableFromInline
     func _run() -> Bool {
         var context = Context(runner: _runner, waker: _waker)
         while true {
@@ -86,6 +88,7 @@ public final class QueueExecutor: ExecutorProtocol, Cancellable {
     /// Schedules the given future to be executed by this executor.
     ///
     /// This method can be called from any thread.
+    @inlinable
     public func trySubmit<F: FutureProtocol>(_ future: F) -> Result<Void, Never> where F.Output == Void {
         _incoming.push(.init(future))
         _waker.signal()
@@ -128,6 +131,7 @@ public final class QueueExecutor: ExecutorProtocol, Cancellable {
     /// complete.
     ///
     /// This method can be called from any thread.
+    @inlinable
     public func wait() {
         _waker.wait()
     }
@@ -157,10 +161,12 @@ extension QueueExecutor {
 
 // MARK: - Private -
 
-private final class _QueueWaker: WakerProtocol {
+@usableFromInline
+final class _QueueWaker: WakerProtocol {
     private let _source: DispatchSourceUserDataAdd
     private let _waiters = AtomicUnboundedMPSCQueue<DispatchSemaphore>()
 
+    @usableFromInline
     init(_ queue: DispatchQueue) {
         _source = DispatchSource.makeUserDataAddSource(queue: queue)
     }
@@ -190,10 +196,12 @@ private final class _QueueWaker: WakerProtocol {
         _source.cancel()
     }
 
+    @usableFromInline
     func signal() {
         _source.add(data: 1)
     }
 
+    @usableFromInline
     func wait() {
         let sema = DispatchSemaphore(value: 0)
         _waiters.push(sema)
