@@ -164,21 +164,22 @@ extension QueueExecutor {
 @usableFromInline
 final class _QueueWaker: WakerProtocol {
     private let _source: DispatchSourceUserDataAdd
-    private let _waiters = AtomicUnboundedMPSCQueue<DispatchSemaphore>()
+    private let _cond = PosixConditionLock()
+    private var _done = false
 
     @usableFromInline
     init(_ queue: DispatchQueue) {
         _source = DispatchSource.makeUserDataAddSource(queue: queue)
     }
 
-    deinit {
-        notifyWaiters()
-    }
-
     func setSignalHandler(_ fn: @escaping () -> Bool) {
         _source.setEventHandler {
-            if fn() {
-                self.notifyWaiters()
+            let result = fn()
+            self._cond.sync {
+                self._done = result
+                if result {
+                    self._cond.broadcast()
+                }
             }
         }
         _source.activate()
@@ -194,6 +195,10 @@ final class _QueueWaker: WakerProtocol {
 
     func cancel() {
         _source.cancel()
+        _cond.sync {
+            self._done = true
+            self._cond.broadcast()
+        }
     }
 
     @usableFromInline
@@ -203,19 +208,11 @@ final class _QueueWaker: WakerProtocol {
 
     @usableFromInline
     func wait() {
-        let sema = DispatchSemaphore(value: 0)
-        _waiters.push(sema)
         _source.add(data: 1)
-        sema.wait()
-    }
-
-    private func notifyWaiters() {
-        var waiters = [DispatchSemaphore]()
-        while let sema = _waiters.pop() {
-            waiters.append(sema)
-        }
-        for sema in waiters {
-            sema.signal()
+        _cond.sync {
+            while !self._done {
+                self._cond.wait()
+            }
         }
     }
 }

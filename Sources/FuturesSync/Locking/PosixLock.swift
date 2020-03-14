@@ -11,8 +11,8 @@ import Darwin.POSIX.pthread
 import Glibc
 #endif
 
-private func _makeMutexAttributes(type: Int32) -> pthread_mutexattr_t {
-    var rc: Int32
+private func _makeMutexAttributes(type: CInt) -> pthread_mutexattr_t {
+    var rc: CInt
     var attr = pthread_mutexattr_t()
     rc = pthread_mutexattr_init(&attr)
     precondition(rc == 0)
@@ -21,12 +21,12 @@ private func _makeMutexAttributes(type: Int32) -> pthread_mutexattr_t {
     return attr
 }
 
-@usableFromInline let _normalMutexAttributes = _makeMutexAttributes(
-    type: Int32(PTHREAD_MUTEX_ERRORCHECK)
+@usableFromInline internal let normalMutexAttributes = _makeMutexAttributes(
+    type: CInt(PTHREAD_MUTEX_ERRORCHECK)
 )
 
-@usableFromInline let _recursiveMutexAttributes = _makeMutexAttributes(
-    type: Int32(PTHREAD_MUTEX_RECURSIVE)
+@usableFromInline internal let recursiveMutexAttributes = _makeMutexAttributes(
+    type: CInt(PTHREAD_MUTEX_RECURSIVE)
 )
 
 /// A mutually exclusive (or mutex) lock.
@@ -54,8 +54,8 @@ public final class PosixLock: LockingProtocol {
     @inlinable
     public init(recursive: Bool = false) {
         var attr = recursive
-            ? _recursiveMutexAttributes
-            : _normalMutexAttributes
+            ? recursiveMutexAttributes
+            : normalMutexAttributes
         let rc = pthread_mutex_init(&_mutex, &attr)
         precondition(rc == 0)
     }

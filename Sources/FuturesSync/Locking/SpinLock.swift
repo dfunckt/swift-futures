@@ -5,7 +5,7 @@
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
 //
 
-// Prefer UnfairLock over this guy, if available;
+// Prefer UnfairLock over this guy on Darwin;
 // it's equally performant but safer.
 public final class SpinLock: LockingProtocol {
     @usableFromInline var _flag: AtomicBool.RawValue = false
