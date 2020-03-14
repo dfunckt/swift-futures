@@ -11,7 +11,7 @@ extension Stream._Private {
 
         @usableFromInline
         enum _State {
-            case pending(Base, _CircularBuffer<Base.Output>)
+            case pending(Base, CircularBuffer<Base.Output>)
             case complete
             case done
         }
@@ -33,7 +33,7 @@ extension Stream._Private {
                         if buffer.tryPush(output) {
                             continue
                         }
-                        let elements = Array(buffer.consume())
+                        let elements = buffer.moveElements()
                         let enqueued = buffer.tryPush(output)
                         assert(enqueued)
                         _state = .pending(base, buffer)
@@ -41,7 +41,7 @@ extension Stream._Private {
 
                     case .ready(.none):
                         _state = .complete
-                        return .ready(Array(buffer.consume()))
+                        return .ready(buffer.moveElements())
 
                     case .pending:
                         _state = .pending(base, buffer)

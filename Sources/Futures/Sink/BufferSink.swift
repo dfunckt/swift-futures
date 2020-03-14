@@ -12,7 +12,7 @@ extension Sink._Private {
 
         @usableFromInline let _capacity: Int
         @usableFromInline var _base: Base
-        @usableFromInline var _buffer: _CircularBuffer<Input>
+        @usableFromInline var _buffer: CircularBuffer<Input>
         @usableFromInline var _item: Input?
 
         @inlinable

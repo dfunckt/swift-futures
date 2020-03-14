@@ -10,7 +10,7 @@ extension Stream._Private {
     enum _ReplayBuffer<Output> {
         case none
         case just(Output?)
-        case some(_CircularBuffer<Output>)
+        case some(CircularBuffer<Output>)
         case all([Output])
 
         @inlinable

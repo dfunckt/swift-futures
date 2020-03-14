@@ -6,10 +6,10 @@
 //
 
 @usableFromInline
-struct _CircularBuffer<Element> {
-    @usableFromInline typealias Buffer = ContiguousArray<Element?>
+internal struct CircularBuffer<Element> {
+    @usableFromInline typealias _Buffer = ContiguousArray<Element?>
 
-    @usableFromInline var _buffer: Buffer
+    @usableFromInline var _buffer: _Buffer
     @usableFromInline let _capacity: Int
     @usableFromInline var _head: Int // write pointer
     @usableFromInline var _tail: Int // read pointer
@@ -25,7 +25,7 @@ struct _CircularBuffer<Element> {
     }
 
     @inlinable
-    init(capacity: Int) {
+    internal init(capacity: Int) {
         let capacity = Int(UInt32(capacity))
         _buffer = .init(repeating: nil, count: nextPowerOf2(capacity))
         _capacity = capacity
@@ -34,35 +34,48 @@ struct _CircularBuffer<Element> {
     }
 
     @inlinable
-    init(_buffer: Buffer, _ capacity: Int, _ head: Int, _ tail: Int) {
-        self._buffer = _buffer
-        _capacity = capacity
-        _head = head
-        _tail = tail
+    internal mutating func destroy() {
+        _buffer = .init()
+        _head = 0
+        _tail = 0
     }
 
     @inlinable
-    var count: Int {
+    internal var count: Int {
         return _head - _tail
     }
 
     @inlinable
-    var capacity: Int {
+    internal var capacity: Int {
         return _capacity
     }
 
     @inlinable
-    var isEmpty: Bool {
+    internal var isEmpty: Bool {
         return _head == _tail
     }
 
     @inlinable
-    func copyElements() -> [Element] {
+    internal mutating func move() -> CircularBuffer {
+        let queue = self
+        _buffer = .init(repeating: nil, count: _bufferCapacity)
+        _head = 0
+        _tail = 0
+        return queue
+    }
+
+    @inlinable
+    internal mutating func moveElements() -> [Element] {
+        return .init(IteratorSequence(move()))
+    }
+
+    @inlinable
+    internal func copyElements() -> [Element] {
         return prefix(count)
     }
 
     @inlinable
-    func prefix(_ maxCount: Int) -> [Element] {
+    internal func prefix(_ maxCount: Int) -> [Element] {
         var elements = [Element]()
         elements.reserveCapacity(maxCount)
         var count = maxCount
@@ -78,7 +91,7 @@ struct _CircularBuffer<Element> {
     }
 
     @inlinable
-    mutating func tryPush(_ element: Element) -> Bool {
+    internal mutating func tryPush(_ element: Element) -> Bool {
         if count == capacity {
             return false
         }
@@ -88,12 +101,12 @@ struct _CircularBuffer<Element> {
     }
 
     @inlinable
-    mutating func push(_ element: Element, expand: Bool = true) {
+    internal mutating func push(_ element: Element, expand: Bool = true) {
         if count == _bufferCapacity {
             if expand {
                 _adjustCapacity()
             } else {
-                _ = pop()
+                _tail += 1
             }
         }
         _buffer[_head & _mask] = element
@@ -101,20 +114,20 @@ struct _CircularBuffer<Element> {
     }
 
     @inlinable
-    mutating func pop() -> Element? {
+    internal mutating func pop() -> Element? {
         if isEmpty {
             _head = 0
             _tail = 0
             return nil
         }
-        let element = _buffer[_tail & _mask].move()
-        _tail += 1
-        return element
+        defer { _tail += 1 }
+        return _buffer[_tail & _mask].move()
     }
 
     @usableFromInline
+    @inline(never)
     mutating func _adjustCapacity() {
-        var storage: Buffer = []
+        var storage: _Buffer = []
         let newCapacity = _bufferCapacity << 1
         let head = _tail & _mask
         storage.reserveCapacity(newCapacity)
@@ -129,28 +142,9 @@ struct _CircularBuffer<Element> {
     }
 }
 
-extension _CircularBuffer {
-    @usableFromInline
-    struct ConsumingIterator: IteratorProtocol, Sequence {
-        @usableFromInline var _queue: _CircularBuffer
-
-        @inlinable
-        init(queue: _CircularBuffer) {
-            _queue = queue
-        }
-
-        @inlinable
-        mutating func next() -> Element? {
-            return _queue.pop()
-        }
-    }
-
+extension CircularBuffer: IteratorProtocol {
     @inlinable
-    mutating func consume() -> ConsumingIterator {
-        let queue = _CircularBuffer(_buffer: _buffer, _capacity, _head, _tail)
-        _buffer = .init(repeating: nil, count: _bufferCapacity)
-        _head = 0
-        _tail = 0
-        return .init(queue: queue)
+    internal mutating func next() -> Element? {
+        return pop()
     }
 }
