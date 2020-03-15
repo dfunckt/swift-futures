@@ -373,23 +373,8 @@ extension StreamProtocol {
     /// - Returns: `Self.Output?`
     @inlinable
     public mutating func next() -> Output? {
-        return next(on: ThreadExecutor.current)
-    }
-
-    /// Synchronously polls this stream using the provided blocking executor
-    /// until it yields the next element or completes.
-    ///
-    ///     let executor = ThreadExecutor.current
-    ///     var s = Stream.sequence(0..<3)
-    ///     assert(s.next(on: executor) == 0)
-    ///     assert(s.next(on: executor) == 1)
-    ///     assert(s.next(on: executor) == 2)
-    ///     assert(s.next(on: executor) == nil)
-    ///
-    /// - Returns: `Self.Output?`
-    @inlinable
-    public mutating func next<E: BlockingExecutor>(on executor: E) -> Output? {
-        let result = makeFuture().wait(on: executor)
+        var next = makeFuture()
+        let result = next.wait()
         self = result.stream
         return result.output
     }
@@ -397,8 +382,8 @@ extension StreamProtocol {
     /// .
     ///
     ///     let sink = Sink.collect(itemType: Int.self)
-    ///     let f = Stream.sequence(0..<3).forward(to: sink)
-    ///     f.ignoreOutput().wait()
+    ///     var f = Stream.sequence(0..<3).forward(to: sink).ignoreOutput()
+    ///     f.wait()
     ///     assert(sink.elements == [0, 1, 2])
     ///
     /// - Returns: `some FutureProtocol<Output == Result<Void, S.Failure>>`
@@ -855,7 +840,7 @@ extension StreamProtocol {
     /// This combinator uses an unbounded amount of memory to store the
     /// yielded values.
     ///
-    ///     let f = Stream.sequence(0..<3).collect()
+    ///     var f = Stream.sequence(0..<3).collect()
     ///     assert(f.wait() == [0, 1, 2])
     ///
     /// - Returns: `some FutureProtocol<Output == [Self.Output]>`
@@ -867,7 +852,7 @@ extension StreamProtocol {
     /// Returns a future that ignores all elements from this stream, and
     /// completes with a given value when this stream completes.
     ///
-    ///     let f = Stream.sequence(0..<3).replaceOutput(with: 42)
+    ///     var f = Stream.sequence(0..<3).replaceOutput(with: 42)
     ///     assert(f.wait() == 42)
     ///
     /// - Returns: `some FutureProtocol<Output == T>`
@@ -879,7 +864,7 @@ extension StreamProtocol {
     /// Returns a future that ignores all elements from this stream, and
     /// completes when this stream completes.
     ///
-    ///     let f = Stream.sequence(0..<3).ignoreOutput()
+    ///     var f = Stream.sequence(0..<3).ignoreOutput()
     ///     assert(f.wait() == ())
     ///
     /// - Returns: `some FutureProtocol<Output == Void>`
@@ -891,7 +876,7 @@ extension StreamProtocol {
     /// Returns a future that completes with the number of elements from this
     /// stream.
     ///
-    ///     let f = Stream.sequence(0..<3).count()
+    ///     var f = Stream.sequence(0..<3).count()
     ///     assert(f.wait() == 3)
     ///
     /// - Returns: `some FutureProtocol<Output == Int>`
@@ -904,7 +889,7 @@ extension StreamProtocol {
     /// of this stream and completes with the final result when this stream
     /// completes.
     ///
-    ///     let f = Stream.sequence(0..<3).reduce(0) {
+    ///     var f = Stream.sequence(0..<3).reduce(0) {
     ///         $0 + $1
     ///     }
     ///     assert(f.wait() == 3)
@@ -919,7 +904,7 @@ extension StreamProtocol {
     /// this stream into a mutable state and completes with the final result
     /// when this stream completes.
     ///
-    ///     let f = Stream.sequence(0..<3).reduce(into: []) {
+    ///     var f = Stream.sequence(0..<3).reduce(into: []) {
     ///         $0.append($1 + 1)
     ///     }
     ///     assert(f.wait() == [1, 2, 3])
@@ -937,7 +922,7 @@ extension StreamProtocol where Output: Equatable {
     /// Returns a future that completes with a Boolean value upon receiving an
     /// element equal to the argument.
     ///
-    ///     let f = Stream.sequence(0..<3).contains(2)
+    ///     var f = Stream.sequence(0..<3).contains(2)
     ///     assert(f.wait())
     ///
     /// - Returns: `some FutureProtocol<Output == Bool>`
@@ -953,7 +938,7 @@ extension StreamProtocol {
     /// Returns a future that completes with a Boolean value upon receiving an
     /// element that satisfies the predicate closure.
     ///
-    ///     let f = Stream.sequence(0..<3).contains {
+    ///     var f = Stream.sequence(0..<3).contains {
     ///         $0 == 2
     ///     }
     ///     assert(f.wait())
@@ -967,7 +952,7 @@ extension StreamProtocol {
     /// Returns a future that completes with a Boolean value that indicates
     /// whether all received elements pass a given predicate.
     ///
-    ///     let f = Stream.sequence(0..<3).allSatisfy {
+    ///     var f = Stream.sequence(0..<3).allSatisfy {
     ///         $0 < 3
     ///     }
     ///     assert(f.wait())
@@ -1234,7 +1219,7 @@ extension StreamProtocol {
 extension StreamProtocol {
     /// Returns a future that completes with the first element from this stream.
     ///
-    ///     let f = Stream.sequence(0..<3).first()
+    ///     var f = Stream.sequence(0..<3).first()
     ///     assert(f.wait() == 0)
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output?>`
@@ -1246,7 +1231,7 @@ extension StreamProtocol {
     /// Returns a future that completes with the first element from this stream
     /// to satisfy a predicate closure.
     ///
-    ///     let f = Stream.sequence(0..<3).first(where: { $0 > 1 })
+    ///     var f = Stream.sequence(0..<3).first(where: { $0 > 1 })
     ///     assert(f.wait() == 2)
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output?>`
@@ -1257,7 +1242,7 @@ extension StreamProtocol {
 
     /// Returns a future that completes with the last element from this stream.
     ///
-    ///     let f = Stream.sequence(0..<3).last()
+    ///     var f = Stream.sequence(0..<3).last()
     ///     assert(f.wait() == 2)
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output?>`
@@ -1269,7 +1254,7 @@ extension StreamProtocol {
     /// Returns a future that completes with the last element from this stream
     /// to satisfy a predicate closure.
     ///
-    ///     let f = Stream.sequence(0..<3).last(where: { $0 < 2 })
+    ///     var f = Stream.sequence(0..<3).last(where: { $0 < 2 })
     ///     assert(f.wait() == 1)
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output?>`

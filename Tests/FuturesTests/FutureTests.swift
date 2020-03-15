@@ -11,7 +11,7 @@ import XCTest
 
 final class FutureTests: XCTestCase {
     func testDeferred() {
-        let f = Deferred<Int> {
+        var f = Deferred<Int> {
             $0.resolve(42)
             return .empty
         }
@@ -29,17 +29,17 @@ final class FutureTests: XCTestCase {
 
     func testReady() {
         do {
-            let f = Future.ready()
+            var f = Future.ready()
             XCTAssert(f.wait() == ())
         }
         do {
-            let f = Future.ready(42)
+            var f = Future.ready(42)
             XCTAssertEqual(f.wait(), 42)
         }
     }
 
     func testLazy() {
-        let f = Future.lazy {
+        var f = Future.lazy {
             makeFuture(42)
         }
         XCTAssertEqual(f.wait(), 42)
@@ -48,7 +48,7 @@ final class FutureTests: XCTestCase {
     // MARK: -
 
     func testMakeFuture() {
-        let f = makeFuture(42).makeFuture()
+        var f = makeFuture(42).makeFuture()
         XCTAssertEqual(f.wait(), 42)
     }
 
@@ -64,12 +64,12 @@ final class FutureTests: XCTestCase {
         // but doing so would trap.
         let f1 = makeFuture(4).makeReference()
         let f2 = makeFuture(2).makeReference()
-        let f = Future.join(f1, f2)
+        var f = Future.join(f1, f2)
         XCTAssert(f.wait() == (4, 2))
     }
 
     func testWait() {
-        let f = makeFuture(42)
+        var f = makeFuture(42)
         XCTAssertEqual(f.wait(), 42)
     }
 
@@ -78,7 +78,7 @@ final class FutureTests: XCTestCase {
     // TODO: testAbort()
 
     func testPollOn() {
-        let f = makeFuture(42)
+        var f = makeFuture(42)
             .poll(on: QueueExecutor.global)
             .assertNoError()
         XCTAssertEqual(f.wait(), 42)
@@ -87,7 +87,7 @@ final class FutureTests: XCTestCase {
     // MARK: -
 
     func testEraseToAnyFuture() {
-        let f = makeFuture(42).eraseToAnyFuture()
+        var f = makeFuture(42).eraseToAnyFuture()
         XCTAssertEqual(f.wait(), 42)
     }
 
@@ -99,7 +99,7 @@ final class FutureTests: XCTestCase {
     // MARK: -
 
     func testMap() {
-        let f = makeFuture(4).map {
+        var f = makeFuture(4).map {
             String($0) + "2"
         }
         XCTAssertEqual(f.wait(), "42")
@@ -111,28 +111,28 @@ final class FutureTests: XCTestCase {
         }
         let data: Data = .init(a: 0, b: 1, c: 2)
         do {
-            let f = makeFuture(data).map(\.a)
+            var f = makeFuture(data).map(\.a)
             XCTAssertEqual(f.wait(), 0)
         }
         do {
-            let f = makeFuture(data).map(\.a, \.b)
+            var f = makeFuture(data).map(\.a, \.b)
             XCTAssert(f.wait() == (0, 1))
         }
         do {
-            let f = makeFuture(data).map(\.a, \.b, \.c)
+            var f = makeFuture(data).map(\.a, \.b, \.c)
             XCTAssert(f.wait() == (0, 1, 2))
         }
     }
 
     func testFlatMap() {
-        let f = makeFuture(4).flatMap {
+        var f = makeFuture(4).flatMap {
             makeFuture(String($0) + "2")
         }
         XCTAssertEqual(f.wait(), "42")
     }
 
     func testThen() {
-        let f = makeFuture(14).then(on: QueueExecutor.global) { value in
+        var f = makeFuture(14).then(on: QueueExecutor.global) { value in
             makeFuture(assertOnQueueExecutor(.global)).map {
                 value * 3
             }
@@ -142,7 +142,7 @@ final class FutureTests: XCTestCase {
 
     func testPeek() {
         expect(count: 1) { exp in
-            let f = makeFuture(42).peek { _ in
+            var f = makeFuture(42).peek { _ in
                 exp[0].fulfill()
             }
             XCTAssertEqual(f.wait(), 42)
@@ -151,35 +151,35 @@ final class FutureTests: XCTestCase {
 
     func testReplaceNil() {
         do {
-            let f = makeFuture(Int?.some(5)).replaceNil(with: 42)
+            var f = makeFuture(Int?.some(5)).replaceNil(with: 42)
             XCTAssertEqual(f.wait(), 5)
         }
         do {
-            let f = makeFuture(Int?.none).replaceNil(with: 42)
+            var f = makeFuture(Int?.none).replaceNil(with: 42)
             XCTAssertEqual(f.wait(), 42)
         }
     }
 
     func testReplaceOutput() {
-        let f = makeFuture(5).replaceOutput(with: 42)
+        var f = makeFuture(5).replaceOutput(with: 42)
         XCTAssertEqual(f.wait(), 42)
     }
 
     func testIgnoreOutput() {
-        let f = makeFuture(42).ignoreOutput()
+        var f = makeFuture(42).ignoreOutput()
         XCTAssert(f.wait() == ())
     }
 
     func testMatchOptional() {
         do {
-            let f = makeFuture(Int?.some(42)).match(
+            var f = makeFuture(Int?.some(42)).match(
                 some: String.init,
                 none: { "NaN" }
             )
             XCTAssertEqual(f.wait(), "42")
         }
         do {
-            let f = makeFuture(Int?.none).match(
+            var f = makeFuture(Int?.none).match(
                 some: String.init,
                 none: { "NaN" }
             )
@@ -196,14 +196,14 @@ final class FutureTests: XCTestCase {
             }
         }
         do {
-            let f = makeFuture(42).map(transform).match(
+            var f = makeFuture(42).map(transform).match(
                 left: String.init,
                 right: String.init(describing:)
             )
             XCTAssertEqual(f.wait(), "42")
         }
         do {
-            let f = makeFuture(5).map(transform).match(
+            var f = makeFuture(5).map(transform).match(
                 left: String.init,
                 right: String.init(describing:)
             )
@@ -215,7 +215,7 @@ final class FutureTests: XCTestCase {
 
     func testJoinAll() {
         do {
-            let f = Future.joinAll([
+            var f = Future.joinAll([
                 makeFuture(1),
                 makeFuture(2),
                 makeFuture(3),
@@ -223,7 +223,7 @@ final class FutureTests: XCTestCase {
             XCTAssertEqual(f.wait(), [1, 2, 3])
         }
         do {
-            let f = Future.joinAll(
+            var f = Future.joinAll(
                 makeFuture(1),
                 makeFuture(2),
                 makeFuture(3)
@@ -236,14 +236,14 @@ final class FutureTests: XCTestCase {
         do {
             let a = makeFuture(1)
             let b = makeFuture("A")
-            let f = Future.join(a, b)
+            var f = Future.join(a, b)
             XCTAssert(f.wait() == (1, "A"))
         }
         do {
             let a = makeFuture(1)
             let b = makeFuture("A")
             let c = makeFuture("X")
-            let f = Future.join(a, b, c)
+            var f = Future.join(a, b, c)
             XCTAssert(f.wait() == (1, "A", "X"))
         }
         do {
@@ -251,20 +251,20 @@ final class FutureTests: XCTestCase {
             let b = makeFuture("A")
             let c = makeFuture("X")
             let d = makeFuture(5)
-            let f = Future.join(a, b, c, d)
+            var f = Future.join(a, b, c, d)
             XCTAssert(f.wait() == (1, "A", "X", 5))
         }
         do {
             let a = makeFuture(1)
             let b = makeFuture("A")
-            let f = a.join(b)
+            var f = a.join(b)
             XCTAssert(f.wait() == (1, "A"))
         }
         do {
             let a = makeFuture(1)
             let b = makeFuture("A")
             let c = makeFuture("X")
-            let f = a.join(b, c)
+            var f = a.join(b, c)
             XCTAssert(f.wait() == (1, "A", "X"))
         }
         do {
@@ -272,14 +272,14 @@ final class FutureTests: XCTestCase {
             let b = makeFuture("A")
             let c = makeFuture("X")
             let d = makeFuture(5)
-            let f = a.join(b, c, d)
+            var f = a.join(b, c, d)
             XCTAssert(f.wait() == (1, "A", "X", 5))
         }
     }
 
     func testSelectAny() {
         do {
-            let f = Future.selectAny([
+            var f = Future.selectAny([
                 Future.ready(1),
                 Future.ready(2),
                 Future.ready(3),
@@ -287,7 +287,7 @@ final class FutureTests: XCTestCase {
             XCTAssertEqual(f.wait(), 1)
         }
         do {
-            let f = Future.selectAny(
+            var f = Future.selectAny(
                 Future.ready(1),
                 Future.ready(2),
                 Future.ready(3)
@@ -300,13 +300,13 @@ final class FutureTests: XCTestCase {
         do {
             let a = Future.ready(1)
             let b = Future.ready("A")
-            let f = Future.select(a, b)
+            var f = Future.select(a, b)
             XCTAssertEqual(f.wait(), .left(1))
         }
         do {
             let a = Future.ready(1)
             let b = Future.ready("A")
-            let f = a.select(b)
+            var f = a.select(b)
             XCTAssertEqual(f.wait(), .left(1))
         }
     }
@@ -317,7 +317,7 @@ final class FutureTests: XCTestCase {
         let a = makeFuture(4).map {
             makeFuture(String($0) + "2")
         }
-        let f = a.flatten()
+        var f = a.flatten()
         XCTAssertEqual(f.wait(), "42")
     }
 
@@ -337,7 +337,7 @@ final class FutureTests: XCTestCase {
     // MARK: -
 
     func testTryLazy() {
-        let f = Future.tryLazy {
+        var f = Future.tryLazy {
             makeFuture(42)
         }
         XCTAssertSuccess(f.wait(), 42)
@@ -345,23 +345,23 @@ final class FutureTests: XCTestCase {
 
     func testTryMap() {
         do {
-            let f = makeFuture(42).tryMap(validateAnswer)
+            var f = makeFuture(42).tryMap(validateAnswer)
             XCTAssertSuccess(f.wait(), 42)
         }
         do {
-            let f = makeFuture(5).tryMap(validateAnswer)
+            var f = makeFuture(5).tryMap(validateAnswer)
             XCTAssertFailure(f.wait(), UltimateQuestionError.wrongAnswer)
         }
     }
 
     func testSetFailureType() {
         do {
-            let f = makeFuture(42).setFailureType(to: UltimateQuestionError.self)
+            var f = makeFuture(42).setFailureType(to: UltimateQuestionError.self)
             XCTAssertSuccess(f.wait(), 42)
         }
         do {
             let a = makeFuture(42).map(Result<Int, Never>.success)
-            let f = a.setFailureType(to: UltimateQuestionError.self)
+            var f = a.setFailureType(to: UltimateQuestionError.self)
             XCTAssertSuccess(f.wait(), 42)
         }
     }
@@ -371,7 +371,7 @@ final class FutureTests: XCTestCase {
     func testMatchResult() {
         do {
             let a = makeFuture(5).tryMap(validateAnswer)
-            let f = a.match(
+            var f = a.match(
                 success: String.init,
                 failure: String.init(describing:)
             )
@@ -379,7 +379,7 @@ final class FutureTests: XCTestCase {
         }
         do {
             let a = makeFuture(42).tryMap(validateAnswer)
-            let f = a.match(
+            var f = a.match(
                 success: String.init,
                 failure: String.init(describing:)
             )
@@ -389,13 +389,13 @@ final class FutureTests: XCTestCase {
 
     func testMapValue() {
         do {
-            let f = makeFuture(5).tryMap(validateAnswer).mapValue {
+            var f = makeFuture(5).tryMap(validateAnswer).mapValue {
                 $0 + 1
             }
             XCTAssertFailure(f.wait(), UltimateQuestionError.wrongAnswer)
         }
         do {
-            let f = makeFuture(42).tryMap(validateAnswer).mapValue {
+            var f = makeFuture(42).tryMap(validateAnswer).mapValue {
                 $0 + 1
             }
             XCTAssertSuccess(f.wait(), 43)
@@ -407,13 +407,13 @@ final class FutureTests: XCTestCase {
             let error: Error
         }
         do {
-            let f = makeFuture(5).tryMap(validateAnswer).mapError {
+            var f = makeFuture(5).tryMap(validateAnswer).mapError {
                 WrappedError(error: $0)
             }
             XCTAssertFailure(f.wait())
         }
         do {
-            let f = makeFuture(42).tryMap(validateAnswer).mapError {
+            var f = makeFuture(42).tryMap(validateAnswer).mapError {
                 WrappedError(error: $0)
             }
             XCTAssertSuccess(f.wait(), 42)
@@ -425,14 +425,14 @@ final class FutureTests: XCTestCase {
             let a = makeFuture(5)
                 .tryMap(validateAnswer)
                 .mapValue { Result<Int, Error>.success($0) }
-            let f = a.flattenResult()
+            var f = a.flattenResult()
             XCTAssertFailure(f.wait(), UltimateQuestionError.wrongAnswer)
         }
         do {
             let a = makeFuture(42)
                 .tryMap(validateAnswer)
                 .mapValue { Result<Int, Error>.success($0) }
-            let f = a.flattenResult()
+            var f = a.flattenResult()
             XCTAssertSuccess(f.wait(), 42)
         }
     }
@@ -443,12 +443,12 @@ final class FutureTests: XCTestCase {
 
     func testReplaceError() {
         let a = makeFuture(5).tryMap(validateAnswer)
-        let f = a.replaceError(with: 42)
+        var f = a.replaceError(with: 42)
         XCTAssertEqual(f.wait(), 42)
     }
 
     func testCatchError() {
-        let f = makeFuture(5).tryMap(validateAnswer).catchError { _ in
+        var f = makeFuture(5).tryMap(validateAnswer).catchError { _ in
             makeFuture(42)
         }
         XCTAssertEqual(f.wait(), 42)

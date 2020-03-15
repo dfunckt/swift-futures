@@ -25,7 +25,7 @@ final class ReadmeTests: XCTestCase {
         let integers = Stream.sequence(0...)
         let primes = integers.filter(isPrime)
 
-        let answer = primes.buffer(4)
+        var answer = primes.buffer(4)
             .map { $0[0] * $0[1] * $0[3] }
             .first(where: isPronic)
 
@@ -48,7 +48,7 @@ final class ReadmeTests: XCTestCase {
         let primes = pipe1.makeStream().filter(isPrime)
         deepThought.cpu2.submit(primes.forward(to: pipe2))
 
-        let answer = deepThought.cpu0.spawn(
+        var answer = deepThought.cpu0.spawn(
             pipe2.makeStream()
                 .buffer(4)
                 .map { $0[0] * $0[1] * $0[3] }

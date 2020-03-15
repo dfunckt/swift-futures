@@ -164,7 +164,7 @@ public struct Deferred<Output>: FutureProtocol {
 extension Future {
     /// Creates a future that never completes.
     ///
-    ///     let f = Future.never(outputType: Void.self)
+    ///     var f = Future.never(outputType: Void.self)
     ///     f.wait() // will block forever
     ///
     /// - Returns: `some FutureProtocol<Output == Void>`
@@ -175,7 +175,7 @@ extension Future {
 
     /// Creates a future that completes immediately.
     ///
-    ///     let f = Future.ready()
+    ///     var f = Future.ready()
     ///     assert(f.wait() == ())
     ///
     /// - Returns: `some FutureProtocol<Output == Void>`
@@ -186,7 +186,7 @@ extension Future {
 
     /// Creates a future that completes immediately with the given value.
     ///
-    ///     let f = Future.ready(42)
+    ///     var f = Future.ready(42)
     ///     assert(f.wait() == 42)
     ///
     /// - Returns: `some FutureProtocol<Output == T>`
@@ -198,7 +198,7 @@ extension Future {
     /// Creates a future that lazily invokes the given closure, awaits the
     /// returned future and completes with that future's value.
     ///
-    ///     let f = Future.lazy {
+    ///     var f = Future.lazy {
     ///         Future.ready(42)
     ///     }
     ///     assert(f.wait() == 42)
@@ -215,7 +215,7 @@ extension Future {
 extension FutureProtocol {
     /// .
     ///
-    ///     let f = Future.ready(42).makeFuture()
+    ///     var f = Future.ready(42).makeFuture()
     ///     assert(f.wait() == 42)
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output>`
@@ -240,7 +240,7 @@ extension FutureProtocol {
     ///
     ///     let f1 = Future.ready(4).makeReference()
     ///     let f2 = Future.ready(2).makeReference()
-    ///     let f = Future.join(f1, f2)
+    ///     var f = Future.join(f1, f2)
     ///     assert(f.wait() == (4, 2))
     ///     // assert(f1.wait() == 4) // traps
     ///     // assert(f2.wait() == 2) // traps
@@ -254,26 +254,13 @@ extension FutureProtocol {
     /// Synchronously polls this future on the current thread's executor until
     /// it completes.
     ///
-    ///     let f = Future.ready(42)
+    ///     var f = Future.ready(42)
     ///     assert(f.wait() == 42)
     ///
     /// - Returns: `Self.Output`
     @inlinable
-    public func wait() -> Output {
-        return wait(on: ThreadExecutor.current)
-    }
-
-    /// Synchronously polls this future using the provided blocking executor
-    /// until it completes.
-    ///
-    ///     let executor = ThreadExecutor.current
-    ///     let f = Future.ready(42)
-    ///     assert(f.wait(on: executor) == 42)
-    ///
-    /// - Returns: `Self.Output`
-    @inlinable
-    public func wait<E: BlockingExecutor>(on executor: E) -> Output {
-        return executor.runUntil(self)
+    public mutating func wait() -> Output {
+        return ThreadExecutor.current.run(until: &self)
     }
 
     // TODO: assign
@@ -295,7 +282,7 @@ extension FutureProtocol {
     ///
     /// The returned future retains the executor for its whole lifetime.
     ///
-    ///     let f = Future.ready(42)
+    ///     var f = Future.ready(42)
     ///         .poll(on: QueueExecutor.global)
     ///         .assertNoError()
     ///     assert(f.wait() == 42)
@@ -312,7 +299,7 @@ extension FutureProtocol {
 extension FutureProtocol {
     /// .
     ///
-    ///     let f = Future.ready(42).eraseToAnyFuture()
+    ///     var f = Future.ready(42).eraseToAnyFuture()
     ///     assert(f.wait() == 42)
     ///
     /// - Returns: `AnyFuture<Self.Output>`
@@ -341,7 +328,7 @@ extension FutureProtocol {
 extension FutureProtocol {
     /// Transforms the output from this future with a provided closure.
     ///
-    ///     let f = Future.ready(4).map {
+    ///     var f = Future.ready(4).map {
     ///         String($0) + "2"
     ///     }
     ///     assert(f.wait() == "42")
@@ -361,7 +348,7 @@ extension FutureProtocol {
     ///         let a: Int
     ///     }
     ///     let data = Data(a: 42)
-    ///     let f = Future.ready(data).map(\.a)
+    ///     var f = Future.ready(data).map(\.a)
     ///     assert(f.wait() == 42)
     ///
     /// - Returns: `some FutureProtocol<Output == T>`
@@ -376,7 +363,7 @@ extension FutureProtocol {
     ///         let a, b: Int
     ///     }
     ///     let data = Data(a: 4, b: 2)
-    ///     let f = Future.ready(data).map(\.a, \.b)
+    ///     var f = Future.ready(data).map(\.a, \.b)
     ///     assert(f.wait() == (4, 2))
     ///
     /// - Returns: `some FutureProtocol<Output == (T0, T1)>`
@@ -391,7 +378,7 @@ extension FutureProtocol {
     ///         let a, b, c: Int
     ///     }
     ///     let data = Data(a: 4, b: 2, c: 5)
-    ///     let f = Future.ready(data).map(\.a, \.b, \.c)
+    ///     var f = Future.ready(data).map(\.a, \.b, \.c)
     ///     assert(f.wait() == (4, 2, 5))
     ///
     /// - Returns: `some FutureProtocol<Output == (T0, T1, T2)>`
@@ -402,7 +389,7 @@ extension FutureProtocol {
 
     /// .
     ///
-    ///     let f = Future.ready(4).flatMap {
+    ///     var f = Future.ready(4).flatMap {
     ///         Future.ready(String($0) + "2")
     ///     }
     ///     assert(f.wait() == "42")
@@ -415,7 +402,7 @@ extension FutureProtocol {
 
     /// .
     ///
-    ///     let f = Future.ready(14).then(on: QueueExecutor.global) {
+    ///     var f = Future.ready(14).then(on: QueueExecutor.global) {
     ///         Future.ready($0 * 3)
     ///     }
     ///     assert(f.wait() == Result.success(42))
@@ -428,7 +415,7 @@ extension FutureProtocol {
 
     /// Calls the given closure on the output of this future.
     ///
-    ///     let f = Future.ready(42).peek {
+    ///     var f = Future.ready(42).peek {
     ///         print($0)
     ///     }
     ///     assert(f.wait() == 42)
@@ -442,10 +429,10 @@ extension FutureProtocol {
     /// Replaces the output from this future with a provided value, if it is
     /// nil.
     ///
-    ///     let f1 = Future.ready(Int?.some(5)).replaceNil(with: 42)
+    ///     var f1 = Future.ready(Int?.some(5)).replaceNil(with: 42)
     ///     assert(f1.wait() == 5)
     ///
-    ///     let f2 = Future.ready(Int?.none).replaceNil(with: 42)
+    ///     var f2 = Future.ready(Int?.none).replaceNil(with: 42)
     ///     assert(f2.wait() == 42)
     ///
     /// - Returns: `some FutureProtocol<Output == T>`
@@ -456,7 +443,7 @@ extension FutureProtocol {
 
     /// Replaces the output from this future with a provided value.
     ///
-    ///     let f = Future.ready(5).replaceOutput(with: 42)
+    ///     var f = Future.ready(5).replaceOutput(with: 42)
     ///     assert(f.wait() == 42)
     ///
     /// - Returns: `some FutureProtocol<Output == T>`
@@ -467,7 +454,7 @@ extension FutureProtocol {
 
     /// Ignores the output from this future.
     ///
-    ///     let f = Future.ready(42).ignoreOutput()
+    ///     var f = Future.ready(42).ignoreOutput()
     ///     assert(f.wait() == ())
     ///
     /// - Returns: `some FutureProtocol<Output == Void>`
@@ -482,13 +469,13 @@ extension FutureProtocol {
 extension FutureProtocol where Output: _OptionalConvertible {
     /// .
     ///
-    ///     let f1 = Future.ready(Int?.some(42)).match(
+    ///     var f1 = Future.ready(Int?.some(42)).match(
     ///         some: String.init,
     ///         none: { "NaN" }
     ///     )
     ///     assert(f1.wait() == "42")
     ///
-    ///     let f2 = Future.ready(Int?.none).match(
+    ///     var f2 = Future.ready(Int?.none).match(
     ///         some: String.init,
     ///         none: { "NaN" }
     ///     )
@@ -517,13 +504,13 @@ extension FutureProtocol where Output: EitherConvertible {
     ///         }
     ///     }
     ///
-    ///     let f1 = Future.ready(42).map(transform).match(
+    ///     var f1 = Future.ready(42).map(transform).match(
     ///         left: String.init,
     ///         right: String.init(describing:)
     ///     )
     ///     assert(f1.wait() == "42")
     ///
-    ///     let f2 = Future.ready(5).map(transform).match(
+    ///     var f2 = Future.ready(5).map(transform).match(
     ///         left: String.init,
     ///         right: String.init(describing:)
     ///     )
@@ -549,7 +536,7 @@ extension Future {
     /// This combinator can efficiently handle arbitrary numbers of futures
     /// but has more overhead than the simpler `join(_:_:)` variants.
     ///
-    ///     let f = Future.joinAll([
+    ///     var f = Future.joinAll([
     ///         Future.ready(1),
     ///         Future.ready(2),
     ///         Future.ready(3),
@@ -575,7 +562,7 @@ extension Future {
     ///
     ///     let a = Future.ready(1)
     ///     let b = Future.ready("A")
-    ///     let f = Future.join(a, b)
+    ///     var f = Future.join(a, b)
     ///     assert(f.wait() == (1, "A"))
     ///
     /// - Returns: `some FutureProtocol<Output == (A.Output, B.Output)>`
@@ -591,7 +578,7 @@ extension Future {
     ///     let a = Future.ready(1)
     ///     let b = Future.ready("A")
     ///     let c = Future.ready("X")
-    ///     let f = Future.join(a, b, c)
+    ///     var f = Future.join(a, b, c)
     ///     assert(f.wait() == (1, "A", "X"))
     ///
     /// - Returns: `some FutureProtocol<Output == (A.Output, B.Output, C.Output)>`
@@ -608,7 +595,7 @@ extension Future {
     ///     let b = Future.ready("A")
     ///     let c = Future.ready("X")
     ///     let d = Future.ready(5)
-    ///     let f = Future.join(a, b, c, d)
+    ///     var f = Future.join(a, b, c, d)
     ///     assert(f.wait() == (1, "A", "X", 5))
     ///
     /// - Returns: `some FutureProtocol<Output == (A.Output, B.Output, C.Output, D.Output)>`
@@ -624,7 +611,7 @@ extension Future {
     /// This combinator can efficiently handle arbitrary numbers of futures
     /// but has more overhead than the simpler `select(_:_:)` variant.
     ///
-    ///     let f = Future.selectAny([
+    ///     var f = Future.selectAny([
     ///         Future.ready(1),
     ///         Future.ready(2),
     ///         Future.ready(3),
@@ -649,7 +636,7 @@ extension Future {
     ///
     ///     let a = Future.ready(1)
     ///     let b = Future.ready("A")
-    ///     let f = Future.select(a, b)
+    ///     var f = Future.select(a, b)
     ///     assert(f.wait() == .left(1))
     ///
     /// - Returns: `some FutureProtocol<Output == Either<A.Output, B.Output>>`
@@ -666,7 +653,7 @@ extension FutureProtocol {
     ///
     ///     let a = Future.ready(1)
     ///     let b = Future.ready("A")
-    ///     let f = a.join(b)
+    ///     var f = a.join(b)
     ///     assert(f.wait() == (1, "A"))
     ///
     /// - Returns: `some FutureProtocol<Output == (Self.Output, S.Output)>`
@@ -682,7 +669,7 @@ extension FutureProtocol {
     ///     let a = Future.ready(1)
     ///     let b = Future.ready("A")
     ///     let c = Future.ready("X")
-    ///     let f = a.join(b, c)
+    ///     var f = a.join(b, c)
     ///     assert(f.wait() == (1, "A", "X"))
     ///
     /// - Returns: `some FutureProtocol<Output == (Self.Output, B.Output, C.Output)>`
@@ -699,7 +686,7 @@ extension FutureProtocol {
     ///     let b = Future.ready("A")
     ///     let c = Future.ready("X")
     ///     let d = Future.ready(5)
-    ///     let f = a.join(b, c, d)
+    ///     var f = a.join(b, c, d)
     ///     assert(f.wait() == (1, "A", "X", 5))
     ///
     /// - Returns: `some FutureProtocol<Output == (Self.Output, B.Output, C.Output, D.Output)>`
@@ -713,7 +700,7 @@ extension FutureProtocol {
     ///
     ///     let a = Future.ready(1)
     ///     let b = Future.ready("A")
-    ///     let f = a.select(b)
+    ///     var f = a.select(b)
     ///     assert(f.wait() == .left(1))
     ///
     /// - Returns: `some FutureProtocol<Output == Either<Self.Output, B.Output>>`
@@ -732,7 +719,7 @@ extension FutureProtocol where Output: FutureConvertible {
     ///     let a = Future.ready(4).map {
     ///         Future.ready(String($0) + "2")
     ///     }
-    ///     let f = a.flatten()
+    ///     var f = a.flatten()
     ///     assert(f.wait() == "42")
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output.FutureType.Output>`
@@ -748,7 +735,7 @@ extension Future {
     /// Creates a future that lazily invokes the given error-throwing closure,
     /// awaits the returned future and completes with that future's output.
     ///
-    ///     let f = Future.tryLazy {
+    ///     var f = Future.tryLazy {
     ///         Future.ready(42)
     ///     }
     ///     assert(try? f.wait().get() == 42)
@@ -780,10 +767,10 @@ extension FutureProtocol {
     ///         return answer
     ///     }
     ///
-    ///     let f1 = Future.ready(42).tryMap(validateAnswer)
+    ///     var f1 = Future.ready(42).tryMap(validateAnswer)
     ///     assert(try! f1.wait().get() == 42)
     ///
-    ///     let f2 = Future.ready(5).tryMap(validateAnswer)
+    ///     var f2 = Future.ready(5).tryMap(validateAnswer)
     ///     assert(try? f2.wait().get() == nil)
     ///
     /// - Returns: `some FutureProtocol<Output == Result<T, Error>>`
@@ -807,7 +794,7 @@ extension FutureProtocol {
     ///         case wrongAnswer
     ///     }
     ///
-    ///     let f = Future.ready(42).setFailureType(to: UltimateQuestionError.self)
+    ///     var f = Future.ready(42).setFailureType(to: UltimateQuestionError.self)
     ///     assert(try! f.wait().get() == 42)
     ///
     /// - Returns: `some FutureProtocol<Output == Result<Self.Output, E>>`
@@ -834,14 +821,14 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///     }
     ///
     ///     let a1 = Future.ready(5).tryMap(validateAnswer)
-    ///     let f1 = a1.match(
+    ///     var f1 = a1.match(
     ///         success: String.init,
     ///         failure: String.init(describing:)
     ///     )
     ///     assert(f1.wait() == "wrongAnswer")
     ///
     ///     let a2 = Future.ready(42).tryMap(validateAnswer)
-    ///     let f2 = a2.match(
+    ///     var f2 = a2.match(
     ///         success: String.init,
     ///         failure: String.init(describing:)
     ///     )
@@ -869,12 +856,12 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///         return answer
     ///     }
     ///
-    ///     let f1 = Future.ready(5).tryMap(validateAnswer).mapValue {
+    ///     var f1 = Future.ready(5).tryMap(validateAnswer).mapValue {
     ///         $0 + 1
     ///     }
     ///     assert(try? f1.wait().get() == nil)
     ///
-    ///     let f2 = Future.ready(42).tryMap(validateAnswer).mapValue {
+    ///     var f2 = Future.ready(42).tryMap(validateAnswer).mapValue {
     ///         $0 + 1
     ///     }
     ///     assert(try? f2.wait().get() == 43)
@@ -902,12 +889,12 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///         let error: Error
     ///     }
     ///
-    ///     let f1 = Future.ready(5).tryMap(validateAnswer).mapError {
+    ///     var f1 = Future.ready(5).tryMap(validateAnswer).mapError {
     ///         WrappedError(error: $0)
     ///     }
     ///     assert(try? f1.wait().get() == nil)
     ///
-    ///     let f2 = Future.ready(42).tryMap(validateAnswer).mapError {
+    ///     var f2 = Future.ready(42).tryMap(validateAnswer).mapError {
     ///         WrappedError(error: $0)
     ///     }
     ///     assert(try? f2.wait().get() == 42)
@@ -938,13 +925,13 @@ extension FutureProtocol where Output: _ResultConvertible, Output.Success: _Resu
     ///     let a1 = Future.ready(5)
     ///         .tryMap(validateAnswer)
     ///         .mapValue(Result<Int, Error>.success)
-    ///     let f1 = a1.flattenResult()
+    ///     var f1 = a1.flattenResult()
     ///     assert(try? f1.wait().get() == nil)
     ///
     ///     let a2 = Future.ready(42)
     ///         .tryMap(validateAnswer)
     ///         .mapValue(Result<Int, Error>.success)
-    ///     let f2 = a2.flattenResult()
+    ///     var f2 = a2.flattenResult()
     ///     assert(try? f2.wait().get() == 42)
     ///
     /// - Returns: `some FutureProtocol<Output == Result<Self.Output.Success.Success, Self.Output.Failure>>`
@@ -967,7 +954,7 @@ extension FutureProtocol where Output: _ResultConvertible, Output.Failure == Nev
     ///     }
     ///
     ///     let a = Future.ready(42).map(Result<Int, Never>.success)
-    ///     let f = a.setFailureType(to: UltimateQuestionError.self)
+    ///     var f = a.setFailureType(to: UltimateQuestionError.self)
     ///
     ///     assert(try! f.wait().get() == 42)
     ///
@@ -1003,7 +990,7 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///     }
     ///
     ///     let a = Future.ready(5).tryMap(validateAnswer)
-    ///     let f = a.replaceError(with: 42)
+    ///     var f = a.replaceError(with: 42)
     ///
     ///     assert(f.wait() == 42)
     ///
@@ -1027,7 +1014,7 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///         return answer
     ///     }
     ///
-    ///     let f = Future.ready(5).tryMap(validateAnswer).catchError {
+    ///     var f = Future.ready(5).tryMap(validateAnswer).catchError {
     ///         _ in Future.ready(42)
     ///     }
     ///

@@ -304,7 +304,8 @@ private final class SPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
                     })
             )
             let values = Stream.sequence(0..<SPSC_ITERATIONS)
-            values.forward(to: tx).assertNoError().wait()
+            var f = values.forward(to: tx).assertNoError()
+            f.wait()
         }
 
         XCTAssertEqual(sum, SPSC_EXPECTED)
@@ -368,7 +369,8 @@ private final class SPMCChannelTester<C: ChannelProtocol> where C.Item == Int {
                 )
             }
             let values = Stream.sequence(0..<SPMC_ITERATIONS)
-            values.forward(to: tx).assertNoError().wait()
+            var f = values.forward(to: tx).assertNoError()
+            f.wait()
         }
 
         XCTAssertEqual(sum.load(), SPMC_EXPECTED)
@@ -432,12 +434,12 @@ private final class MPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
 
         var sum = 0
 
-        rx.makeStream()
+        var f = rx.makeStream()
             .map { sum += $0 }
             .ignoreOutput()
             .join(Future.joinAll(tasks))
             .ignoreOutput()
-            .wait()
+        f.wait()
 
         XCTAssertEqual(sum, MPSC_EXPECTED)
     }

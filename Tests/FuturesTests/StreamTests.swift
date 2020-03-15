@@ -99,35 +99,47 @@ final class StreamTests: XCTestCase {
             var output: Int?
             var s = makeStream(0..<3)
 
-            (output, s) = s.makeFuture().wait()
+            var f = s.makeFuture()
+            (output, s) = f.wait()
             XCTAssertEqual(output, 0)
 
-            (output, s) = s.makeFuture().wait()
+            f = s.makeFuture()
+            (output, s) = f.wait()
             XCTAssertEqual(output, 1)
 
-            (output, s) = s.makeFuture().wait()
+            f = s.makeFuture()
+            (output, s) = f.wait()
             XCTAssertEqual(output, 2)
 
-            (output, s) = s.makeFuture().wait()
+            f = s.makeFuture()
+            (output, s) = f.wait()
             XCTAssertNil(output)
         }
         do {
             var s = makeStream(0..<3)
 
-            XCTAssertEqual(s.makeFuture().wait().0, 0)
-            XCTAssertEqual(s.makeFuture().wait().0, 0)
+            var f = s.makeFuture()
+            XCTAssertEqual(f.wait().0, 0)
+            f = s.makeFuture()
+            XCTAssertEqual(f.wait().0, 0)
             XCTAssertEqual(s.next(), 0)
 
-            XCTAssertEqual(s.makeFuture().wait().0, 1)
-            XCTAssertEqual(s.makeFuture().wait().0, 1)
+            f = s.makeFuture()
+            XCTAssertEqual(f.wait().0, 1)
+            f = s.makeFuture()
+            XCTAssertEqual(f.wait().0, 1)
             XCTAssertEqual(s.next(), 1)
 
-            XCTAssertEqual(s.makeFuture().wait().0, 2)
-            XCTAssertEqual(s.makeFuture().wait().0, 2)
+            f = s.makeFuture()
+            XCTAssertEqual(f.wait().0, 2)
+            f = s.makeFuture()
+            XCTAssertEqual(f.wait().0, 2)
             XCTAssertEqual(s.next(), 2)
 
-            XCTAssertNil(s.makeFuture().wait().0)
-            XCTAssertNil(s.makeFuture().wait().0)
+            f = s.makeFuture()
+            XCTAssertNil(f.wait().0)
+            f = s.makeFuture()
+            XCTAssertNil(f.wait().0)
             XCTAssertNil(s.next())
         }
     }
@@ -152,27 +164,17 @@ final class StreamTests: XCTestCase {
     }
 
     func testNext() {
-        do {
-            var s = Stream.sequence(0..<3)
-            XCTAssertEqual(s.next(), 0)
-            XCTAssertEqual(s.next(), 1)
-            XCTAssertEqual(s.next(), 2)
-            XCTAssertNil(s.next())
-        }
-        do {
-            let executor = ThreadExecutor.current
-            var s = Stream.sequence(0..<3)
-            XCTAssertEqual(s.next(on: executor), 0)
-            XCTAssertEqual(s.next(on: executor), 1)
-            XCTAssertEqual(s.next(on: executor), 2)
-            XCTAssertNil(s.next(on: executor))
-        }
+        var s = Stream.sequence(0..<3)
+        XCTAssertEqual(s.next(), 0)
+        XCTAssertEqual(s.next(), 1)
+        XCTAssertEqual(s.next(), 2)
+        XCTAssertNil(s.next())
     }
 
     func testForward() {
         let sink = Sink.collect(itemType: Int.self)
-        let f = makeStream(0..<3).forward(to: sink)
-        f.ignoreOutput().wait()
+        var f = makeStream(0..<3).forward(to: sink).ignoreOutput()
+        f.wait()
         XCTAssertEqual(sink.elements, [0, 1, 2])
     }
 
@@ -268,7 +270,7 @@ final class StreamTests: XCTestCase {
             let s1 = m.makeStream()
             let s2 = m.makeStream()
             let s3 = m.makeStream()
-            let f = Stream.merge(s1, s2, s3).collect()
+            var f = Stream.merge(s1, s2, s3).collect()
             XCTAssertEqual(f.wait(), [0, 0, 0, 1, 1, 1, 2, 2, 2])
         }
 
@@ -277,7 +279,7 @@ final class StreamTests: XCTestCase {
             let s1 = m.makeStream().prefix(2).makeReference()
             let s2 = m.makeStream().prefix(1).makeReference()
             let s3 = m.makeStream().prefix(0).makeReference()
-            let f = Stream.merge(s1, s2, s3).collect()
+            var f = Stream.merge(s1, s2, s3).collect()
             XCTAssertEqual(f.wait(), [0, 0, 1])
         }
     }
@@ -512,34 +514,34 @@ final class StreamTests: XCTestCase {
     // MARK: -
 
     func testCollect() {
-        let f = makeStream(0..<3).collect()
+        var f = makeStream(0..<3).collect()
         XCTAssertEqual(f.wait(), [0, 1, 2])
     }
 
     func testReplaceOutput() {
-        let f = makeStream(0..<3).replaceOutput(with: 42)
+        var f = makeStream(0..<3).replaceOutput(with: 42)
         XCTAssertEqual(f.wait(), 42)
     }
 
     func testIgnoreOutput() {
-        let f = makeStream(0..<3).ignoreOutput()
+        var f = makeStream(0..<3).ignoreOutput()
         XCTAssert(f.wait() == ())
     }
 
     func testCount() {
-        let f = makeStream(0..<3).count()
+        var f = makeStream(0..<3).count()
         XCTAssertEqual(f.wait(), 3)
     }
 
     func testReduce() {
-        let f = makeStream(0..<3).reduce(0) {
+        var f = makeStream(0..<3).reduce(0) {
             $0 + $1
         }
         XCTAssertEqual(f.wait(), 3)
     }
 
     func testReduceInto() {
-        let f = makeStream(0..<3).reduce(into: []) {
+        var f = makeStream(0..<3).reduce(into: []) {
             $0.append($1 + 1)
         }
         XCTAssertEqual(f.wait(), [1, 2, 3])
@@ -549,24 +551,24 @@ final class StreamTests: XCTestCase {
 
     func testContains() {
         do {
-            let f = makeStream(0..<3).contains(2)
+            var f = makeStream(0..<3).contains(2)
             XCTAssertTrue(f.wait())
         }
         do {
-            let f = makeStream(0..<3).contains(42)
+            var f = makeStream(0..<3).contains(42)
             XCTAssertFalse(f.wait())
         }
     }
 
     func testContainsWhere() {
         do {
-            let f = makeStream(0..<3).contains {
+            var f = makeStream(0..<3).contains {
                 $0 == 2
             }
             XCTAssertTrue(f.wait())
         }
         do {
-            let f = makeStream(0..<3).contains {
+            var f = makeStream(0..<3).contains {
                 $0 == 42
             }
             XCTAssertFalse(f.wait())
@@ -575,13 +577,13 @@ final class StreamTests: XCTestCase {
 
     func testAllSatisfy() {
         do {
-            let f = makeStream(0..<3).allSatisfy {
+            var f = makeStream(0..<3).allSatisfy {
                 $0 < 3
             }
             XCTAssertTrue(f.wait())
         }
         do {
-            let f = makeStream(0..<3).allSatisfy {
+            var f = makeStream(0..<3).allSatisfy {
                 $0 > 0
             }
             XCTAssertFalse(f.wait())
@@ -779,22 +781,22 @@ final class StreamTests: XCTestCase {
     // MARK: -
 
     func testFirst() {
-        let f = makeStream(0..<3).first()
+        var f = makeStream(0..<3).first()
         XCTAssertEqual(f.wait(), 0)
     }
 
     func testFirstWhere() {
-        let f = makeStream(0..<3).first(where: { $0 > 1 })
+        var f = makeStream(0..<3).first(where: { $0 > 1 })
         XCTAssertEqual(f.wait(), 2)
     }
 
     func testLast() {
-        let f = makeStream(0..<3).last()
+        var f = makeStream(0..<3).last()
         XCTAssertEqual(f.wait(), 2)
     }
 
     func testLastWhere() {
-        let f = makeStream(0..<3).last(where: { $0 < 2 })
+        var f = makeStream(0..<3).last(where: { $0 < 2 })
         XCTAssertEqual(f.wait(), 1)
     }
 

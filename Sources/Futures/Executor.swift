@@ -198,8 +198,7 @@ extension BlockingExecutor {
 
     /// Runs the executor until the given future completes.
     @inlinable
-    public func runUntil<F: FutureProtocol>(_ future: F) -> F.Output {
-        var future = future
+    public func run<F: FutureProtocol>(until future: inout F) -> F.Output {
         var context = makeContext()
         while true {
             if case .ready(let result) = future.poll(&context) {

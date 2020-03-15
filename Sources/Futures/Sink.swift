@@ -154,13 +154,8 @@ extension SinkProtocol {
     }
 
     @inlinable
-    public func makeBlockingSink() -> Sink._Private.Blocking<ThreadExecutor, Self> {
-        return .init(base: self, executor: ThreadExecutor())
-    }
-
-    @inlinable
-    public func makeBlockingSink<E>(on executor: E) -> Sink._Private.Blocking<E, Self> {
-        return .init(base: self, executor: executor)
+    public func makeBlockingSink() -> Sink._Private.Blocking<Self> {
+        return .init(base: self)
     }
 
     @inlinable

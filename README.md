@@ -99,7 +99,7 @@ import Futures
 let integers = Stream.sequence(0...)
 let primes = integers.filter(isPrime)
 
-let answer = primes.buffer(4)
+var answer = primes.buffer(4)
   .map { $0[0] * $0[1] * $0[3] }
   .first(where: isPronic)
 
@@ -143,7 +143,7 @@ deepThought.cpu2.submit(primes.forward(to: pipe2))
 // computation of the answer. For this task, we ask for a
 // handle back, with which we can get the final result or
 // cancel it.
-let answer = deepThought.cpu0.spawn(
+var answer = deepThought.cpu0.spawn(
   pipe2.makeStream()
     .buffer(4)
     .map { $0[0] * $0[1] * $0[3] }

@@ -117,17 +117,19 @@ final class ThreadExecutorTests: XCTestCase {
     func testRunUntil() {
         var count = 0
         let executor = ThreadExecutor.current
-        executor.runUntil(delayed(by: 1) { () -> Void in
+        var f = delayed(by: 1) { () -> Void in
             count += 1
             return DONE
-        })
+        }
+        executor.run(until: &f)
         XCTAssertEqual(count, 1)
     }
 
     func testRunUntilIgnoresSpawned() throws {
         let executor = ThreadExecutor()
         try executor.submit(pending())
-        executor.runUntil(lazy { DONE })
+        var f = lazy { DONE }
+        executor.run(until: &f)
     }
 
     func testSpin() {
@@ -140,16 +142,16 @@ final class ThreadExecutorTests: XCTestCase {
         do {
             let (tx, rx) = Channel.makeUnbuffered(itemType: Int.self).split()
             queue1.async(group: group) {
-                (0..<ITERATIONS).makeStream()
+                var f = (0..<ITERATIONS).makeStream()
                     .forward(to: tx)
                     .ignoreOutput()
-                    .wait()
+                f.wait()
             }
             queue2.async(group: group) {
-                rx.makeStream()
+                var f = rx.makeStream()
                     .map { count += $0 }
                     .ignoreOutput()
-                    .wait()
+                f.wait()
             }
         }
         group.wait()
