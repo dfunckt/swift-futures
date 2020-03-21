@@ -17,45 +17,85 @@ import FuturesSync
 /// `Channel.Unbuffered`.
 public final class Promise<Output>: FutureProtocol {
     @usableFromInline
-    enum _State: AtomicInt.RawValue {
-        case idle
-        case polling
-        case resolving
-        case resolved
+    struct State: Bitset {
+        @usableFromInline typealias RawValue = AtomicUInt.RawValue
+        @usableFromInline let rawValue: RawValue
+
+        @inlinable
+        init(rawValue: RawValue) {
+            self.rawValue = rawValue
+        }
+
+        @inlinable static var pending: State { 0 }
+        @inlinable static var polling: State { 0b001 }
+        @inlinable static var resolving: State { 0b010 }
+        @inlinable static var resolved: State { 0b100 }
     }
 
-    @usableFromInline var _state: _State.RawValue = 0
-    @usableFromInline var _output: Output?
+    @usableFromInline var _state: State.RawValue = 0
     @usableFromInline var _waker: WakerProtocol?
+
+    // swiftlint:disable:next implicitly_unwrapped_optional
+    @usableFromInline var _output: Output!
 
     @inlinable
     public init() {
-        _State.initialize(&_state, to: .idle)
+        State.initialize(&_state, to: .pending)
     }
 
     @inlinable
     public func poll(_ context: inout Context) -> Poll<Output> {
-        var backoff = Backoff()
-        while true {
-            switch _State.compareExchangeWeak(&_state, .idle, .polling) {
-            case .idle:
-                _waker = context.waker
-                let previous = _State.exchange(&_state, .idle)
-                assert(previous == .polling)
+        switch State.compareExchange(&_state, .pending, .polling) {
+        case .pending:
+            // Lock acquired; save the waker
+            _waker = context.waker
+
+            // Release the lock but check whether in the meantime the promise
+            // was, or is just about to be, resolved.
+            switch State.compareExchange(&_state, .polling, .pending) {
+            case .polling:
                 return .pending
-
-            case .resolved:
-                // swiftlint:disable:next force_unwrapping
-                return .ready(_output!)
-
-            case .resolving:
-                if backoff.spin() {
+            case let actual:
+                if actual.contains(.resolved) {
+                    return .ready(_output)
+                }
+                if actual.contains(.resolving) {
+                    // We're just about to get the output. Yield to the
+                    // executor in order to repoll the soonest possible.
                     return context.yield()
                 }
-
-            case .polling:
-                fatalError("concurrent attempt to poll Promise")
+                assert(actual == .pending)
+                fatalError("unreachable")
             }
+
+        case .resolving:
+            return context.yield()
+
+        case let actual:
+            if actual.contains(.resolved) {
+                // swiftlint:disable:next force_unwrapping
+                return .ready(_output.move()!)
+            }
+            assert(actual == .pending)
+            fatalError("concurrent attempt to poll Promise")
+        }
+    }
+
+    @inlinable
+    public func resolve(_ output: Output) {
+        let curr = State.fetchOr(&_state, .resolving)
+        if curr.contains(.resolving) {
+            // Either the promise is already resolved, or some other
+            // thread won the race and will soon resolve it.
+            return
+        }
+        // Lock acquired; store the value
+        _output = output
+
+        // Publish that the promise is now resolved and signal the
+        // waker if needed.
+        if !State.exchange(&_state, .resolved).contains(.polling) {
+            _waker?.signal()
         }
     }
 }
@@ -63,26 +103,43 @@ public final class Promise<Output>: FutureProtocol {
 extension Promise {
     /// :nodoc:
     public enum Resolve<F: FutureProtocol>: FutureProtocol where F.Output == Output {
-        case pending(Promise, F)
+        public struct _State {
+            @usableFromInline let promise: WeakReference<Promise>
+            @usableFromInline var future: F
+
+            @inlinable
+            init(promise: Promise, future: F) {
+                self.promise = .init(promise)
+                self.future = future
+            }
+        }
+
+        case pending(_State)
         case done
 
         @inlinable
         public init(promise: Promise, future: F) {
-            self = .pending(promise, future)
+            self = .pending(.init(promise: promise, future: future))
         }
 
         @inlinable
         public mutating func poll(_ context: inout Context) -> Poll<Void> {
             switch self {
-            case .pending(let promise, var future):
-                switch future.poll(&context) {
-                case .ready(let output):
+            case .pending(var state):
+                guard let promise = state.promise.value else {
                     self = .done
-                    promise.resolve(output)
-                    return .ready
-                case .pending:
-                    self = .pending(promise, future)
-                    return .pending
+                    return .ready(())
+                }
+                return withExtendedLifetime(promise) {
+                    switch state.future.poll(&context) {
+                    case .ready(let output):
+                        promise.resolve(output)
+                        self = .done
+                        return .ready(())
+                    case .pending:
+                        self = .pending(state)
+                        return .pending
+                    }
                 }
 
             case .done:
@@ -94,35 +151,5 @@ extension Promise {
     @inlinable
     public func resolve<F: FutureProtocol>(when future: F) -> Resolve<F> {
         return .init(promise: self, future: future)
-    }
-
-    @inlinable
-    public func resolve(_ value: Output) {
-        var backoff = Backoff()
-        while true {
-            switch _State.compareExchangeWeak(&_state, .idle, .resolving) {
-            case .idle:
-                let waker = _waker.move()
-                _output = value
-                let previous = _State.exchange(&_state, .resolved)
-                assert(previous == .resolving)
-                waker?.signal()
-                return
-
-            case .resolved, .resolving:
-                return
-
-            case .polling:
-                // FIXME: return if we exhausted our budget
-                _ = backoff.yield()
-            }
-        }
-    }
-}
-
-extension Promise where Output == Void {
-    @inlinable
-    public func resolve() {
-        resolve(())
     }
 }
