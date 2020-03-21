@@ -159,8 +159,8 @@ extension Stream._Private.Share {
                 let previous = _state.exchange(.idle)
                 assert(previous == .waiting)
                 task!.notify() // swiftlint:disable:this force_unwrapping
-            default:
-                fatalError("unreachable")
+            case .notifying:
+                break
             }
         }
     }

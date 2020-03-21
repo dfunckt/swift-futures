@@ -414,14 +414,17 @@ private final class MPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
             QueueExecutor(label: "test-\($0)")
         }
 
+        var tasks = [Task<Void>]()
+        tasks.reserveCapacity(MPSC_SENDER_COUNT)
+
         let rx: C.Receiver = {
             let (tx, rx) = makeChannel().split()
             let values = Stream.sequence(0..<MPSC_ITERATIONS)
 
             for i in 0..<MPSC_SENDER_COUNT {
-                executors[i % CPU_COUNT].submit(
+                tasks.append(executors[i % CPU_COUNT].spawn(
                     values.forward(to: tx, close: false).assertNoError()
-                )
+                ))
             }
 
             return rx
@@ -431,6 +434,8 @@ private final class MPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
 
         rx.makeStream()
             .map { sum += $0 }
+            .ignoreOutput()
+            .join(Future.joinAll(tasks))
             .ignoreOutput()
             .wait()
 
@@ -518,8 +523,7 @@ final class SharedChannelTests: XCTestCase {
     func testSPMC() { spmcTester.testSPMC() }
     func testSPMCThreaded() { spmcTester.testSPMCThreaded(self) }
     func testMPSC() { mpscTester.testMPSC() }
-    // FIXME: race-conditions
-    func _testMPSCThreaded() { mpscTester.testMPSCThreaded() }
+    func testMPSCThreaded() { mpscTester.testMPSCThreaded() }
 }
 
 // MARK: -
