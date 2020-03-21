@@ -86,11 +86,11 @@ final class ThreadExecutorTests: XCTestCase {
         }
     }
 
-    func testRunNested() {
+    func testRunNested() throws {
         var count = 0
         let executor = ThreadExecutor.current
-        executor.submit(lazy {
-            executor.submit(lazy {
+        try executor.submit(lazy {
+            try! executor.submit(lazy { // swiftlint:disable:this force_try
                 count += 1
                 return DONE
             })
@@ -100,12 +100,12 @@ final class ThreadExecutorTests: XCTestCase {
         XCTAssertEqual(count, 1)
     }
 
-    func testRunMany() {
+    func testRunMany() throws {
         let ITERATIONS = 200
         var count = 0
         let executor = ThreadExecutor.current
         for _ in 0..<ITERATIONS {
-            executor.submit(lazy {
+            try executor.submit(lazy {
                 count += 1
                 return DONE
             })
@@ -124,9 +124,9 @@ final class ThreadExecutorTests: XCTestCase {
         XCTAssertEqual(count, 1)
     }
 
-    func testRunUntilIgnoresSpawned() {
+    func testRunUntilIgnoresSpawned() throws {
         let executor = ThreadExecutor()
-        executor.submit(pending())
+        try executor.submit(pending())
         executor.runUntil(lazy { DONE })
     }
 

@@ -266,7 +266,7 @@ private final class SPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
         makeChannel = constructor
     }
 
-    func testSPSC() {
+    func testSPSC() throws {
         let executor = ThreadExecutor()
         var sum = 0
 
@@ -275,11 +275,11 @@ private final class SPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
         do {
             let (tx, rx) = makeChannel().split()
             isPassthrough = C.Buffer.isPassthrough
-            executor.submit(
+            try executor.submit(
                 rx.makeStream().map { sum += $0 }
             )
             let values = Stream.sequence(0..<SPSC_ITERATIONS)
-            executor.submit(values.forward(to: tx).assertNoError())
+            try executor.submit(values.forward(to: tx).assertNoError())
             XCTAssert(executor.run())
         }
 
@@ -320,7 +320,7 @@ private final class SPMCChannelTester<C: ChannelProtocol> where C.Item == Int {
         makeChannel = constructor
     }
 
-    func testSPMC() {
+    func testSPMC() throws {
         let executor = ThreadExecutor()
         var sum = 0
 
@@ -332,12 +332,12 @@ private final class SPMCChannelTester<C: ChannelProtocol> where C.Item == Int {
             let multicast = rx.makeStream().multicast()
 
             for _ in 0..<SPMC_RECEIVER_COUNT {
-                executor.submit(
+                try executor.submit(
                     multicast.makeStream().map { sum += $0 }
                 )
             }
             let values = Stream.sequence(0..<SPMC_ITERATIONS)
-            executor.submit(values.forward(to: tx).assertNoError())
+            try executor.submit(values.forward(to: tx).assertNoError())
             XCTAssert(executor.run())
         }
 
@@ -384,15 +384,15 @@ private final class MPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
         makeChannel = constructor
     }
 
-    func testMPSC() {
+    func testMPSC() throws {
         let executor = ThreadExecutor()
 
-        let rx: C.Receiver = {
+        let rx: C.Receiver = try {
             let (tx, rx) = makeChannel().split()
             let values = Stream.sequence(0..<MPSC_ITERATIONS)
 
             for _ in 0..<MPSC_SENDER_COUNT {
-                executor.submit(
+                try executor.submit(
                     values.forward(to: tx, close: false).assertNoError()
                 )
             }
@@ -401,7 +401,7 @@ private final class MPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
         }()
 
         var sum = 0
-        executor.submit(
+        try executor.submit(
             rx.makeStream().map { sum += $0 }
         )
 
@@ -464,9 +464,9 @@ final class UnbufferedChannelTests: XCTestCase {
     func testSenderCloseAsync() { tester.testSenderCloseAsync(self) }
     func testReceiverClose() { tester.testReceiverClose() }
     func testReceiverCloseAsync() { tester.testReceiverCloseAsync(self) }
-    func testSPSC() { spscTester.testSPSC() }
+    func testSPSC() throws { try spscTester.testSPSC() }
     func testSPSCThreaded() { spscTester.testSPSCThreaded(self) }
-    func testSPMC() { spmcTester.testSPMC() }
+    func testSPMC() throws { try spmcTester.testSPMC() }
     func testSPMCThreaded() { spmcTester.testSPMCThreaded(self) }
 }
 
@@ -489,9 +489,9 @@ final class BufferedChannelTests: XCTestCase {
     func testSenderCloseAsync() { tester.testSenderCloseAsync(self) }
     func testReceiverClose() { tester.testReceiverClose() }
     func testReceiverCloseAsync() { tester.testReceiverCloseAsync(self) }
-    func testSPSC() { spscTester.testSPSC() }
+    func testSPSC() throws { try spscTester.testSPSC() }
     func testSPSCThreaded() { spscTester.testSPSCThreaded(self) }
-    func testSPMC() { spmcTester.testSPMC() }
+    func testSPMC() throws { try spmcTester.testSPMC() }
     func testSPMCThreaded() { spmcTester.testSPMCThreaded(self) }
 }
 
@@ -518,11 +518,11 @@ final class SharedChannelTests: XCTestCase {
     func testSenderCloseAsync() { tester.testSenderCloseAsync(self) }
     func testReceiverClose() { tester.testReceiverClose() }
     func testReceiverCloseAsync() { tester.testReceiverCloseAsync(self) }
-    func testSPSC() { spscTester.testSPSC() }
+    func testSPSC() throws { try spscTester.testSPSC() }
     func testSPSCThreaded() { spscTester.testSPSCThreaded(self) }
-    func testSPMC() { spmcTester.testSPMC() }
+    func testSPMC() throws { try spmcTester.testSPMC() }
     func testSPMCThreaded() { spmcTester.testSPMCThreaded(self) }
-    func testMPSC() { mpscTester.testMPSC() }
+    func testMPSC() throws { try mpscTester.testMPSC() }
     func testMPSCThreaded() { mpscTester.testMPSCThreaded() }
 }
 
@@ -547,8 +547,8 @@ final class PassthroughChannelTests: XCTestCase {
     func testSenderCloseAsync() { tester.testSenderCloseAsync(self) }
     func testReceiverClose() { tester.testReceiverClose() }
     func testReceiverCloseAsync() { tester.testReceiverCloseAsync(self) }
-    func testSPSC() { spscTester.testSPSC() }
-    func testSPMC() { spmcTester.testSPMC() }
+    func testSPSC() throws { try spscTester.testSPSC() }
+    func testSPMC() throws { try spmcTester.testSPMC() }
 }
 
 final class BufferedUnboundedChannelTests: XCTestCase {
@@ -570,9 +570,9 @@ final class BufferedUnboundedChannelTests: XCTestCase {
     func testSenderCloseAsync() { tester.testSenderCloseAsync(self) }
     func testReceiverClose() { tester.testReceiverClose() }
     func testReceiverCloseAsync() { tester.testReceiverCloseAsync(self) }
-    func testSPSC() { spscTester.testSPSC() }
+    func testSPSC() throws { try spscTester.testSPSC() }
     func testSPSCThreaded() { spscTester.testSPSCThreaded(self) }
-    func testSPMC() { spmcTester.testSPMC() }
+    func testSPMC() throws { try spmcTester.testSPMC() }
     func testSPMCThreaded() { spmcTester.testSPMCThreaded(self) }
 }
 
@@ -599,10 +599,10 @@ final class SharedUnboundedChannelTests: XCTestCase {
     func testSenderCloseAsync() { tester.testSenderCloseAsync(self) }
     func testReceiverClose() { tester.testReceiverClose() }
     func testReceiverCloseAsync() { tester.testReceiverCloseAsync(self) }
-    func testSPSC() { spscTester.testSPSC() }
+    func testSPSC() throws { try spscTester.testSPSC() }
     func testSPSCThreaded() { spscTester.testSPSCThreaded(self) }
-    func testSPMC() { spmcTester.testSPMC() }
+    func testSPMC() throws { try spmcTester.testSPMC() }
     func testSPMCThreaded() { spmcTester.testSPMCThreaded(self) }
-    func testMPSC() { mpscTester.testMPSC() }
+    func testMPSC() throws { try mpscTester.testMPSC() }
     func testMPSCThreaded() { mpscTester.testMPSCThreaded() }
 }

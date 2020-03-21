@@ -30,7 +30,7 @@ extension XCTestCase {
 
     public func poll(_ fn: @escaping (inout Context) -> Poll<Void>) {
         let executor = ThreadExecutor.current
-        executor.submit(AnyFuture(fn))
+        try! executor.submit(AnyFuture(fn)) // swiftlint:disable:this force_try
         XCTAssert(executor.run())
     }
 }

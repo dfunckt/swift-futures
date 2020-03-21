@@ -20,10 +20,10 @@ final class FutureTests: XCTestCase {
 
     // MARK: -
 
-    func testNever() {
+    func testNever() throws {
         let f = Future.never(outputType: Void.self)
         let executor = ThreadExecutor()
-        executor.submit(f)
+        try executor.submit(f)
         XCTAssertFalse(executor.run())
     }
 

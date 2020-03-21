@@ -13,10 +13,10 @@ import FuturesTestSupport
 import XCTest
 
 final class StreamTests: XCTestCase {
-    func testNever() {
+    func testNever() throws {
         let s = Stream.never(outputType: Void.self)
         let executor = ThreadExecutor()
-        executor.submit(s)
+        try executor.submit(s)
         XCTAssertFalse(executor.run())
     }
 
@@ -284,7 +284,7 @@ final class StreamTests: XCTestCase {
 
     typealias S = Futures.Stream._Private.ForEach<TestStream<Range<Int>>>
 
-    func _testMulticast<U: StreamConvertible>(_ constructor: (S) -> U) where U.StreamType.Output == S.Output {
+    func _testMulticast<U: StreamConvertible>(_ constructor: (S) -> U) throws where U.StreamType.Output == S.Output {
         // TODO: test replay strategies
         let iterations = 1_000
         var counter0 = 0
@@ -297,8 +297,8 @@ final class StreamTests: XCTestCase {
         let stream1 = multicast.makeStream().map { counter1 += $0 }
         let stream2 = multicast.makeStream().map { counter2 += $0 }
 
-        ThreadExecutor.current.submit(stream1)
-        ThreadExecutor.current.submit(stream2)
+        try ThreadExecutor.current.submit(stream1)
+        try ThreadExecutor.current.submit(stream2)
         ThreadExecutor.current.wait()
 
         let expected = (0..<iterations).reduce(into: 0, +=)
@@ -307,7 +307,7 @@ final class StreamTests: XCTestCase {
         XCTAssertEqual(counter2, expected)
     }
 
-    func _testShare<U: StreamConvertible>(_ constructor: (S) -> U) where U.StreamType.Output == S.Output {
+    func _testShare<U: StreamConvertible>(_ constructor: (S) -> U) throws where U.StreamType.Output == S.Output {
         // TODO: test replay strategies
         let iterations = 1_000
         var counter0 = 0
@@ -320,11 +320,11 @@ final class StreamTests: XCTestCase {
         let stream1 = shared.makeStream().map { counter1 += $0 }
         let stream2 = shared.makeStream().map { counter2 += $0 }
 
-        let task1 = QueueExecutor(label: "queue 1").spawn(stream1.ignoreOutput())
-        let task2 = QueueExecutor(label: "queue 2").spawn(stream2.ignoreOutput())
+        let task1 = QueueExecutor(label: "queue 1").spawn(stream1)
+        let task2 = QueueExecutor(label: "queue 2").spawn(stream2)
 
-        ThreadExecutor.current.submit(task1.assertNoError())
-        ThreadExecutor.current.submit(task2.assertNoError())
+        try ThreadExecutor.current.submit(task1.assertNoError())
+        try ThreadExecutor.current.submit(task2.assertNoError())
         ThreadExecutor.current.wait()
 
         let expected = (0..<iterations).reduce(into: 0, +=)
@@ -333,23 +333,23 @@ final class StreamTests: XCTestCase {
         XCTAssertEqual(counter2, expected)
     }
 
-    func testMulticast() {
+    func testMulticast() throws {
         _testMulticastBasic { $0.multicast() }
-        _testMulticast { $0.multicast() }
+        try _testMulticast { $0.multicast() }
     }
 
-    func testEraseToAnyMulticastStream() {
-        _testMulticast { $0.eraseToAnyMulticastStream() }
+    func testEraseToAnyMulticastStream() throws {
+        try _testMulticast { $0.eraseToAnyMulticastStream() }
     }
 
-    func testShare() {
+    func testShare() throws {
         _testMulticastBasic { $0.share() }
-        _testMulticast { $0.share() }
-        _testShare { $0.share() }
+        try _testMulticast { $0.share() }
+        try _testShare { $0.share() }
     }
 
-    func testEraseToAnySharedStream() {
-        _testShare { $0.eraseToAnySharedStream() }
+    func testEraseToAnySharedStream() throws {
+        try _testShare { $0.eraseToAnySharedStream() }
     }
 
     // MARK: -

@@ -85,15 +85,9 @@ extension ExecutorProtocol {
     }
 
     /// Submits a future to be executed by this executor.
-    ///
-    /// Use this method with care as it may trap at runtime. This method is
-    /// convenience for:
-    ///
-    ///     try! executor.trySubmit(future).get()
-    ///
     @inlinable
-    public func submit<F: FutureProtocol>(_ future: F) where F.Output == Void {
-        try! trySubmit(future).get() // swiftlint:disable:this force_try
+    public func submit<F: FutureProtocol>(_ future: F) throws where F.Output == Void {
+        try trySubmit(future).get()
     }
 
     // MARK: -
@@ -106,27 +100,15 @@ extension ExecutorProtocol {
     /// capacity and needs to provide backpressure. The latter case is
     /// expected to be a transient state which the executor will recover from
     /// and submission may be retried.
-    ///
-    /// Use this method with care as it may trap at runtime. This method is
-    /// convenience for:
-    ///
-    ///     executor.trySubmit(stream.ignoreOutput())
-    ///
     @inlinable
     public func trySubmit<S: StreamProtocol>(_ stream: S) -> Result<Void, Failure> where S.Output == Void {
         return trySubmit(stream.ignoreOutput())
     }
 
     /// Submits a stream to be executed by this executor.
-    ///
-    /// Use this method with care as it may trap at runtime. This method is
-    /// convenience for:
-    ///
-    ///     try! executor.trySubmit(stream.ignoreOutput()).get()
-    ///
     @inlinable
-    public func submit<S: StreamProtocol>(_ stream: S) where S.Output == Void {
-        try! trySubmit(stream).get() // swiftlint:disable:this force_try
+    public func submit<S: StreamProtocol>(_ stream: S) throws where S.Output == Void {
+        try trySubmit(stream).get()
     }
 
     // MARK: -
@@ -146,27 +128,43 @@ extension ExecutorProtocol {
     ///
     /// The handle is a cancellable future itself and can be safely sent and
     /// waited on any thread or submitted into another executor; see `Task`.
-    ///
-    /// Use this method with care as it may trap at runtime. This method is
-    /// convenience for:
-    ///
-    ///     try! executor.trySpawn(future).get()
-    ///
     @inlinable
-    public func spawn<F: FutureProtocol>(_ future: F) -> Task<F.Output> {
-        return try! trySpawn(future).get() // swiftlint:disable:this force_try
+    public func spawn<F: FutureProtocol>(_ future: F) throws -> Task<F.Output> {
+        return try trySpawn(future).get()
     }
 }
 
 extension ExecutorProtocol where Failure == Never {
     @inlinable
-    public func submit<F: FutureProtocol>(_ future: F) where F.Output == Result<Void, Failure> {
+    public func submit<F: FutureProtocol>(_ future: F) where F.Output == Void {
+        try! trySubmit(future).get() // swiftlint:disable:this force_try
+    }
+
+    @inlinable
+    public func submit<F: FutureProtocol>(_ future: F) where F.Output == Result<Void, Never> {
         try! trySubmit(future.ignoreOutput()).get() // swiftlint:disable:this force_try
     }
 
     @inlinable
-    public func submit<S: StreamProtocol>(_ stream: S) where S.Output == Result<Void, Failure> {
+    public func submit<S: StreamProtocol>(_ stream: S) where S.Output == Void {
         try! trySubmit(stream.ignoreOutput()).get() // swiftlint:disable:this force_try
+    }
+
+    @inlinable
+    public func submit<S: StreamProtocol>(_ stream: S) where S.Output == Result<Void, Never> {
+        try! trySubmit(stream.ignoreOutput()).get() // swiftlint:disable:this force_try
+    }
+}
+
+extension ExecutorProtocol where Failure == Never {
+    @inlinable
+    public func spawn<F: FutureProtocol>(_ future: F) -> Task<F.Output> {
+        try! trySpawn(future).get() // swiftlint:disable:this force_try
+    }
+
+    @inlinable
+    public func spawn<S: StreamProtocol>(_ stream: S) -> Task<Void> where S.Output == Void {
+        try! trySpawn(stream.ignoreOutput()).get() // swiftlint:disable:this force_try
     }
 }
 
