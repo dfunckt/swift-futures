@@ -323,8 +323,8 @@ final class StreamTests: XCTestCase {
         let task1 = QueueExecutor(label: "queue 1").spawn(stream1.ignoreOutput())
         let task2 = QueueExecutor(label: "queue 2").spawn(stream2.ignoreOutput())
 
-        ThreadExecutor.current.submit(task1)
-        ThreadExecutor.current.submit(task2)
+        ThreadExecutor.current.submit(task1.assertNoError())
+        ThreadExecutor.current.submit(task2.assertNoError())
         ThreadExecutor.current.wait()
 
         let expected = (0..<iterations).reduce(into: 0, +=)

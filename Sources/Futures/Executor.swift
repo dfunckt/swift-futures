@@ -138,9 +138,7 @@ extension ExecutorProtocol {
     /// waited on any thread or submitted into another executor; see `Task`.
     @inlinable
     public func trySpawn<F: FutureProtocol>(_ future: F) -> Result<Task<F.Output>, Failure> {
-        let task = Task<F.Output>(executor: self)
-        let remote = task._wrap(future)
-        return trySubmit(remote).map { task }
+        return Task.create(future: future, executor: self)
     }
 
     /// Submits a future into the executor and returns a handle that can be

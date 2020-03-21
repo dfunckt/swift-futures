@@ -155,7 +155,7 @@ let answer = deepThought.cpu0.spawn(
 // exit. We need the answer first however, so we block the
 // current thread waiting for the result of the computation
 // which we just print to standard output.
-print(answer.wait()) // prints 42
+print(answer.wait()) // prints "Result.success(42)"
 ```
 
 You'll need the following functions if you want to run the program yourself

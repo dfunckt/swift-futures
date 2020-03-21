@@ -7,7 +7,12 @@
 
 extension Future._Private {
     public enum Then<E: ExecutorProtocol, U: FutureConvertible, Base: FutureProtocol>: FutureProtocol {
-        public typealias Output = Result<U.FutureType.Output, E.Failure>
+        public enum Error: Swift.Error {
+            case spawn(E.Failure)
+            case cancelled
+        }
+
+        public typealias Output = Result<U.FutureType.Output, Error>
         public typealias Continuation = (Base.Output) -> U
 
         @usableFromInline
@@ -77,7 +82,7 @@ extension Future._Private {
                             continue
                         case .failure(let error):
                             self = .done
-                            return .ready(.failure(error))
+                            return .ready(.failure(.spawn(error)))
                         }
 
                     case .pending:
@@ -87,9 +92,12 @@ extension Future._Private {
 
                 case .waiting(let task):
                     switch task.poll(&context) {
-                    case .ready(let output):
+                    case .ready(.success(let output)):
                         self = .done
                         return .ready(.success(output))
+                    case .ready(.failure(.cancelled)):
+                        self = .done
+                        return .ready(.failure(.cancelled))
                     case .pending:
                         self = .waiting(task)
                         return .pending
@@ -102,3 +110,5 @@ extension Future._Private {
         }
     }
 }
+
+extension Future._Private.Then.Error: Equatable where E.Failure: Equatable {}

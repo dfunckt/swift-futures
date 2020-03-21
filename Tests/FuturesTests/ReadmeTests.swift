@@ -55,6 +55,6 @@ final class ReadmeTests: XCTestCase {
                 .first(where: isPronic)
         )
 
-        XCTAssertEqual(answer.wait(), 42)
+        XCTAssertEqual(answer.wait(), .success(42))
     }
 }
