@@ -5,49 +5,43 @@ SHELL = /bin/sh
 MODULES = Futures FuturesSync
 FOLDERS = Sources Tests
 
-LINUX_TOOLCHAIN_URL = https://swift.org/builds/swift-5.1-branch/ubuntu1804/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a/swift-5.1-DEVELOPMENT-SNAPSHOT-2019-08-17-a-ubuntu18.04.tar.gz
-LINUX_IMAGE_NAME = swift-futures
-LINUX_IMAGE_TAG = 5.1-dev
-
-SWIFT := $(shell command -v swift 2>/dev/null)
 SWIFTFORMAT := $(shell command -v swiftformat 2>/dev/null)
 SWIFTLINT := $(shell command -v swiftlint 2>/dev/null)
 JAZZY := $(shell command -v jazzy 2>/dev/null)
 DOCKER := $(shell command -v docker 2>/dev/null)
 
+override TOOLCHAIN = swiftlang/swift:nightly-bionic
+
 
 build:
-	$(SWIFT) build --configuration debug
+	swift build --configuration debug
 
 build-release:
-	$(SWIFT) build --configuration release
+	swift build --configuration release
 
 test:
-	$(SWIFT) test --configuration debug --sanitize thread $(TESTFLAGS)
+	swift test --enable-test-discovery --configuration debug --sanitize thread $(TESTFLAGS)
 
 test-nosanitize:
-	$(SWIFT) test --configuration debug $(TESTFLAGS)
+	swift test --enable-test-discovery --configuration debug $(TESTFLAGS)
 
 test-release:
-	$(SWIFT) test --configuration release $(TESTFLAGS)
+	swift test --enable-test-discovery --configuration release $(TESTFLAGS)
 
 repl:
-	$(SWIFT) run --repl --configuration debug
+	swift run --repl --configuration debug
 
 clean:
-	$(SWIFT) package clean
+	swift package clean
 
-precommit: gyb tests format lint
-pretest: gyb tests format pristine lint
+precommit: gyb format lint
+pretest: gyb format pristine lint
 
 .PHONY: build build-release test test-nosanitize test-release repl clean precommit pretest
 
 
 xcodeproj:
-	$(SWIFT) package generate-xcodeproj --enable-code-coverage
-
-tests:
-	$(SWIFT) test --generate-linuxmain
+	swift package generate-xcodeproj --enable-code-coverage
 
 gyb:
 	for folder in $(FOLDERS); do \
@@ -72,7 +66,7 @@ endif
 pristine:
 	Scripts/ensure-pristine.sh
 
-.PHONY: xcodeproj tests gyb format lint pristine
+.PHONY: xcodeproj gyb format lint pristine
 
 
 docs: xcodeproj
@@ -84,29 +78,29 @@ endif
 .PHONY: docs
 
 
-toolchain:
-	Scripts/install-toolchain.sh "$(LINUX_TOOLCHAIN_URL)"
-
-.PHONY: toolchain
-
-
 _docker:
 ifndef DOCKER
 	$(error "docker not found")
 endif
 
-linuximage: _docker
-	$(DOCKER) build --tag '$(LINUX_IMAGE_NAME):$(LINUX_IMAGE_TAG)' --build-arg TOOLCHAIN_URL="$(LINUX_TOOLCHAIN_URL)" .
+LINUX_IMAGE_NAME := 'swift-futures:latest'
 
-linuxtest: _docker
-	cwd=$$(pwd); \
-	$(DOCKER) run -it --rm --privileged --volume "$${cwd}:/src" '$(LINUX_IMAGE_NAME):$(LINUX_IMAGE_TAG)' test --configuration debug --sanitize thread
+linuximage: _docker
+	$(DOCKER) build --tag '$(LINUX_IMAGE_NAME)' --build-arg TOOLCHAIN="$(TOOLCHAIN)" .
+
+linuxshell: _docker
+	$(DOCKER) run -it --rm --privileged --volume "$$(pwd):/src" --entrypoint '' '$(LINUX_IMAGE_NAME)' /bin/bash
+
+linuxbuild: _docker
+	$(DOCKER) run -it --rm --privileged --volume "$$(pwd):/src" '$(LINUX_IMAGE_NAME)' build --configuration debug
 
 linuxrepl: _docker
-	cwd=$$(pwd); \
-	$(DOCKER) run -it --rm --privileged --volume "$${cwd}:/src" '$(LINUX_IMAGE_NAME):$(LINUX_IMAGE_TAG)' run --repl --configuration debug
+	$(DOCKER) run -it --rm --privileged --volume "$$(pwd):/src" '$(LINUX_IMAGE_NAME)' run --repl --configuration debug
 
-.PHONY: _docker linuximage linuxtest linuxrepl
+linuxtest: _docker
+	$(DOCKER) run -it --rm --privileged --volume "$$(pwd):/src" '$(LINUX_IMAGE_NAME)' test --enable-test-discovery --configuration debug --sanitize thread $(TESTFLAGS)
+
+.PHONY: _docker linuximage linuxshell linuxbuild linuxrepl linuxtest
 
 
 digests: build

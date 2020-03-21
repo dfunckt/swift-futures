@@ -8,9 +8,8 @@ asynchronous programming which, besides offering astounding performance, makes
 dealing with traditionally difficult to solve problems such as backpressure,
 cancellation and threading, trivial.
 
-
 <p>
-<img src="https://img.shields.io/travis/dfunckt/swift-futures/master">
+<img src="https://github.com/dfunckt/swift-futures/workflows/CI/badge.svg?branch=master">
 <img src="https://img.shields.io/github/v/release/dfunckt/swift-futures?sort=semver">
 <img src="https://img.shields.io/badge/swift-%3E%3D5.0-orange">
 <img src="https://img.shields.io/badge/platform-Linux%20macOS%20iOS%20tvOS%20watchOS-blue">

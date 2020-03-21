@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+    - master
+    - next
+
+jobs:
+  pretest:
+    name: Check commit
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: brew install swiftformat
+    - run: brew install swiftlint
+    - run: make pretest
+
+  xcode:
+    name: Xcode ${{ matrix.xcode }}
+    needs: pretest
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        xcode: ['11', '11.1', '11.2', '11.3']
+    steps:
+    - uses: actions/checkout@v2
+    - run: sudo xcode-select -s '/Applications/Xcode_${{ matrix.xcode }}.app'
+    - run: swift --version
+    - run: make test
+
+  ubuntu:
+    name: Ubuntu ${{ matrix.os_version }} / Swift ${{ matrix.swift }}
+    needs: pretest
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [xenial, bionic]
+        swift: ['5.1', '5.2']
+        include:
+          - os: xenial
+            os_version: '16.04'
+          - os: bionic
+            os_version: '18.04'
+          - swift: '5.1'
+            image: 'swift:'
+          - swift: '5.2'
+            image: 'swiftlang/swift:nightly-'
+    container: 
+      image: ${{ matrix.image }}${{ matrix.swift }}-${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    - run: swift --version
+    - run: make test

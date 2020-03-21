@@ -55,8 +55,7 @@ publish() {
   local branch_name=$(git rev-parse --abbrev-ref HEAD)
   local git_author=$(git --no-pager show -s --format='%an <%ae>' HEAD)
 
-  git remote add deploy git@github.com:${REPO_SLUG}.git
-  git fetch deploy +gh-pages:gh-pages
+  git fetch --depth=1 origin +gh-pages:gh-pages
   git checkout gh-pages
 
   rm -rf "${OUTPUT_DIR}latest"
@@ -74,7 +73,7 @@ publish() {
   local changes=$(git diff-index --name-only HEAD)
   if test -n "$changes"; then
     git commit --author="${git_author}" -m "Publish API reference for ${VERSION}"
-    git push deploy gh-pages
+    git push origin gh-pages
   else
     echo "no changes detected"
   fi
