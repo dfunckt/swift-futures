@@ -205,14 +205,19 @@ private extension Task {
                 return .ready(.success(_inner.output.move()!))
             }
 
-        case .resolved:
-            // We're already done; return the output
-            // swiftlint:disable:next force_unwrapping
-            return .ready(.success(_inner.output.move()!))
+        case .registering:
+            // The remote future is registering its waker.
+            // Check back in a bit.
+            return context.yield()
 
         case let actual:
             if actual.contains(.cancelled) {
                 return .ready(.failure(.cancelled))
+            }
+            if actual.contains(.resolved) {
+                // We're done; return the output
+                // swiftlint:disable:next force_unwrapping
+                return .ready(.success(_inner.output.move()!))
             }
             assert(actual == .polling, "expected polling; found \(actual)")
             fatalError("concurrent attempt to poll task handle")
@@ -260,28 +265,32 @@ private extension Task {
                     return .ready(())
 
                 case .pending:
-                    // Try to register our waker so that the canceller
-                    // can signal us on cancellation.
-                    switch State.compareExchange(&inner.state, .pending, .registering) {
-                    case .pending:
-                        // Lock acquired; set the waker
-                        inner.remoteWaker = context.waker
+                    while true {
+                        // Try to register our waker so that the canceller
+                        // can signal us on cancellation.
+                        switch State.compareExchange(&inner.state, .pending, .registering) {
+                        case .pending:
+                            // Lock acquired; set the waker
+                            inner.remoteWaker = context.waker
 
-                        // Toggle the bit back off and check whether the
-                        // task has been cancelled.
-                        if State.fetchXor(&inner.state, .registering).contains(.cancelled) {
+                            // Toggle the bit back off and check whether the
+                            // task has been cancelled.
+                            if State.fetchXor(&inner.state, .registering).contains(.cancelled) {
+                                self = .done
+                                return .ready(())
+                            }
+                            self = .pending(inner, future)
+                            return .pending
+                        case .polling:
+                            // The task handle is registering its waker.
+                            // Just retry.
+                            Atomic.hardwarePause()
+                            continue
+                        case let actual:
+                            assert(actual == .cancelled, "expected cancelled; found \(actual)")
                             self = .done
                             return .ready(())
                         }
-                        self = .pending(inner, future)
-                        return .pending
-                    case .polling:
-                        self = .pending(inner, future)
-                        return context.yield()
-                    case let actual:
-                        assert(actual == .cancelled, "expected cancelled; found \(actual)")
-                        self = .done
-                        return .ready(())
                     }
                 }
 
