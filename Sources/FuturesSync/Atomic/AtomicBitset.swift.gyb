@@ -1,5 +1,5 @@
 //
-//  AtomicEnum.swift
+//  AtomicBitset.swift
 //  Futures
 //
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
@@ -7,35 +7,97 @@
 
 import FuturesPrivate
 
-@inlinable
-@_transparent
-func _fromRawValue<R: RawRepresentable>(_ rawValue: R.RawValue, _: R.Type = R.self) -> R {
-    let value = R(rawValue: rawValue)
-    assert(value != nil, "\(rawValue) does not map to any case of \(R.self)")
-    // swiftlint:disable:next force_unwrapping
-    return value!
+public protocol AtomicBitset: ExpressibleByIntegerLiteral, Equatable {
+    associatedtype RawValue: FixedWidthInteger & UnsignedInteger
+
+    var rawValue: RawValue { get }
+
+    init(rawValue: RawValue)
+
+    static var bitWidth: Int { get }
 }
 
-@inlinable
-@_transparent
-func _toRawValue<R: RawRepresentable>(_ case: R) -> R.RawValue {
-    return `case`.rawValue
+extension AtomicBitset where RawValue == IntegerLiteralType {
+    @_transparent
+    public init(integerLiteral value: Self.IntegerLiteralType) {
+        self = .init(rawValue: value)
+    }
+}
+
+extension AtomicBitset {
+    @inlinable
+    public static var bitWidth: Int {
+        @_transparent get { RawValue.bitWidth }
+    }
+}
+
+extension AtomicBitset where Self: CustomDebugStringConvertible {
+    @inlinable
+    public var debugDescription: String {
+        let bin = String(rawValue, radix: 2)
+        let len = Self.bitWidth - bin.count
+        let pad = String(repeating: "0", count: len > 0 ? len : bin.count)
+        return "0b\(pad)\(bin)"
+    }
+}
+
+extension AtomicBitset {
+    @inlinable
+    public static var empty: Self {
+        @_transparent get { .init(rawValue: 0) }
+    }
+
+    @_transparent
+    public func contains(_ other: Self) -> Bool {
+        rawValue & other.rawValue > 0
+    }
+
+    @_transparent
+    public func containsAll(_ other: Self) -> Bool {
+        rawValue & other.rawValue == other.rawValue
+    }
+
+    @_transparent
+    public static func == (_ lhs: Self, _ rhs: Self) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+
+    @_transparent
+    public static func | (_ lhs: Self, _ rhs: Self) -> Self {
+        return .init(rawValue: lhs.rawValue | rhs.rawValue)
+    }
+
+    @_transparent
+    public static func & (_ lhs: Self, _ rhs: Self) -> Self {
+        return .init(rawValue: lhs.rawValue & rhs.rawValue)
+    }
+
+    @_transparent
+    public static func ^ (_ lhs: Self, _ rhs: Self) -> Self {
+        return .init(rawValue: lhs.rawValue ^ rhs.rawValue)
+    }
+
+    @_transparent
+    public static prefix func ~ (_ x: Self) -> Self {
+        return .init(rawValue: ~x.rawValue)
+    }
 }
 
 // MARK: -
 
-public final class AtomicEnum<R: RawRepresentable> where R.RawValue: _CAtomicInteger {
-    public typealias Pointer = R.RawValue.AtomicPointer
-    public typealias RawValue = R.RawValue.AtomicRawValue
+@inlinable
+@_transparent
+func _fromRawValue<B: AtomicBitset>(_ rawValue: B.RawValue, _: B.Type = B.self) -> B {
+    return B(rawValue: rawValue)
+}
 
-    @usableFromInline var _storage: R.RawValue.AtomicRawValue = 0
-
-    @inlinable
-    init() {}
+@inlinable
+@_transparent
+func _toRawValue<B: AtomicBitset>(_ bitset: B) -> B.RawValue {
+    return bitset.rawValue
 }
 %{
     atomic_types = [
-        'Int', 'Int8', 'Int16', 'Int32', 'Int64',
         'UInt', 'UInt8', 'UInt16', 'UInt32', 'UInt64',
     ]
 }%
@@ -43,200 +105,7 @@ public final class AtomicEnum<R: RawRepresentable> where R.RawValue: _CAtomicInt
 
 // MARK: - ${type} -
 
-extension AtomicEnum where R.RawValue == ${type} {
-    @_transparent
-    public convenience init(_ initialValue: R) {
-        self.init()
-        R.initialize(&_storage, to: initialValue)
-    }
-
-    /// Atomically loads and returns the current value of the atomic variable
-    /// pointed to by the receiver. The operation is atomic *read* operation.
-    ///
-    /// - Parameters:
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value stored in the receiver.
-    @_transparent
-    public func load(order: AtomicLoadMemoryOrder = .seqcst) -> R {
-        return R.load(&_storage, order: order)
-    }
-
-    /// Atomically replaces the value of the atomic variable pointed to by the
-    /// receiver with `desired`. The operation is atomic *write* operation.
-    ///
-    /// - Parameters:
-    ///     - desired: The value to replace the receiver with.
-    ///     - order: The memory synchronization ordering for this operation.
-    @_transparent
-    public func store(_ value: R, order: AtomicStoreMemoryOrder = .seqcst) {
-        return R.store(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with `desired`
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - desired: The value to replace the receiver with.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    public func exchange(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.exchange(&_storage, value, order: order)
-    }
-
-    /// Atomically compares the value pointed to by the receiver with the
-    /// value pointed to by `expected`, and if those are equal, replaces the
-    /// former with `desired` (performs *read-modify-write* operation).
-    /// Otherwise, loads the actual value pointed to by the receiver into
-    /// `*expected` (performs *load* operation).
-    ///
-    /// - Parameters:
-    ///     - expected: The value expected to be found in the receiver.
-    ///     - desired: The value to store in the receiver if it is as expected.
-    ///     - order: The memory synchronization ordering for the read-modify-write
-    ///       operation if the comparison succeeds.
-    ///     - loadOrder: The memory synchronization ordering for the load
-    ///       operation if the comparison fails. Cannot specify stronger
-    ///       ordering than `order`.
-    ///
-    /// - Returns: The result of the comparison: `true` if current value was
-    ///     equal to `*expected`, `false` otherwise.
-    @_transparent
-    @discardableResult
-    public func compareExchange(
-        _ expected: UnsafeMutablePointer<R>,
-        _ desired: R,
-        order: AtomicMemoryOrder = .seqcst,
-        loadOrder: AtomicLoadMemoryOrder? = nil
-    ) -> Bool {
-        return R.compareExchange(
-            &_storage,
-            expected,
-            desired,
-            order: order,
-            loadOrder: loadOrder
-        )
-    }
-
-    /// Atomically compares the value pointed to by the receiver with the
-    /// value pointed to by `expected`, and if those are equal, replaces the
-    /// former with `desired` (performs *read-modify-write* operation).
-    /// Otherwise, loads the actual value pointed to by the receiver into
-    /// `*expected` (performs *load* operation).
-    ///
-    /// - Parameters:
-    ///     - expected: The value expected to be found in the receiver.
-    ///     - desired: The value to store in the receiver if it is as expected.
-    ///     - order: The memory synchronization ordering for the read-modify-write
-    ///       operation if the comparison succeeds.
-    ///     - loadOrder: The memory synchronization ordering for the load
-    ///       operation if the comparison fails. Cannot specify stronger
-    ///       ordering than `order`.
-    ///
-    /// - Returns: The value actually stored in the receiver. If exchange
-    ///     succeeded, this will be equal to `expected`.
-    @_transparent
-    @discardableResult
-    public func compareExchange(
-        _ expected: R,
-        _ desired: R,
-        order: AtomicMemoryOrder = .seqcst,
-        loadOrder: AtomicLoadMemoryOrder? = nil
-    ) -> R {
-        return R.compareExchange(
-            &_storage,
-            expected,
-            desired,
-            order: order,
-            loadOrder: loadOrder
-        )
-    }
-
-    /// Atomically compares the value pointed to by the receiver with the
-    /// value pointed to by `expected`, and if those are equal, replaces the
-    /// former with `desired` (performs *read-modify-write* operation).
-    /// Otherwise, loads the actual value pointed to by the receiver into
-    /// `*expected` (performs *load* operation).
-    ///
-    /// This form of compare-and-exchange is allowed to fail spuriously, that
-    /// is, act as if `*current != *expected` even if they are equal. When a
-    /// compare-and-exchange is in a loop, this version will yield better
-    /// performance on some platforms. When a weak compare-and-exchange would
-    /// require a loop and a strong one would not, the strong one is preferable.
-    ///
-    /// - Parameters:
-    ///     - expected: The value expected to be found in the receiver.
-    ///     - desired: The value to store in the receiver if it is as expected.
-    ///     - order: The memory synchronization ordering for the read-modify-write
-    ///       operation if the comparison succeeds.
-    ///     - loadOrder: The memory synchronization ordering for the load
-    ///       operation if the comparison fails. Cannot specify stronger
-    ///       ordering than `order`.
-    ///
-    /// - Returns: The result of the comparison: `true` if current value was
-    ///     equal to `*expected`, `false` otherwise.
-    @_transparent
-    @discardableResult
-    public func compareExchangeWeak(
-        _ expected: UnsafeMutablePointer<R>,
-        _ desired: R,
-        order: AtomicMemoryOrder = .seqcst,
-        loadOrder: AtomicLoadMemoryOrder? = nil
-    ) -> Bool {
-        return R.compareExchangeWeak(
-            &_storage,
-            expected,
-            desired,
-            order: order,
-            loadOrder: loadOrder
-        )
-    }
-
-    /// Atomically compares the value pointed to by the receiver with the
-    /// value pointed to by `expected`, and if those are equal, replaces the
-    /// former with `desired` (performs *read-modify-write* operation).
-    /// Otherwise, loads the actual value pointed to by the receiver into
-    /// `*expected` (performs *load* operation).
-    ///
-    /// This form of compare-and-exchange is allowed to fail spuriously, that
-    /// is, act as if `*current != *expected` even if they are equal. When a
-    /// compare-and-exchange is in a loop, this version will yield better
-    /// performance on some platforms. When a weak compare-and-exchange would
-    /// require a loop and a strong one would not, the strong one is preferable.
-    ///
-    /// - Parameters:
-    ///     - expected: The value expected to be found in the receiver.
-    ///     - desired: The value to store in the receiver if it is as expected.
-    ///     - order: The memory synchronization ordering for the read-modify-write
-    ///       operation if the comparison succeeds.
-    ///     - loadOrder: The memory synchronization ordering for the load
-    ///       operation if the comparison fails. Cannot specify stronger
-    ///       ordering than `order`.
-    ///
-    /// - Returns: The value actually stored in the receiver. If exchange
-    ///     succeeded, this will be equal to `expected`.
-    @_transparent
-    @discardableResult
-    public func compareExchangeWeak(
-        _ expected: R,
-        _ desired: R,
-        order: AtomicMemoryOrder = .seqcst,
-        loadOrder: AtomicLoadMemoryOrder? = nil
-    ) -> R {
-        return R.compareExchangeWeak(
-            &_storage,
-            expected,
-            desired,
-            order: order,
-            loadOrder: loadOrder
-        )
-    }
-}
-
-extension RawRepresentable where RawValue == ${type} {
+extension AtomicBitset where RawValue == ${type} {
     @_transparent
     public static func initialize(_ ptr: Atomic${type}Pointer, to initialValue: Self) {
         ptr.initialize(to: _toRawValue(initialValue))
@@ -435,5 +304,98 @@ extension RawRepresentable where RawValue == ${type} {
             loadOrder: loadOrder
         )
         return _fromRawValue(rawValue)
+    }
+
+    /// Atomically replaces the value pointed by the receiver with the result
+    /// of bitwise `AND` between the old value of the receiver and `value`,
+    /// and returns the value the receiver held previously. The operation is
+    /// *read-modify-write* operation.
+    ///
+    /// - Parameters:
+    ///     - value: The value to bitwise `AND` to the value stored in the
+    ///       receiver.
+    ///     - order: The memory synchronization ordering for this operation.
+    ///
+    /// - Returns: The value previously stored in the receiver.
+    @_transparent
+    @discardableResult
+    public static func fetchAnd(_ ptr: Atomic${type}Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
+    }
+
+    /// Atomically replaces the value pointed by the receiver with the result
+    /// of bitwise `OR` between the old value of the receiver and `value`, and
+    /// returns the value the receiver held previously. The operation is
+    /// *read-modify-write* operation.
+    ///
+    /// - Parameters:
+    ///     - value: The value to bitwise `OR` to the value stored in the
+    ///       receiver.
+    ///     - order: The memory synchronization ordering for this operation.
+    ///
+    /// - Returns: The value previously stored in the receiver.
+    @_transparent
+    @discardableResult
+    public static func fetchOr(_ ptr: Atomic${type}Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
+    }
+
+    /// Atomically replaces the value pointed by the receiver with the result
+    /// of bitwise `XOR` between the old value of the receiver and `value`,
+    /// and returns the value the receiver held previously. The operation is
+    /// *read-modify-write* operation.
+    ///
+    /// - Parameters:
+    ///     - value: The value to bitwise `XOR` to the value stored in the
+    ///       receiver.
+    ///     - order: The memory synchronization ordering for this operation.
+    ///
+    /// - Returns: The value previously stored in the receiver.
+    @_transparent
+    @discardableResult
+    public static func fetchXor(_ ptr: Atomic${type}Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
+    }
+
+    /// Atomically replaces the value pointed by the receiver with the result
+    /// of addition of `value` to the old value of the receiver, and returns
+    /// the value the receiver held previously. The operation is *read-modify-write*
+    /// operation.
+    ///
+    /// For signed integer types, arithmetic is defined to use two’s
+    /// complement representation. There are no undefined results. For pointer
+    /// types, the result may be an undefined address, but the operations
+    /// otherwise have no undefined behavior.
+    ///
+    /// - Parameters:
+    ///     - value: The value to add to the value stored in the receiver.
+    ///     - order: The memory synchronization ordering for this operation.
+    ///
+    /// - Returns: The value previously stored in the receiver.
+    @_transparent
+    @discardableResult
+    public static func fetchAdd(_ ptr: Atomic${type}Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(ptr.fetchAdd(_toRawValue(value), order: order))
+    }
+
+    /// Atomically replaces the value pointed by the receiver with the result
+    /// of subtraction of `value` to the old value of the receiver, and returns
+    /// the value the receiver held previously. The operation is *read-modify-write*
+    /// operation.
+    ///
+    /// For signed integer types, arithmetic is defined to use two’s complement
+    /// representation. There are no undefined results. For pointer types, the
+    /// result may be an undefined address, but the operations otherwise have
+    /// no undefined behavior.
+    ///
+    /// - Parameters:
+    ///     - value: The value to subtract from the value stored in the receiver.
+    ///     - order: The memory synchronization ordering for this operation.
+    ///
+    /// - Returns: The value previously stored in the receiver.
+    @_transparent
+    @discardableResult
+    public static func fetchSub(_ ptr: Atomic${type}Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
+        return _fromRawValue(ptr.fetchSub(_toRawValue(value), order: order))
     }
 }

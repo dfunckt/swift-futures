@@ -14,7 +14,7 @@ import FuturesSync
 /// A primitive for synchronizing attempts to wake a task.
 @usableFromInline
 internal final class AtomicWaker: WakerProtocol {
-    @usableFromInline struct State: Bitset {
+    @usableFromInline struct State: AtomicBitset {
         @usableFromInline let rawValue: AtomicUInt.RawValue
 
         @inlinable
@@ -51,7 +51,7 @@ internal final class AtomicWaker: WakerProtocol {
             case .registering:
                 return
             case let actual:
-                assert(actual == [.registering, .notifying])
+                assert(actual == .registering | .notifying)
                 State.store(&_state, .idle, order: .release)
                 waker.signal()
             }
@@ -68,7 +68,7 @@ internal final class AtomicWaker: WakerProtocol {
         case let actual:
             // Another thread is concurrently calling register(). This denotes
             // a bug in the caller's code not synchronising access to register().
-            assert(actual == .registering || actual == [.registering, .notifying])
+            assert(actual == .registering || actual == .registering | .notifying)
             fatalError("concurrent attempt to register waker")
         }
     }
@@ -96,7 +96,7 @@ internal final class AtomicWaker: WakerProtocol {
         case let actual:
             assert(
                 actual == .registering ||
-                    actual == [.registering, .notifying] ||
+                    actual == .registering | .notifying ||
                     actual == .notifying
             )
             return nil

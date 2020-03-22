@@ -17,7 +17,7 @@ import FuturesSync
 /// `Channel.Unbuffered`.
 public final class Promise<Output>: FutureProtocol {
     @usableFromInline
-    struct State: Bitset {
+    struct State: AtomicBitset {
         @usableFromInline typealias RawValue = AtomicUInt.RawValue
         @usableFromInline let rawValue: RawValue
 

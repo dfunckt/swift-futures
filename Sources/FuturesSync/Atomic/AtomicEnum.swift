@@ -18,12 +18,6 @@ func _fromRawValue<R: RawRepresentable>(_ rawValue: R.RawValue, _: R.Type = R.se
 
 @inlinable
 @_transparent
-func _fromRawValue<O: OptionSet>(_ rawValue: O.RawValue, _: O.Type = O.self) -> O {
-    return O(rawValue: rawValue)
-}
-
-@inlinable
-@_transparent
 func _toRawValue<R: RawRepresentable>(_ case: R) -> R.RawValue {
     return `case`.rawValue
 }
@@ -235,59 +229,6 @@ extension AtomicEnum where R.RawValue == Int {
     }
 }
 
-extension AtomicEnum where R: OptionSet, R.RawValue == Int {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
-    }
-}
-
 extension RawRepresentable where RawValue == Int {
     @_transparent
     public static func initialize(_ ptr: AtomicIntPointer, to initialValue: Self) {
@@ -490,59 +431,6 @@ extension RawRepresentable where RawValue == Int {
     }
 }
 
-extension OptionSet where RawValue == Int {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicIntPointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicIntPointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicIntPointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
-    }
-}
-
 // MARK: - Int8 -
 
 extension AtomicEnum where R.RawValue == Int8 {
@@ -735,59 +623,6 @@ extension AtomicEnum where R.RawValue == Int8 {
             order: order,
             loadOrder: loadOrder
         )
-    }
-}
-
-extension AtomicEnum where R: OptionSet, R.RawValue == Int8 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
     }
 }
 
@@ -993,59 +828,6 @@ extension RawRepresentable where RawValue == Int8 {
     }
 }
 
-extension OptionSet where RawValue == Int8 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicInt8Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicInt8Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicInt8Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
-    }
-}
-
 // MARK: - Int16 -
 
 extension AtomicEnum where R.RawValue == Int16 {
@@ -1238,59 +1020,6 @@ extension AtomicEnum where R.RawValue == Int16 {
             order: order,
             loadOrder: loadOrder
         )
-    }
-}
-
-extension AtomicEnum where R: OptionSet, R.RawValue == Int16 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
     }
 }
 
@@ -1496,59 +1225,6 @@ extension RawRepresentable where RawValue == Int16 {
     }
 }
 
-extension OptionSet where RawValue == Int16 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicInt16Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicInt16Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicInt16Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
-    }
-}
-
 // MARK: - Int32 -
 
 extension AtomicEnum where R.RawValue == Int32 {
@@ -1741,59 +1417,6 @@ extension AtomicEnum where R.RawValue == Int32 {
             order: order,
             loadOrder: loadOrder
         )
-    }
-}
-
-extension AtomicEnum where R: OptionSet, R.RawValue == Int32 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
     }
 }
 
@@ -1999,59 +1622,6 @@ extension RawRepresentable where RawValue == Int32 {
     }
 }
 
-extension OptionSet where RawValue == Int32 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicInt32Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicInt32Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicInt32Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
-    }
-}
-
 // MARK: - Int64 -
 
 extension AtomicEnum where R.RawValue == Int64 {
@@ -2244,59 +1814,6 @@ extension AtomicEnum where R.RawValue == Int64 {
             order: order,
             loadOrder: loadOrder
         )
-    }
-}
-
-extension AtomicEnum where R: OptionSet, R.RawValue == Int64 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
     }
 }
 
@@ -2502,59 +2019,6 @@ extension RawRepresentable where RawValue == Int64 {
     }
 }
 
-extension OptionSet where RawValue == Int64 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicInt64Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicInt64Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicInt64Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
-    }
-}
-
 // MARK: - UInt -
 
 extension AtomicEnum where R.RawValue == UInt {
@@ -2747,59 +2211,6 @@ extension AtomicEnum where R.RawValue == UInt {
             order: order,
             loadOrder: loadOrder
         )
-    }
-}
-
-extension AtomicEnum where R: OptionSet, R.RawValue == UInt {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
     }
 }
 
@@ -3005,59 +2416,6 @@ extension RawRepresentable where RawValue == UInt {
     }
 }
 
-extension OptionSet where RawValue == UInt {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicUIntPointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicUIntPointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicUIntPointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
-    }
-}
-
 // MARK: - UInt8 -
 
 extension AtomicEnum where R.RawValue == UInt8 {
@@ -3250,59 +2608,6 @@ extension AtomicEnum where R.RawValue == UInt8 {
             order: order,
             loadOrder: loadOrder
         )
-    }
-}
-
-extension AtomicEnum where R: OptionSet, R.RawValue == UInt8 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
     }
 }
 
@@ -3508,59 +2813,6 @@ extension RawRepresentable where RawValue == UInt8 {
     }
 }
 
-extension OptionSet where RawValue == UInt8 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicUInt8Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicUInt8Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicUInt8Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
-    }
-}
-
 // MARK: - UInt16 -
 
 extension AtomicEnum where R.RawValue == UInt16 {
@@ -3753,59 +3005,6 @@ extension AtomicEnum where R.RawValue == UInt16 {
             order: order,
             loadOrder: loadOrder
         )
-    }
-}
-
-extension AtomicEnum where R: OptionSet, R.RawValue == UInt16 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
     }
 }
 
@@ -4011,59 +3210,6 @@ extension RawRepresentable where RawValue == UInt16 {
     }
 }
 
-extension OptionSet where RawValue == UInt16 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicUInt16Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicUInt16Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicUInt16Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
-    }
-}
-
 // MARK: - UInt32 -
 
 extension AtomicEnum where R.RawValue == UInt32 {
@@ -4256,59 +3402,6 @@ extension AtomicEnum where R.RawValue == UInt32 {
             order: order,
             loadOrder: loadOrder
         )
-    }
-}
-
-extension AtomicEnum where R: OptionSet, R.RawValue == UInt32 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
     }
 }
 
@@ -4514,59 +3607,6 @@ extension RawRepresentable where RawValue == UInt32 {
     }
 }
 
-extension OptionSet where RawValue == UInt32 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicUInt32Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicUInt32Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicUInt32Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
-    }
-}
-
 // MARK: - UInt64 -
 
 extension AtomicEnum where R.RawValue == UInt64 {
@@ -4759,59 +3799,6 @@ extension AtomicEnum where R.RawValue == UInt64 {
             order: order,
             loadOrder: loadOrder
         )
-    }
-}
-
-extension AtomicEnum where R: OptionSet, R.RawValue == UInt64 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchAnd(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchAnd(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchOr(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchOr(&_storage, value, order: order)
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public func fetchXor(_ value: R, order: AtomicMemoryOrder = .seqcst) -> R {
-        return R.fetchXor(&_storage, value, order: order)
     }
 }
 
@@ -5014,58 +4001,5 @@ extension RawRepresentable where RawValue == UInt64 {
             loadOrder: loadOrder
         )
         return _fromRawValue(rawValue)
-    }
-}
-
-extension OptionSet where RawValue == UInt64 {
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `AND` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `AND` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchAnd(_ ptr: AtomicUInt64Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchAnd(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `OR` between the old value of the receiver and `value`, and
-    /// returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `OR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchOr(_ ptr: AtomicUInt64Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchOr(_toRawValue(value), order: order))
-    }
-
-    /// Atomically replaces the value pointed by the receiver with the result
-    /// of bitwise `XOR` between the old value of the receiver and `value`,
-    /// and returns the value the receiver held previously. The operation is
-    /// *read-modify-write* operation.
-    ///
-    /// - Parameters:
-    ///     - value: The value to bitwise `XOR` to the value stored in the
-    ///       receiver.
-    ///     - order: The memory synchronization ordering for this operation.
-    ///
-    /// - Returns: The value previously stored in the receiver.
-    @_transparent
-    @discardableResult
-    public static func fetchXor(_ ptr: AtomicUInt64Pointer, _ value: Self, order: AtomicMemoryOrder = .seqcst) -> Self {
-        return _fromRawValue(ptr.fetchXor(_toRawValue(value), order: order))
     }
 }

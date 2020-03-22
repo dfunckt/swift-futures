@@ -79,6 +79,7 @@ custom_categories:
     children:
     - Atomic
     - AtomicEnum
+    - AtomicBitset
     - AtomicReference
     - AtomicBool
     - AtomicBoolPointer
