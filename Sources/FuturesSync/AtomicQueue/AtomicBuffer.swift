@@ -104,7 +104,7 @@ extension _AtomicBuffer {
                     return true
                 }
                 // FIXME: return if we exhausted our budget
-                _ = backoff.spin()
+                backoff.snooze()
             }
         }
     }
@@ -150,7 +150,7 @@ extension _AtomicBuffer {
                     return item
                 }
                 // FIXME: return if we exhausted our budget
-                _ = backoff.spin()
+                backoff.snooze()
             }
         }
     }

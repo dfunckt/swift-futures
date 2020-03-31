@@ -113,9 +113,10 @@ extension Channel._Private {
                 state.count += 1
 
                 guard State.compareExchange(&_state, &curr, state) else {
-                    if backoff.spin() {
+                    if backoff.isComplete {
                         return .failure(.retry)
                     }
+                    backoff.snooze()
                     continue
                 }
 

@@ -314,7 +314,7 @@ private final class _ReadyQueue<F: FutureProtocol> {
             }
 
             // FIXME: return if we exhausted our budget
-            _ = backoff.yield()
+            backoff.snooze()
         }
     }
 }

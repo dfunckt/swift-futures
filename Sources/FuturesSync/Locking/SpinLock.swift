@@ -25,7 +25,7 @@ public final class SpinLock: LockingProtocol {
         var backoff = Backoff()
         while AtomicBool.compareExchangeWeak(&_flag, false, true, order: .acquire) {
             // discard result: we don't have anywhere else to yield to
-            _ = backoff.yield()
+            backoff.snooze()
         }
     }
 
