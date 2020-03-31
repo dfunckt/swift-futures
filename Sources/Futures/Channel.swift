@@ -209,7 +209,7 @@ extension Channel {
 // MARK: -
 
 extension Channel {
-    public final class Sender<C: ChannelProtocol>: Cancellable {
+    public final class Sender<C: ChannelProtocol> {
         public typealias Item = C.Buffer.Item
 
         @usableFromInline let _channel: _Private.Impl<C>
@@ -223,138 +223,64 @@ extension Channel {
         deinit {
             _channel.close()
         }
-
-        @inlinable
-        public var capacity: Int {
-            return _channel.capacity
-        }
-
-        /// Sends `item` into the channel.
-        ///
-        /// - Returns:
-        ///     - `Result.success(true)` if `item` was sent successfully.
-        ///     - `Result.success(false)` if the channel is at capacity.
-        ///     - `Result.failure(.cancelled)` if the channel is closed.
-        @inlinable
-        public func trySend(_ item: Item) -> Result<Bool, Channel.Error> {
-            while true {
-                switch _channel.trySend(item) {
-                case .success:
-                    return .success(true)
-                case .failure(.atCapacity):
-                    return .success(false)
-                case .failure(.cancelled):
-                    return .failure(.cancelled)
-                case .failure(.retry):
-                    Atomic.preemptionYield(0)
-                    continue
-                }
-            }
-        }
-
-        /// - Returns:
-        ///     - `Result.success(true)` if the channel is empty.
-        ///     - `Result.success(false)` if the channel is not empty.
-        ///     - `Result.failure` if the channel is closed.
-        @inlinable
-        public func tryFlush() -> Result<Bool, Channel.Error> {
-            return _channel.tryFlush()
-        }
-
-        /// Closes the channel, preventing senders from sending new items.
-        ///
-        /// Items sent before a call to this function can still be consumed by
-        /// the receiver, until the channel is flushed. After the last item is
-        /// consumed, subsequent attempts to receive an item will fail with
-        /// `Channel.Error.cancelled`.
-        ///
-        /// It is acceptable to call this method more than once; subsequent
-        /// calls are just ignored.
-        @inlinable
-        public func cancel() {
-            _channel.close()
-        }
     }
 }
 
-extension Channel.Sender where C: UnboundedChannelProtocol {
-    /// Sends `item` into the channel.
+extension Channel.Sender: Cancellable {
+    /// Closes the channel, preventing senders from sending new items.
     ///
-    /// - Returns:
-    ///     - `Result.success` if `item` was sent successfully.
-    ///     - `Result.failure` if the channel is closed.
+    /// Items sent before a call to this function can still be consumed by
+    /// the receiver, until the channel is flushed. After the last item is
+    /// consumed, subsequent attempts to receive an item will fail with
+    /// `Channel.Error.cancelled`.
+    ///
+    /// It is acceptable to call this method more than once; subsequent
+    /// calls are just ignored.
     @inlinable
-    @discardableResult
-    public func send(_ item: Item) -> Result<Void, Channel.Error> {
-        while true {
-            switch _channel.trySend(item) {
-            case .success:
-                return .success(())
-            case .failure(.atCapacity):
-                fatalError("unreachable")
-            case .failure(.cancelled):
-                return .failure(.cancelled)
-            case .failure(.retry):
-                Atomic.preemptionYield(0)
-                continue
-            }
-        }
+    public func cancel() {
+        _channel.close()
     }
 }
 
-extension Channel.Sender: SinkConvertible {
-    public struct SinkType: SinkProtocol {
-        public typealias Input = C.Buffer.Item
-        public typealias Failure = Never
+extension Channel.Sender: SinkProtocol {
+    public typealias Input = Item
+    public typealias Failure = Never
 
-        @usableFromInline let _sender: C.Sender
-
-        @inlinable
-        init(sender: C.Sender) {
-            _sender = sender
-        }
-
-        @inlinable
-        public func pollSend(_ context: inout Context, _ item: Item) -> Poll<Output> {
-            switch _sender._channel.pollSend(&context, item) {
-            case .ready(.success):
-                return .ready(.success(()))
-            case .ready(.failure(.cancelled)):
-                return .ready(.failure(.closed))
-            case .pending:
-                return .pending
-            }
-        }
-
-        @inlinable
-        public func pollFlush(_ context: inout Context) -> Poll<Output> {
-            switch _sender._channel.pollFlush(&context) {
-            case .ready(.success):
-                return .ready(.success(()))
-            case .ready(.failure(.cancelled)):
-                return .ready(.failure(.closed))
-            case .pending:
-                return .pending
-            }
-        }
-
-        @inlinable
-        public func pollClose(_: inout Context) -> Poll<Output> {
-            _sender.cancel()
+    @inlinable
+    public func pollSend(_ context: inout Context, _ item: Item) -> Poll<Output> {
+        switch _channel.pollSend(&context, item) {
+        case .ready(.success):
             return .ready(.success(()))
+        case .ready(.failure(.cancelled)):
+            return .ready(.failure(.closed))
+        case .pending:
+            return .pending
         }
     }
 
     @inlinable
-    public func makeSink() -> SinkType {
-        return .init(sender: self)
+    public func pollFlush(_ context: inout Context) -> Poll<Output> {
+        switch _channel.pollFlush(&context) {
+        case .ready(.success):
+            return .ready(.success(()))
+        case .ready(.failure(.cancelled)):
+            return .ready(.failure(.closed))
+        case .pending:
+            return .pending
+        }
+    }
+
+    @inlinable
+    public func pollClose(_: inout Context) -> Poll<Output> {
+        _channel.close()
+        return .ready(.success(()))
     }
 }
 
 // MARK: -
 
 extension Channel {
-    public final class Receiver<C: ChannelProtocol>: Cancellable {
+    public final class Receiver<C: ChannelProtocol> {
         public typealias Item = C.Buffer.Item
 
         @usableFromInline let _channel: _Private.Impl<C>
@@ -368,59 +294,31 @@ extension Channel {
         deinit {
             _channel.close()
         }
-
-        /// Receives the next available item from the channel.
-        ///
-        /// - Returns:
-        ///     - `Result.success(Item)` if the channel is not empty.
-        ///     - `Result.success(nil)` if the channel is empty.
-        ///     - `Result.failure` if the channel is closed *and* empty.
-        @inlinable
-        public func tryRecv() -> Result<Item?, Channel.Error> {
-            return _channel.tryRecv()
-        }
-
-        /// Closes the channel, preventing senders from sending new items.
-        ///
-        /// Items sent before a call to this function can still be consumed by
-        /// the receiver, until the channel is flushed. After the last item is
-        /// consumed, subsequent attempts to receive an item will fail with
-        /// `Channel.Error.cancelled`.
-        ///
-        /// It is acceptable to call this method more than once; subsequent
-        /// calls are just ignored.
-        @inlinable
-        public func cancel() {
-            _channel.close()
-        }
     }
 }
 
-extension Channel.Receiver: StreamConvertible {
-    public struct StreamType: StreamProtocol, Cancellable {
-        public typealias Output = C.Buffer.Item
-
-        @usableFromInline let _receiver: C.Receiver
-
-        @inlinable
-        init(receiver: C.Receiver) {
-            _receiver = receiver
-        }
-
-        @inlinable
-        public func cancel() {
-            _receiver.cancel()
-        }
-
-        @inlinable
-        public func pollNext(_ context: inout Context) -> Poll<Output?> {
-            return _receiver._channel.pollRecv(&context)
-        }
+extension Channel.Receiver: Cancellable {
+    /// Closes the channel, preventing senders from sending new items.
+    ///
+    /// Items sent before a call to this function can still be consumed by
+    /// the receiver, until the channel is flushed. After the last item is
+    /// consumed, subsequent attempts to receive an item will fail with
+    /// `Channel.Error.cancelled`.
+    ///
+    /// It is acceptable to call this method more than once; subsequent
+    /// calls are just ignored.
+    @inlinable
+    public func cancel() {
+        _channel.close()
     }
+}
+
+extension Channel.Receiver: StreamProtocol {
+    public typealias Output = C.Buffer.Item
 
     @inlinable
-    public func makeStream() -> StreamType {
-        return .init(receiver: self)
+    public func pollNext(_ context: inout Context) -> Poll<Output?> {
+        return _channel.pollRecv(&context)
     }
 }
 
