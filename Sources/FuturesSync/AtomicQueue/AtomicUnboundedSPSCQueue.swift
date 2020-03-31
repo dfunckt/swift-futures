@@ -9,10 +9,10 @@ import FuturesPrivate
 
 /// A FIFO queue that is safe to share between a single producer and a single
 /// consumer.
-///
-/// This is an implementation of "unbounded SPSC queue" from 1024cores.net,
-/// with a modification for caching nodes lifted from Rust's stdlib.
 public final class AtomicUnboundedSPSCQueue<T>: AtomicUnboundedQueueProtocol {
+    // This is an implementation of "unbounded SPSC queue" from 1024cores.net,
+    // with a modification for caching nodes lifted from Rust's stdlib.
+
     public typealias Element = T
 
     @usableFromInline typealias AtomicNode = AtomicReference<_Node>
@@ -52,6 +52,8 @@ public final class AtomicUnboundedSPSCQueue<T>: AtomicUnboundedQueueProtocol {
         self.init(cacheCapacity: 0)
     }
 
+    /// - Parameter cacheCapacity:
+    ///     The maximum number of reusable nodes. `0` disables node reuse.
     @inlinable
     public init(cacheCapacity: Int) {
         let n1 = _Node(nil)
@@ -89,7 +91,7 @@ public final class AtomicUnboundedSPSCQueue<T>: AtomicUnboundedQueueProtocol {
     }
 
     @inlinable
-    public func pop() -> T? {
+    public func pop() -> Element? {
         let tail = _tail
         guard let next = AtomicNode.load(&tail._next, order: .acquire) else {
             return nil // empty

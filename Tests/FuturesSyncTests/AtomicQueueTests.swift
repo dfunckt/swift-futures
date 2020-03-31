@@ -36,11 +36,11 @@ private final class UnboundedQueueTester<Queue: AtomicUnboundedQueueProtocol> wh
         XCTAssertNil(q.pop())
     }
 
-    func testThreaded() {
-        let producerCount = supportsMultipleProducers ? max(2, CPU_COUNT / 2) : 1
-        let consumerCount = supportsMultipleConsumers ? max(2, CPU_COUNT / 2) : 1
+    func testConcurrent() {
+        let producerCount = supportsMultipleProducers ? CPU_COUNT : 1
+        let consumerCount = supportsMultipleConsumers ? CPU_COUNT : 1
 
-        let total = producerCount * (1...iterations).reduce(into: 0, +=)
+        let total = producerCount * iterations
         let sum = AtomicInt(0)
         let q = makeQueue()
 
@@ -48,24 +48,39 @@ private final class UnboundedQueueTester<Queue: AtomicUnboundedQueueProtocol> wh
         let producers = DispatchQueue(label: "tests.queue-producer", attributes: .concurrent)
         let consumers = DispatchQueue(label: "tests.queue-consumer", attributes: .concurrent)
 
-        for _ in 0..<producerCount {
-            producers.async(group: group, flags: .detached) {
-                for i in 1...iterations {
-                    q.push(i)
-                    Atomic.hardwarePause()
-                }
-            }
-        }
-        for _ in 0..<consumerCount {
-            consumers.async(group: group, flags: .detached) {
-                while sum.load() < total {
-                    while let i = q.pop() {
-                        sum.fetchAdd(i, order: .relaxed)
+        var producerIter = (0..<producerCount).makeIterator()
+        var consumerIter = (0..<consumerCount).makeIterator()
+        var done = true
+
+        // interleave spawning producers and consumers to workaround
+        // GCD capping the number of concurrent blocks running in the
+        // queues, which makes starvation of consumers possible
+        repeat {
+            done = true
+
+            if producerIter.next() != nil {
+                done = false
+                producers.async(group: group, flags: .detached) {
+                    for _ in 0..<iterations {
+                        q.push(1)
+                        Atomic.hardwarePause()
                     }
-                    Atomic.hardwarePause()
                 }
             }
-        }
+
+            if consumerIter.next() != nil {
+                done = false
+                consumers.async(group: group, flags: .detached) {
+                    while sum.load() < total {
+                        while let _ = q.pop() {
+                            sum.fetchAdd(1, order: .relaxed)
+                            Atomic.hardwarePause()
+                        }
+                        Atomic.hardwarePause()
+                    }
+                }
+            }
+        } while !done
 
         group.wait()
         XCTAssertEqual(sum.load(), total)
@@ -101,11 +116,11 @@ private final class BoundedQueueTester<Queue: AtomicQueueProtocol> where Queue.E
         XCTAssertNil(q.pop())
     }
 
-    func testThreaded() {
-        let producerCount = max(1, supportsMultipleProducers ? CPU_COUNT / 2 : 1)
-        let consumerCount = max(1, supportsMultipleConsumers ? CPU_COUNT / 2 : 1)
+    func testConcurrent() {
+        let producerCount = max(1, supportsMultipleProducers ? CPU_COUNT : 1)
+        let consumerCount = max(1, supportsMultipleConsumers ? CPU_COUNT : 1)
 
-        let total = producerCount * (1...iterations).reduce(into: 0, +=)
+        let total = producerCount * iterations
         let sum = AtomicInt(0)
         let q = makeQueue(2)
 
@@ -113,51 +128,44 @@ private final class BoundedQueueTester<Queue: AtomicQueueProtocol> where Queue.E
         let producers = DispatchQueue(label: "tests.queue-producer", attributes: .concurrent)
         let consumers = DispatchQueue(label: "tests.queue-consumer", attributes: .concurrent)
 
-        for _ in 0..<producerCount {
-            producers.async(group: group, flags: .detached) {
-                for i in 1...iterations {
-                    while !q.tryPush(i) {
+        var producerIter = (0..<producerCount).makeIterator()
+        var consumerIter = (0..<consumerCount).makeIterator()
+        var done = true
+
+        // interleave spawning producers and consumers to workaround
+        // GCD capping the number of concurrent blocks running in the
+        // queues, which makes starvation of consumers possible
+        repeat {
+            done = true
+
+            if producerIter.next() != nil {
+                done = false
+                producers.async(group: group, flags: .detached) {
+                    for _ in 0..<iterations {
+                        while !q.tryPush(1) {
+                            Atomic.hardwarePause()
+                        }
                         Atomic.hardwarePause()
                     }
                 }
             }
-        }
-        for _ in 0..<consumerCount {
-            consumers.async(group: group, flags: .detached) {
-                while sum.load() < total {
-                    while let i = q.pop() {
-                        sum.fetchAdd(i, order: .relaxed)
+
+            if consumerIter.next() != nil {
+                done = false
+                consumers.async(group: group, flags: .detached) {
+                    while sum.load() < total {
+                        while let _ = q.pop() {
+                            sum.fetchAdd(1, order: .relaxed)
+                            Atomic.hardwarePause()
+                        }
+                        Atomic.hardwarePause()
                     }
-                    Atomic.hardwarePause()
                 }
             }
-        }
+        } while !done
 
         group.wait()
         XCTAssertEqual(sum.load(), total)
-        XCTAssertNil(q.pop())
-    }
-
-    // Tests whether the queue is linearizable. Only relevant to MPMC. See:
-    // https://github.com/stjepang/rfcs-crossbeam/blob/df5614b104c/text/2017-11-09-channel.md#array-based-flavor
-    func testLinearizable() {
-        XCTAssert(supportsMultipleProducers && supportsMultipleConsumers)
-
-        let concurrency = 4
-        let group = DispatchGroup()
-        let queue = DispatchQueue(label: "tests.queue", attributes: .concurrent)
-        let q = makeQueue(concurrency)
-
-        for _ in 0..<concurrency {
-            queue.async(group: group, flags: .detached) {
-                for _ in 0..<iterations {
-                    XCTAssert(q.tryPush(0))
-                    XCTAssertNotNil(q.pop())
-                }
-            }
-        }
-
-        group.wait()
         XCTAssertNil(q.pop())
     }
 }
@@ -170,7 +178,7 @@ final class AtomicUnboundedSPSCQueueTests: XCTestCase {
     )
 
     func testSync() { tester.testSync() }
-    func testThreaded() { tester.testThreaded() }
+    func testConcurrent() { tester.testConcurrent() }
 }
 
 final class AtomicUnboundedMPSCQueueTests: XCTestCase {
@@ -181,7 +189,7 @@ final class AtomicUnboundedMPSCQueueTests: XCTestCase {
     )
 
     func testSync() { tester.testSync() }
-    func testThreaded() { tester.testThreaded() }
+    func testConcurrent() { tester.testConcurrent() }
 }
 
 final class AtomicBoundedSPSCQueueTests: XCTestCase {
@@ -192,7 +200,7 @@ final class AtomicBoundedSPSCQueueTests: XCTestCase {
     )
 
     func testSync() { tester.testSync() }
-    func testThreaded() { tester.testThreaded() }
+    func testConcurrent() { tester.testConcurrent() }
 }
 
 final class AtomicBoundedSPMCQueueTests: XCTestCase {
@@ -203,7 +211,7 @@ final class AtomicBoundedSPMCQueueTests: XCTestCase {
     )
 
     func testSync() { tester.testSync() }
-    func testThreaded() { tester.testThreaded() }
+    func testConcurrent() { tester.testConcurrent() }
 }
 
 final class AtomicBoundedMPSCQueueTests: XCTestCase {
@@ -214,7 +222,7 @@ final class AtomicBoundedMPSCQueueTests: XCTestCase {
     )
 
     func testSync() { tester.testSync() }
-    func testThreaded() { tester.testThreaded() }
+    func testConcurrent() { tester.testConcurrent() }
 }
 
 final class AtomicBoundedMPMCQueueTests: XCTestCase {
@@ -225,6 +233,5 @@ final class AtomicBoundedMPMCQueueTests: XCTestCase {
     )
 
     func testSync() { tester.testSync() }
-    func testThreaded() { tester.testThreaded() }
-    func _testLinearizable() { tester.testLinearizable() }
+    func testConcurrent() { tester.testConcurrent() }
 }

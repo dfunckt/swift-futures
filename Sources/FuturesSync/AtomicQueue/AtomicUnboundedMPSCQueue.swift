@@ -9,9 +9,9 @@ import FuturesPrivate
 
 /// A FIFO queue that is safe to share among multiple producers and a single
 /// consumer.
-///
-/// This is an implementation of "non-intrusive MPSC queue" from 1024cores.net.
 public final class AtomicUnboundedMPSCQueue<T>: AtomicUnboundedQueueProtocol {
+    // This is an implementation of "non-intrusive MPSC queue" from 1024cores.net.
+
     public typealias Element = T
 
     @usableFromInline typealias AtomicNode = AtomicReference<_Node>
@@ -68,7 +68,7 @@ public final class AtomicUnboundedMPSCQueue<T>: AtomicUnboundedQueueProtocol {
     }
 
     @inlinable
-    public func pop() -> T? {
+    public func pop() -> Element? {
         var backoff = Backoff()
         let tail = _tail
         while true {
@@ -80,7 +80,7 @@ public final class AtomicUnboundedMPSCQueue<T>: AtomicUnboundedQueueProtocol {
                 return tail._value
             }
             if AtomicNode.load(&_head, order: .acquire) === tail {
-                return nil
+                return nil // empty
             }
             // the queue is in an inconsistent state. spin a little expecting
             // push will soon complete and we'll be able to pop an item out.

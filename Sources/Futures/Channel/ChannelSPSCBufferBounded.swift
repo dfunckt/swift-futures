@@ -9,13 +9,11 @@ import FuturesSync
 
 extension Channel._Private {
     public struct SPSCBufferBounded<Item>: _ChannelBufferImplProtocol {
-        @usableFromInline let _capacity: Int
         @usableFromInline let _buffer: AtomicSPSCQueue<Item>
 
         @inlinable
         init(capacity: Int) {
-            _capacity = Int(UInt32(capacity))
-            _buffer = .init(capacity: max(2, nextPowerOf2(_capacity)))
+            _buffer = .init(capacity: capacity)
         }
 
         @inlinable
@@ -35,13 +33,13 @@ extension Channel._Private {
 
         @inlinable
         public var capacity: Int {
-            return _capacity
+            return _buffer.capacity
         }
 
         @inlinable
         public func push(_ item: Item) {
-            let pushed = _buffer.tryPush(item)
-            assert(pushed)
+            let result = _buffer.tryPush(item)
+            assert(result, "expected push to succeed, but buffer is at capacity")
         }
 
         @inlinable

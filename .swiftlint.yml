@@ -1,4 +1,5 @@
 excluded:
+  - .build/
   - Tests/LinuxMain.swift
 
 disabled_rules:

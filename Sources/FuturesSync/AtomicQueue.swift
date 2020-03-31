@@ -12,7 +12,6 @@ public protocol AtomicQueueProtocol {
 }
 
 public protocol AtomicUnboundedQueueProtocol: AtomicQueueProtocol {
-    associatedtype Element
     func push(_ element: Element)
 }
 
