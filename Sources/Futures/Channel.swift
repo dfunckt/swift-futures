@@ -60,7 +60,7 @@ extension Channel {
     @inlinable
     public static func makeUnbuffered<T>(itemType _: T.Type = T.self) -> Pipe<Unbuffered<T>> {
         let impl = _Private.Impl<Unbuffered<T>>(buffer: .init(), park: .init())
-        return .init(tx: .init(impl), rx: .init(impl))
+        return .init(rx: .init(impl), tx: .init(impl))
     }
 }
 
@@ -79,7 +79,7 @@ extension Channel {
     @inlinable
     public static func makePassthrough<T>(itemType _: T.Type = T.self) -> Pipe<Passthrough<T>> {
         let impl = _Private.Impl<Passthrough<T>>(buffer: .init(), park: .init())
-        return .init(tx: .init(impl), rx: .init(impl))
+        return .init(rx: .init(impl), tx: .init(impl))
     }
 }
 
@@ -98,7 +98,7 @@ extension Channel {
     @inlinable
     public static func makeBuffered<T>(itemType _: T.Type = T.self, capacity: Int) -> Pipe<Buffered<T>> {
         let impl = _Private.Impl<Buffered<T>>(buffer: .init(capacity: capacity), park: .init())
-        return .init(tx: .init(impl), rx: .init(impl))
+        return .init(rx: .init(impl), tx: .init(impl))
     }
 }
 
@@ -117,7 +117,7 @@ extension Channel {
     @inlinable
     public static func makeBuffered<T>(itemType _: T.Type = T.self) -> Pipe<BufferedUnbounded<T>> {
         let impl = _Private.Impl<BufferedUnbounded<T>>(buffer: .init(), park: .init())
-        return .init(tx: .init(impl), rx: .init(impl))
+        return .init(rx: .init(impl), tx: .init(impl))
     }
 }
 
@@ -136,7 +136,7 @@ extension Channel {
     @inlinable
     public static func makeShared<T>(itemType _: T.Type = T.self, capacity: Int) -> Pipe<Shared<T>> {
         let impl = _Private.Impl<Shared<T>>(buffer: .init(capacity: capacity), park: .init())
-        return .init(tx: .init(impl), rx: .init(impl))
+        return .init(rx: .init(impl), tx: .init(impl))
     }
 }
 
@@ -155,7 +155,7 @@ extension Channel {
     @inlinable
     public static func makeShared<T>(itemType _: T.Type = T.self) -> Pipe<SharedUnbounded<T>> {
         let impl = _Private.Impl<SharedUnbounded<T>>(buffer: .init(), park: .init())
-        return .init(tx: .init(impl), rx: .init(impl))
+        return .init(rx: .init(impl), tx: .init(impl))
     }
 }
 
@@ -177,31 +177,29 @@ extension Channel {
     /// pipe go and manage each side lifetime separately. This is useful when
     /// the sender and receiver have different lifetimes; dropping either side
     /// closes the channel.
-    ///
-    /// `Pipe` is typically known as *Subject* in other frameworks.
     public struct Pipe<C: ChannelProtocol>: SinkConvertible, StreamConvertible {
-        public let tx: Sender<C>
         public let rx: Receiver<C>
+        public let tx: Sender<C>
 
         @inlinable
-        public init(tx: Sender<C>, rx: Receiver<C>) {
-            self.tx = tx
+        public init(rx: Receiver<C>, tx: Sender<C>) {
             self.rx = rx
+            self.tx = tx
         }
 
         @inlinable
-        public func split() -> (tx: Sender<C>, rx: Receiver<C>) {
-            return (tx, rx)
+        public func split() -> (rx: Receiver<C>, tx: Sender<C>) {
+            return (rx, tx)
         }
 
         @inlinable
-        public func makeSink() -> Sender<C>.SinkType {
-            return tx.makeSink()
+        public func makeStream() -> Receiver<C> {
+            return rx
         }
 
         @inlinable
-        public func makeStream() -> Receiver<C>.StreamType {
-            return rx.makeStream()
+        public func makeSink() -> Sender<C> {
+            return tx
         }
     }
 }

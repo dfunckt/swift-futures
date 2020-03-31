@@ -140,7 +140,7 @@ final class ThreadExecutorTests: XCTestCase {
         let queue2 = DispatchQueue(label: "test-thread-executor-2")
         let group = DispatchGroup()
         do {
-            let (tx, rx) = Channel.makeUnbuffered(itemType: Int.self).split()
+            let (rx, tx) = Channel.makeUnbuffered(itemType: Int.self).split()
             queue1.async(group: group) {
                 var f = (0..<ITERATIONS).makeStream()
                     .forward(to: tx)

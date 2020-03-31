@@ -76,6 +76,75 @@ extension Channel._Private.Impl {
 
 extension Channel._Private.Impl {
     @inlinable
+    func tryRecv() -> Result<Item?, Channel.Error> {
+        let item: Item
+
+        if !C.Buffer.supportsMultipleSenders {
+            // Fast-path for Passthrough, Unbuffered and Buffered channels.
+            // See trySend().
+            let state = State.load(&_state)
+            if state.count == 0 {
+                if state.isClosed {
+                    return .failure(.cancelled)
+                }
+                return .success(nil)
+            }
+            item = _buffer.pop()! // swiftlint:disable:this force_unwrapping
+        } else {
+            // Path for Shared channel
+            guard let _item = _buffer.pop() else {
+                let state = State.load(&_state)
+                if state.isClosed {
+                    return .failure(.cancelled)
+                }
+                if C.Buffer.isBounded {
+                    _senders.notifyOne()
+                }
+                return .success(nil)
+            }
+            item = _item
+        }
+
+        if State.fetchSub(&_state, .count(1)).count == 1 {
+            _senders.notifyFlush()
+        }
+
+        if C.Buffer.isBounded {
+            _senders.notifyOne()
+        }
+
+        return .success(item)
+    }
+
+    @inlinable
+    func pollRecv(_ context: inout Context) -> Poll<Item?> {
+        switch tryRecv() {
+        case .success(.some(let item)):
+            return .ready(item)
+        case .success(.none):
+            return _pollRecvSlow(&context)
+        case .failure(.cancelled):
+            return .ready(nil)
+        }
+    }
+
+    @usableFromInline
+    func _pollRecvSlow(_ context: inout Context) -> Poll<Item?> {
+        _receiver.register(context.waker)
+
+        switch tryRecv() {
+        case .success(.some(let item)):
+            return .ready(item)
+        case .success(.none):
+            return .pending
+        case .failure(.cancelled):
+            return .ready(nil)
+        }
+    }
+}
+
+extension Channel._Private.Impl {
+    @inlinable
     func trySend(_ item: Item) -> Result<Void, SendError> {
         var backoff = Backoff()
         var curr = State.load(&_state)
@@ -163,75 +232,6 @@ extension Channel._Private.Impl {
             return context.yield()
         case .failure(.cancelled):
             return .ready(.failure(.cancelled))
-        }
-    }
-}
-
-extension Channel._Private.Impl {
-    @inlinable
-    func tryRecv() -> Result<Item?, Channel.Error> {
-        let item: Item
-
-        if !C.Buffer.supportsMultipleSenders {
-            // Fast-path for Passthrough, Unbuffered and Buffered channels.
-            // See trySend().
-            let state = State.load(&_state)
-            if state.count == 0 {
-                if state.isClosed {
-                    return .failure(.cancelled)
-                }
-                return .success(nil)
-            }
-            item = _buffer.pop()! // swiftlint:disable:this force_unwrapping
-        } else {
-            // Path for Shared channel
-            guard let _item = _buffer.pop() else {
-                let state = State.load(&_state)
-                if state.isClosed {
-                    return .failure(.cancelled)
-                }
-                if C.Buffer.isBounded {
-                    _senders.notifyOne()
-                }
-                return .success(nil)
-            }
-            item = _item
-        }
-
-        if State.fetchSub(&_state, .count(1)).count == 1 {
-            _senders.notifyFlush()
-        }
-
-        if C.Buffer.isBounded {
-            _senders.notifyOne()
-        }
-
-        return .success(item)
-    }
-
-    @inlinable
-    func pollRecv(_ context: inout Context) -> Poll<Item?> {
-        switch tryRecv() {
-        case .success(.some(let item)):
-            return .ready(item)
-        case .success(.none):
-            return _pollRecvSlow(&context)
-        case .failure(.cancelled):
-            return .ready(nil)
-        }
-    }
-
-    @usableFromInline
-    func _pollRecvSlow(_ context: inout Context) -> Poll<Item?> {
-        _receiver.register(context.waker)
-
-        switch tryRecv() {
-        case .success(.some(let item)):
-            return .ready(item)
-        case .success(.none):
-            return .pending
-        case .failure(.cancelled):
-            return .ready(nil)
         }
     }
 }

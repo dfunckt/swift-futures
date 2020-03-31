@@ -33,7 +33,7 @@ private final class BoundedChannelTester<C: ChannelProtocol> where C.Item == Int
     }
 
     func testSendReceive(_ testcase: XCTestCase) {
-        let (tx, rx) = makeChannel().split()
+        let (rx, tx) = makeChannel().split()
         testcase.poll { cx in
             XCTAssertReady(tx.pollFlush(&cx))
 
@@ -57,7 +57,7 @@ private final class BoundedChannelTester<C: ChannelProtocol> where C.Item == Int
     }
 
     func testSenderClose(_ testcase: XCTestCase) {
-        let (tx, rx) = makeChannel().split()
+        let (rx, tx) = makeChannel().split()
         testcase.poll { cx in
             XCTAssertReady(tx.pollSend(&cx, 1))
             XCTAssertReady(tx.pollClose(&cx))
@@ -71,7 +71,7 @@ private final class BoundedChannelTester<C: ChannelProtocol> where C.Item == Int
     }
 
     func testReceiverClose(_ testcase: XCTestCase) {
-        let (tx, rx) = makeChannel().split()
+        let (rx, tx) = makeChannel().split()
         testcase.poll { cx in
             XCTAssertReady(tx.pollSend(&cx, 1))
             XCTAssertEqual(rx.pollNext(&cx), 1)
@@ -95,7 +95,7 @@ private final class UnboundedChannelTester<C: UnboundedChannelProtocol> where C.
     }
 
     func testSendReceive(_ testcase: XCTestCase) {
-        let (tx, rx) = makeChannel().split()
+        let (rx, tx) = makeChannel().split()
         testcase.poll { cx in
             XCTAssertReady(tx.pollFlush(&cx))
 
@@ -122,7 +122,7 @@ private final class UnboundedChannelTester<C: UnboundedChannelProtocol> where C.
     }
 
     func testSenderClose(_ testcase: XCTestCase) {
-        let (tx, rx) = makeChannel().split()
+        let (rx, tx) = makeChannel().split()
         testcase.poll { cx in
             XCTAssertReady(tx.pollSend(&cx, 1))
             XCTAssertReady(tx.pollClose(&cx))
@@ -136,7 +136,7 @@ private final class UnboundedChannelTester<C: UnboundedChannelProtocol> where C.
     }
 
     func testReceiverClose(_ testcase: XCTestCase) {
-        let (tx, rx) = makeChannel().split()
+        let (rx, tx) = makeChannel().split()
         testcase.poll { cx in
             XCTAssertReady(tx.pollSend(&cx, 1))
             XCTAssertEqual(rx.pollNext(&cx), 1)
@@ -166,7 +166,7 @@ private final class SPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
         let isPassthrough: Bool
 
         do {
-            let (tx, rx) = makeChannel().split()
+            let (rx, tx) = makeChannel().split()
             isPassthrough = C.Buffer.isPassthrough
             try executor.submit(rx.map { sum += $0 })
             let values = Stream.sequence(0..<SPSC_ITERATIONS)
@@ -186,7 +186,7 @@ private final class SPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
         var sum = 0
 
         testcase.expect(timeout: 60) { exp in
-            let (tx, rx) = makeChannel().split()
+            let (rx, tx) = makeChannel().split()
             executor.submit(
                 rx
                     .map { sum += $0 }
@@ -219,7 +219,7 @@ private final class SPMCChannelTester<C: ChannelProtocol> where C.Item == Int {
         let isPassthrough: Bool
 
         do {
-            let (tx, rx) = makeChannel().split()
+            let (rx, tx) = makeChannel().split()
             isPassthrough = C.Buffer.isPassthrough
             let multicast = rx.multicast()
 
@@ -247,7 +247,7 @@ private final class SPMCChannelTester<C: ChannelProtocol> where C.Item == Int {
         let sum = AtomicInt(0)
 
         testcase.expect(count: SPMC_RECEIVER_COUNT, timeout: 60, enforceOrder: false) { exp in
-            let (tx, rx) = makeChannel().split()
+            let (rx, tx) = makeChannel().split()
             let multicast = rx.share()
 
             for i in 0..<SPMC_RECEIVER_COUNT {
@@ -281,7 +281,7 @@ private final class MPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
         let executor = ThreadExecutor()
 
         let rx: C.Receiver = try {
-            let (tx, rx) = makeChannel().split()
+            let (rx, tx) = makeChannel().split()
             let values = Stream.sequence(0..<MPSC_ITERATIONS)
 
             for _ in 0..<MPSC_SENDER_COUNT {
@@ -306,7 +306,7 @@ private final class MPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
         }
 
         let rx: C.Receiver = {
-            let (tx, rx) = makeChannel().split()
+            let (rx, tx) = makeChannel().split()
             let values = Stream.sequence(0..<MPSC_ITERATIONS)
 
             for i in 0..<MPSC_SENDER_COUNT {
