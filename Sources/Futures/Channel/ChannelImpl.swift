@@ -14,12 +14,12 @@ extension Channel._Private {
 
         @usableFromInline
         struct State: AtomicBitset {
-            // LSB is the "open" bit.
-            @usableFromInline var rawValue: AtomicUInt.RawValue
+            @usableFromInline typealias RawValue = AtomicUInt.RawValue
+            @usableFromInline var rawValue: RawValue
 
             @inlinable
             @_transparent
-            init(rawValue: AtomicUInt.RawValue) {
+            init(rawValue: RawValue) {
                 self.rawValue = rawValue
             }
         }
@@ -35,40 +35,49 @@ extension Channel._Private {
             _buffer = buffer
             _senders = park
         }
-
-        @inlinable
-        var capacity: Int {
-            return _buffer.capacity
-        }
     }
 }
 
 extension Channel._Private.Impl.State {
-    @inlinable static var closed: Self { 1 }
+    @inlinable static var receiverClose: Self {
+        @_transparent get { 0b01 }
+    }
+
+    @inlinable static var senderClose: Self {
+        @_transparent get { 0b10 }
+    }
 
     @inlinable
     @_transparent
     static func count(_ value: RawValue) -> Self {
-        .init(rawValue: value << 1)
-    }
-
-    @inlinable
-    var isClosed: Bool {
-        @_transparent get { contains(.closed) }
-        @_transparent set { rawValue ^= (newValue ? 1 : 0) }
+        .init(rawValue: value << 2)
     }
 
     @inlinable
     var count: RawValue {
-        @_transparent get { rawValue >> 1 }
-        @_transparent set { rawValue = newValue << 1 }
+        @_transparent get { rawValue >> 2 }
+    }
+
+    @inlinable
+    var isClosed: Bool {
+        @_transparent get { contains(.receiverClose | .senderClose) }
+    }
+
+    @inlinable
+    var isReceiverClosed: Bool {
+        @_transparent get { contains(.receiverClose) }
+    }
+
+    @inlinable
+    var isSenderClosed: Bool {
+        @_transparent get { contains(.senderClose) }
     }
 }
 
 extension Channel._Private.Impl {
     @usableFromInline
-    enum SendError: Swift.Error {
-        case atCapacity
+    enum BufferResult<T> {
+        case success(State, T)
         case cancelled
         case retry
     }
@@ -76,55 +85,59 @@ extension Channel._Private.Impl {
 
 extension Channel._Private.Impl {
     @inlinable
-    func tryRecv() -> Result<Item?, Channel.Error> {
-        let item: Item
+    func tryRecv() -> BufferResult<Item?> {
+        var backoff = Backoff()
 
-        if !C.Buffer.supportsMultipleSenders {
-            // Fast-path for Passthrough, Unbuffered and Buffered channels.
-            // See trySend().
-            let state = State.load(&_state)
-            if state.count == 0 {
-                if state.isClosed {
-                    return .failure(.cancelled)
-                }
-                return .success(nil)
-            }
-            item = _buffer.pop()! // swiftlint:disable:this force_unwrapping
-        } else {
-            // Path for Shared channel
-            guard let _item = _buffer.pop() else {
+        while true {
+            // First check the buffer, then decrement count if
+            // we get an item.
+            guard let item = _buffer.pop() else {
+                // No items; either the buffer is empty or a sender
+                // incremented count but didn't get round to pushing
+                // the item into the buffer yet; retry a few times.
                 let state = State.load(&_state)
-                if state.isClosed {
-                    return .failure(.cancelled)
+                assert(
+                    !state.isReceiverClosed,
+                    "receiver unexpectedly closed the channel"
+                )
+                if state.count == 0 {
+                    // Buffer is literally empty. See if the channel is
+                    // closed and signal cancellation. We always allow
+                    // the receiver to flush the channel first, so this
+                    // is the right time.
+                    guard !state.isClosed else {
+                        return .cancelled
+                    }
+                    return .success(state, nil)
                 }
-                if C.Buffer.isBounded {
-                    _senders.notifyOne()
+
+                // A sender incremented count but didn't get to
+                // push the item yet; retry a few times.
+                guard !backoff.isComplete else {
+                    return .retry
                 }
-                return .success(nil)
+                backoff.snooze()
+                continue
             }
-            item = _item
-        }
 
-        if State.fetchSub(&_state, .count(1)).count == 1 {
-            _senders.notifyFlush()
-        }
+            let state = State.fetchSub(&_state, .count(1))
 
-        if C.Buffer.isBounded {
-            _senders.notifyOne()
+            return .success(state, item)
         }
-
-        return .success(item)
     }
 
     @inlinable
     func pollRecv(_ context: inout Context) -> Poll<Item?> {
         switch tryRecv() {
-        case .success(.some(let item)):
+        case .success(let state, .some(let item)):
+            _didRecvItem(state)
             return .ready(item)
-        case .success(.none):
+        case .success(_, .none):
             return _pollRecvSlow(&context)
-        case .failure(.cancelled):
+        case .cancelled:
             return .ready(nil)
+        case .retry:
+            return context.yield()
         }
     }
 
@@ -133,105 +146,110 @@ extension Channel._Private.Impl {
         _receiver.register(context.waker)
 
         switch tryRecv() {
-        case .success(.some(let item)):
+        case .success(let state, .some(let item)):
+            _receiver.clear()
+            _didRecvItem(state)
             return .ready(item)
-        case .success(.none):
+        case .success(_, .none):
+            _senders.notifyOne()
             return .pending
-        case .failure(.cancelled):
+        case .cancelled:
+            _receiver.clear()
             return .ready(nil)
+        case .retry:
+            _receiver.clear()
+            return context.yield()
+        }
+    }
+
+    @usableFromInline
+    @_transparent
+    func _didRecvItem(_ state: State) {
+        if state.count == 1 {
+            // The buffer is now empty; notify waiters
+            _senders.notifyFlush()
+        }
+        if state.count == _buffer.capacity {
+            // If this is a bounded channel and it was at capacity,
+            // then notify a sender that a slot has opened for sending
+            // further items.
+            _senders.notifyOne()
         }
     }
 }
 
 extension Channel._Private.Impl {
     @inlinable
-    func trySend(_ item: Item) -> Result<Void, SendError> {
-        var backoff = Backoff()
-        var curr = State.load(&_state)
+    func trySend(_ item: Item) -> BufferResult<Bool> {
+        // First increment count, then push the item into the buffer.
+        let state = State.fetchAdd(&_state, .count(1))
 
-        while true {
-            var state = curr
-            if state.isClosed {
-                return .failure(.cancelled)
-            }
-            if state.count >= _buffer.capacity {
-                return .failure(.atCapacity)
-            }
-
-            if !C.Buffer.supportsMultipleSenders {
-                // Fast-path for Passthrough, Unbuffered and Buffered channels.
-                // We synchronize around the item count for these channels.
-                _buffer.push(item)
-
-                if !C.Buffer.isPassthrough {
-                    if State.fetchAdd(&_state, .count(1)).count == 0 {
-                        _receiver.signal()
-                    }
-                    return .success(())
-                }
-
-                // Passthrough-only path
-                state.count = 1
-                if State.exchange(&_state, state).isClosed {
-                    state.count = 0
-                    state.isClosed = true
-                    State.store(&_state, state)
-                    return .failure(.cancelled)
-                }
-                return .success(())
-            }
-
-            // Shared-only path
-            // We synchronize around the buffer for this channel
-
-            state.count += 1
-
-            guard State.compareExchange(&_state, &curr, state) else {
-                if backoff.isComplete {
-                    return .failure(.retry)
-                }
-                backoff.snooze()
-                continue
-            }
-
-            _buffer.push(item)
-
-            if state.count == 1 || state.count == _buffer.capacity {
-                _receiver.signal()
-            }
-
-            return .success(())
+        guard !state.isClosed else {
+            State.fetchSub(&_state, .count(1))
+            return .cancelled
         }
+
+        if state.count >= _buffer.capacity {
+            let state = State.fetchSub(&_state, .count(1))
+            guard !state.isClosed else {
+                return .cancelled
+            }
+            // Passthrough channels overwrite previous items when at
+            // capacity, so fallthrough if that's the case. Otherwise,
+            // signal that the item failed to be sent.
+            if !C.Buffer.isPassthrough {
+                return .success(state, false)
+            }
+        }
+
+        _buffer.push(item)
+
+        return .success(state, true)
     }
 
     @inlinable
-    func pollSend(_ context: inout Context, _ item: Item) -> Poll<Result<Void, Channel.Error>> {
+    func pollSend(_ context: inout Context, _ item: Item) -> Poll<C.Sender.Output> {
         switch trySend(item) {
-        case .success:
+        case .success(let state, true):
+            _didSendItem(state)
             return .ready(.success(()))
-        case .failure(.atCapacity):
+        case .success(_, false):
             assert(C.Buffer.isBounded)
             return _pollSendSlow(&context, item)
-        case .failure(.retry):
+        case .cancelled:
+            return .ready(.failure(.closed))
+        case .retry:
             return context.yield()
-        case .failure(.cancelled):
-            return .ready(.failure(.cancelled))
         }
     }
 
     @usableFromInline
-    func _pollSendSlow(_ context: inout Context, _ item: Item) -> Poll<Result<Void, Channel.Error>> {
-        _senders.park(context.waker)
+    func _pollSendSlow(_ context: inout Context, _ item: Item) -> Poll<C.Sender.Output> {
+        let handle = _senders.park(context.waker)
 
         switch trySend(item) {
-        case .success:
+        case .success(let state, true):
+            handle.cancel()
+            _didSendItem(state)
             return .ready(.success(()))
-        case .failure(.atCapacity):
+        case .success(_, false):
             return .pending
-        case .failure(.retry):
+        case .cancelled:
+            handle.cancel()
+            return .ready(.failure(.closed))
+        case .retry:
+            handle.cancel()
             return context.yield()
-        case .failure(.cancelled):
-            return .ready(.failure(.cancelled))
+        }
+    }
+
+    @usableFromInline
+    @_transparent
+    func _didSendItem(_ state: State) {
+        if state.count == 0 {
+            // If the channel was empty before this item we need to
+            // signal the receiver, as it may be parked.
+            _receiver.signal()
         }
     }
 }
@@ -240,53 +258,59 @@ extension Channel._Private.Impl {
     @inlinable
     func tryFlush() -> Result<Bool, Channel.Error> {
         let state = State.load(&_state)
-        if state.isClosed {
+        guard !state.isClosed else {
             return .failure(.cancelled)
         }
-        if state.count == 0 {
-            return .success(true)
-        }
-        _receiver.signal()
-        return .success(false)
+        return .success(state.count == 0)
     }
 
     @inlinable
-    func pollFlush(_ context: inout Context) -> Poll<Result<Void, Channel.Error>> {
+    func pollFlush(_ context: inout Context) -> Poll<C.Sender.Output> {
         switch tryFlush() {
         case .success(true):
             return .ready(.success(()))
         case .success(false):
             return _pollFlushSlow(&context)
         case .failure(.cancelled):
-            return .ready(.failure(.cancelled))
+            return .ready(.failure(.closed))
         }
     }
 
     @usableFromInline
-    func _pollFlushSlow(_ context: inout Context) -> Poll<Result<Void, Channel.Error>> {
-        _senders.parkFlush(context.waker)
+    func _pollFlushSlow(_ context: inout Context) -> Poll<C.Sender.Output> {
+        let handle = _senders.parkFlush(context.waker)
 
         switch tryFlush() {
         case .success(true):
+            handle.cancel()
             return .ready(.success(()))
         case .success(false):
             return .pending
         case .failure(.cancelled):
-            return .ready(.failure(.cancelled))
+            handle.cancel()
+            return .ready(.failure(.closed))
         }
     }
 }
 
 extension Channel._Private.Impl {
     @inlinable
-    func close() {
-        let state = State.fetchOr(&_state, .closed)
-        if state.isClosed {
+    func receiverClose() {
+        let state = State.fetchOr(&_state, .receiverClose)
+        guard !state.isClosed else {
+            return
+        }
+        _senders.notifyAll()
+    }
+
+    @inlinable
+    func senderClose() {
+        let state = State.fetchOr(&_state, .senderClose)
+        guard !state.isClosed else {
             return
         }
         if state.count == 0 {
             _receiver.signal()
         }
-        _senders.notifyAll()
     }
 }

@@ -68,14 +68,14 @@ extension Channel {
 
 extension Channel {
     /// Unbounded, single-slot, single-sender channel (AKA "passthrough").
-    /// Passthrough channels must only be used from a single executor.
+    /// Passthrough channels are safe to use from any executor.
     public enum Passthrough<Item>: UnboundedChannelProtocol {
         public typealias Buffer = _Private.SlotUnbounded<Item>
         public typealias Park = _Private.SPSCPark
     }
 
     /// Creates an unbounded, single-slot, single-sender (AKA "passthrough")
-    /// channel. Passthrough channels must only be used from a single executor.
+    /// channel. Passthrough channels are safe to use from any executor.
     @inlinable
     public static func makePassthrough<T>(itemType _: T.Type = T.self) -> Pipe<Passthrough<T>> {
         let impl = _Private.Impl<Passthrough<T>>(buffer: .init(), park: .init())
@@ -219,7 +219,7 @@ extension Channel {
 
         @inlinable
         deinit {
-            _channel.close()
+            _channel.senderClose()
         }
     }
 }
@@ -236,7 +236,7 @@ extension Channel.Sender: Cancellable {
     /// calls are just ignored.
     @inlinable
     public func cancel() {
-        _channel.close()
+        _channel.senderClose()
     }
 }
 
@@ -246,31 +246,17 @@ extension Channel.Sender: SinkProtocol {
 
     @inlinable
     public func pollSend(_ context: inout Context, _ item: Item) -> Poll<Output> {
-        switch _channel.pollSend(&context, item) {
-        case .ready(.success):
-            return .ready(.success(()))
-        case .ready(.failure(.cancelled)):
-            return .ready(.failure(.closed))
-        case .pending:
-            return .pending
-        }
+        return _channel.pollSend(&context, item)
     }
 
     @inlinable
     public func pollFlush(_ context: inout Context) -> Poll<Output> {
-        switch _channel.pollFlush(&context) {
-        case .ready(.success):
-            return .ready(.success(()))
-        case .ready(.failure(.cancelled)):
-            return .ready(.failure(.closed))
-        case .pending:
-            return .pending
-        }
+        return _channel.pollFlush(&context)
     }
 
     @inlinable
     public func pollClose(_: inout Context) -> Poll<Output> {
-        _channel.close()
+        _channel.senderClose()
         return .ready(.success(()))
     }
 }
@@ -290,7 +276,7 @@ extension Channel {
 
         @inlinable
         deinit {
-            _channel.close()
+            _channel.receiverClose()
         }
     }
 }
@@ -307,7 +293,7 @@ extension Channel.Receiver: Cancellable {
     /// calls are just ignored.
     @inlinable
     public func cancel() {
-        _channel.close()
+        _channel.receiverClose()
     }
 }
 
@@ -331,26 +317,36 @@ extension Channel {
 public protocol _ChannelBufferImplProtocol {
     associatedtype Item
 
-    static var supportsMultipleSenders: Bool { get }
+    /// Whether the buffer overwrites previous items when at capacity.
     static var isPassthrough: Bool { get }
+
+    /// Whether the buffer can hold up to a certain number of items,
+    /// equal to `capacity`, beyond which new items must be rejected.
+    ///
+    /// If `isBounded` is `true`, then `capacity` must return `Int.max` unless
+    /// `isPassthrough` is also `true`.
     static var isBounded: Bool { get }
 
+    /// The maximum number of items the buffer can hold, beyond which new
+    /// items must be rejected.
     var capacity: Int { get }
 
+    /// Store the given item into the buffer.
     func push(_ item: Item)
+
+    /// Remove and return the next item or `nil` if there are no more items
+    /// in the buffer.
     func pop() -> Item?
 }
 
 /// :nodoc:
 public protocol _ChannelParkImplProtocol {
-    // called by senders only
-    func park(_ waker: WakerProtocol)
-    func parkFlush(_ waker: WakerProtocol)
+    // only called by senders
+    func park(_ waker: WakerProtocol) -> Cancellable
+    func parkFlush(_ waker: WakerProtocol) -> Cancellable
 
-    // called by the receiver only
+    // only called by the receiver
     func notifyOne()
     func notifyFlush()
-
-    // called by both senders and the receiver
     func notifyAll()
 }

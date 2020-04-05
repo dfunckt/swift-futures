@@ -78,7 +78,6 @@ private final class BoundedChannelTester<C: ChannelProtocol> where C.Item == Int
             rx.cancel()
 
             XCTAssertFailure(tx.pollSend(&cx, 2), .closed)
-            XCTAssertEqual(rx.pollNext(&cx), nil) // swiftlint:disable:this xct_specific_matcher
 
             return .ready(())
         }
@@ -143,7 +142,6 @@ private final class UnboundedChannelTester<C: UnboundedChannelProtocol> where C.
             rx.cancel()
 
             XCTAssertFailure(tx.pollSend(&cx, 2), .closed)
-            XCTAssertEqual(rx.pollNext(&cx), nil) // swiftlint:disable:this xct_specific_matcher
 
             return .ready(())
         }
@@ -182,7 +180,7 @@ private final class SPSCChannelTester<C: ChannelProtocol> where C.Item == Int {
     }
 
     func testSPSCThreaded(_ testcase: XCTestCase) {
-        let executor = QueueExecutor.userInitiated
+        let executor = QueueExecutor(label: "test-futures")
         var sum = 0
 
         testcase.expect(timeout: 60) { exp in

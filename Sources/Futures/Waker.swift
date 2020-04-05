@@ -90,6 +90,14 @@ public final class AtomicWaker: WakerProtocol {
         }
     }
 
+    /// Clears the registered waker, if any.
+    ///
+    /// This method can be called concurrently.
+    @inlinable
+    public func clear() {
+        _ = move()
+    }
+
     /// Signals the last registered waker.
     ///
     /// This method can be called concurrently.
@@ -155,3 +163,92 @@ public final class AtomicWaker: WakerProtocol {
 }
 
 #endif
+
+// MARK: -
+
+@usableFromInline
+internal struct AtomicWakerQueue {
+    @usableFromInline
+    final class Waker {
+        @usableFromInline var _next: AtomicReference<Waker>.RawValue = 0
+        @usableFromInline var _cancelled: AtomicBool.RawValue = false
+        @usableFromInline var _waker: WakerProtocol?
+
+        @inlinable
+        init(waker: WakerProtocol? = nil) {
+            _waker = waker
+        }
+    }
+
+    @usableFromInline let _queue: AtomicList<Waker>
+
+    @inlinable
+    init() {
+        _queue = .init(stub: .init(waker: nil))
+    }
+}
+
+extension AtomicWakerQueue {
+    @inlinable
+    func push(_ waker: WakerProtocol) -> Waker {
+        let waker = Waker(waker: waker)
+        _queue.enqueue(waker)
+        return waker
+    }
+
+    @inlinable
+    func signal() {
+        while let waker = _queue.dequeue() {
+            if waker.signal() {
+                return
+            }
+            Atomic.hardwarePause()
+        }
+    }
+
+    @inlinable
+    func broadcast() {
+        while let waker = _queue.dequeue() {
+            _ = waker.signal()
+            Atomic.hardwarePause()
+        }
+    }
+
+    @inlinable
+    func clear() {
+        while let waker = _queue.dequeue() {
+            waker.cancel()
+            Atomic.hardwarePause()
+        }
+    }
+}
+
+extension AtomicWakerQueue.Waker: Cancellable {
+    @inlinable
+    func cancel() {
+        guard !AtomicBool.exchange(&_cancelled, true, order: .acqrel) else {
+            return
+        }
+        _waker = nil
+    }
+
+    @inlinable
+    func signal() -> Bool {
+        guard !AtomicBool.exchange(&_cancelled, true, order: .acqrel) else {
+            return false
+        }
+        guard let waker = _waker.move() else {
+            fatalError("expected non-nil waker")
+        }
+        waker.signal()
+        return true
+    }
+}
+
+extension AtomicWakerQueue.Waker: AtomicListNode {
+    @inlinable
+    @_transparent
+    func withAtomicPointerToNextNode<R>(_ block: (AtomicReference<Self>.Pointer) -> R) -> R {
+        block(&_next)
+    }
+}

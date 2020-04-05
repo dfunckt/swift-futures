@@ -15,11 +15,6 @@ extension Channel._Private {
         init() {}
 
         @inlinable
-        public static var supportsMultipleSenders: Bool {
-            return false
-        }
-
-        @inlinable
         public static var isPassthrough: Bool {
             return false
         }

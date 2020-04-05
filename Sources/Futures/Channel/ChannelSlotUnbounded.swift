@@ -5,24 +5,14 @@
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
 //
 
+import FuturesSync
+
 extension Channel._Private {
     public struct SlotUnbounded<Item>: _ChannelBufferImplProtocol {
-        // The semantics of this buffer (used by Passthrough) are such that
-        // in order to get deterministic results, it only makes sense to use
-        // it from a single executor -- typically one for the main thread.
-        //
-        // `Impl` already guarantees thread-safety, so if we changed `_Ref`
-        // below to a `SharedValue`, we'd automatically get the ability to
-        // use this buffer in a multi-executor context.
-        @usableFromInline let _element = Box(Item?.none)
+        @usableFromInline let _element = Mutex(Item?.none)
 
         @inlinable
         init() {}
-
-        @inlinable
-        public static var supportsMultipleSenders: Bool {
-            return false
-        }
 
         @inlinable
         public static var isPassthrough: Bool {
@@ -36,7 +26,7 @@ extension Channel._Private {
 
         @inlinable
         public var capacity: Int {
-            return Int.max
+            return 1
         }
 
         @inlinable
@@ -46,7 +36,7 @@ extension Channel._Private {
 
         @inlinable
         public func pop() -> Item? {
-            return _element.value.move()
+            return _element.move()
         }
     }
 }

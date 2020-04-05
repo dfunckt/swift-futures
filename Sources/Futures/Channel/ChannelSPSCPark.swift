@@ -7,14 +7,25 @@
 
 extension Channel._Private {
     public struct SPSCPark: _ChannelParkImplProtocol {
+        @usableFromInline
+        struct Waker {
+            @usableFromInline let _waker: AtomicWaker
+
+            @inlinable
+            init(_ waker: AtomicWaker) {
+                _waker = waker
+            }
+        }
+
         @usableFromInline let _waker = AtomicWaker()
 
         @inlinable
         init() {}
 
         @inlinable
-        public func park(_ waker: WakerProtocol) {
+        public func park(_ waker: WakerProtocol) -> Cancellable {
             _waker.register(waker)
+            return Waker(_waker)
         }
 
         @inlinable
@@ -28,13 +39,21 @@ extension Channel._Private {
         }
 
         @inlinable
-        public func parkFlush(_ waker: WakerProtocol) {
+        public func parkFlush(_ waker: WakerProtocol) -> Cancellable {
             _waker.register(waker)
+            return Waker(_waker)
         }
 
         @inlinable
         public func notifyFlush() {
             _waker.signal()
         }
+    }
+}
+
+extension Channel._Private.SPSCPark.Waker: Cancellable {
+    @inlinable
+    func cancel() {
+        _waker.clear()
     }
 }

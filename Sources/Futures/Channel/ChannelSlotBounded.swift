@@ -5,17 +5,14 @@
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
 //
 
+import FuturesSync
+
 extension Channel._Private {
     public struct SlotBounded<Item>: _ChannelBufferImplProtocol {
-        @usableFromInline let _element = Box(Item?.none)
+        @usableFromInline let _element = Mutex(Item?.none)
 
         @inlinable
         init() {}
-
-        @inlinable
-        public static var supportsMultipleSenders: Bool {
-            return false
-        }
 
         @inlinable
         public static var isPassthrough: Bool {
@@ -39,7 +36,7 @@ extension Channel._Private {
 
         @inlinable
         public func pop() -> Item? {
-            return _element.value.move()
+            return _element.move()
         }
     }
 }
