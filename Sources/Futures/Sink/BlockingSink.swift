@@ -7,8 +7,6 @@
 
 extension Sink._Private {
     public struct Blocking<Base: SinkProtocol> {
-        public typealias Output = Result<Void, Sink.Completion<Base.Failure>>
-
         @usableFromInline let _base: Box<Base>
 
         @inlinable
@@ -17,7 +15,7 @@ extension Sink._Private {
         }
 
         @inlinable
-        public mutating func send(_ item: Base.Input) -> Output {
+        public mutating func send(_ item: Base.Input) -> SinkResult<Base.Failure> {
             var f = _base.value.send(item)
             return ThreadExecutor.current.run(until: &f).map {
                 _base.value = $0
@@ -25,7 +23,7 @@ extension Sink._Private {
         }
 
         @inlinable
-        public mutating func flush() -> Output {
+        public mutating func flush() -> SinkResult<Base.Failure> {
             var f = _base.value.flush()
             return ThreadExecutor.current.run(until: &f).map {
                 _base.value = $0
@@ -33,7 +31,7 @@ extension Sink._Private {
         }
 
         @inlinable
-        public mutating func close() -> Output {
+        public mutating func close() -> SinkResult<Base.Failure> {
             var f = _base.value.close()
             return ThreadExecutor.current.run(until: &f).map {
                 _base.value = $0

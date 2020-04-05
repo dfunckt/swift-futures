@@ -42,6 +42,9 @@ extension Sink._Private {
                     case .ready(.some(let item)):
                         _state = .sending(base, stream, item)
                         continue
+                    case .ready(.none) where _shouldClose:
+                        _state = .closing(base)
+                        continue
                     case .ready(.none):
                         _state = .flushing(base)
                         continue
@@ -66,10 +69,6 @@ extension Sink._Private {
                 case .flushing(var base):
                     switch base.pollFlush(&context) {
                     case .ready(.success):
-                        if _shouldClose {
-                            _state = .closing(base)
-                            continue
-                        }
                         _state = .done
                         return .ready(.success(base))
                     case .ready(.failure(let completion)):

@@ -7,7 +7,7 @@
 
 extension Sink._Private {
     public final class Collect<Item>: SinkProtocol {
-        public typealias Output = Result<Void, Sink.Completion<Never>>
+        public typealias Failure = Never
 
         @usableFromInline var _elements = [Item]()
 
@@ -25,18 +25,18 @@ extension Sink._Private {
         }
 
         @inlinable
-        public func pollSend(_: inout Context, _ item: Item) -> Poll<Output> {
+        public func pollSend(_: inout Context, _ item: Item) -> PollSink<Failure> {
             _elements.append(item)
             return .ready(.success(()))
         }
 
         @inlinable
-        public func pollFlush(_: inout Context) -> Poll<Output> {
+        public func pollFlush(_: inout Context) -> PollSink<Failure> {
             return .ready(.success(()))
         }
 
         @inlinable
-        public func pollClose(_: inout Context) -> Poll<Output> {
+        public func pollClose(_: inout Context) -> PollSink<Failure> {
             return .ready(.success(()))
         }
     }

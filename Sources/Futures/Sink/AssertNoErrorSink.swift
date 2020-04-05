@@ -8,7 +8,7 @@
 extension Sink._Private {
     public struct AssertNoError<Base: SinkProtocol>: SinkProtocol {
         public typealias Input = Base.Input
-        public typealias Output = Result<Void, Sink.Completion<Never>>
+        public typealias Failure = Never
 
         @usableFromInline var _base: Base
         @usableFromInline var _message: String
@@ -24,35 +24,23 @@ extension Sink._Private {
         }
 
         @inlinable
-        public mutating func pollSend(_ context: inout Context, _ item: Input) -> Poll<Output> {
-            return _base.pollSend(&context, item).map {
-                $0.mapError {
-                    $0.mapError {
-                        fatalError("\(_message): \($0)")
-                    }
-                }
+        public mutating func pollSend(_ context: inout Context, _ item: Input) -> PollSink<Failure> {
+            return _base.pollSend(&context, item).mapError {
+                fatalError("\(_message): \($0)")
             }
         }
 
         @inlinable
-        public mutating func pollFlush(_ context: inout Context) -> Poll<Output> {
-            return _base.pollFlush(&context).map {
-                $0.mapError {
-                    $0.mapError {
-                        fatalError("\(_message): \($0)")
-                    }
-                }
+        public mutating func pollFlush(_ context: inout Context) -> PollSink<Failure> {
+            return _base.pollFlush(&context).mapError {
+                fatalError("\(_message): \($0)")
             }
         }
 
         @inlinable
-        public mutating func pollClose(_ context: inout Context) -> Poll<Output> {
-            return _base.pollClose(&context).map {
-                $0.mapError {
-                    $0.mapError {
-                        fatalError("\(_message): \($0)")
-                    }
-                }
+        public mutating func pollClose(_ context: inout Context) -> PollSink<Failure> {
+            return _base.pollClose(&context).mapError {
+                fatalError("\(_message): \($0)")
             }
         }
     }

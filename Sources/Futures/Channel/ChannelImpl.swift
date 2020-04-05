@@ -208,7 +208,7 @@ extension Channel._Private.Impl {
     }
 
     @inlinable
-    func pollSend(_ context: inout Context, _ item: Item) -> Poll<C.Sender.Output> {
+    func pollSend(_ context: inout Context, _ item: Item) -> PollSink<C.Sender.Failure> {
         switch trySend(item) {
         case .success(let state, true):
             _didSendItem(state)
@@ -224,7 +224,7 @@ extension Channel._Private.Impl {
     }
 
     @usableFromInline
-    func _pollSendSlow(_ context: inout Context, _ item: Item) -> Poll<C.Sender.Output> {
+    func _pollSendSlow(_ context: inout Context, _ item: Item) -> PollSink<C.Sender.Failure> {
         let handle = _senders.park(context.waker)
 
         switch trySend(item) {
@@ -265,7 +265,7 @@ extension Channel._Private.Impl {
     }
 
     @inlinable
-    func pollFlush(_ context: inout Context) -> Poll<C.Sender.Output> {
+    func pollFlush(_ context: inout Context) -> PollSink<C.Sender.Failure> {
         switch tryFlush() {
         case .success(true):
             return .ready(.success(()))
@@ -277,10 +277,51 @@ extension Channel._Private.Impl {
     }
 
     @usableFromInline
-    func _pollFlushSlow(_ context: inout Context) -> Poll<C.Sender.Output> {
+    func _pollFlushSlow(_ context: inout Context) -> PollSink<C.Sender.Failure> {
         let handle = _senders.parkFlush(context.waker)
 
         switch tryFlush() {
+        case .success(true):
+            handle.cancel()
+            return .ready(.success(()))
+        case .success(false):
+            return .pending
+        case .failure(.cancelled):
+            handle.cancel()
+            return .ready(.failure(.closed))
+        }
+    }
+}
+
+extension Channel._Private.Impl {
+    @inlinable
+    func tryClose() -> Result<Bool, Channel.Error> {
+        let state = State.load(&_state)
+        guard !state.isReceiverClosed else {
+            // If the receiver is gone the channel will never be flushed.
+            // Signal cancellation in this case.
+            return .failure(.cancelled)
+        }
+        return .success(state.count == 0)
+    }
+
+    @inlinable
+    func pollClose(_ context: inout Context) -> PollSink<C.Sender.Failure> {
+        switch tryClose() {
+        case .success(true):
+            return .ready(.success(()))
+        case .success(false):
+            return _pollCloseSlow(&context)
+        case .failure(.cancelled):
+            return .ready(.failure(.closed))
+        }
+    }
+
+    @usableFromInline
+    func _pollCloseSlow(_ context: inout Context) -> PollSink<C.Sender.Failure> {
+        let handle = _senders.parkFlush(context.waker)
+
+        switch tryClose() {
         case .success(true):
             handle.cancel()
             return .ready(.success(()))

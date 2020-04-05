@@ -5,16 +5,90 @@
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
 //
 
+public typealias SinkResult<Failure: Error> = Result<Void, Sink.Completion<Failure>>
+public typealias PollSink<Failure: Error> = Poll<SinkResult<Failure>>
+
 public protocol SinkProtocol: SinkConvertible where SinkType == Self {
     associatedtype Input
     associatedtype Failure: Error
 
-    typealias Completion = Sink.Completion<Failure>
-    typealias Output = Result<Void, Completion>
+    /// Send `item` into the sink.
+    ///
+    /// If this method signifies success, it is guaranteed that the item has
+    /// been accepted and the sender may proceed to send another item.
+    ///
+    /// Note that this does not mean the item has been *observed* by whatever
+    /// receiving end happens to be represented by the sink; sink implementations
+    /// are free to buffer or otherwise delay delivery of the items as they
+    /// see fit. To ensure a previously sent item has reached its destination,
+    /// use `pollFlush(_:)`.
+    ///
+    /// Calling this method on a closed sink (see `pollClose(_:)`) fails with
+    /// `Sink.Completion.closed`.
+    ///
+    /// - Returns:
+    ///     - `Poll.pending`: The item could not immediately be accepted by
+    ///         the sink; that is, the sink is applying back-pressure. Before
+    ///         returning from this method, the sink will have arranged for
+    ///         the sender to be notified when the operation can be retried.
+    ///     - `Poll.ready(.success)`: The item was accepted by the sink.
+    ///     - `Poll.ready(.failure(.closed))`: The operation failed because
+    ///         the sink is closed.
+    ///     - `Poll.ready(.failure(Failure))`: The operation failed due to an
+    ///         error.
+    mutating func pollSend(_ context: inout Context, _ item: Input) -> PollSink<Failure>
 
-    mutating func pollSend(_ context: inout Context, _ item: Input) -> Poll<Output>
-    mutating func pollFlush(_ context: inout Context) -> Poll<Output>
-    mutating func pollClose(_ context: inout Context) -> Poll<Output>
+    /// Wait for the sink to flush its contents.
+    ///
+    /// `pollFlush(_:)` guarantees that all items sent by the *caller* before
+    /// calling this method have been *observed* by the receiving end of sink.
+    /// `pollFlush(_:)` therefore allows the sender to synchronize with the
+    /// receiving end of the sink.
+    ///
+    /// Sink implementations are free to define what "observed by the
+    /// receiving end" means; eg. for buffered sinks, this typically means
+    /// that their buffer was drained.
+    ///
+    /// Calling this method on a closed sink (see `pollClose(_:)`) fails with
+    /// `Sink.Completion.closed`.
+    ///
+    /// - Returns:
+    ///     - `Poll.pending`: The sink still has items that its receiving
+    ///         end has not yet observed. Before returning from this method,
+    ///         the sink will have arranged for the sender to be notified when
+    ///         the operation can be retried.
+    ///     - `Poll.ready(.success)`: The receiving end of the sink observed
+    ///         all previously sent items.
+    ///     - `Poll.ready(.failure(.closed))`: The operation failed because
+    ///         the sink is closed.
+    ///     - `Poll.ready(.failure(Failure))`: The operation failed due to an
+    ///         error.
+    mutating func pollFlush(_ context: inout Context) -> PollSink<Failure>
+
+    /// Close the sink, preventing further items to be sent, and wait for the
+    /// sink to flush its contents.
+    ///
+    /// After the first call to this method, further calls to `pollSend(_:_:)`
+    /// and `pollFlush(_:)` will fail with `Sink.Completion.closed`. This
+    /// method may be called even after it returns `Poll.ready`.
+    ///
+    /// If this method signifies success, it is guaranteed that all items sent
+    /// before calling this method have been observed by the receiving end of
+    /// sink. See `pollFlush(_:)`.
+    ///
+    /// - Returns:
+    ///     - `Poll.pending`: The sink closed successfully but still has items
+    ///         that its receiving end has not yet observed. Before returning
+    ///         from this method, the sink will have arranged for the sender
+    ///         to be notified when the operation can be retried.
+    ///     - `Poll.ready(.success)`: The sink closed successfully and the
+    ///         receiving end of the sink observed all previously sent items.
+    ///     - `Poll.ready(.failure(.closed))`: The sink closed successfully
+    ///         but still has items that its receiving end will never receive
+    ///         because itself went away.
+    ///     - `Poll.ready(.failure(Failure))`: The sink closed successfully
+    ///         but the operation caused an error.
+    mutating func pollClose(_ context: inout Context) -> PollSink<Failure>
 }
 
 public protocol SinkConvertible {
@@ -70,12 +144,71 @@ extension Sink.Completion {
 
 extension Sink.Completion {
     @inlinable
+    @inline(__always)
     public func mapError<E: Error>(_ transform: (Failure) throws -> E) rethrows -> Sink.Completion<E> {
         switch self {
         case .closed:
             return .closed
         case .failure(let error):
             return try .failure(transform(error))
+        }
+    }
+}
+
+extension Poll {
+    @inlinable
+    @inline(__always)
+    public func map<E: Error>(_ onSuccess: () -> SinkResult<E>) -> Poll where T == SinkResult<E> {
+        switch self {
+        case .ready(.success):
+            return .ready(onSuccess())
+        case .ready(.failure(let error)):
+            return .ready(.failure(error))
+        case .pending:
+            return .pending
+        }
+    }
+
+    @inlinable
+    @inline(__always)
+    public func mapError<E: Error, NewFailure: Error>(_ onFailure: (E) -> SinkResult<NewFailure>) -> PollSink<NewFailure> where T == SinkResult<E> {
+        switch self {
+        case .ready(.success):
+            return .ready(.success(()))
+        case .ready(.failure(.closed)):
+            return .ready(.failure(.closed))
+        case .ready(.failure(.failure(let error))):
+            return .ready(onFailure(error))
+        case .pending:
+            return .pending
+        }
+    }
+
+    @inlinable
+    @inline(__always)
+    public func flatMap<E: Error>(_ onSuccess: () -> Poll) -> Poll where T == SinkResult<E> {
+        switch self {
+        case .ready(.success):
+            return onSuccess()
+        case .ready(.failure(let error)):
+            return .ready(.failure(error))
+        case .pending:
+            return .pending
+        }
+    }
+
+    @inlinable
+    @inline(__always)
+    public func flatMapError<E: Error, NewFailure: Error>(_ onFailure: (E) -> PollSink<NewFailure>) -> PollSink<NewFailure> where T == SinkResult<E> {
+        switch self {
+        case .ready(.success):
+            return .ready(.success(()))
+        case .ready(.failure(.closed)):
+            return .ready(.failure(.closed))
+        case .ready(.failure(.failure(let error))):
+            return onFailure(error)
+        case .pending:
+            return .pending
         }
     }
 }
@@ -92,11 +225,9 @@ extension Sink.Completion {
 /// for the `pollSend`, `pollFlush` and `pollClose` methods, rather than
 /// implementing `SinkProtocol` directly on a custom type.
 public struct AnySink<Input, Failure: Error>: SinkProtocol {
-    public typealias Output = Result<Void, Sink.Completion<Failure>>
-
-    public typealias PollSendFn = (inout Context, Input) -> Poll<Output>
-    public typealias PollFlushFn = (inout Context) -> Poll<Output>
-    public typealias PollCloseFn = (inout Context) -> Poll<Output>
+    public typealias PollSendFn = (inout Context, Input) -> PollSink<Failure>
+    public typealias PollFlushFn = (inout Context) -> PollSink<Failure>
+    public typealias PollCloseFn = (inout Context) -> PollSink<Failure>
 
     @usableFromInline let _pollSend: PollSendFn
     @usableFromInline let _pollFlush: PollFlushFn
@@ -125,17 +256,17 @@ public struct AnySink<Input, Failure: Error>: SinkProtocol {
     }
 
     @inlinable
-    public func pollSend(_ context: inout Context, _ item: Input) -> Poll<Output> {
+    public func pollSend(_ context: inout Context, _ item: Input) -> PollSink<Failure> {
         return _pollSend(&context, item)
     }
 
     @inlinable
-    public func pollFlush(_ context: inout Context) -> Poll<Output> {
+    public func pollFlush(_ context: inout Context) -> PollSink<Failure> {
         return _pollFlush(&context)
     }
 
     @inlinable
-    public func pollClose(_ context: inout Context) -> Poll<Output> {
+    public func pollClose(_ context: inout Context) -> PollSink<Failure> {
         return _pollClose(&context)
     }
 }
@@ -170,17 +301,12 @@ extension SinkProtocol {
 
 extension SinkProtocol {
     @inlinable
-    public func map<T>(_ adapt: @escaping (T) -> Input) -> Sink._Private.Map<T, Self> {
+    public func mapInput<T>(_ adapt: @escaping (T) -> Input) -> Sink._Private.MapInput<T, Self> {
         return .init(base: self, adapt: adapt)
     }
 
     @inlinable
-    public func mapError<E>(_ adapt: @escaping (Error) -> E) -> Sink._Private.MapError<E, Self> {
-        return .init(base: self, adapt: adapt)
-    }
-
-    @inlinable
-    public func flatMap<T, U>(_ adapt: @escaping (T) -> U) -> Sink._Private.FlatMap<T, U, Self> {
+    public func flatMapInput<T, U>(_ adapt: @escaping (T) -> U) -> Sink._Private.FlatMapInput<T, U, Self> {
         return .init(base: self, adapt: adapt)
     }
 
@@ -188,16 +314,21 @@ extension SinkProtocol {
     public func buffer(_ count: Int) -> Sink._Private.Buffer<Self> {
         return .init(base: self, count: count)
     }
-
-    @inlinable
-    public func setFailureType<E>(to _: E.Type) -> Sink._Private.SetFailureType<E, Self> where Failure == Never {
-        return .init(base: self)
-    }
 }
 
 // MARK: - Handling Errors -
 
 extension SinkProtocol {
+    @inlinable
+    public func mapError<E>(_ adapt: @escaping (Error) -> E) -> Sink._Private.MapError<E, Self> {
+        return .init(base: self, adapt: adapt)
+    }
+
+    @inlinable
+    public func setFailureType<E>(to _: E.Type) -> Sink._Private.SetFailureType<E, Self> where Failure == Never {
+        return .init(base: self)
+    }
+
     @inlinable
     public func assertNoError(_ prefix: String = "", file: StaticString = #file, line: UInt = #line) -> Sink._Private.AssertNoError<Self> {
         return .init(base: self, prefix: prefix, file: file, line: line)

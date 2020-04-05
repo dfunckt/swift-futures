@@ -60,11 +60,12 @@ private final class BoundedChannelTester<C: ChannelProtocol> where C.Item == Int
         let (rx, tx) = makeChannel().split()
         testcase.poll { cx in
             XCTAssertReady(tx.pollSend(&cx, 1))
-            XCTAssertReady(tx.pollClose(&cx))
+            XCTAssertPending(tx.pollClose(&cx))
 
             XCTAssertFailure(tx.pollSend(&cx, 2), .closed)
             XCTAssertEqual(rx.pollNext(&cx), 1)
             XCTAssertEqual(rx.pollNext(&cx), nil) // swiftlint:disable:this xct_specific_matcher
+            XCTAssertReady(tx.pollClose(&cx))
 
             return .ready(())
         }
@@ -124,11 +125,12 @@ private final class UnboundedChannelTester<C: UnboundedChannelProtocol> where C.
         let (rx, tx) = makeChannel().split()
         testcase.poll { cx in
             XCTAssertReady(tx.pollSend(&cx, 1))
-            XCTAssertReady(tx.pollClose(&cx))
+            XCTAssertPending(tx.pollClose(&cx))
 
             XCTAssertFailure(tx.pollSend(&cx, 2), .closed)
             XCTAssertEqual(rx.pollNext(&cx), 1)
             XCTAssertEqual(rx.pollNext(&cx), nil) // swiftlint:disable:this xct_specific_matcher
+            XCTAssertReady(tx.pollClose(&cx))
 
             return .ready(())
         }

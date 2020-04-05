@@ -245,19 +245,19 @@ extension Channel.Sender: SinkProtocol {
     public typealias Failure = Never
 
     @inlinable
-    public func pollSend(_ context: inout Context, _ item: Item) -> Poll<Output> {
+    public func pollSend(_ context: inout Context, _ item: Item) -> PollSink<Failure> {
         return _channel.pollSend(&context, item)
     }
 
     @inlinable
-    public func pollFlush(_ context: inout Context) -> Poll<Output> {
+    public func pollFlush(_ context: inout Context) -> PollSink<Failure> {
         return _channel.pollFlush(&context)
     }
 
     @inlinable
-    public func pollClose(_: inout Context) -> Poll<Output> {
+    public func pollClose(_ context: inout Context) -> PollSink<Failure> {
         _channel.senderClose()
-        return .ready(.success(()))
+        return _channel.pollClose(&context)
     }
 }
 

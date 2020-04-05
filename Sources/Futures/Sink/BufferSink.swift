@@ -8,9 +8,8 @@
 extension Sink._Private {
     public struct Buffer<Base: SinkProtocol>: SinkProtocol {
         public typealias Input = Base.Input
-        public typealias Output = Result<Void, Sink.Completion<Base.Failure>>
+        public typealias Failure = Base.Failure
 
-        @usableFromInline let _capacity: Int
         @usableFromInline var _base: Base
         @usableFromInline var _buffer: CircularBuffer<Input>
         @usableFromInline var _item: Input?
@@ -18,75 +17,62 @@ extension Sink._Private {
         @inlinable
         public init(base: Base, count: Int) {
             precondition(count > 0)
-            _capacity = count
             _base = base
             _buffer = .init(capacity: count)
         }
 
-        @inlinable
-        mutating func _sendBuffer(_ context: inout Context) -> Poll<Output> {
-            if let item = _item.move() {
-                switch _base.pollSend(&context, item) {
-                case .ready(.success):
-                    break
-                case .ready(.failure(let completion)):
-                    return .ready(.failure(completion))
-                case .pending:
-                    _item = item
-                    return .pending
-                }
-            }
-            while let item = _buffer.pop() {
-                switch _base.pollSend(&context, item) {
-                case .ready(.success):
-                    continue
-                case .ready(.failure(let completion)):
-                    return .ready(.failure(completion))
-                case .pending:
-                    _item = item
-                    return .pending
-                }
-            }
-            return .ready(.success(()))
-        }
-
-        @inlinable
-        public mutating func pollSend(_ context: inout Context, _ item: Input) -> Poll<Output> {
-            if case .ready(.failure(let completion)) = _sendBuffer(&context) {
+        @usableFromInline
+        @_transparent
+        mutating func _sendItem(_ context: inout Context, item: Input) -> PollSink<Failure>? {
+            switch _base.pollSend(&context, item) {
+            case .ready(.success):
+                return nil
+            case .ready(.failure(let completion)):
                 return .ready(.failure(completion))
-            }
-            if _buffer.count >= _capacity {
+            case .pending:
+                _item = item
                 return .pending
             }
-            _buffer.push(item)
+        }
+
+        @inlinable
+        mutating func _sendBuffer(_ context: inout Context) -> PollSink<Failure> {
+            if let item = _item.move(), let failure = _sendItem(&context, item: item) {
+                return failure
+            }
+            while let item = _buffer.pop() {
+                if let failure = _sendItem(&context, item: item) {
+                    return failure
+                }
+            }
             return .ready(.success(()))
         }
 
         @inlinable
-        public mutating func pollFlush(_ context: inout Context) -> Poll<Output> {
-            switch _sendBuffer(&context) {
-            case .ready(.success):
+        public mutating func pollSend(_ context: inout Context, _ item: Input) -> PollSink<Failure> {
+            return _sendBuffer(&context).flatMap {
+                if _buffer.tryPush(item) {
+                    return .ready(.success(()))
+                }
+                return .pending
+            }
+        }
+
+        @inlinable
+        public mutating func pollFlush(_ context: inout Context) -> PollSink<Failure> {
+            return _sendBuffer(&context).flatMap {
                 assert(_buffer.isEmpty)
                 assert(_item == nil)
                 return _base.pollFlush(&context)
-            case .ready(.failure(let completion)):
-                return .ready(.failure(completion))
-            case .pending:
-                return .pending
             }
         }
 
         @inlinable
-        public mutating func pollClose(_ context: inout Context) -> Poll<Output> {
-            switch _sendBuffer(&context) {
-            case .ready(.success):
+        public mutating func pollClose(_ context: inout Context) -> PollSink<Failure> {
+            return _sendBuffer(&context).flatMap {
                 assert(_buffer.isEmpty)
                 assert(_item == nil)
-                return _base.pollClose(&context)
-            case .ready(.failure(let completion)):
-                return .ready(.failure(completion))
-            case .pending:
-                return .pending
+                return _base.pollFlush(&context)
             }
         }
     }

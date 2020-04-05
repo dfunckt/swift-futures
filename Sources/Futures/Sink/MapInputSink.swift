@@ -1,13 +1,13 @@
 //
-//  MapSink.swift
+//  MapInputSink.swift
 //  Futures
 //
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
 //
 
 extension Sink._Private {
-    public struct Map<Input, Base: SinkProtocol>: SinkProtocol {
-        public typealias Output = Base.Output
+    public struct MapInput<Input, Base: SinkProtocol>: SinkProtocol {
+        public typealias Failure = Base.Failure
 
         public typealias Adapt = (Input) -> Base.Input
 
@@ -22,7 +22,7 @@ extension Sink._Private {
         }
 
         @inlinable
-        mutating func _sendItem(_ context: inout Context) -> Poll<Output> {
+        mutating func _sendItem(_ context: inout Context) -> PollSink<Failure> {
             guard let item = _item.move() else {
                 return .ready(.success(()))
             }
@@ -38,42 +38,27 @@ extension Sink._Private {
         }
 
         @inlinable
-        public mutating func pollSend(_ context: inout Context, _ item: Input) -> Poll<Output> {
-            switch _sendItem(&context) {
-            case .ready(.success):
+        public mutating func pollSend(_ context: inout Context, _ item: Input) -> PollSink<Failure> {
+            return _sendItem(&context).flatMap {
                 assert(_item == nil)
                 _item = _adapt(item)
-                return .ready(.success(()))
-            case .ready(.failure(let completion)):
-                return .ready(.failure(completion))
-            case .pending:
-                return .pending
+                return _sendItem(&context)
             }
         }
 
         @inlinable
-        public mutating func pollFlush(_ context: inout Context) -> Poll<Output> {
-            switch _sendItem(&context) {
-            case .ready(.success):
+        public mutating func pollFlush(_ context: inout Context) -> PollSink<Failure> {
+            return _sendItem(&context).flatMap {
                 assert(_item == nil)
                 return _base.pollFlush(&context)
-            case .ready(.failure(let completion)):
-                return .ready(.failure(completion))
-            case .pending:
-                return .pending
             }
         }
 
         @inlinable
-        public mutating func pollClose(_ context: inout Context) -> Poll<Output> {
-            switch _sendItem(&context) {
-            case .ready(.success):
+        public mutating func pollClose(_ context: inout Context) -> PollSink<Failure> {
+            return _sendItem(&context).flatMap {
                 assert(_item == nil)
                 return _base.pollClose(&context)
-            case .ready(.failure(let completion)):
-                return .ready(.failure(completion))
-            case .pending:
-                return .pending
             }
         }
     }

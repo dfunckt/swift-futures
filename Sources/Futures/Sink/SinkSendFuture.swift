@@ -6,27 +6,34 @@
 //
 
 extension Sink._Private {
-    public struct Send<Base: SinkProtocol>: FutureProtocol {
+    public enum Send<Base: SinkProtocol>: FutureProtocol {
         public typealias Output = Result<Base, Sink.Completion<Base.Failure>>
 
-        @usableFromInline var _base: Base
-        @usableFromInline let _item: Base.Input
+        case polling(Base, Base.Input)
+        case done
 
         @inlinable
         public init(base: Base, item: Base.Input) {
-            _base = base
-            _item = item
+            self = .polling(base, item)
         }
 
         @inlinable
         public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch _base.pollSend(&context, _item) {
-            case .ready(.success):
-                return .ready(.success(_base))
-            case .ready(.failure(let completion)):
-                return .ready(.failure(completion))
-            case .pending:
-                return .pending
+            switch self {
+            case .polling(var base, let item):
+                switch base.pollSend(&context, item) {
+                case .ready(.success):
+                    self = .done
+                    return .ready(.success(base))
+                case .ready(.failure(let completion)):
+                    self = .done
+                    return .ready(.failure(completion))
+                case .pending:
+                    self = .polling(base, item)
+                    return .pending
+                }
+            case .done:
+                fatalError("cannot poll after completion")
             }
         }
     }
