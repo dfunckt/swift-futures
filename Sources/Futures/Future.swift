@@ -69,6 +69,19 @@ public protocol FutureConvertible {
     nonmutating func makeFuture() -> FutureType
 }
 
+extension FutureConvertible where Self: FutureProtocol {
+    /// .
+    ///
+    ///     var f = Future.ready(42).makeFuture()
+    ///     assert(f.wait() == 42)
+    ///
+    /// - Returns: `some FutureProtocol<Output == Self.Output>`
+    @_transparent
+    public func makeFuture() -> Self {
+        return self
+    }
+}
+
 /// A namespace for types and convenience methods related to futures.
 ///
 /// For details on futures, see `FutureProtocol`.
@@ -213,17 +226,6 @@ extension Future {
 // MARK: - Instance Methods -
 
 extension FutureProtocol {
-    /// .
-    ///
-    ///     var f = Future.ready(42).makeFuture()
-    ///     assert(f.wait() == 42)
-    ///
-    /// - Returns: `some FutureProtocol<Output == Self.Output>`
-    @_transparent
-    public func makeFuture() -> Self {
-        return self
-    }
-
     /// .
     ///
     ///     var s = Future.ready(42).makeStream()

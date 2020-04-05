@@ -46,6 +46,22 @@ public protocol StreamConvertible {
     nonmutating func makeStream() -> StreamType
 }
 
+extension StreamConvertible where Self: StreamProtocol {
+    /// .
+    ///
+    ///     var s = Stream.sequence(0..<3).makeStream()
+    ///     assert(s.next() == 0)
+    ///     assert(s.next() == 1)
+    ///     assert(s.next() == 2)
+    ///     assert(s.next() == nil)
+    ///
+    /// - Returns: `some StreamProtocol<Output == Self.Output>`
+    @_transparent
+    public func makeStream() -> Self {
+        return self
+    }
+}
+
 /// A namespace for types and convenience methods related to streams.
 ///
 /// For details on streams, see `StreamProtocol`.
@@ -328,20 +344,6 @@ extension StreamProtocol {
     @inlinable
     public func makeFuture() -> Stream._Private.Future<Self> {
         return .init(base: self)
-    }
-
-    /// .
-    ///
-    ///     var s = Stream.sequence(0..<3).makeStream()
-    ///     assert(s.next() == 0)
-    ///     assert(s.next() == 1)
-    ///     assert(s.next() == 2)
-    ///     assert(s.next() == nil)
-    ///
-    /// - Returns: `some StreamProtocol<Output == Self.Output>`
-    @_transparent
-    public func makeStream() -> Self {
-        return self
     }
 
     /// .

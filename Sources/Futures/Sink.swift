@@ -22,6 +22,13 @@ public protocol SinkConvertible {
     nonmutating func makeSink() -> SinkType
 }
 
+extension SinkConvertible where Self: SinkProtocol {
+    @_transparent
+    public func makeSink() -> Self {
+        return self
+    }
+}
+
 /// A namespace for types and convenience methods related to sinks.
 ///
 /// For details on sinks, see `SinkProtocol`.
@@ -148,11 +155,6 @@ extension Sink {
 // MARK: - Instance Methods -
 
 extension SinkProtocol {
-    @_transparent
-    public func makeSink() -> Self {
-        return self
-    }
-
     @inlinable
     public func makeBlockingSink() -> Sink._Private.Blocking<Self> {
         return .init(base: self)
