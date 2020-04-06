@@ -18,13 +18,18 @@ jobs:
     - run: make pretest
 
   xcode:
-    name: Xcode ${{ matrix.xcode }}
+    name: Xcode ${{ matrix.xcode }} / Swift ${{ matrix.swift }}
     needs: pretest
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
-        xcode: ['11', '11.1', '11.2', '11.3']
+        xcode: ['11.3', '11.4']
+        include:
+          - xcode: '11.3'
+            swift: '5.1'
+          - xcode: '11.4'
+            swift: '5.2'
     steps:
     - uses: actions/checkout@v2
     - run: sudo xcode-select -s '/Applications/Xcode_${{ matrix.xcode }}.app'
