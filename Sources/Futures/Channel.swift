@@ -22,12 +22,11 @@ import FuturesSync
 ///
 /// Senders can request to be notified when the channel is flushed. Flushing
 /// is not an exclusive operation; other senders are not prevented from
-/// sending an item, or even closing the channel. Therefore flushing is useful
-/// primarily with single-sender channels. Flushing multi-sender channels is
-/// less reliable because of the indeterminism inherent in that configuration
-/// -- a sender may request a flush and by the time it returns to check that
-/// flushing completed another sender running on another thread might have
-/// sent a new item. You have to externally coordinate the senders in this case.
+/// sending an item, or even closing the channel. Flushing, however, guarantees
+/// that all items previously sent into the channel by the sender have been
+/// taken out by the channel receiver. This effectively allows a sender to
+/// synchronize with the receiver. Closing a channel implicitly flushes the
+/// channel.
 public protocol ChannelProtocol {
     associatedtype Buffer: _ChannelBufferImplProtocol
     associatedtype Park: _ChannelParkImplProtocol
