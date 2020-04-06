@@ -248,7 +248,7 @@ extension AtomicWakerQueue.Waker: Cancellable {
 extension AtomicWakerQueue.Waker: AtomicListNode {
     @inlinable
     @_transparent
-    func withAtomicPointerToNextNode<R>(_ block: (AtomicReference<Self>.Pointer) -> R) -> R {
+    func withAtomicPointerToNextNode<R>(_ block: (AtomicReference<AtomicWakerQueue.Waker>.Pointer) -> R) -> R {
         block(&_next)
     }
 }
