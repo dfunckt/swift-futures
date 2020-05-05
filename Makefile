@@ -2,7 +2,7 @@
 .SUFFIXES:
 SHELL = /bin/sh
 
-MODULES = Futures FuturesSync
+MODULES = Futures FuturesIO FuturesSync
 FOLDERS = Sources Tests
 
 SWIFTFORMAT := $(shell command -v swiftformat 2>/dev/null)
