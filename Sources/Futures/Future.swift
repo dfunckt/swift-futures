@@ -421,7 +421,7 @@ extension FutureProtocol {
     /// - Returns: `some FutureProtocol<Output == Self.Output>`
     @inlinable
     public func peek(_ body: @escaping (Output) -> Void) -> Future._Private.Peek<Self> {
-        return .init(base: self, body: body)
+        return .init(base: self, inspect: body)
     }
 
     /// Replaces the output from this future with a provided value, if it is

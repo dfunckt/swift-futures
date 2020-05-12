@@ -6,36 +6,22 @@
 //
 
 extension Future._Private {
-    public enum Peek<Base: FutureProtocol>: FutureProtocol {
+    public struct Peek<Base: FutureProtocol>: FutureProtocol {
         public typealias Output = Base.Output
-        public typealias Body = (Base.Output) -> Void
 
-        case pending(Base, Body)
-        case done
+        @usableFromInline var _base: Map<Output, Base>
 
         @inlinable
-        public init(base: Base, body: @escaping Body) {
-            self = .pending(base, body)
+        public init(base: Base, inspect: @escaping (Base.Output) -> Void) {
+            _base = .init(base: base) {
+                inspect($0)
+                return $0
+            }
         }
 
         @inlinable
         public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch self {
-            case .pending(var base, let inspect):
-                switch base.poll(&context) {
-                case .ready(let output):
-                    self = .done
-                    inspect(output)
-                    return .ready(output)
-
-                case .pending:
-                    self = .pending(base, inspect)
-                    return .pending
-                }
-
-            case .done:
-                fatalError("cannot poll after completion")
-            }
+            return _base.poll(&context)
         }
     }
 }

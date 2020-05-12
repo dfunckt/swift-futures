@@ -19,11 +19,6 @@ extension Future._Private {
         }
 
         @inlinable
-        public init<U: FutureConvertible>(_ f: U) where U.FutureType == Base {
-            self = .pending(f.makeFuture())
-        }
-
-        @inlinable
         public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
             switch self {
             case .pending(var base):

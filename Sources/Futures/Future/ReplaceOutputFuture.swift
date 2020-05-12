@@ -6,32 +6,19 @@
 //
 
 extension Future._Private {
-    public enum ReplaceOutput<Output, Base: FutureProtocol>: FutureProtocol {
-        case pending(Base, Output)
-        case done
+    public struct ReplaceOutput<Output, Base: FutureProtocol>: FutureProtocol {
+        @usableFromInline var _base: Map<Output, Base>
 
         @inlinable
         public init(base: Base, output: Output) {
-            self = .pending(base, output)
+            _base = .init(base: base) {
+                _ in output
+            }
         }
 
         @inlinable
         public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch self {
-            case .pending(var base, let output):
-                switch base.poll(&context) {
-                case .ready:
-                    self = .done
-                    return .ready(output)
-
-                case .pending:
-                    self = .pending(base, output)
-                    return .pending
-                }
-
-            case .done:
-                fatalError("cannot poll after completion")
-            }
+            return _base.poll(&context)
         }
     }
 }

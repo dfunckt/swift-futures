@@ -49,13 +49,6 @@ extension Stream._Private.Reduce {
     }
 }
 
-extension Stream._Private.Reduce where Output == Void {
-    @inlinable
-    public init(ignoringOutputFrom base: Base) {
-        self = .pending(base, ()) { _, _ in }
-    }
-}
-
 extension Stream._Private.Reduce where Output == Int {
     @inlinable
     public init(countingElementsFrom base: Base) {

@@ -6,38 +6,70 @@
 //
 
 extension Stream._Private {
-    public enum MapKeyPath<Output, Base: StreamProtocol>: StreamProtocol {
+    public struct MapKeyPath<Output, Base: StreamProtocol>: StreamProtocol {
         public typealias Selector = KeyPath<Base.Output, Output>
 
-        case pending(Base, Selector)
-        case done
+        @usableFromInline var _base: Map<Output, Base>
 
         @inlinable
         public init(base: Base, keyPath: Selector) {
-            self = .pending(base, keyPath)
+            _base = .init(base: base) {
+                $0[keyPath: keyPath]
+            }
         }
 
         @inlinable
         public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base, let keyPath):
-                switch base.pollNext(&context) {
-                case .ready(.some(let output)):
-                    self = .pending(base, keyPath)
-                    return .ready(output[keyPath: keyPath])
+            return _base.pollNext(&context)
+        }
+    }
+}
 
-                case .ready(.none):
-                    self = .done
-                    return .ready(nil)
+extension Stream._Private {
+    public struct MapKeyPath2<Output0, Output1, Base: StreamProtocol>: StreamProtocol {
+        public typealias Output = (Output0, Output1)
+        public typealias Selector<T> = KeyPath<Base.Output, T>
 
-                case .pending:
-                    self = .pending(base, keyPath)
-                    return .pending
-                }
+        @usableFromInline var _base: Map<Output, Base>
 
-            case .done:
-                fatalError("cannot poll after completion")
+        @inlinable
+        public init(base: Base, keyPath0: Selector<Output0>, keyPath1: Selector<Output1>) {
+            _base = .init(base: base) {
+                return (
+                    $0[keyPath: keyPath0],
+                    $0[keyPath: keyPath1]
+                )
             }
+        }
+
+        @inlinable
+        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+            return _base.pollNext(&context)
+        }
+    }
+}
+
+extension Stream._Private {
+    public struct MapKeyPath3<Output0, Output1, Output2, Base: StreamProtocol>: StreamProtocol {
+        public typealias Output = (Output0, Output1, Output2)
+        public typealias Selector<T> = KeyPath<Base.Output, T>
+
+        @usableFromInline var _base: Map<Output, Base>
+
+        @inlinable
+        public init(base: Base, keyPath0: Selector<Output0>, keyPath1: Selector<Output1>, keyPath2: Selector<Output2>) {
+            _base = .init(base: base) {
+                return (
+                    $0[keyPath: keyPath0],
+                    $0[keyPath: keyPath1],
+                    $0[keyPath: keyPath2]
+                )
+            }
+        }
+
+        @inlinable
+        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+            return _base.pollNext(&context)
         }
     }
 }
