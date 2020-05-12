@@ -6,35 +6,22 @@
 //
 
 extension Future._Private {
-    public enum MatchOptional<Output, Base: FutureProtocol>: FutureProtocol where Base.Output: _OptionalConvertible {
-        public typealias SomeHandler = (Base.Output.WrappedType) -> Output
+    public struct MatchOptional<Output, Wrapped, Base: FutureProtocol>: FutureProtocol where Base.Output == Wrapped? {
+        public typealias SomeHandler = (Wrapped) -> Output
         public typealias NoneHandler = () -> Output
 
-        case pending(Base, SomeHandler, NoneHandler)
-        case done
+        @usableFromInline var _base: Map<Output, Base>
 
         @inlinable
         public init(base: Base, some: @escaping SomeHandler, none: @escaping NoneHandler) {
-            self = .pending(base, some, none)
+            _base = .init(base: base) {
+                $0.match(some: some, none: none)
+            }
         }
 
         @inlinable
         public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch self {
-            case .pending(var base, let some, let none):
-                switch base.poll(&context) {
-                case .ready(let result):
-                    self = .done
-                    return .ready(result._makeOptional().match(some: some, none: none))
-
-                case .pending:
-                    self = .pending(base, some, none)
-                    return .pending
-                }
-
-            case .done:
-                fatalError("cannot poll after completion")
-            }
+            return _base.poll(&context)
         }
     }
 }

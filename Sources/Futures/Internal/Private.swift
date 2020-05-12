@@ -74,15 +74,13 @@ extension Result {
             return try failure(error)
         }
     }
-}
 
-extension Result where Success: _ResultConvertible, Failure == Success.Failure {
     @inlinable
     @_transparent
-    internal func flatten() -> Result<Success.Success, Failure> {
+    internal func flatten<NewSuccess>() -> Result<NewSuccess, Failure> where Success == Result<NewSuccess, Failure> {
         switch self {
-        case .success(let value):
-            return value._makeResult().match(
+        case .success(let result):
+            return result.match(
                 success: { .success($0) },
                 failure: { .failure($0) }
             )

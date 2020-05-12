@@ -6,42 +6,22 @@
 //
 
 extension Stream._Private {
-    public enum ReplaceError<Base: StreamProtocol>: StreamProtocol where Base.Output: _ResultConvertible {
-        public typealias Output = Base.Output.Success
-
-        case pending(Base, Output)
-        case done
+    public struct ReplaceError<Output, Failure, Base: StreamProtocol>: StreamProtocol where Base.Output == Result<Output, Failure> {
+        @usableFromInline var _base: Map<Output, Base>
 
         @inlinable
         public init(base: Base, output: Output) {
-            self = .pending(base, output)
+            _base = .init(base: base) {
+                $0.match(
+                    success: { $0 },
+                    failure: { _ in output }
+                )
+            }
         }
 
         @inlinable
         public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base, let output):
-                switch base.pollNext(&context) {
-                case .ready(.some(let result)):
-                    self = .pending(base, output)
-                    let result = result._makeResult().match(
-                        success: { $0 },
-                        failure: { _ in output }
-                    )
-                    return .ready(result)
-
-                case .ready(.none):
-                    self = .done
-                    return .ready(nil)
-
-                case .pending:
-                    self = .pending(base, output)
-                    return .pending
-                }
-
-            case .done:
-                fatalError("cannot poll after completion")
-            }
+            return _base.pollNext(&context)
         }
     }
 }

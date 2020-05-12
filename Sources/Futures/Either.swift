@@ -5,12 +5,6 @@
 //  Copyright © 2019 Akis Kesoglou. Licensed under the MIT license.
 //
 
-public protocol EitherConvertible {
-    associatedtype Left
-    associatedtype Right
-    nonmutating func makeEither() -> Either<Left, Right>
-}
-
 public enum Either<A, B> {
     case left(A)
     case right(B)
@@ -18,13 +12,6 @@ public enum Either<A, B> {
 
 extension Either: Equatable where A: Equatable, B: Equatable {}
 extension Either: Hashable where A: Hashable, B: Hashable {}
-
-extension Either: EitherConvertible {
-    @_transparent
-    public func makeEither() -> Either {
-        return self
-    }
-}
 
 extension Either where B: Error {
     @inlinable

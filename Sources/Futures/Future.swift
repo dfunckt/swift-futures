@@ -180,7 +180,7 @@ extension Future {
     ///     var f = Future.never(outputType: Void.self)
     ///     f.wait() // will block forever
     ///
-    /// - Returns: `some FutureProtocol<Output == Void>`
+    /// - Returns: `some FutureProtocol<Output == T>`
     @inlinable
     public static func never<T>(outputType _: T.Type = T.self) -> Future._Private.Never<T> {
         return .init()
@@ -311,14 +311,10 @@ extension FutureProtocol {
     }
 }
 
-// MARK: -
-
 extension FutureProtocol {
     // TODO: multicast()
     // TODO: eraseToAnyMulticastFuture()
 }
-
-// MARK: -
 
 extension FutureProtocol {
     // TODO: share()
@@ -464,11 +460,7 @@ extension FutureProtocol {
     public func ignoreOutput() -> Future._Private.IgnoreOutput<Self> {
         return .init(base: self)
     }
-}
 
-// MARK: -
-
-extension FutureProtocol where Output: _OptionalConvertible {
     /// .
     ///
     ///     var f1 = Future.ready(Int?.some(42)).match(
@@ -485,17 +477,13 @@ extension FutureProtocol where Output: _OptionalConvertible {
     ///
     /// - Returns: `some FutureProtocol<Output == T>`
     @inlinable
-    public func match<T>(
-        some: @escaping (Output.WrappedType) -> T,
+    public func match<T, Wrapped>(
+        some: @escaping (Wrapped) -> T,
         none: @escaping () -> T
-    ) -> Future._Private.MatchOptional<T, Self> {
+    ) -> Future._Private.MatchOptional<T, Wrapped, Self> where Output == Wrapped? {
         return .init(base: self, some: some, none: none)
     }
-}
 
-// MARK: -
-
-extension FutureProtocol where Output: EitherConvertible {
     /// .
     ///
     ///     func transform(_ value: Int) -> Either<Int, Float> {
@@ -520,10 +508,10 @@ extension FutureProtocol where Output: EitherConvertible {
     ///
     /// - Returns: `some FutureProtocol<Output == T>`
     @inlinable
-    public func match<T>(
-        left: @escaping (Output.Left) -> T,
-        right: @escaping (Output.Right) -> T
-    ) -> Future._Private.MatchEither<T, Self> {
+    public func match<T, Left, Right>(
+        left: @escaping (Left) -> T,
+        right: @escaping (Right) -> T
+    ) -> Future._Private.MatchEither<T, Left, Right, Self> {
         return .init(base: self, left: left, right: right)
     }
 }
@@ -799,16 +787,16 @@ extension FutureProtocol {
     ///     var f = Future.ready(42).setFailureType(to: UltimateQuestionError.self)
     ///     assert(try! f.wait().get() == 42)
     ///
-    /// - Returns: `some FutureProtocol<Output == Result<Self.Output, E>>`
+    /// - Returns: `some FutureProtocol<Output == Result<Self.Output, Failure>>`
     @inlinable
-    public func setFailureType<E>(to _: E.Type) -> Future._Private.SetFailureType<Output, E, Self> {
+    public func setFailureType<Failure>(to _: Failure.Type) -> Future._Private.SetFailureType<Output, Failure, Self> {
         return .init(base: self)
     }
 }
 
 // MARK: - Working with Failable Futures -
 
-extension FutureProtocol where Output: _ResultConvertible {
+extension FutureProtocol {
     /// .
     ///
     ///     enum UltimateQuestionError: Error {
@@ -838,10 +826,10 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///
     /// - Returns: `some FutureProtocol<Output == T>`
     @inlinable
-    public func match<T>(
-        success: @escaping (Output.Success) -> T,
-        failure: @escaping (Output.Failure) -> T
-    ) -> Future._Private.MatchResult<T, Self> {
+    public func match<T, Success, Failure>(
+        success: @escaping (Success) -> T,
+        failure: @escaping (Failure) -> T
+    ) -> Future._Private.MatchResult<T, Success, Failure, Self> {
         return .init(base: self, success: success, failure: failure)
     }
 
@@ -868,9 +856,9 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///     }
     ///     assert(try? f2.wait().get() == 43)
     ///
-    /// - Returns: `some FutureProtocol<Output == Result<T, Self.Output.Failure>>`
+    /// - Returns: `some FutureProtocol<Output == Result<NewSuccess, Self.Output.Failure>>`
     @inlinable
-    public func mapValue<T>(_ transform: @escaping (Output.Success) -> T) -> Future._Private.MapResult<T, Output.Failure, Self> {
+    public func mapValue<NewSuccess, Success, Failure>(_ transform: @escaping (Success) -> NewSuccess) -> Future._Private.MapValue<NewSuccess, Success, Failure, Self> {
         return .init(base: self, success: transform)
     }
 
@@ -901,16 +889,12 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///     }
     ///     assert(try? f2.wait().get() == 42)
     ///
-    /// - Returns: `some FutureProtocol<Output == Result<Self.Output.Success, E>>`
+    /// - Returns: `some FutureProtocol<Output == Result<Self.Output.Success, NewFailure>>`
     @inlinable
-    public func mapError<E>(_ transform: @escaping (Output.Failure) -> E) -> Future._Private.MapResult<Output.Success, E, Self> {
+    public func mapError<NewFailure, Success, Failure>(_ transform: @escaping (Failure) -> NewFailure) -> Future._Private.MapError<NewFailure, Success, Failure, Self> {
         return .init(base: self, failure: transform)
     }
-}
 
-// MARK: -
-
-extension FutureProtocol where Output: _ResultConvertible, Output.Success: _ResultConvertible, Output.Failure == Output.Success.Failure {
     /// .
     ///
     ///     enum UltimateQuestionError: Error {
@@ -938,14 +922,10 @@ extension FutureProtocol where Output: _ResultConvertible, Output.Success: _Resu
     ///
     /// - Returns: `some FutureProtocol<Output == Result<Self.Output.Success.Success, Self.Output.Failure>>`
     @inlinable
-    public func flattenResult() -> Future._Private.FlattenResult<Self> {
+    public func flattenResult<Success, Failure>() -> Future._Private.FlattenResult<Success, Failure, Self> {
         return .init(base: self)
     }
-}
 
-// MARK: -
-
-extension FutureProtocol where Output: _ResultConvertible, Output.Failure == Never {
     /// Changes the failure type declared by this future.
     ///
     /// You typically use this combinator to match the error types of two
@@ -960,21 +940,21 @@ extension FutureProtocol where Output: _ResultConvertible, Output.Failure == Nev
     ///
     ///     assert(try! f.wait().get() == 42)
     ///
-    /// - Returns: `some FutureProtocol<Output == Result<Self.Output.Success, E>>`
+    /// - Returns: `some FutureProtocol<Output == Result<Self.Output.Success, NewFailure>>`
     @inlinable
-    public func setFailureType<E>(to _: E.Type) -> Future._Private.SetFailureType<Output.Success, E, Self> {
+    public func setFailureType<Success, NewFailure>(to _: NewFailure.Type) -> Future._Private.SetFailureType<Success, NewFailure, Self> where Output == Result<Success, Never> {
         return .init(base: self)
     }
 }
 
 // MARK: - Handling Errors -
 
-extension FutureProtocol where Output: _ResultConvertible {
+extension FutureProtocol {
     /// Raises a fatal error when this future fails.
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output.Success>`
     @inlinable
-    public func assertNoError(_ prefix: String = "", file: StaticString = #file, line: UInt = #line) -> Future._Private.AssertNoError<Self> {
+    public func assertNoError<Success, Failure>(_ prefix: String = "", file: StaticString = #file, line: UInt = #line) -> Future._Private.AssertNoError<Success, Failure, Self> {
         return .init(base: self, prefix: prefix, file: file, line: line)
     }
 
@@ -998,7 +978,7 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output.Success>`
     @inlinable
-    public func replaceError(with output: Output.Success) -> Future._Private.ReplaceError<Self> {
+    public func replaceError<Success, Failure>(with output: Success) -> Future._Private.ReplaceError<Success, Failure, Self> {
         return .init(base: self, output: output)
     }
 
@@ -1024,7 +1004,7 @@ extension FutureProtocol where Output: _ResultConvertible {
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output.Success>`
     @inlinable
-    public func catchError<U>(_ errorHandler: @escaping (Output.Failure) -> U) -> Future._Private.CatchError<U, Self> {
+    public func catchError<U, Failure>(_ errorHandler: @escaping (Failure) -> U) -> Future._Private.CatchError<U, Failure, Self> {
         return .init(base: self, errorHandler: errorHandler)
     }
 }
@@ -1061,6 +1041,14 @@ extension FutureProtocol {
         return .init(base: self, ready: ready, pending: pending)
     }
 
+    /// Raises a debugger signal upon receiving a failure.
+    ///
+    /// - Returns: `some FutureProtocol<Output == Self.Output>`
+    @inlinable
+    public func breakpointOnError<Success, Failure>() -> Future._Private.Breakpoint<Self> where Output == Result<Success, Failure> {
+        return .init(base: self)
+    }
+
     /// Performs the specified closures when poll events occur.
     ///
     /// - Returns: `some FutureProtocol<Output == Self.Output>`
@@ -1078,22 +1066,6 @@ extension FutureProtocol {
     @inlinable
     public func print(_ prefix: String = "", to stream: TextOutputStream? = nil) -> Future._Private.Print<Self> {
         return .init(base: self, prefix: prefix, to: stream)
-    }
-}
-
-// MARK: -
-
-extension FutureProtocol where Output: _ResultConvertible {
-    /// Raises a debugger signal upon receiving a failure.
-    ///
-    /// - Returns: `some FutureProtocol<Output == Self.Output>`
-    @inlinable
-    public func breakpointOnError() -> Future._Private.Breakpoint<Self> {
-        return .init(
-            base: self,
-            ready: { $0._makeResult()._isFailure },
-            pending: { false }
-        )
     }
 }
 

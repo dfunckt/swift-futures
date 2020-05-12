@@ -27,12 +27,12 @@ extension Future._Private.SetFailureType where Base.Output == Success {
     }
 }
 
-extension Future._Private.SetFailureType where Base.Output: _ResultConvertible, Base.Output.Success == Success, Base.Output.Failure == Never {
+extension Future._Private.SetFailureType where Base.Output == Result<Success, Never> {
     @inlinable
     public init(base: Base) {
         _base = .init(base: base) {
             // swiftlint:disable:next force_cast
-            $0._makeResult().mapError { $0 as! Failure }
+            $0.mapError { $0 as! Failure }
         }
     }
 }

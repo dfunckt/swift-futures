@@ -6,39 +6,22 @@
 //
 
 extension Stream._Private {
-    public enum MatchEither<Output, Base: StreamProtocol>: StreamProtocol where Base.Output: EitherConvertible {
-        public typealias LeftHandler = (Base.Output.Left) -> Output
-        public typealias RightHandler = (Base.Output.Right) -> Output
+    public struct MatchEither<Output, Left, Right, Base: StreamProtocol>: StreamProtocol where Base.Output == Either<Left, Right> {
+        public typealias LeftHandler = (Left) -> Output
+        public typealias RightHandler = (Right) -> Output
 
-        case pending(Base, LeftHandler, RightHandler)
-        case done
+        @usableFromInline var _base: Map<Output, Base>
 
         @inlinable
         public init(base: Base, left: @escaping LeftHandler, right: @escaping RightHandler) {
-            self = .pending(base, left, right)
+            _base = .init(base: base) {
+                $0.match(left: left, right: right)
+            }
         }
 
         @inlinable
         public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base, let left, let right):
-                switch base.pollNext(&context) {
-                case .ready(.some(let result)):
-                    self = .pending(base, left, right)
-                    return .ready(result.makeEither().match(left: left, right: right))
-
-                case .ready(.none):
-                    self = .done
-                    return .ready(nil)
-
-                case .pending:
-                    self = .pending(base, left, right)
-                    return .pending
-                }
-
-            case .done:
-                fatalError("cannot poll after completion")
-            }
+            return _base.pollNext(&context)
         }
     }
 }

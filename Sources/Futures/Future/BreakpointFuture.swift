@@ -46,3 +46,14 @@ extension Future._Private {
         }
     }
 }
+
+extension Future._Private.Breakpoint {
+    @inlinable
+    public init<Success, Failure>(base: Base) where Base.Output == Result<Success, Failure> {
+        self.init(
+            base: base,
+            ready: { $0._isFailure },
+            pending: { false }
+        )
+    }
+}

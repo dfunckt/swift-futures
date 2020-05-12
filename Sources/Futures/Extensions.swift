@@ -16,19 +16,3 @@ extension Swift.Array: StreamConvertible {}
 extension Swift.ContiguousArray: StreamConvertible {}
 extension Swift.Set: StreamConvertible {}
 extension Swift.Dictionary: StreamConvertible {}
-
-// MARK: - Private -
-
-/// :nodoc:
-public protocol _OptionalConvertible {
-    associatedtype WrappedType
-    nonmutating func _makeOptional() -> WrappedType?
-}
-
-/// :nodoc:
-extension Swift.Optional: _OptionalConvertible {
-    @_transparent
-    public func _makeOptional() -> Wrapped? {
-        return self
-    }
-}

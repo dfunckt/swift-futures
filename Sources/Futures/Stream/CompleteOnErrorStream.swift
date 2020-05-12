@@ -6,7 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum CompleteOnError<Base: StreamProtocol>: StreamProtocol where Base.Output: _ResultConvertible {
+    public enum CompleteOnError<Success, Failure, Base: StreamProtocol>: StreamProtocol where Base.Output == Result<Success, Failure> {
         public typealias Output = Base.Output
 
         case pending(Base)
@@ -24,7 +24,7 @@ extension Stream._Private {
             case .pending(var base):
                 switch base.pollNext(&context) {
                 case .ready(.some(let output)):
-                    switch output._makeResult() {
+                    switch output {
                     case .success:
                         self = .pending(base)
                     case .failure:

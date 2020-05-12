@@ -6,39 +6,25 @@
 //
 
 extension Future._Private {
-    public enum TryMap<T, Base: FutureProtocol>: FutureProtocol {
+    public struct TryMap<T, Base: FutureProtocol>: FutureProtocol {
         public typealias Output = Result<T, Error>
-        public typealias Transform = (Base.Output) throws -> T
 
-        case pending(Base, Transform)
-        case done
+        @usableFromInline var _base: Map<Output, Base>
 
         @inlinable
-        public init(base: Base, catching: @escaping Transform) {
-            self = .pending(base, catching)
+        public init(base: Base, catching block: @escaping (Base.Output) throws -> T) {
+            _base = .init(base: base) {
+                do {
+                    return try .success(block($0))
+                } catch {
+                    return .failure(error)
+                }
+            }
         }
 
         @inlinable
         public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch self {
-            case .pending(var base, let transform):
-                switch base.poll(&context) {
-                case .ready(let output):
-                    self = .done
-                    do {
-                        return try .ready(.success(transform(output)))
-                    } catch {
-                        return .ready(.failure(error))
-                    }
-
-                case .pending:
-                    self = .pending(base, transform)
-                    return .pending
-                }
-
-            case .done:
-                fatalError("cannot poll after completion")
-            }
+            return _base.poll(&context)
         }
     }
 }

@@ -453,8 +453,6 @@ extension StreamProtocol {
     }
 }
 
-// MARK: -
-
 extension StreamProtocol {
     /// Multicasts elements from this stream to multiple tasks, where each
     /// task sees every element, that run on the same executor.
@@ -496,8 +494,6 @@ extension StreamProtocol {
         return multicast(replay: replay).eraseToAnyMulticastStream()
     }
 }
-
-// MARK: -
 
 extension StreamProtocol {
     /// Multicasts elements from this stream to multiple tasks, where each
@@ -685,11 +681,7 @@ extension StreamProtocol {
     public func replaceNil<T>(with output: T) -> Stream._Private.Map<T, Self> where Output == T? {
         return .init(replacingNilFrom: self, with: output)
     }
-}
 
-// MARK: -
-
-extension StreamProtocol where Output: _OptionalConvertible {
     /// .
     ///
     ///     var s = Stream.sequence([0, nil, 2]).match(
@@ -703,17 +695,13 @@ extension StreamProtocol where Output: _OptionalConvertible {
     ///
     /// - Returns: `some StreamProtocol<Output == T>`
     @inlinable
-    public func match<T>(
-        some: @escaping (Output.WrappedType) -> T,
+    public func match<T, Wrapped>(
+        some: @escaping (Wrapped) -> T,
         none: @escaping () -> T
-    ) -> Stream._Private.MatchOptional<T, Self> {
+    ) -> Stream._Private.MatchOptional<T, Wrapped, Self> {
         return .init(base: self, some: some, none: none)
     }
-}
 
-// MARK: -
-
-extension StreamProtocol where Output: EitherConvertible {
     /// .
     ///
     ///     func transform(_ value: Int) -> Either<Int, Float> {
@@ -734,10 +722,10 @@ extension StreamProtocol where Output: EitherConvertible {
     ///
     /// - Returns: `some StreamProtocol<Output == T>`
     @inlinable
-    public func match<T>(
-        left: @escaping (Output.Left) -> T,
-        right: @escaping (Output.Right) -> T
-    ) -> Stream._Private.MatchEither<T, Self> {
+    public func match<T, Left, Right>(
+        left: @escaping (Left) -> T,
+        right: @escaping (Right) -> T
+    ) -> Stream._Private.MatchEither<T, Left, Right, Self> {
         return .init(base: self, left: left, right: right)
     }
 }
@@ -933,8 +921,6 @@ extension StreamProtocol where Output: Equatable {
         return .init(base: self, output: output)
     }
 }
-
-// MARK: -
 
 extension StreamProtocol {
     /// Returns a future that completes with a Boolean value upon receiving an
@@ -1838,16 +1824,16 @@ extension StreamProtocol {
     ///     assert(try! s.next()!.get() == 2)
     ///     assert(s.next() == nil)
     ///
-    /// - Returns: `some StreamProtocol<Output == Result<Self.Output, E>>`
+    /// - Returns: `some StreamProtocol<Output == Result<Self.Output, Failure>>`
     @inlinable
-    public func setFailureType<E>(to _: E.Type) -> Stream._Private.SetFailureType<Output, E, Self> {
+    public func setFailureType<Failure>(to _: Failure.Type) -> Stream._Private.SetFailureType<Output, Failure, Self> {
         return .init(base: self)
     }
 }
 
 // MARK: - Working with Failable Streams -
 
-extension StreamProtocol where Output: _ResultConvertible {
+extension StreamProtocol {
     /// .
     ///
     ///     enum UltimateQuestionError: Error {
@@ -1874,10 +1860,10 @@ extension StreamProtocol where Output: _ResultConvertible {
     ///
     /// - Returns: `some StreamProtocol<Output == T>`
     @inlinable
-    public func match<T>(
-        success: @escaping (Output.Success) -> T,
-        failure: @escaping (Output.Failure) -> T
-    ) -> Stream._Private.MatchResult<T, Self> {
+    public func match<T, Success, Failure>(
+        success: @escaping (Success) -> T,
+        failure: @escaping (Failure) -> T
+    ) -> Stream._Private.MatchResult<T, Success, Failure, Self> {
         return .init(base: self, success: success, failure: failure)
     }
 
@@ -1905,7 +1891,7 @@ extension StreamProtocol where Output: _ResultConvertible {
     ///
     /// - Returns: `some StreamProtocol<Output == Result<T, Self.Output.Failure>>`
     @inlinable
-    public func mapValue<T>(_ transform: @escaping (Output.Success) -> T) -> Stream._Private.MapResult<T, Output.Failure, Self> {
+    public func mapValue<NewSuccess, Success, Failure>(_ transform: @escaping (Success) -> NewSuccess) -> Stream._Private.MapValue<NewSuccess, Success, Failure, Self> {
         return .init(base: self, success: transform)
     }
 
@@ -1935,16 +1921,12 @@ extension StreamProtocol where Output: _ResultConvertible {
     ///     assert(try! s.next()!.get() == 2)
     ///     assert(s.next() == nil)
     ///
-    /// - Returns: `some StreamProtocol<Output == Result<Self.Output.Success, E>>`
+    /// - Returns: `some StreamProtocol<Output == Result<Self.Output.Success, NewFailure>>`
     @inlinable
-    public func mapError<E>(_ transform: @escaping (Output.Failure) -> E) -> Stream._Private.MapResult<Output.Success, E, Self> {
+    public func mapError<NewFailure, Success, Failure>(_ transform: @escaping (Failure) -> NewFailure) -> Stream._Private.MapError<NewFailure, Success, Failure, Self> {
         return .init(base: self, failure: transform)
     }
-}
 
-// MARK: -
-
-extension StreamProtocol where Output: _ResultConvertible, Output.Success: _ResultConvertible, Output.Failure == Output.Success.Failure {
     /// .
     ///
     ///     enum UltimateQuestionError: Error {
@@ -1971,14 +1953,10 @@ extension StreamProtocol where Output: _ResultConvertible, Output.Success: _Resu
     ///
     /// - Returns: `some StreamProtocol<Output == Result<Self.Output.Success.Success, Self.Output.Failure>>`
     @inlinable
-    public func flattenResult() -> Stream._Private.FlattenResult<Self> {
+    public func flattenResult<Success, Failure>() -> Stream._Private.FlattenResult<Success, Failure, Self> {
         return .init(base: self)
     }
-}
 
-// MARK: -
-
-extension StreamProtocol where Output: _ResultConvertible, Output.Failure == Never {
     /// Changes the failure type declared by this stream.
     ///
     /// You typically use this combinator to match the error types of two
@@ -1996,21 +1974,21 @@ extension StreamProtocol where Output: _ResultConvertible, Output.Failure == Nev
     ///     assert(try! s.next()!.get() == 2)
     ///     assert(s.next() == nil)
     ///
-    /// - Returns: `some StreamProtocol<Output == Result<Self.Output.Success, E>>`
+    /// - Returns: `some StreamProtocol<Output == Result<Self.Output.Success, NewFailure>>`
     @inlinable
-    public func setFailureType<E>(to _: E.Type) -> Stream._Private.SetFailureType<Output.Success, E, Self> {
+    public func setFailureType<Success, NewFailure>(to _: NewFailure.Type) -> Stream._Private.SetFailureType<Success, NewFailure, Self> where Output == Result<Success, Never> {
         return .init(base: self)
     }
 }
 
 // MARK: - Handling Errors -
 
-extension StreamProtocol where Output: _ResultConvertible {
+extension StreamProtocol {
     /// Raises a fatal error when this stream fails.
     ///
     /// - Returns: `some StreamProtocol<Output == Self.Output.Success>`
     @inlinable
-    public func assertNoError(_ prefix: String = "", file: StaticString = #file, line: UInt = #line) -> Stream._Private.AssertNoError<Self> {
+    public func assertNoError<Success, Failure>(_ prefix: String = "", file: StaticString = #file, line: UInt = #line) -> Stream._Private.AssertNoError<Success, Failure, Self> {
         return .init(base: self, prefix: prefix, file: file, line: line)
     }
 
@@ -2040,7 +2018,7 @@ extension StreamProtocol where Output: _ResultConvertible {
     ///
     /// - Returns: `some StreamProtocol<Output == Self.Output>`
     @inlinable
-    public func completeOnError() -> Stream._Private.CompleteOnError<Self> {
+    public func completeOnError<Success, Failure>() -> Stream._Private.CompleteOnError<Success, Failure, Self> {
         return .init(base: self)
     }
 
@@ -2067,7 +2045,7 @@ extension StreamProtocol where Output: _ResultConvertible {
     ///
     /// - Returns: `some StreamProtocol<Output == Self.Output.Success>`
     @inlinable
-    public func replaceError(with output: Output.Success) -> Stream._Private.ReplaceError<Self> {
+    public func replaceError<Success, Failure>(with output: Success) -> Stream._Private.ReplaceError<Success, Failure, Self> {
         return .init(base: self, output: output)
     }
 
@@ -2096,7 +2074,7 @@ extension StreamProtocol where Output: _ResultConvertible {
     ///
     /// - Returns: `some StreamProtocol<Output == Self.Output.Success>`
     @inlinable
-    public func catchError<U>(_ errorHandler: @escaping (Output.Failure) -> U) -> Stream._Private.CatchError<U, Self> {
+    public func catchError<U, Failure>(_ errorHandler: @escaping (Failure) -> U) -> Stream._Private.CatchError<U, Failure, Self> {
         return .init(base: self, errorHandler: errorHandler)
     }
 }
@@ -2137,6 +2115,14 @@ extension StreamProtocol {
         return .init(base: self, ready: ready, pending: pending, complete: complete)
     }
 
+    /// Raises a debugger signal upon receiving a failure.
+    ///
+    /// - Returns: `some StreamProtocol<Output == Self.Output>`
+    @inlinable
+    public func breakpointOnError<Success, Failure>() -> Stream._Private.Breakpoint<Self> where Output == Result<Success, Failure> {
+        return .init(base: self)
+    }
+
     /// Performs the specified closures when poll events occur.
     ///
     /// - Returns: `some StreamProtocol<Output == Self.Output>`
@@ -2155,23 +2141,6 @@ extension StreamProtocol {
     @inlinable
     public func print(_ prefix: String = "", to stream: TextOutputStream? = nil) -> Stream._Private.Print<Self> {
         return .init(base: self, prefix: prefix, to: stream)
-    }
-}
-
-// MARK: -
-
-extension StreamProtocol where Output: _ResultConvertible {
-    /// Raises a debugger signal upon receiving a failure.
-    ///
-    /// - Returns: `some StreamProtocol<Output == Self.Output>`
-    @inlinable
-    public func breakpointOnError() -> Stream._Private.Breakpoint<Self> {
-        return .init(
-            base: self,
-            ready: { $0._makeResult()._isFailure },
-            pending: { false },
-            complete: { false }
-        )
     }
 }
 

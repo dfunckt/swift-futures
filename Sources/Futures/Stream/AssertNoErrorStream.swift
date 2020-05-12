@@ -6,11 +6,8 @@
 //
 
 extension Stream._Private {
-    public enum AssertNoError<Base: StreamProtocol>: StreamProtocol where Base.Output: _ResultConvertible {
-        public typealias Output = Base.Output.Success
-
-        case pending(Base, String)
-        case done
+    public struct AssertNoError<Output, Failure, Base: StreamProtocol>: StreamProtocol where Base.Output == Result<Output, Failure> {
+        @usableFromInline var _base: Map<Output, Base>
 
         @inlinable
         public init(base: Base, prefix: String, file: StaticString, line: UInt) {
@@ -20,35 +17,19 @@ extension Stream._Private {
             } else {
                 message = "\(prefix) Unexpected error at \(file):\(line)"
             }
-            self = .pending(base, message)
+            _base = .init(base: base) {
+                switch $0 {
+                case .success(let output):
+                    return output
+                case .failure(let error):
+                    fatalError("\(message): \(error)")
+                }
+            }
         }
 
         @inlinable
         public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base, let message):
-                switch base.pollNext(&context) {
-                case .ready(.some(let result)):
-                    switch result._makeResult() {
-                    case .success(let output):
-                        self = .pending(base, message)
-                        return .ready(output)
-                    case .failure(let error):
-                        fatalError("\(message): \(error)")
-                    }
-
-                case .ready(.none):
-                    self = .done
-                    return .ready(nil)
-
-                case .pending:
-                    self = .pending(base, message)
-                    return .pending
-                }
-
-            case .done:
-                fatalError("cannot poll after completion")
-            }
+            return _base.pollNext(&context)
         }
     }
 }

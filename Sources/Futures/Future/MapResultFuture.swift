@@ -6,10 +6,17 @@
 //
 
 extension Future._Private {
-    public struct MapResult<Success, Failure, Base: FutureProtocol>: FutureProtocol where Base.Output: _ResultConvertible, Failure: Error {
-        public typealias Output = Result<Success, Failure>
+    public struct MapValue<NewSuccess, Success, Failure, Base: FutureProtocol>: FutureProtocol where Base.Output == Result<Success, Failure> {
+        public typealias Output = Result<NewSuccess, Failure>
 
         @usableFromInline var _base: Map<Output, Base>
+
+        @inlinable
+        public init(base: Base, success: @escaping (Success) -> NewSuccess) {
+            _base = .init(base: base) {
+                $0.map(success)
+            }
+        }
 
         @inlinable
         public mutating func poll(_ context: inout Context) -> Poll<Output> {
@@ -18,20 +25,22 @@ extension Future._Private {
     }
 }
 
-extension Future._Private.MapResult where Failure == Base.Output.Failure {
-    @inlinable
-    public init(base: Base, success: @escaping (Base.Output.Success) -> Success) {
-        _base = .init(base: base) {
-            $0._makeResult().map(success)
-        }
-    }
-}
+extension Future._Private {
+    public struct MapError<NewFailure, Success, Failure, Base: FutureProtocol>: FutureProtocol where Base.Output == Result<Success, Failure>, NewFailure: Error {
+        public typealias Output = Result<Success, NewFailure>
 
-extension Future._Private.MapResult where Success == Base.Output.Success {
-    @inlinable
-    public init(base: Base, failure: @escaping (Base.Output.Failure) -> Failure) {
-        _base = .init(base: base) {
-            $0._makeResult().mapError(failure)
+        @usableFromInline var _base: Map<Output, Base>
+
+        @inlinable
+        public init(base: Base, failure: @escaping (Failure) -> NewFailure) {
+            _base = .init(base: base) {
+                $0.mapError(failure)
+            }
+        }
+
+        @inlinable
+        public mutating func poll(_ context: inout Context) -> Poll<Output> {
+            return _base.poll(&context)
         }
     }
 }

@@ -134,74 +134,14 @@ extension Swift.Result: StreamConvertible {
 
 // MARK: -
 
-extension Promise where Output: _ExpressibleByResult {
+extension Promise {
     @inlinable
-    public func fulfill(_ value: Output.Success) {
-        resolve(.init(_result: .success(value)))
+    public func fulfill<Success, Failure: Error>(_ value: Success) where Output == Result<Success, Failure> {
+        resolve(.success(value))
     }
 
     @inlinable
-    public func reject(_ error: Output.Failure) {
-        resolve(.init(_result: .failure(error)))
-    }
-}
-
-// MARK: - Private -
-
-// Protocols and extensions for working with Result in Futures.
-// This abomination is unfortunately currently required.
-// Can be removed when this lands in Swift:
-// https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md#parameterized-extensions
-
-/// :nodoc:
-public protocol _ExpressibleByResult {
-    associatedtype Success
-    associatedtype Failure: Error
-    init(_result: Result<Success, Failure>)
-}
-
-/// :nodoc:
-public protocol _ResultConvertible {
-    associatedtype Success
-    associatedtype Failure: Error
-    nonmutating func _makeResult() -> Result<Success, Failure>
-}
-
-/// :nodoc:
-extension Swift.Result: _ExpressibleByResult, _ResultConvertible {
-    @_transparent
-    public init(_result: Result) {
-        self = _result
-    }
-
-    @_transparent
-    public func _makeResult() -> Result {
-        return self
-    }
-}
-
-/// :nodoc:
-extension Either: _ExpressibleByResult, _ResultConvertible where B: Error {
-    @_transparent
-    public init(_result: Result<A, B>) {
-        self.init(result: _result)
-    }
-
-    @_transparent
-    public func _makeResult() -> Result<A, B> {
-        return makeResult()
-    }
-}
-
-/// :nodoc:
-extension Sink.Completion: _ExpressibleByResult, _ResultConvertible {
-    @_transparent
-    public init(_result: Result<Void, Failure>) {
-        self.init(result: _result)
-    }
-
-    @_transparent
-    public func _makeResult() -> Result<Void, Failure> {
-        return makeResult()
+    public func reject<Success, Failure: Error>(_ error: Failure) where Output == Result<Success, Failure> {
+        resolve(.failure(error))
     }
 }

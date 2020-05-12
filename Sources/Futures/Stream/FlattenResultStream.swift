@@ -6,38 +6,21 @@
 //
 
 extension Stream._Private {
-    public enum FlattenResult<Base: StreamProtocol>: StreamProtocol where Base.Output: _ResultConvertible, Base.Output.Success: _ResultConvertible, Base.Output.Failure == Base.Output.Success.Failure {
-        public typealias Output = Result<Base.Output.Success.Success, Base.Output.Failure>
+    public struct FlattenResult<Success, Failure, Base: StreamProtocol>: StreamProtocol where Base.Output == Result<Result<Success, Failure>, Failure> {
+        public typealias Output = Result<Success, Failure>
 
-        case pending(Base)
-        case done
+        @usableFromInline var _base: Map<Output, Base>
 
         @inlinable
         public init(base: Base) {
-            self = .pending(base)
+            _base = .init(base: base) {
+                $0.flatten()
+            }
         }
 
         @inlinable
         public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base):
-                switch base.pollNext(&context) {
-                case .ready(.some(let result)):
-                    self = .pending(base)
-                    return .ready(result._makeResult().flatten())
-
-                case .ready(.none):
-                    self = .done
-                    return .ready(nil)
-
-                case .pending:
-                    self = .pending(base)
-                    return .pending
-                }
-
-            case .done:
-                fatalError("cannot poll after completion")
-            }
+            return _base.pollNext(&context)
         }
     }
 }
