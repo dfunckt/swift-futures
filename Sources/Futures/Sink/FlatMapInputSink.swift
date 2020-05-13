@@ -40,23 +40,25 @@ extension Sink._Private {
 
             // drain the stream
             if var stream = _stream.move() {
-                next: switch stream.pollNext(&context) {
-                case .ready(.some(let item)):
-                    switch _base.pollSend(&context, item) {
-                    case .ready(.success):
-                        break next
-                    case .ready(.failure(let completion)):
-                        return .ready(.failure(completion))
+                while true {
+                    switch stream.pollNext(&context) {
+                    case .ready(.some(let item)):
+                        switch _base.pollSend(&context, item) {
+                        case .ready(.success):
+                            continue
+                        case .ready(.failure(let completion)):
+                            return .ready(.failure(completion))
+                        case .pending:
+                            _stream = stream
+                            _item = item
+                            return .pending
+                        }
+                    case .ready(.none):
+                        return .ready(.success(()))
                     case .pending:
                         _stream = stream
-                        _item = item
                         return .pending
                     }
-                case .ready(.none):
-                    return .ready(.success(()))
-                case .pending:
-                    _stream = stream
-                    return .pending
                 }
             }
 
