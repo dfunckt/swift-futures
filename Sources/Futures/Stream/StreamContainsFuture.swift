@@ -6,9 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum Contains<Base: StreamProtocol>: FutureProtocol where Base.Output: Equatable {
-        public typealias Output = Bool
-
+    public enum Contains<Base: StreamProtocol> where Base.Output: Equatable {
         case pending(Base, Base.Output)
         case done
 
@@ -16,33 +14,37 @@ extension Stream._Private {
         public init(base: Base, output: Base.Output) {
             self = .pending(base, output)
         }
+    }
+}
 
-        @inlinable
-        public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch self {
-            case .pending(var base, let output):
-                while true {
-                    switch base.pollNext(&context) {
-                    case .ready(.some(let result)):
-                        if output == result {
-                            self = .done
-                            return .ready(true)
-                        }
-                        continue
+extension Stream._Private.Contains: FutureProtocol {
+    public typealias Output = Bool
 
-                    case .ready(.none):
+    @inlinable
+    public mutating func poll(_ context: inout Context) -> Poll<Output> {
+        switch self {
+        case .pending(var base, let output):
+            while true {
+                switch base.pollNext(&context) {
+                case .ready(.some(let result)):
+                    if output == result {
                         self = .done
-                        return .ready(false)
-
-                    case .pending:
-                        self = .pending(base, output)
-                        return .pending
+                        return .ready(true)
                     }
-                }
+                    continue
 
-            case .done:
-                fatalError("cannot poll after completion")
+                case .ready(.none):
+                    self = .done
+                    return .ready(false)
+
+                case .pending:
+                    self = .pending(base, output)
+                    return .pending
+                }
             }
+
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

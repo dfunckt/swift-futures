@@ -6,9 +6,7 @@
 //
 
 extension Stream._Private {
-    public struct MergeAll<Base: StreamProtocol>: StreamProtocol {
-        public typealias Output = Base.Output
-
+    public struct MergeAll<Base: StreamProtocol> {
         private typealias F = Future<Base>
         private let _futures = _TaskScheduler<F>()
 
@@ -19,20 +17,24 @@ extension Stream._Private {
         public init<C: Swift.Sequence>(_ bases: C) where C.Element == Base {
             _futures.schedule(bases.lazy.map(F.init))
         }
+    }
+}
 
-        public func pollNext(_ context: inout Context) -> Poll<Output?> {
-            while true {
-                switch _futures.pollNext(&context) {
-                case .ready(.some((.some(let output), let stream))):
-                    _futures.schedule(.init(base: stream))
-                    return .ready(output)
-                case .ready(.some((.none, _))):
-                    continue
-                case .ready(.none):
-                    return .ready(nil)
-                case .pending:
-                    return .pending
-                }
+extension Stream._Private.MergeAll: StreamProtocol {
+    public typealias Output = Base.Output
+
+    public func pollNext(_ context: inout Context) -> Poll<Output?> {
+        while true {
+            switch _futures.pollNext(&context) {
+            case .ready(.some((.some(let output), let stream))):
+                _futures.schedule(.init(base: stream))
+                return .ready(output)
+            case .ready(.some((.none, _))):
+                continue
+            case .ready(.none):
+                return .ready(nil)
+            case .pending:
+                return .pending
             }
         }
     }

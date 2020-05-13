@@ -6,9 +6,7 @@
 //
 
 extension Future._Private {
-    public enum HandleEvents<Base: FutureProtocol>: FutureProtocol {
-        public typealias Output = Base.Output
-
+    public enum HandleEvents<Base: FutureProtocol> {
         public typealias Ready = (Base.Output) -> Void
         public typealias Pending = () -> Void
 
@@ -19,26 +17,30 @@ extension Future._Private {
         public init(base: Base, ready: @escaping Ready, pending: @escaping Pending) {
             self = .pending(base, ready, pending)
         }
+    }
+}
 
-        @inlinable
-        public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch self {
-            case .pending(var base, let ready, let pending):
-                switch base.poll(&context) {
-                case .ready(let output):
-                    self = .done
-                    ready(output)
-                    return .ready(output)
+extension Future._Private.HandleEvents: FutureProtocol {
+    public typealias Output = Base.Output
 
-                case .pending:
-                    self = .pending(base, ready, pending)
-                    pending()
-                    return .pending
-                }
+    @inlinable
+    public mutating func poll(_ context: inout Context) -> Poll<Output> {
+        switch self {
+        case .pending(var base, let ready, let pending):
+            switch base.poll(&context) {
+            case .ready(let output):
+                self = .done
+                ready(output)
+                return .ready(output)
 
-            case .done:
-                fatalError("cannot poll after completion")
+            case .pending:
+                self = .pending(base, ready, pending)
+                pending()
+                return .pending
             }
+
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

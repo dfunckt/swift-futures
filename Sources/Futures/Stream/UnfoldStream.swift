@@ -6,12 +6,11 @@
 //
 
 extension Stream._Private {
-    public enum Unfold<U: FutureConvertible>: StreamProtocol {
-        public typealias Output = U.FutureType.Output
-        public typealias Next = (Output) -> U?
+    public enum Unfold<U: FutureConvertible> {
+        public typealias Next = (U.FutureType.Output) -> U?
 
-        case initial(Next, Output)
-        case pending(Next, Output)
+        case initial(Next, U.FutureType.Output)
+        case pending(Next, U.FutureType.Output)
         case waiting(Next, U.FutureType)
         case done
 
@@ -19,36 +18,40 @@ extension Stream._Private {
         public init(initial: Output, next: @escaping Next) {
             self = .initial(next, initial)
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            while true {
-                switch self {
-                case .initial(let next, let initial):
-                    self = .pending(next, initial)
-                    return .ready(initial)
+extension Stream._Private.Unfold: StreamProtocol {
+    public typealias Output = U.FutureType.Output
 
-                case .pending(let next, let previousOutput):
-                    if let future = next(previousOutput)?.makeFuture() {
-                        self = .waiting(next, future)
-                        continue
-                    }
-                    self = .done
-                    return .ready(nil)
+    @inlinable
+    public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+        while true {
+            switch self {
+            case .initial(let next, let initial):
+                self = .pending(next, initial)
+                return .ready(initial)
 
-                case .waiting(let next, var future):
-                    switch future.poll(&context) {
-                    case .ready(let output):
-                        self = .pending(next, output)
-                        return .ready(output)
-                    case .pending:
-                        self = .waiting(next, future)
-                        return .pending
-                    }
-
-                case .done:
-                    fatalError("cannot poll after completion")
+            case .pending(let next, let previousOutput):
+                if let future = next(previousOutput)?.makeFuture() {
+                    self = .waiting(next, future)
+                    continue
                 }
+                self = .done
+                return .ready(nil)
+
+            case .waiting(let next, var future):
+                switch future.poll(&context) {
+                case .ready(let output):
+                    self = .pending(next, output)
+                    return .ready(output)
+                case .pending:
+                    self = .waiting(next, future)
+                    return .pending
+                }
+
+            case .done:
+                fatalError("cannot poll after completion")
             }
         }
     }

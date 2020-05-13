@@ -6,7 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum Just<Output>: StreamProtocol {
+    public enum Just<Output> {
         case pending(Output)
         case complete
         case done
@@ -15,19 +15,21 @@ extension Stream._Private {
         public init(element: Output) {
             self = .pending(element)
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(let output):
-                self = .complete
-                return .ready(output)
-            case .complete:
-                self = .done
-                return .ready(nil)
-            case .done:
-                fatalError("cannot poll after completion")
-            }
+extension Stream._Private.Just: StreamProtocol {
+    @inlinable
+    public mutating func pollNext(_: inout Context) -> Poll<Output?> {
+        switch self {
+        case .pending(let output):
+            self = .complete
+            return .ready(output)
+        case .complete:
+            self = .done
+            return .ready(nil)
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

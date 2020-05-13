@@ -6,15 +6,8 @@
 //
 
 extension Sink._Private {
-    public final class Collect<Item>: SinkProtocol {
-        public typealias Failure = Never
-
+    public final class Collect<Item> {
         @usableFromInline var _elements = [Item]()
-
-        @inlinable
-        public var elements: [Item] {
-            return _elements
-        }
 
         @inlinable
         public init() {}
@@ -23,21 +16,31 @@ extension Sink._Private {
         public init<S: Sequence>(initialElements: S) where S.Element == Item {
             _elements.append(contentsOf: initialElements)
         }
+    }
+}
 
-        @inlinable
-        public func pollSend(_: inout Context, _ item: Item) -> PollSink<Failure> {
-            _elements.append(item)
-            return .ready(.success(()))
-        }
+extension Sink._Private.Collect: SinkProtocol {
+    public typealias Input = Item
+    public typealias Failure = Never
 
-        @inlinable
-        public func pollFlush(_: inout Context) -> PollSink<Failure> {
-            return .ready(.success(()))
-        }
+    @inlinable
+    public var elements: [Item] {
+        return _elements
+    }
 
-        @inlinable
-        public func pollClose(_: inout Context) -> PollSink<Failure> {
-            return .ready(.success(()))
-        }
+    @inlinable
+    public func pollSend(_: inout Context, _ item: Input) -> PollSink<Failure> {
+        _elements.append(item)
+        return .ready(.success(()))
+    }
+
+    @inlinable
+    public func pollFlush(_: inout Context) -> PollSink<Failure> {
+        return .ready(.success(()))
+    }
+
+    @inlinable
+    public func pollClose(_: inout Context) -> PollSink<Failure> {
+        return .ready(.success(()))
     }
 }

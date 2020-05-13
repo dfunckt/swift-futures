@@ -6,9 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum Latest<Base: StreamProtocol>: StreamProtocol {
-        public typealias Output = Base.Output
-
+    public enum Latest<Base: StreamProtocol> {
         case pending(Base)
         case complete
         case done
@@ -17,40 +15,44 @@ extension Stream._Private {
         public init(base: Base) {
             self = .pending(base)
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base):
-                var lastOutput: Output?
+extension Stream._Private.Latest: StreamProtocol {
+    public typealias Output = Base.Output
 
-                while true {
-                    switch base.pollNext(&context) {
-                    case .ready(.some(let output)):
-                        lastOutput = output
-                        continue
-                    case .ready(.none):
-                        if let output = lastOutput {
-                            self = .complete
-                            return .ready(output)
-                        }
-                        self = .done
-                        return .ready(nil)
-                    case .pending:
-                        self = .pending(base)
-                        if let output = lastOutput {
-                            return .ready(output)
-                        }
-                        return .pending
+    @inlinable
+    public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+        switch self {
+        case .pending(var base):
+            var lastOutput: Output?
+
+            while true {
+                switch base.pollNext(&context) {
+                case .ready(.some(let output)):
+                    lastOutput = output
+                    continue
+                case .ready(.none):
+                    if let output = lastOutput {
+                        self = .complete
+                        return .ready(output)
                     }
+                    self = .done
+                    return .ready(nil)
+                case .pending:
+                    self = .pending(base)
+                    if let output = lastOutput {
+                        return .ready(output)
+                    }
+                    return .pending
                 }
-
-            case .complete:
-                return .ready(nil)
-
-            case .done:
-                fatalError("cannot poll after completion")
             }
+
+        case .complete:
+            return .ready(nil)
+
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

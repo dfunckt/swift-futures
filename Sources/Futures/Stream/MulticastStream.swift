@@ -9,38 +9,6 @@ extension Stream._Private {
     public final class Multicast<Base: StreamProtocol>: StreamConvertible {
         public typealias Output = Base.Output
 
-        @usableFromInline
-        final class _Task {
-            @usableFromInline var result = false
-            @usableFromInline var _waker: WakerProtocol?
-
-            @inlinable
-            init() {}
-
-            @inlinable
-            func register(_ waker: WakerProtocol) {
-                _waker = waker
-            }
-
-            @usableFromInline
-            @discardableResult
-            func notify() -> Bool {
-                if let waker = _waker.move() {
-                    waker.signal()
-                    return true
-                }
-                return false
-            }
-        }
-
-        @usableFromInline
-        enum _State {
-            case idle
-            case waiting(_Task)
-            case broadcasting(Int, Output?)
-            case done
-        }
-
         @usableFromInline var _base: Base
         @usableFromInline var _buffer: _ReplayBuffer<Output>
         @usableFromInline var _state = _State.idle
@@ -52,7 +20,9 @@ extension Stream._Private {
             _buffer = .init(strategy: replay)
         }
 
-        public final class Receiver: StreamProtocol, Cancellable {
+        public final class Receiver {
+            public typealias Output = Base.Output
+
             @usableFromInline let _stream: Multicast
             @usableFromInline let _task: _Task
             @usableFromInline var _replay: Array<Output>.Iterator?
@@ -66,26 +36,6 @@ extension Stream._Private {
 
             deinit {
                 _stream._receiverCancelled(_task)
-            }
-
-            public func cancel() {
-                _stream._receiverCancelled(_task)
-            }
-
-            @inlinable
-            public func pollNext(_ context: inout Context) -> Poll<Output?> {
-                if let element = _replay?.next() {
-                    return .ready(element)
-                } else {
-                    _replay = nil
-                }
-                switch _stream._pollNext(&context, task: _task) {
-                case .ready(let output):
-                    return .ready(output)
-                case .pending:
-                    _task.register(context.waker)
-                    return .pending
-                }
             }
         }
 
@@ -103,9 +53,65 @@ extension Stream._Private {
     }
 }
 
-// MARK: - Private -
+extension Stream._Private.Multicast.Receiver: Cancellable {
+    public func cancel() {
+        _stream._receiverCancelled(_task)
+    }
+}
+
+extension Stream._Private.Multicast.Receiver: StreamProtocol {
+    @inlinable
+    public func pollNext(_ context: inout Context) -> Poll<Output?> {
+        if let element = _replay?.next() {
+            return .ready(element)
+        } else {
+            _replay = nil
+        }
+        switch _stream._pollNext(&context, task: _task) {
+        case .ready(let output):
+            return .ready(output)
+        case .pending:
+            _task.register(context.waker)
+            return .pending
+        }
+    }
+}
+
+// MARK: - Private
 
 extension Stream._Private.Multicast {
+    @usableFromInline
+    enum _State {
+        case idle
+        case waiting(_Task)
+        case broadcasting(Int, Output?)
+        case done
+    }
+
+    @usableFromInline
+    final class _Task {
+        @usableFromInline var result = false
+        @usableFromInline var _waker: WakerProtocol?
+
+        @inlinable
+        init() {}
+
+        @inlinable
+        func register(_ waker: WakerProtocol) {
+            _waker = waker
+        }
+
+        @usableFromInline
+        @discardableResult
+        func notify() -> Bool {
+            if let waker = _waker.move() {
+                waker.signal()
+                return true
+            }
+            return false
+        }
+    }
+
     @inlinable
     func _receiverAdded(_ task: _Task) -> [Output] {
         _tasks.append(task)
@@ -160,6 +166,7 @@ extension Stream._Private.Multicast {
     }
 
     @inlinable
+    @_transparent
     func _pollStream(_ context: inout Context, _ task: _Task) -> Poll<Output?> {
         switch _base.pollNext(&context) {
         case .ready(let element):

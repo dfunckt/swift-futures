@@ -6,9 +6,7 @@
 //
 
 extension Sink._Private {
-    public enum Close<Base: SinkProtocol>: FutureProtocol {
-        public typealias Output = Result<Base, Sink.Completion<Base.Failure>>
-
+    public enum Close<Base: SinkProtocol> {
         case polling(Base)
         case done
 
@@ -16,25 +14,29 @@ extension Sink._Private {
         public init(base: Base) {
             self = .polling(base)
         }
+    }
+}
 
-        @inlinable
-        public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch self {
-            case .polling(var base):
-                switch base.pollClose(&context) {
-                case .ready(.success):
-                    self = .done
-                    return .ready(.success(base))
-                case .ready(.failure(let completion)):
-                    self = .done
-                    return .ready(.failure(completion))
-                case .pending:
-                    self = .polling(base)
-                    return .pending
-                }
-            case .done:
-                fatalError("cannot poll after completion")
+extension Sink._Private.Close: FutureProtocol {
+    public typealias Output = Result<Base, Sink.Completion<Base.Failure>>
+
+    @inlinable
+    public mutating func poll(_ context: inout Context) -> Poll<Output> {
+        switch self {
+        case .polling(var base):
+            switch base.pollClose(&context) {
+            case .ready(.success):
+                self = .done
+                return .ready(.success(base))
+            case .ready(.failure(let completion)):
+                self = .done
+                return .ready(.failure(completion))
+            case .pending:
+                self = .polling(base)
+                return .pending
             }
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

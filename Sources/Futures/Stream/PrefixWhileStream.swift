@@ -6,8 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum PrefixWhile<Base: StreamProtocol>: StreamProtocol {
-        public typealias Output = Base.Output
+    public enum PrefixWhile<Base: StreamProtocol> {
         public typealias Predicate = (Base.Output) -> Bool
 
         case pending(Base, Predicate)
@@ -17,34 +16,38 @@ extension Stream._Private {
         public init(base: Base, predicate: @escaping Predicate) {
             self = .pending(base, predicate)
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base, let predicate):
-                while true {
-                    switch base.pollNext(&context) {
-                    case .ready(.some(let output)):
-                        if predicate(output) {
-                            self = .pending(base, predicate)
-                            return .ready(output)
-                        }
-                        self = .done
-                        return .ready(nil)
+extension Stream._Private.PrefixWhile: StreamProtocol {
+    public typealias Output = Base.Output
 
-                    case .ready(.none):
-                        self = .done
-                        return .ready(nil)
-
-                    case .pending:
+    @inlinable
+    public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+        switch self {
+        case .pending(var base, let predicate):
+            while true {
+                switch base.pollNext(&context) {
+                case .ready(.some(let output)):
+                    if predicate(output) {
                         self = .pending(base, predicate)
-                        return .pending
+                        return .ready(output)
                     }
-                }
+                    self = .done
+                    return .ready(nil)
 
-            case .done:
-                fatalError("cannot poll after completion")
+                case .ready(.none):
+                    self = .done
+                    return .ready(nil)
+
+                case .pending:
+                    self = .pending(base, predicate)
+                    return .pending
+                }
             }
+
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

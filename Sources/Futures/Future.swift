@@ -268,12 +268,25 @@ extension FutureProtocol {
     // TODO: assign
     // TODO: sink
 
+    /// .
+    ///
+    ///     let signal = Future.ready()
+    ///     var f = makeFuture(42).abort(when: signal)
+    ///     assert(f.wait() == nil)
+    ///
     /// - Returns: `some FutureProtocol<Output == Self.Output?>`
     @inlinable
     public func abort<U>(when f: U) -> Future._Private.Abort<U, Self> {
         return .init(base: self, signal: { f })
     }
 
+    /// .
+    ///
+    ///     var f = makeFuture(42).abort {
+    ///         Future.ready()
+    ///     }
+    ///     assert(f.wait() == nil)
+    ///
     /// - Returns: `some FutureProtocol<Output == Self.Output?>`
     @inlinable
     public func abort<U>(when f: @escaping () -> U) -> Future._Private.Abort<U, Self> {

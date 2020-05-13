@@ -6,8 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum Lazy<U: StreamConvertible>: StreamProtocol {
-        public typealias Output = U.StreamType.Output
+    public enum Lazy<U: StreamConvertible> {
         public typealias Constructor = () -> U
 
         case pending(Constructor)
@@ -18,32 +17,36 @@ extension Stream._Private {
         public init(_ body: @escaping Constructor) {
             self = .pending(body)
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            while true {
-                switch self {
-                case .pending(let constructor):
-                    let s = constructor()
-                    self = .waiting(s.makeStream())
-                    continue
+extension Stream._Private.Lazy: StreamProtocol {
+    public typealias Output = U.StreamType.Output
 
-                case .waiting(var stream):
-                    switch stream.pollNext(&context) {
-                    case .ready(.some(let output)):
-                        self = .waiting(stream)
-                        return .ready(output)
-                    case .ready(.none):
-                        self = .done
-                        return .ready(nil)
-                    case .pending:
-                        self = .waiting(stream)
-                        return .pending
-                    }
+    @inlinable
+    public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+        while true {
+            switch self {
+            case .pending(let constructor):
+                let s = constructor()
+                self = .waiting(s.makeStream())
+                continue
 
-                case .done:
-                    fatalError("cannot poll after completion")
+            case .waiting(var stream):
+                switch stream.pollNext(&context) {
+                case .ready(.some(let output)):
+                    self = .waiting(stream)
+                    return .ready(output)
+                case .ready(.none):
+                    self = .done
+                    return .ready(nil)
+                case .pending:
+                    self = .waiting(stream)
+                    return .pending
                 }
+
+            case .done:
+                fatalError("cannot poll after completion")
             }
         }
     }

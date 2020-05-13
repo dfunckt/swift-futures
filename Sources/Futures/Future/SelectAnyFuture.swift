@@ -6,9 +6,7 @@
 //
 
 extension Future._Private {
-    public struct SelectAny<Base: FutureProtocol>: FutureProtocol {
-        public typealias Output = Base.Output
-
+    public struct SelectAny<Base: FutureProtocol> {
         private var _futures: _TaskScheduler<Base>
 
         public init(_ bases: Base...) {
@@ -20,18 +18,22 @@ extension Future._Private {
             _futures.schedule(bases)
             precondition(!_futures.isEmpty)
         }
+    }
+}
 
-        public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch _futures.pollNext(&context) {
-            case .ready(.some(let output)):
-                return .ready(output)
-            case .pending:
-                return .pending
-            case .ready(.none):
-                // there's always going to be at least one
-                // future in the scheduler until we're done.
-                fatalError("unreachable")
-            }
+extension Future._Private.SelectAny: FutureProtocol {
+    public typealias Output = Base.Output
+
+    public mutating func poll(_ context: inout Context) -> Poll<Output> {
+        switch _futures.pollNext(&context) {
+        case .ready(.some(let output)):
+            return .ready(output)
+        case .pending:
+            return .pending
+        case .ready(.none):
+            // there's always going to be at least one
+            // future in the scheduler until we're done.
+            fatalError("unreachable")
         }
     }
 }

@@ -6,9 +6,7 @@
 //
 
 extension Future._Private {
-    public enum Print<Base: FutureProtocol>: FutureProtocol {
-        public typealias Output = Base.Output
-
+    public enum Print<Base: FutureProtocol> {
         case pending(Base, String, TextOutputStream)
         case done
 
@@ -16,39 +14,43 @@ extension Future._Private {
         public init(base: Base, prefix: String, to stream: TextOutputStream?) {
             self = .pending(base, prefix, stream ?? StandardOutputStream())
         }
+    }
+}
 
-        @inlinable
-        public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch self {
-            case .pending(var base, let prefix, var stream):
-                let result = base.poll(&context)
-                if case .ready = result {
-                    self = .done
-                } else {
-                    self = .pending(base, prefix, stream)
-                }
-                let message = _makeMessage(prefix: prefix, result: result)
-                stream.write(message)
-                return result
+extension Future._Private.Print: FutureProtocol {
+    public typealias Output = Base.Output
 
-            case .done:
-                fatalError("cannot poll after completion")
+    @inlinable
+    public mutating func poll(_ context: inout Context) -> Poll<Output> {
+        switch self {
+        case .pending(var base, let prefix, var stream):
+            let result = base.poll(&context)
+            if case .ready = result {
+                self = .done
+            } else {
+                self = .pending(base, prefix, stream)
             }
+            let message = _makeMessage(prefix: prefix, result: result)
+            stream.write(message)
+            return result
+
+        case .done:
+            fatalError("cannot poll after completion")
         }
+    }
 
-        @inlinable
-        func _makeMessage(prefix: String, result: Poll<Output>) -> String {
-            var parts = [String]()
-            if !prefix.isEmpty {
-                parts.append(prefix)
-            }
-            switch result {
-            case .ready(let output):
-                parts.append(".ready(\(output))")
-            case .pending:
-                parts.append(".pending")
-            }
-            return parts.joined(separator: " ") + "\n"
+    @inlinable
+    func _makeMessage(prefix: String, result: Poll<Output>) -> String {
+        var parts = [String]()
+        if !prefix.isEmpty {
+            parts.append(prefix)
         }
+        switch result {
+        case .ready(let output):
+            parts.append(".ready(\(output))")
+        case .pending:
+            parts.append(".pending")
+        }
+        return parts.joined(separator: " ") + "\n"
     }
 }

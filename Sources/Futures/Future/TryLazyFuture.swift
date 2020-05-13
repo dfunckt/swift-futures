@@ -6,8 +6,7 @@
 //
 
 extension Future._Private {
-    public enum TryLazy<U: FutureConvertible>: FutureProtocol {
-        public typealias Output = Result<U.FutureType.Output, Error>
+    public enum TryLazy<U: FutureConvertible> {
         public typealias Constructor = () throws -> U
 
         case pending(Constructor)
@@ -18,34 +17,38 @@ extension Future._Private {
         public init(_ body: @escaping Constructor) {
             self = .pending(body)
         }
+    }
+}
 
-        @inlinable
-        public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            while true {
-                switch self {
-                case .pending(let constructor):
-                    do {
-                        let f = try constructor()
-                        self = .waiting(f.makeFuture())
-                        continue
-                    } catch {
-                        self = .done
-                        return .ready(.failure(error))
-                    }
+extension Future._Private.TryLazy: FutureProtocol {
+    public typealias Output = Result<U.FutureType.Output, Error>
 
-                case .waiting(var future):
-                    switch future.poll(&context) {
-                    case .ready(let output):
-                        self = .done
-                        return .ready(.success(output))
-                    case .pending:
-                        self = .waiting(future)
-                        return .pending
-                    }
-
-                case .done:
-                    fatalError("cannot poll after completion")
+    @inlinable
+    public mutating func poll(_ context: inout Context) -> Poll<Output> {
+        while true {
+            switch self {
+            case .pending(let constructor):
+                do {
+                    let f = try constructor()
+                    self = .waiting(f.makeFuture())
+                    continue
+                } catch {
+                    self = .done
+                    return .ready(.failure(error))
                 }
+
+            case .waiting(var future):
+                switch future.poll(&context) {
+                case .ready(let output):
+                    self = .done
+                    return .ready(.success(output))
+                case .pending:
+                    self = .waiting(future)
+                    return .pending
+                }
+
+            case .done:
+                fatalError("cannot poll after completion")
             }
         }
     }

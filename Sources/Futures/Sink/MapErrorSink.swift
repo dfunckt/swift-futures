@@ -6,9 +6,7 @@
 //
 
 extension Sink._Private {
-    public struct MapError<Failure: Error, Base: SinkProtocol>: SinkProtocol {
-        public typealias Input = Base.Input
-
+    public struct MapError<Failure: Error, Base: SinkProtocol> {
         public typealias Adapt = (Base.Failure) -> Failure
 
         @usableFromInline var _base: Base
@@ -19,26 +17,30 @@ extension Sink._Private {
             _base = base
             _adapt = adapt
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollSend(_ context: inout Context, _ item: Input) -> PollSink<Failure> {
-            return _base.pollSend(&context, item).mapError {
-                .failure(.failure(_adapt($0)))
-            }
+extension Sink._Private.MapError: SinkProtocol {
+    public typealias Input = Base.Input
+
+    @inlinable
+    public mutating func pollSend(_ context: inout Context, _ item: Input) -> PollSink<Failure> {
+        return _base.pollSend(&context, item).mapError {
+            .failure(.failure(_adapt($0)))
         }
+    }
 
-        @inlinable
-        public mutating func pollFlush(_ context: inout Context) -> PollSink<Failure> {
-            return _base.pollFlush(&context).mapError {
-                .failure(.failure(_adapt($0)))
-            }
+    @inlinable
+    public mutating func pollFlush(_ context: inout Context) -> PollSink<Failure> {
+        return _base.pollFlush(&context).mapError {
+            .failure(.failure(_adapt($0)))
         }
+    }
 
-        @inlinable
-        public mutating func pollClose(_ context: inout Context) -> PollSink<Failure> {
-            return _base.pollClose(&context).mapError {
-                .failure(.failure(_adapt($0)))
-            }
+    @inlinable
+    public mutating func pollClose(_ context: inout Context) -> PollSink<Failure> {
+        return _base.pollClose(&context).mapError {
+            .failure(.failure(_adapt($0)))
         }
     }
 }

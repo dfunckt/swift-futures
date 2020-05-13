@@ -6,9 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum CompleteOnError<Success, Failure, Base: StreamProtocol>: StreamProtocol where Base.Output == Result<Success, Failure> {
-        public typealias Output = Base.Output
-
+    public enum CompleteOnError<Success, Failure, Base: StreamProtocol> where Base.Output == Result<Success, Failure> {
         case pending(Base)
         case completed
         case done
@@ -17,37 +15,41 @@ extension Stream._Private {
         public init(base: Base) {
             self = .pending(base)
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base):
-                switch base.pollNext(&context) {
-                case .ready(.some(let output)):
-                    switch output {
-                    case .success:
-                        self = .pending(base)
-                    case .failure:
-                        self = .completed
-                    }
-                    return .ready(output)
+extension Stream._Private.CompleteOnError: StreamProtocol {
+    public typealias Output = Base.Output
 
-                case .ready(.none):
-                    self = .done
-                    return .ready(nil)
-
-                case .pending:
+    @inlinable
+    public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+        switch self {
+        case .pending(var base):
+            switch base.pollNext(&context) {
+            case .ready(.some(let output)):
+                switch output {
+                case .success:
                     self = .pending(base)
-                    return .pending
+                case .failure:
+                    self = .completed
                 }
+                return .ready(output)
 
-            case .completed:
+            case .ready(.none):
                 self = .done
                 return .ready(nil)
 
-            case .done:
-                fatalError("cannot poll after completion")
+            case .pending:
+                self = .pending(base)
+                return .pending
             }
+
+        case .completed:
+            self = .done
+            return .ready(nil)
+
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

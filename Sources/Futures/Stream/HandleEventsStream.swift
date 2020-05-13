@@ -6,9 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum HandleEvents<Base: StreamProtocol>: StreamProtocol {
-        public typealias Output = Base.Output
-
+    public enum HandleEvents<Base: StreamProtocol> {
         public typealias Ready = (Base.Output) -> Void
         public typealias Pending = () -> Void
         public typealias Complete = () -> Void
@@ -20,31 +18,35 @@ extension Stream._Private {
         public init(base: Base, ready: @escaping Ready, pending: @escaping Pending, complete: @escaping Complete) {
             self = .pending(base, ready, pending, complete)
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base, let ready, let pending, let complete):
-                switch base.pollNext(&context) {
-                case .ready(.some(let output)):
-                    self = .pending(base, ready, pending, complete)
-                    ready(output)
-                    return .ready(output)
+extension Stream._Private.HandleEvents: StreamProtocol {
+    public typealias Output = Base.Output
 
-                case .ready(.none):
-                    self = .done
-                    complete()
-                    return .ready(nil)
+    @inlinable
+    public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+        switch self {
+        case .pending(var base, let ready, let pending, let complete):
+            switch base.pollNext(&context) {
+            case .ready(.some(let output)):
+                self = .pending(base, ready, pending, complete)
+                ready(output)
+                return .ready(output)
 
-                case .pending:
-                    self = .pending(base, ready, pending, complete)
-                    pending()
-                    return .pending
-                }
+            case .ready(.none):
+                self = .done
+                complete()
+                return .ready(nil)
 
-            case .done:
-                fatalError("cannot poll after completion")
+            case .pending:
+                self = .pending(base, ready, pending, complete)
+                pending()
+                return .pending
             }
+
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

@@ -6,9 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum Future<Base: StreamProtocol>: FutureProtocol {
-        public typealias Output = (output: Base.Output?, stream: Base)
-
+    public enum Future<Base: StreamProtocol> {
         case pending(Base)
         case done
 
@@ -16,23 +14,27 @@ extension Stream._Private {
         public init(base: Base) {
             self = .pending(base)
         }
+    }
+}
 
-        @inlinable
-        public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            switch self {
-            case .pending(var base):
-                switch base.pollNext(&context) {
-                case .ready(let output):
-                    self = .done
-                    return .ready((output, base))
-                case .pending:
-                    self = .pending(base)
-                    return .pending
-                }
+extension Stream._Private.Future: FutureProtocol {
+    public typealias Output = (output: Base.Output?, stream: Base)
 
-            case .done:
-                fatalError("cannot poll after completion")
+    @inlinable
+    public mutating func poll(_ context: inout Context) -> Poll<Output> {
+        switch self {
+        case .pending(var base):
+            switch base.pollNext(&context) {
+            case .ready(let output):
+                self = .done
+                return .ready((output, base))
+            case .pending:
+                self = .pending(base)
+                return .pending
             }
+
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

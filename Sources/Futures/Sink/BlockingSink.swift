@@ -13,29 +13,31 @@ extension Sink._Private {
         public init(base: Base) {
             _base = .init(base)
         }
+    }
+}
 
-        @inlinable
-        public mutating func send(_ item: Base.Input) -> SinkResult<Base.Failure> {
-            var f = _base.value.send(item)
-            return ThreadExecutor.current.run(until: &f).map {
-                _base.value = $0
-            }
+extension Sink._Private.Blocking {
+    @inlinable
+    public mutating func send(_ item: Base.Input) -> SinkResult<Base.Failure> {
+        var f = _base.value.send(item)
+        return ThreadExecutor.current.run(until: &f).map {
+            _base.value = $0
         }
+    }
 
-        @inlinable
-        public mutating func flush() -> SinkResult<Base.Failure> {
-            var f = _base.value.flush()
-            return ThreadExecutor.current.run(until: &f).map {
-                _base.value = $0
-            }
+    @inlinable
+    public mutating func flush() -> SinkResult<Base.Failure> {
+        var f = _base.value.flush()
+        return ThreadExecutor.current.run(until: &f).map {
+            _base.value = $0
         }
+    }
 
-        @inlinable
-        public mutating func close() -> SinkResult<Base.Failure> {
-            var f = _base.value.close()
-            return ThreadExecutor.current.run(until: &f).map {
-                _base.value = $0
-            }
+    @inlinable
+    public mutating func close() -> SinkResult<Base.Failure> {
+        var f = _base.value.close()
+        return ThreadExecutor.current.run(until: &f).map {
+            _base.value = $0
         }
     }
 }

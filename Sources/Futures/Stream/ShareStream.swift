@@ -31,7 +31,9 @@ extension Stream._Private {
             AtomicInt.initialize(&_expecting, to: 0)
         }
 
-        public final class Receiver: StreamProtocol, Cancellable {
+        public final class Receiver {
+            public typealias Output = Base.Output
+
             @usableFromInline let _stream: Share
             @usableFromInline let _task: _Task
             @usableFromInline var _initial: Array<Output>.Iterator
@@ -46,19 +48,6 @@ extension Stream._Private {
             @inlinable
             deinit {
                 _stream._receiverCancelled(_task)
-            }
-
-            @inlinable
-            public func cancel() {
-                _stream._receiverCancelled(_task)
-            }
-
-            @inlinable
-            public func pollNext(_ context: inout Context) -> Poll<Output?> {
-                if let element = _initial.next() {
-                    return .ready(element)
-                }
-                return _stream._pollNext(&context, task: _task)
             }
         }
 
@@ -81,6 +70,23 @@ extension Stream._Private {
         public func eraseToAnyMulticastStream() -> AnyMulticastStream<Output> {
             return .init(self)
         }
+    }
+}
+
+extension Stream._Private.Share.Receiver: Cancellable {
+    @inlinable
+    public func cancel() {
+        _stream._receiverCancelled(_task)
+    }
+}
+
+extension Stream._Private.Share.Receiver: StreamProtocol {
+    @inlinable
+    public func pollNext(_ context: inout Context) -> Poll<Output?> {
+        if let element = _initial.next() {
+            return .ready(element)
+        }
+        return _stream._pollNext(&context, task: _task)
     }
 }
 

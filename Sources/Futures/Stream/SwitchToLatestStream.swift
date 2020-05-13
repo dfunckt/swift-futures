@@ -6,9 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum SwitchToLatest<Base: StreamProtocol>: StreamProtocol where Base.Output: StreamConvertible {
-        public typealias Output = Base.Output.StreamType.Output
-
+    public enum SwitchToLatest<Base: StreamProtocol> where Base.Output: StreamConvertible {
         case pending(Base)
         case following(Base, Base.Output.StreamType)
         case flushing(Base.Output.StreamType)
@@ -18,64 +16,68 @@ extension Stream._Private {
         public init(base: Base) {
             self = .pending(base)
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            while true {
-                switch self {
-                case .pending(var base):
-                    switch base.pollNext(&context) {
-                    case .ready(.some(let output)):
-                        let stream = output.makeStream()
-                        self = .following(base, stream)
-                        continue
-                    case .ready(.none):
-                        self = .done
-                        return .ready(nil)
-                    case .pending:
-                        self = .pending(base)
-                        return .pending
-                    }
+extension Stream._Private.SwitchToLatest: StreamProtocol {
+    public typealias Output = Base.Output.StreamType.Output
 
-                case .following(var base, var stream):
-                    switch base.pollNext(&context) {
-                    case .ready(.some(let output)):
-                        let stream = output.makeStream()
-                        self = .following(base, stream)
-                        continue
-                    case .ready(.none):
-                        self = .flushing(stream)
-                        continue
-                    case .pending:
-                        switch stream.pollNext(&context) {
-                        case .ready(.some(let output)):
-                            self = .following(base, stream)
-                            return .ready(output)
-                        case .ready(.none):
-                            self = .pending(base)
-                            continue
-                        case .pending:
-                            self = .following(base, stream)
-                            return .pending
-                        }
-                    }
+    @inlinable
+    public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+        while true {
+            switch self {
+            case .pending(var base):
+                switch base.pollNext(&context) {
+                case .ready(.some(let output)):
+                    let stream = output.makeStream()
+                    self = .following(base, stream)
+                    continue
+                case .ready(.none):
+                    self = .done
+                    return .ready(nil)
+                case .pending:
+                    self = .pending(base)
+                    return .pending
+                }
 
-                case .flushing(var stream):
+            case .following(var base, var stream):
+                switch base.pollNext(&context) {
+                case .ready(.some(let output)):
+                    let stream = output.makeStream()
+                    self = .following(base, stream)
+                    continue
+                case .ready(.none):
+                    self = .flushing(stream)
+                    continue
+                case .pending:
                     switch stream.pollNext(&context) {
                     case .ready(.some(let output)):
-                        self = .flushing(stream)
+                        self = .following(base, stream)
                         return .ready(output)
                     case .ready(.none):
-                        self = .done
-                        return .ready(nil)
+                        self = .pending(base)
+                        continue
                     case .pending:
-                        self = .flushing(stream)
+                        self = .following(base, stream)
                         return .pending
                     }
-
-                case .done:
-                    fatalError("cannot poll after completion")
                 }
+
+            case .flushing(var stream):
+                switch stream.pollNext(&context) {
+                case .ready(.some(let output)):
+                    self = .flushing(stream)
+                    return .ready(output)
+                case .ready(.none):
+                    self = .done
+                    return .ready(nil)
+                case .pending:
+                    self = .flushing(stream)
+                    return .pending
+                }
+
+            case .done:
+                fatalError("cannot poll after completion")
             }
         }
     }

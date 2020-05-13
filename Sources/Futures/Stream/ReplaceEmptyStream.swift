@@ -6,9 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum ReplaceEmpty<Base: StreamProtocol>: StreamProtocol {
-        public typealias Output = Base.Output
-
+    public enum ReplaceEmpty<Base: StreamProtocol> {
         case pending(Base, Output)
         case notEmpty(Base)
         case complete
@@ -18,43 +16,47 @@ extension Stream._Private {
         public init(base: Base, output: Output) {
             self = .pending(base, output)
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var base, let output):
-                switch base.pollNext(&context) {
-                case .ready(.some(let output)):
-                    self = .notEmpty(base)
-                    return .ready(output)
-                case .ready(.none):
-                    self = .complete
-                    return .ready(output)
-                case .pending:
-                    self = .pending(base, output)
-                    return .pending
-                }
+extension Stream._Private.ReplaceEmpty: StreamProtocol {
+    public typealias Output = Base.Output
 
-            case .notEmpty(var base):
-                switch base.pollNext(&context) {
-                case .ready(.some(let output)):
-                    self = .notEmpty(base)
-                    return .ready(output)
-                case .ready(.none):
-                    self = .done
-                    return .ready(nil)
-                case .pending:
-                    self = .notEmpty(base)
-                    return .pending
-                }
+    @inlinable
+    public mutating func pollNext(_ context: inout Context) -> Poll<Output?> {
+        switch self {
+        case .pending(var base, let output):
+            switch base.pollNext(&context) {
+            case .ready(.some(let output)):
+                self = .notEmpty(base)
+                return .ready(output)
+            case .ready(.none):
+                self = .complete
+                return .ready(output)
+            case .pending:
+                self = .pending(base, output)
+                return .pending
+            }
 
-            case .complete:
+        case .notEmpty(var base):
+            switch base.pollNext(&context) {
+            case .ready(.some(let output)):
+                self = .notEmpty(base)
+                return .ready(output)
+            case .ready(.none):
                 self = .done
                 return .ready(nil)
-
-            case .done:
-                fatalError("cannot poll after completion")
+            case .pending:
+                self = .notEmpty(base)
+                return .pending
             }
+
+        case .complete:
+            self = .done
+            return .ready(nil)
+
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

@@ -6,9 +6,7 @@
 //
 
 extension Stream._Private {
-    public enum Sequence<C: Swift.Sequence>: StreamProtocol {
-        public typealias Output = C.Element
-
+    public enum Sequence<C: Swift.Sequence> {
         case pending(C.Iterator)
         case done
 
@@ -16,22 +14,26 @@ extension Stream._Private {
         public init(sequence: C) {
             self = .pending(sequence.makeIterator())
         }
+    }
+}
 
-        @inlinable
-        public mutating func pollNext(_: inout Context) -> Poll<Output?> {
-            switch self {
-            case .pending(var iter):
-                switch iter.next() {
-                case .some(let output):
-                    self = .pending(iter)
-                    return .ready(output)
-                case .none:
-                    self = .done
-                    return .ready(nil)
-                }
-            case .done:
-                fatalError("cannot poll after completion")
+extension Stream._Private.Sequence: StreamProtocol {
+    public typealias Output = C.Element
+
+    @inlinable
+    public mutating func pollNext(_: inout Context) -> Poll<Output?> {
+        switch self {
+        case .pending(var iter):
+            switch iter.next() {
+            case .some(let output):
+                self = .pending(iter)
+                return .ready(output)
+            case .none:
+                self = .done
+                return .ready(nil)
             }
+        case .done:
+            fatalError("cannot poll after completion")
         }
     }
 }

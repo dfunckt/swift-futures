@@ -6,8 +6,7 @@
 //
 
 extension Future._Private {
-    public enum Lazy<U: FutureConvertible>: FutureProtocol {
-        public typealias Output = U.FutureType.Output
+    public enum Lazy<U: FutureConvertible> {
         public typealias Constructor = () -> U
 
         case pending(Constructor)
@@ -18,29 +17,33 @@ extension Future._Private {
         public init(_ body: @escaping Constructor) {
             self = .pending(body)
         }
+    }
+}
 
-        @inlinable
-        public mutating func poll(_ context: inout Context) -> Poll<Output> {
-            while true {
-                switch self {
-                case .pending(let constructor):
-                    let f = constructor()
-                    self = .waiting(f.makeFuture())
-                    continue
+extension Future._Private.Lazy: FutureProtocol {
+    public typealias Output = U.FutureType.Output
 
-                case .waiting(var future):
-                    switch future.poll(&context) {
-                    case .ready(let output):
-                        self = .done
-                        return .ready(output)
-                    case .pending:
-                        self = .waiting(future)
-                        return .pending
-                    }
+    @inlinable
+    public mutating func poll(_ context: inout Context) -> Poll<Output> {
+        while true {
+            switch self {
+            case .pending(let constructor):
+                let f = constructor()
+                self = .waiting(f.makeFuture())
+                continue
 
-                case .done:
-                    fatalError("cannot poll after completion")
+            case .waiting(var future):
+                switch future.poll(&context) {
+                case .ready(let output):
+                    self = .done
+                    return .ready(output)
+                case .pending:
+                    self = .waiting(future)
+                    return .pending
                 }
+
+            case .done:
+                fatalError("cannot poll after completion")
             }
         }
     }

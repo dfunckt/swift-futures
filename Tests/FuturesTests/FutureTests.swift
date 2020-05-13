@@ -75,7 +75,18 @@ final class FutureTests: XCTestCase {
 
     // TODO: testAssign()
     // TODO: testSink()
-    // TODO: testAbort()
+
+    func testAbort() {
+        do {
+            let signal = Future.ready()
+            var f = makeFuture(42).abort(when: signal)
+            XCTAssertNil(f.wait())
+        }
+        do {
+            var f = makeFuture(42).abort { Future.ready() }
+            XCTAssertNil(f.wait())
+        }
+    }
 
     func testPollOn() {
         var f = makeFuture(42)
