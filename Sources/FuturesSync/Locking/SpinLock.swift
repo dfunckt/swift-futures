@@ -17,20 +17,19 @@ public final class SpinLock: LockingProtocol {
 
     @inlinable
     public func tryAcquire() -> Bool {
-        return !AtomicBool.compareExchange(&_flag, false, true, order: .acquire)
+        return !AtomicBool.exchange(&_flag, true, order: .acquire)
     }
 
     @inlinable
     public func acquire() {
         var backoff = Backoff()
         while AtomicBool.compareExchangeWeak(&_flag, false, true, order: .acquire) {
-            // discard result: we don't have anywhere else to yield to
             backoff.snooze()
         }
     }
 
     @inlinable
     public func release() {
-        AtomicBool.compareExchange(&_flag, true, false, order: .release)
+        AtomicBool.store(&_flag, false, order: .release)
     }
 }
