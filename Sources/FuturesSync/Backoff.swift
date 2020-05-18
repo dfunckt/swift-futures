@@ -7,8 +7,8 @@
 
 // Ported over from crossbeam: https://github.com/crossbeam-rs/crossbeam
 
-@usableFromInline let _MAX_SPINS: UInt64 = 6 // 2^6 = 64
-@usableFromInline let _MAX_YIELDS: UInt64 = 10 // 2^10 = 1024
+@usableFromInline let _MAX_SPINS: UInt = 6 // 2^6 = 64
+@usableFromInline let _MAX_YIELDS: UInt = 10 // 2^10 = 1024
 
 /// Helper for implementing spin loops.
 ///
@@ -51,8 +51,7 @@
 ///     assert(a.load() == 42)
 ///
 public struct Backoff {
-    // UInt64 so it's compatible with `preemptionYield()`
-    @usableFromInline var _step: UInt64 = 0
+    @usableFromInline var _step: UInt = 0
 
     @inlinable
     public init() {}
@@ -75,7 +74,7 @@ public struct Backoff {
                 Atomic.hardwarePause()
             }
         } else {
-            Atomic.preemptionYield(_step)
+            Atomic.preemptionYield(UInt64(_step))
         }
         if _step <= _MAX_YIELDS {
             _step += 1
