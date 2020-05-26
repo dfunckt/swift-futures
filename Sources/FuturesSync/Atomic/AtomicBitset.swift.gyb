@@ -36,7 +36,7 @@ extension AtomicBitset where Self: CustomDebugStringConvertible {
     public var debugDescription: String {
         let bin = String(rawValue, radix: 2)
         let len = Self.bitWidth - bin.count
-        let pad = String(repeating: "0", count: len > 0 ? len : bin.count)
+        let pad = String(repeating: "0", count: len > 0 ? len : 0)
         return "0b\(pad)\(bin)"
     }
 }
