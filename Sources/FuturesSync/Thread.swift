@@ -110,3 +110,54 @@ public struct ThreadLocal<T> {
         }
     }
 }
+
+// MARK: -
+
+public struct Thread {
+    private final class _Box {
+        let main: () -> Void
+
+        init(_ fn: @escaping () -> Void) {
+            main = fn
+        }
+    }
+
+    private let _handle: pthread_t
+
+    private init(_handle: pthread_t) {
+        self._handle = _handle
+    }
+
+    public init(_ block: @escaping () -> Void) {
+        #if canImport(Darwin)
+        var handle: pthread_t!
+        #else
+        var handle: pthread_t = pthread_t()
+        #endif
+
+        let context = Unmanaged.passRetained(_Box(block)).toOpaque()
+        let rc = pthread_create(&handle, nil, { ptr in
+            let task = Unmanaged<_Box>
+                .fromOpaque((ptr as UnsafeMutableRawPointer?)!)
+                .takeRetainedValue()
+            task.main()
+            return nil
+        }, context)
+        precondition(rc == 0, "Could not create thread: \(rc)")
+
+        _handle = handle
+    }
+
+    public func join() {
+        let rc = pthread_join(_handle, nil)
+        precondition(rc == 0, "Could not join thread: \(rc)")
+    }
+
+    public var isCurrent: Bool {
+        pthread_equal(_handle, pthread_self()) != 0
+    }
+
+    public static var current: Thread {
+        .init(_handle: pthread_self())
+    }
+}
