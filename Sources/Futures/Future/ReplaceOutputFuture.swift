@@ -11,8 +11,8 @@ extension Future._Private {
 
         @inlinable
         public init(base: Base, output: Output) {
-            _base = .init(base: base) {
-                _ in output
+            _base = .init(base: base) { _ in
+                output
             }
         }
 

@@ -97,7 +97,7 @@ extension _AtomicBuffer {
                     return false // full
                 }
                 if head == next,
-                    head == AtomicUInt.compareExchange(&header.pointee.head, head, head &+ 1, order: .relaxed) {
+                   head == AtomicUInt.compareExchange(&header.pointee.head, head, head &+ 1, order: .relaxed) {
                     assert(buffer[index].element == nil, "expected nil at index \(index), found item")
                     buffer[index].element = element
                     AtomicUInt.store(&buffer[index].sequence, head &+ 1, order: .release)
@@ -142,7 +142,7 @@ extension _AtomicBuffer {
                     return nil // empty
                 }
                 if tail &+ 1 == next,
-                    tail == AtomicUInt.compareExchange(&header.pointee.tail, tail, tail &+ 1, order: .relaxed) {
+                   tail == AtomicUInt.compareExchange(&header.pointee.tail, tail, tail &+ 1, order: .relaxed) {
                     let item = buffer[index].element
                     assert(item != nil, "expected item at index \(index), found nil")
                     buffer[index].element = nil
